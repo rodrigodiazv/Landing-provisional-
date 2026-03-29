@@ -1,16 +1,3 @@
-<Perfecto, tengo el archivo. Déjame leerlo y hacer el fix.
-
-Encontré el problema. El archivo **no tiene JavaScript** para el IntersectionObserver — los elementos `.reveal` empiezan en `opacity: 0` pero nunca reciben la clase `in-view` porque no hay JS que la añada.
-
-Creo el archivo corregido ahora:
-
-El `sed` no encontró la etiqueta correcta porque está dentro del base64. Uso Python:
-
-✅ **Archivo listo para descargar.**
-
-**Qué hace el fix:** añade el JavaScript que activa `.in-view` en los elementos `.reveal` — tanto los que ya son visibles al cargar la página como los que aparecen al hacer scroll.
-
-**Para subir:** descarga el archivo → ve a GitHub repo → botón `+` → Upload files → sube este `index.html` → commit. Vercel desplegará automáticamente en ~30 segundos.!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
