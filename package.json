@@ -1,0 +1,8 @@
+{
+  "name": "landing-provisional",
+  "version": "1.0.0",
+  "description": "FlowSuite - Agentes IA para tu negocio",
+  "scripts": {
+    "build": "echo 'Ready for deployment'"
+  }
+}
