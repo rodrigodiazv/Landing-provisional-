@@ -801,6 +801,84 @@ footer {
 .sub-msg.ok { color:var(--teal); display:block; }
 .sub-msg.err { color:var(--red); display:block; }
 
+/* ============================================================
+   CONTACT MODAL
+   ============================================================ */
+#contactModal {
+  display:none; position:fixed; inset:0; z-index:9000;
+  background:rgba(0,0,0,.72); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center; padding:16px;
+}
+#contactModal.open { display:flex; }
+.cm-box {
+  background:linear-gradient(145deg,#0d1224 0%,#121830 100%);
+  border:1px solid rgba(0,210,200,.25);
+  border-radius:20px; padding:36px 32px 32px;
+  width:100%; max-width:480px; position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(0,210,200,.1);
+  animation:cmIn .28s ease;
+}
+@keyframes cmIn {
+  from { opacity:0; transform:translateY(24px) scale(.97); }
+  to   { opacity:1; transform:translateY(0) scale(1); }
+}
+.cm-close {
+  position:absolute; top:14px; right:18px;
+  background:none; border:none; color:rgba(255,255,255,.5);
+  font-size:22px; cursor:pointer; line-height:1;
+  transition:color .18s;
+}
+.cm-close:hover { color:#fff; }
+.cm-title {
+  font-size:1.45rem; font-weight:800; color:#fff;
+  margin:0 0 22px; letter-spacing:-.02em;
+}
+.cm-title span { color:var(--teal); }
+.cm-field { margin-bottom:16px; }
+.cm-label {
+  display:block; font-size:.78rem; font-weight:700;
+  color:rgba(255,255,255,.6); text-transform:uppercase;
+  letter-spacing:.06em; margin-bottom:6px;
+}
+.cm-input, .cm-select {
+  width:100%; padding:12px 14px; border-radius:10px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+  color:#fff; font-family:inherit; font-size:.95rem;
+  transition:border-color .2s, background .2s;
+  box-sizing:border-box;
+}
+.cm-input::placeholder { color:rgba(255,255,255,.3); }
+.cm-input:focus, .cm-select:focus {
+  outline:none; border-color:var(--teal);
+  background:rgba(0,210,200,.07);
+}
+.cm-select option { background:#121830; color:#fff; }
+.cm-phone-row { display:flex; gap:10px; }
+.cm-phone-row .cm-select { width:130px; flex-shrink:0; }
+.cm-phone-row .cm-input  { flex:1; }
+.cm-actions { display:flex; flex-direction:column; gap:10px; margin-top:22px; }
+.cm-btn-wa {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 20px; border-radius:12px; border:none;
+  background:#25D366; color:#fff;
+  font-family:inherit; font-size:.95rem; font-weight:700;
+  cursor:pointer; transition:all .22s;
+}
+.cm-btn-wa:hover { background:#1ebe5d; transform:translateY(-2px); box-shadow:0 12px 32px rgba(37,211,102,.35); }
+.cm-btn-email {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 20px; border-radius:12px; border:none;
+  background:linear-gradient(135deg,var(--teal) 0%,var(--purple) 100%);
+  color:#fff;
+  font-family:inherit; font-size:.95rem; font-weight:700;
+  cursor:pointer; transition:all .22s;
+}
+.cm-btn-email:hover { opacity:.88; transform:translateY(-2px); box-shadow:0 12px 32px rgba(0,210,200,.3); }
+@media (max-width:480px) {
+  .cm-box { padding:28px 20px 24px; }
+  .cm-title { font-size:1.25rem; }
+}
+
 </style>
 </head>
 <body>
@@ -819,7 +897,7 @@ footer {
       <button class="lang-btn" onclick="setLang('it')">IT</button>
       <button class="lang-btn" onclick="setLang('pt')">PT</button>
     </div>
-    <a href="#flowy" class="nav-cta" data-i18n="navCta">Hablar con Flowy →</a>
+    <a href="#" onclick="openContactModal();return false;" class="nav-cta" data-i18n="navCta">Hablar con Flow →</a>
   </div>
 </nav>
 
@@ -856,8 +934,8 @@ footer {
     </div>
 
     <div class="hero-actions" style="justify-content:center;">
-      <a href="#flowy" class="btn btn-teal" data-i18n="ctaFlowy">Hablar con Flowy →</a>
-      <a href="https://wa.me/34634134466?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="btn btn-wa">💬 WhatsApp</a>
+      <a href="#" onclick="openContactModal();return false;" class="btn btn-teal" data-i18n="ctaFlowy">Hablar con Flow →</a>
+      <a href="https://wa.me/41779413532?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="btn btn-wa">💬 WhatsApp</a>
     </div>
 
     <div class="hero-nums" style="justify-content:center;">
@@ -984,7 +1062,7 @@ footer {
       <div class="agent reveal">
         <div class="agent-glow"></div>
         <div class="agent-num">Agente 01</div>
-        <div class="agent-name">🤙 Flowy</div>
+        <div class="agent-name">🤙 Flow</div>
         <div class="agent-role">Primer contacto</div>
         <p class="agent-desc">Cada persona que llega a tu negocio recibe atención personalizada en segundos — en su idioma, con el tono de tu marca, a las 3 de la mañana si hace falta.</p>
         <div class="agent-jtbd">Lo que realmente contratas: que ningún cliente interesado se vaya sin respuesta.</div>
@@ -1108,7 +1186,7 @@ footer {
       </div>
       <div class="tcard reveal">
         <div class="stars">★★★★★</div>
-        <p class="tquote">"Como abogado, mi tiempo vale demasiado para pasarlo contestando '¿cuánto cobras?'. Ahora Flowy lo filtra, cualifica y agenda. Yo solo entro a las reuniones que valen la pena."</p>
+        <p class="tquote">"Como abogado, mi tiempo vale demasiado para pasarlo contestando '¿cuánto cobras?'. Ahora Flow lo filtra, cualifica y agenda. Yo solo entro a las reuniones que valen la pena."</p>
         <div class="tresult">↑ 40% más consultas en el primer mes</div>
         <div class="tauthor">
           <div class="avatar">JR</div>
@@ -1146,14 +1224,14 @@ footer {
         <div class="pper">al mes · sin permanencia</div>
         <div class="panchor">El coste de un café al día. El valor de un equipo.</div>
         <ul class="pfeatures">
-          <li>Agente Flowy activo 24/7</li>
+          <li>Agente Flow activo 24/7</li>
           <li>Atención en 5 idiomas</li>
           <li>Registro automático de interesados</li>
           <li>Integración con tu web</li>
           <li>Soporte incluido</li>
         </ul>
-        <a href="#flowy" class="pbtn pbtn-o">Hablar con Flowy →</a>
-        <a href="https://wa.me/34634134466?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="pbtn-wa">💬 WhatsApp</a>
+        <a href="#" onclick="openContactModal();return false;" class="pbtn pbtn-o">Hablar con Flow →</a>
+        <a href="https://wa.me/41779413532?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="pbtn-wa">💬 WhatsApp</a>
       </div>
       <div class="pcard best reveal">
         <div class="ptag">Captación</div>
@@ -1167,8 +1245,8 @@ footer {
           <li>Propuestas personalizadas</li>
           <li>CRM con historial completo</li>
         </ul>
-        <a href="#flowy" class="pbtn pbtn-t">Hablar con Flowy →</a>
-        <a href="https://wa.me/34634134466?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="pbtn-wa">💬 WhatsApp</a>
+        <a href="#" onclick="openContactModal();return false;" class="pbtn pbtn-t">Hablar con Flow →</a>
+        <a href="https://wa.me/41779413532?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="pbtn-wa">💬 WhatsApp</a>
       </div>
       <div class="pcard reveal">
         <div class="ptag">Suite Completa</div>
@@ -1182,8 +1260,8 @@ footer {
           <li>Informes semanales</li>
           <li>Onboarding dedicado</li>
         </ul>
-        <a href="#flowy" class="pbtn pbtn-o">Hablar con Flowy →</a>
-        <a href="https://wa.me/34634134466?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="pbtn-wa">💬 WhatsApp</a>
+        <a href="#" onclick="openContactModal();return false;" class="pbtn pbtn-o">Hablar con Flow →</a>
+        <a href="https://wa.me/41779413532?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="pbtn-wa">💬 WhatsApp</a>
       </div>
     </div>
     <!-- Risk reversal strip — Cialdini: elimina el riesgo percibido -->
@@ -1260,18 +1338,18 @@ footer {
   <div class="cta-content reveal">
     <span class="tag">Una conversación cambia lo que sigue</span>
     <h2>Tu negocio puede empezar a<br><em>trabajar solo mañana.</em></h2>
-    <p>Flowy está ahí abajo, listo. No hay formulario que rellenar ni comercial que te llame después. Solo cuéntale qué haces y en cinco minutos sabrás exactamente lo que FlowSuite puede hacer por tu negocio. Sin compromiso. Sin presión.</p>
-    <a href="#flowy" class="btn btn-teal" style="font-size:16px;padding:18px 42px;margin:0 auto;display:inline-flex;">
-      Hablar con Flowy ahora →
+    <p>Flow está listo para atenderte. Rellena el formulario y en minutos sabrás exactamente lo que FlowSuite puede hacer por tu negocio. Sin compromiso. Sin presión.</p>
+    <a href="#" onclick="openContactModal();return false;" class="btn btn-teal" style="font-size:16px;padding:18px 42px;margin:0 auto;display:inline-flex;">
+      Hablar con Flow ahora →
     </a>
-    <a href="https://wa.me/34634134466?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="btn btn-wa" style="font-size:16px;padding:18px 42px;margin:0 auto;display:inline-flex;">💬 O escríbenos por WhatsApp</a>
+    <a href="https://wa.me/41779413532?text=Hola%2C%20me%20interesa%20FlowSuite" target="_blank" rel="noopener" class="btn btn-wa" style="font-size:16px;padding:18px 42px;margin:0 auto;display:inline-flex;">💬 O escríbenos por WhatsApp</a>
     <span class="cta-micro">Sin registro · Sin tarjeta · Sin compromiso · En español</span>
   </div>
 </section>
 
 <!-- ===================== WIDGET ===================== -->
 <section class="widget-sec" id="flowy">
-  <h2>Hola, soy <span style="color:var(--teal)">Flowy</span> 👋</h2>
+  <h2>Hola, soy <span style="color:var(--teal)">Flow</span> 👋</h2>
   <p style="margin-bottom:0">Cuéntame en qué trabajas y en menos de cinco minutos te digo exactamente qué puede hacer FlowSuite por ti. Sin rodeos.</p>
   <div style="margin-top:36px;min-height:480px;display:flex;align-items:center;justify-content:center;">
     <link rel="stylesheet" href="https://sidewidget.vercel.app/react-widget-uv.css">
@@ -1381,9 +1459,9 @@ footer {
 
       <h3>3. Datos que recopilamos</h3>
       <ul>
-        <li><strong>Datos de contacto:</strong> nombre, teléfono, email, nombre del negocio — proporcionados voluntariamente a través del agente Flowy o formularios.</li>
+        <li><strong>Datos de contacto:</strong> nombre, teléfono, email, nombre del negocio — proporcionados voluntariamente a través del agente Flow o formularios.</li>
         <li><strong>Datos de navegación:</strong> dirección IP (anonimizada), páginas visitadas, tiempo de sesión, dispositivo — recogidos mediante cookies analíticas (solo con consentimiento).</li>
-        <li><strong>Datos de conversación:</strong> el contenido de las interacciones con el agente Flowy, necesario para prestar el servicio.</li>
+        <li><strong>Datos de conversación:</strong> el contenido de las interacciones con el agente Flow, necesario para prestar el servicio.</li>
       </ul>
 
       <h3>4. Finalidad y base legal</h3>
@@ -1491,7 +1569,7 @@ footer {
       <p><strong>🔒 Técnicas / Esenciales</strong> (siempre activas — no requieren consentimiento)</p>
       <ul>
         <li><code>flowsuite_consent</code> — guarda sus preferencias de cookies (1 año)</li>
-        <li>Cookies de sesión del widget Flowy — necesarias para el funcionamiento del agente</li>
+        <li>Cookies de sesión del widget Flow — necesarias para el funcionamiento del agente</li>
         <li>Cookies de seguridad del servidor (Vercel)</li>
       </ul>
 
@@ -1665,13 +1743,13 @@ window.addEventListener('scroll', () => {
 // ============================================================
 const TRANSLATIONS = {
   es: {
-    navCta:        "Hablar con Flowy →",
+    navCta:        "Hablar con Flow →",
     heroBadge:     "Agentes de IA para negocios que no se detienen",
     heroH1a:       "Tú, el mejor en lo tuyo.",
     heroH1b:       "Nosotros, en lo nuestro.",
     heroSub:       "Agentes de IA que captan, atienden y cierran clientes por ti — 24 horas, 7 días, en cualquier idioma. Tú te centras en tu oficio. Ellos hacen crecer tu negocio.",
     heroLoss:      "⚠ Cada día sin esto, clientes se van a la competencia sin saberlo.",
-    ctaFlowy:      "Hablar con Flowy →",
+    ctaFlowy:      "Hablar con Flow →",
     subTitle:      "Recibe novedades de FlowSuite",
     subDesc:       "Consejos prácticos para hacer crecer tu negocio con IA. Sin spam. Cancela cuando quieras.",
     subPlaceholder:"tu@email.com",
@@ -1693,15 +1771,29 @@ const TRANSLATIONS = {
     cookieNec:     "Técnicas (siempre activas)",
     cookieAna:     "Analíticas",
     cookieMkt:     "Marketing",
+    contactModalTitle: "Hablar con Flow",
+    contactName:    "Nombre completo",
+    contactNamePh:  "Tu nombre",
+    contactEmail:   "Email",
+    contactEmailPh: "tu@email.com",
+    contactType:    "¿Eres empresa o autónomo?",
+    contactCompany: "Empresa",
+    contactSelf:    "Autónomo",
+    contactPhone:   "Teléfono",
+    contactPhonePh: "Número de teléfono",
+    contactWa:      "💬 Contactar por WhatsApp",
+    contactMail:    "📧 Contactar por Email a Flow",
+    contactWaGreeting: "Hola, me interesa FlowSuite.",
+    contactClose:   "Cerrar",
   },
   en: {
-    navCta:        "Talk to Flowy →",
+    navCta:        "Talk to Flow →",
     heroBadge:     "AI agents for businesses that never stop",
     heroH1a:       "You, the best at what you do.",
     heroH1b:       "We handle the rest.",
     heroSub:       "AI agents that attract, serve and close clients for you — 24 hours, 7 days, in any language. You focus on your craft. They grow your business.",
     heroLoss:      "⚠ Every day without this, interested clients are choosing your competitors.",
-    ctaFlowy:      "Talk to Flowy →",
+    ctaFlowy:      "Talk to Flow →",
     subTitle:      "Stay updated with FlowSuite",
     subDesc:       "Practical tips to grow your business with AI. No spam. Unsubscribe anytime.",
     subPlaceholder:"your@email.com",
@@ -1723,15 +1815,29 @@ const TRANSLATIONS = {
     cookieNec:     "Technical (always active)",
     cookieAna:     "Analytics",
     cookieMkt:     "Marketing",
+    contactModalTitle: "Talk to Flow",
+    contactName:    "Full name",
+    contactNamePh:  "Your name",
+    contactEmail:   "Email",
+    contactEmailPh: "your@email.com",
+    contactType:    "Are you a company or freelancer?",
+    contactCompany: "Company",
+    contactSelf:    "Freelancer",
+    contactPhone:   "Phone",
+    contactPhonePh: "Phone number",
+    contactWa:      "💬 Contact via WhatsApp",
+    contactMail:    "📧 Send Email to Flow",
+    contactWaGreeting: "Hi, I'm interested in FlowSuite.",
+    contactClose:   "Close",
   },
   fr: {
-    navCta:        "Parler à Flowy →",
+    navCta:        "Parler à Flow →",
     heroBadge:     "Agents IA pour les entreprises qui ne s'arrêtent jamais",
     heroH1a:       "Vous, expert dans votre domaine.",
     heroH1b:       "Nous, dans le nôtre.",
     heroSub:       "Des agents IA qui captent, accueillent et concluent des clients pour vous — 24h/24, 7j/7, dans toutes les langues. Vous vous concentrez sur votre métier. Eux font grandir votre entreprise.",
     heroLoss:      "⚠ Chaque jour sans ça, des clients intéressés partent chez vos concurrents.",
-    ctaFlowy:      "Parler à Flowy →",
+    ctaFlowy:      "Parler à Flow →",
     subTitle:      "Recevez les actualités FlowSuite",
     subDesc:       "Conseils pratiques pour développer votre activité avec l'IA. Sans spam. Désabonnez-vous quand vous voulez.",
     subPlaceholder:"votre@email.com",
@@ -1753,15 +1859,29 @@ const TRANSLATIONS = {
     cookieNec:     "Techniques (toujours actifs)",
     cookieAna:     "Analytiques",
     cookieMkt:     "Marketing",
+    contactModalTitle: "Parler à Flow",
+    contactName:    "Nom complet",
+    contactNamePh:  "Votre nom",
+    contactEmail:   "Email",
+    contactEmailPh: "votre@email.com",
+    contactType:    "Êtes-vous une entreprise ou indépendant ?",
+    contactCompany: "Entreprise",
+    contactSelf:    "Indépendant",
+    contactPhone:   "Téléphone",
+    contactPhonePh: "Numéro de téléphone",
+    contactWa:      "💬 Contacter par WhatsApp",
+    contactMail:    "📧 Envoyer un Email à Flow",
+    contactWaGreeting: "Bonjour, je suis intéressé par FlowSuite.",
+    contactClose:   "Fermer",
   },
   de: {
-    navCta:        "Mit Flowy sprechen →",
+    navCta:        "Mit Flow sprechen →",
     heroBadge:     "KI-Agenten für Unternehmen, die nie schlafen",
     heroH1a:       "Du, der Beste in deinem Fach.",
     heroH1b:       "Wir, in unserem.",
     heroSub:       "KI-Agenten, die rund um die Uhr Kunden gewinnen, betreuen und abschließen — in jeder Sprache. Du konzentrierst dich auf dein Handwerk. Sie lassen dein Unternehmen wachsen.",
     heroLoss:      "⚠ Jeden Tag ohne das verlierst du Interessenten an die Konkurrenz.",
-    ctaFlowy:      "Mit Flowy sprechen →",
+    ctaFlowy:      "Mit Flow sprechen →",
     subTitle:      "FlowSuite-Neuigkeiten erhalten",
     subDesc:       "Praktische Tipps, um Ihr Unternehmen mit KI zu skalieren. Kein Spam. Jederzeit abbestellbar.",
     subPlaceholder:"ihre@email.com",
@@ -1783,15 +1903,29 @@ const TRANSLATIONS = {
     cookieNec:     "Technisch (immer aktiv)",
     cookieAna:     "Analytisch",
     cookieMkt:     "Marketing",
+    contactModalTitle: "Mit Flow sprechen",
+    contactName:    "Vollständiger Name",
+    contactNamePh:  "Ihr Name",
+    contactEmail:   "E-Mail",
+    contactEmailPh: "ihre@email.com",
+    contactType:    "Sind Sie ein Unternehmen oder Freelancer?",
+    contactCompany: "Unternehmen",
+    contactSelf:    "Freelancer",
+    contactPhone:   "Telefon",
+    contactPhonePh: "Telefonnummer",
+    contactWa:      "💬 Kontakt per WhatsApp",
+    contactMail:    "📧 E-Mail an Flow senden",
+    contactWaGreeting: "Hallo, ich interessiere mich für FlowSuite.",
+    contactClose:   "Schließen",
   },
   it: {
-    navCta:        "Parlare con Flowy →",
+    navCta:        "Parlare con Flow →",
     heroBadge:     "Agenti AI per aziende che non si fermano mai",
     heroH1a:       "Tu, il migliore nel tuo campo.",
     heroH1b:       "Noi, nel nostro.",
     heroSub:       "Agenti AI che attraggono, gestiscono e chiudono clienti per te — 24 ore, 7 giorni, in qualsiasi lingua. Tu ti concentri sul tuo lavoro. Loro fanno crescere la tua attività.",
     heroLoss:      "⚠ Ogni giorno senza questo, clienti interessati scelgono i tuoi concorrenti.",
-    ctaFlowy:      "Parlare con Flowy →",
+    ctaFlowy:      "Parlare con Flow →",
     subTitle:      "Ricevi aggiornamenti da FlowSuite",
     subDesc:       "Consigli pratici per far crescere la tua attività con l'AI. Niente spam. Cancellati quando vuoi.",
     subPlaceholder:"tua@email.com",
@@ -1813,15 +1947,29 @@ const TRANSLATIONS = {
     cookieNec:     "Tecnici (sempre attivi)",
     cookieAna:     "Analitici",
     cookieMkt:     "Marketing",
+    contactModalTitle: "Parlare con Flow",
+    contactName:    "Nome completo",
+    contactNamePh:  "Il tuo nome",
+    contactEmail:   "Email",
+    contactEmailPh: "tua@email.com",
+    contactType:    "Sei un'azienda o un libero professionista?",
+    contactCompany: "Azienda",
+    contactSelf:    "Libero professionista",
+    contactPhone:   "Telefono",
+    contactPhonePh: "Numero di telefono",
+    contactWa:      "💬 Contatta via WhatsApp",
+    contactMail:    "📧 Invia Email a Flow",
+    contactWaGreeting: "Ciao, sono interessato a FlowSuite.",
+    contactClose:   "Chiudi",
   },
   pt: {
-    navCta:        "Falar com Flowy →",
+    navCta:        "Falar com Flow →",
     heroBadge:     "Agentes de IA para negócios que nunca param",
     heroH1a:       "Tu, o melhor na tua área.",
     heroH1b:       "Nós, na nossa.",
     heroSub:       "Agentes de IA que captam, atendem e fecham clientes por ti — 24 horas, 7 dias, em qualquer idioma. Tu focas-te no teu trabalho. Eles fazem crescer o teu negócio.",
     heroLoss:      "⚠ Cada dia sem isto, clientes interessados vão para a concorrência.",
-    ctaFlowy:      "Falar com Flowy →",
+    ctaFlowy:      "Falar com Flow →",
     subTitle:      "Recebe novidades da FlowSuite",
     subDesc:       "Dicas práticas para fazer crescer o teu negócio com IA. Sem spam. Cancela quando quiseres.",
     subPlaceholder:"teu@email.com",
@@ -1843,6 +1991,20 @@ const TRANSLATIONS = {
     cookieNec:     "Técnicos (sempre ativos)",
     cookieAna:     "Analíticos",
     cookieMkt:     "Marketing",
+    contactModalTitle: "Falar com Flow",
+    contactName:    "Nome completo",
+    contactNamePh:  "O teu nome",
+    contactEmail:   "Email",
+    contactEmailPh: "teu@email.com",
+    contactType:    "És empresa ou trabalhador independente?",
+    contactCompany: "Empresa",
+    contactSelf:    "Independente",
+    contactPhone:   "Telefone",
+    contactPhonePh: "Número de telefone",
+    contactWa:      "💬 Contactar pelo WhatsApp",
+    contactMail:    "📧 Enviar Email a Flow",
+    contactWaGreeting: "Olá, tenho interesse no FlowSuite.",
+    contactClose:   "Fechar",
   }
 };
 
@@ -1899,12 +2061,14 @@ function setLang(lang) {
   // Update html lang attr
   document.documentElement.lang = lang;
 
-  // Update Flowy agent language via URL param if possible
+  // Update Flow agent language via URL param if possible
   updateFlowyLang(lang);
+  // Update contact modal labels
+  updateContactModalLang(lang);
 }
 
 function updateFlowyLang(lang) {
-  // Pass language to the Flowy embed via URL hash so the agent detects it
+  // Pass language to the Flow embed via URL hash so the agent detects it
   const widget = document.querySelector('react-widget-uv');
   if (widget) {
     // Update agent language context via custom attribute
@@ -1955,6 +2119,155 @@ function handleUnsubscribe() {
   msg.className = 'sub-msg ok'; msg.textContent = t.subUnsubOk;
 }
 
+// ============================================================
+// CONTACT MODAL
+// ============================================================
+function openContactModal() {
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // update labels to current lang
+  updateContactModalLang(currentLang);
+}
+
+function closeContactModal() {
+  document.getElementById('contactModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function updateContactModalLang(lang) {
+  const t = TRANSLATIONS[lang] || TRANSLATIONS['es'];
+  const el = (id) => document.getElementById(id);
+  if (el('cm-title')) {
+    el('cm-title').innerHTML = (t.contactModalTitle || 'Hablar con Flow')
+      .replace('Flow', '<span style="color:var(--teal)">Flow</span>');
+  }
+  if (el('cm-lbl-name'))    el('cm-lbl-name').textContent    = t.contactName    || 'Nombre completo';
+  if (el('cm-lbl-email'))   el('cm-lbl-email').textContent   = t.contactEmail   || 'Email';
+  if (el('cm-lbl-type'))    el('cm-lbl-type').textContent    = t.contactType    || '¿Eres empresa o autónomo?';
+  if (el('cm-lbl-phone'))   el('cm-lbl-phone').textContent   = t.contactPhone   || 'Teléfono';
+  if (el('cm-name'))        el('cm-name').placeholder        = t.contactNamePh  || 'Tu nombre';
+  if (el('cm-email'))       el('cm-email').placeholder       = t.contactEmailPh || 'tu@email.com';
+  if (el('cm-phonenr'))     el('cm-phonenr').placeholder     = t.contactPhonePh || 'Número de teléfono';
+  if (el('cm-opt-company')) el('cm-opt-company').textContent = t.contactCompany || 'Empresa';
+  if (el('cm-opt-self'))    el('cm-opt-self').textContent    = t.contactSelf    || 'Autónomo';
+  if (el('cm-btn-wa'))      el('cm-btn-wa').textContent      = t.contactWa      || '💬 Contactar por WhatsApp';
+  if (el('cm-btn-email'))   el('cm-btn-email').textContent   = t.contactMail    || '📧 Contactar por Email a Flow';
+  const closeBtn = document.querySelector('#contactModal .cm-close');
+  if (closeBtn) closeBtn.setAttribute('aria-label', t.contactClose || 'Cerrar');
+}
+
+function getContactFormData() {
+  return {
+    name:    (document.getElementById('cm-name')?.value    || '').trim(),
+    email:   (document.getElementById('cm-email')?.value   || '').trim(),
+    type:    (document.getElementById('cm-type')?.value    || '').trim(),
+    prefix:  (document.getElementById('cm-prefix')?.value  || '').trim(),
+    phone:   (document.getElementById('cm-phonenr')?.value || '').trim(),
+  };
+}
+
+function sendContactWhatsApp() {
+  const d = getContactFormData();
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['es'];
+  const nameLbl  = t.contactName  || 'Nombre';
+  const emailLbl = t.contactEmail || 'Email';
+  const typeLbl  = t.contactType  ? t.contactType.replace('?','').trim() : 'Tipo';
+  const phoneLbl = t.contactPhone || 'Teléfono';
+  const greeting = t.contactWaGreeting || 'Hola, me interesa FlowSuite.';
+  const phoneStr = (d.prefix && d.phone) ? d.prefix + ' ' + d.phone : '';
+  const msg = encodeURIComponent(
+    greeting + '\n' +
+    (d.name  ? nameLbl  + ': ' + d.name  + '\n' : '') +
+    (d.email ? emailLbl + ': ' + d.email + '\n' : '') +
+    (d.type  ? typeLbl  + ': ' + d.type  + '\n' : '') +
+    (phoneStr ? phoneLbl + ': ' + phoneStr : '')
+  );
+  window.open('https://wa.me/41779413532?text=' + msg, '_blank', 'noopener,noreferrer');
+}
+
+function sendContactEmail() {
+  const d = getContactFormData();
+  const t = TRANSLATIONS[currentLang] || TRANSLATIONS['es'];
+  const nameLbl  = t.contactName  || 'Nombre';
+  const emailLbl = t.contactEmail || 'Email';
+  const typeLbl  = t.contactType  ? t.contactType.replace('?','').trim() : 'Tipo';
+  const phoneLbl = t.contactPhone || 'Teléfono';
+  const phoneStr = (d.prefix && d.phone) ? d.prefix + ' ' + d.phone : (d.phone || '-');
+  const subject = encodeURIComponent('FlowSuite - ' + (d.name || 'New Lead'));
+  const body = encodeURIComponent(
+    nameLbl  + ': ' + (d.name  || '-') + '\n' +
+    emailLbl + ': ' + (d.email || '-') + '\n' +
+    typeLbl  + ': ' + (d.type  || '-') + '\n' +
+    phoneLbl + ': ' + phoneStr          + '\n\n' +
+    '---\nflowsuite.ch'
+  );
+  window.location.href = 'mailto:info@flowsuite.ch?subject=' + subject + '&body=' + body;
+}
+
+// Close on backdrop click
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('contactModal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) closeContactModal();
+    });
+  }
+  // Close on ESC
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeContactModal();
+  });
+});
+
 </script>
+
+<!-- ============================================================
+     CONTACT MODAL
+     ============================================================ -->
+<div id="contactModal" role="dialog" aria-modal="true" aria-labelledby="cm-title">
+  <div class="cm-box">
+    <button class="cm-close" onclick="closeContactModal()" aria-label="Cerrar">✕</button>
+    <div class="cm-title" id="cm-title">Hablar con <span style="color:var(--teal)">Flow</span></div>
+
+    <div class="cm-field">
+      <label class="cm-label" id="cm-lbl-name" for="cm-name">Nombre completo</label>
+      <input class="cm-input" type="text" id="cm-name" placeholder="Tu nombre" autocomplete="name">
+    </div>
+
+    <div class="cm-field">
+      <label class="cm-label" id="cm-lbl-email" for="cm-email">Email</label>
+      <input class="cm-input" type="email" id="cm-email" placeholder="tu@email.com" autocomplete="email">
+    </div>
+
+    <div class="cm-field">
+      <label class="cm-label" id="cm-lbl-type" for="cm-type">¿Eres empresa o autónomo?</label>
+      <select class="cm-select" id="cm-type">
+        <option id="cm-opt-company" value="Empresa">Empresa</option>
+        <option id="cm-opt-self" value="Autónomo">Autónomo</option>
+      </select>
+    </div>
+
+    <div class="cm-field">
+      <label class="cm-label" id="cm-lbl-phone" for="cm-phonenr">Teléfono</label>
+      <div class="cm-phone-row">
+        <select class="cm-select" id="cm-prefix" aria-label="Prefijo de país">
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+33">🇫🇷 +33</option>
+          <option value="+34" selected>🇪🇸 +34</option>
+          <option value="+39">🇮🇹 +39</option>
+          <option value="+41">🇨🇭 +41</option>
+          <option value="+49">🇩🇪 +49</option>
+          <option value="+351">🇵🇹 +351</option>
+        </select>
+        <input class="cm-input" type="tel" id="cm-phonenr" placeholder="Número de teléfono" autocomplete="tel-national">
+      </div>
+    </div>
+
+    <div class="cm-actions">
+      <button class="cm-btn-wa" id="cm-btn-wa" onclick="sendContactWhatsApp()">💬 Contactar por WhatsApp</button>
+      <button class="cm-btn-email" id="cm-btn-email" onclick="sendContactEmail()">📧 Contactar por Email a Flow</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
