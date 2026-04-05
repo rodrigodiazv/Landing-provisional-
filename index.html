@@ -264,4 +264,655 @@
 
     /* ── FOOTER ── */
     #footer { background: #050810; border-top: 1px solid var(--border); }
-    .footer-
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding: 56px 0 40px; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-tagline { font-size: .875rem; color: var(--muted); margin-top: 12px; max-width: 240px; line-height: 1.6; }
+    .footer-col-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.3); margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: .875rem; color: var(--muted); margin-bottom: 8px; transition: color .2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid var(--border); padding: 24px 0; font-size: .75rem; color: rgba(255,255,255,.2); line-height: 1.7; }
+    .footer-impressum { margin-top: 8px; }
+
+    /* ── COOKIE BANNER ── */
+    #cookie-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 300; max-width: 560px; width: calc(100% - 40px); background: rgba(13,16,32,.97); border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; backdrop-filter: blur(12px); box-shadow: 0 8px 40px rgba(0,0,0,.5); }
+    #cookie-banner.hidden { display: none; }
+    .cookie-text { font-size: .8rem; color: var(--muted); flex: 1; line-height: 1.55; }
+    .cookie-text a { color: var(--teal); }
+    .cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
+    .cookie-btn { font-size: .78rem; font-weight: 700; padding: 8px 14px; border-radius: 8px; transition: all .2s; }
+    .cookie-accept { background: var(--teal); color: #000; }
+    .cookie-accept:hover { opacity: .9; }
+    .cookie-decline { border: 1px solid var(--border); color: var(--muted); }
+    .cookie-decline:hover { border-color: rgba(255,255,255,.3); color: #fff; }
+    @media (max-width: 540px) { #cookie-banner { flex-direction: column; align-items: flex-start; } .cookie-btns { align-self: flex-end; } }
+
+    /* ── MISC ── */
+    .text-teal { color: var(--teal); }
+    .text-center { text-align: center; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-24 { margin-bottom: 24px; }
+    .mb-44 { margin-bottom: 44px; }
+    .mt-8 { margin-top: 8px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="#" class="logo" aria-label="FlowSuite">
+        <div class="logo-icon" aria-hidden="true">⚡</div>
+        <span>Flow<span class="logo-teal">Suite</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#demo" data-i18n="nav_demo">Probar demo</a>
+        <a href="#pricing" data-i18n="nav_pricing">Precios</a>
+        <a href="#contact" data-i18n="nav_contact">Contacto</a>
+        <a href="#footer" data-i18n="nav_legal">Legal</a>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher" role="group" aria-label="Idioma">
+          <button class="lang-btn lang-active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="burger" id="burger" aria-label="Menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
+      <a href="#demo" data-i18n="nav_demo">Probar demo</a>
+      <a href="#pricing" data-i18n="nav_pricing">Precios</a>
+      <a href="#contact" data-i18n="nav_contact">Contacto</a>
+      <a href="#footer" data-i18n="nav_legal">Legal</a>
+      <div class="mobile-lang">
+        <button class="lang-btn lang-active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge-wrap">
+        <span class="pill pill-teal pill-dot" data-i18n="hero_badge">🇨🇭 Conforme nLPD &amp; RGPD</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-main" data-i18n="hero_title">Tu nuevo equipo de ventas 24/7.</span>
+        <span class="hero-title-accent" data-i18n="hero_accent">Impulsado por IA.</span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero_sub">Automatiza la captación de clientes, el soporte y las citas con nuestros empleados digitales. Configuración en 48h. Sin permanencia.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">
+          <span data-i18n="hero_cta">Empezar ahora</span> →
+        </a>
+        <a href="#demo" class="btn btn-wa">
+          💬 <span data-i18n="hero_wa">Ver la demo</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-val">48h</div>
+          <div class="stat-label" data-i18n="stat_setup_label">Configuración</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">24/7</div>
+          <div class="stat-label" data-i18n="stat_avail_label">Disponibilidad</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">0</div>
+          <div class="stat-label" data-i18n="stat_commit_label">Permanencia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TRUST ══════════════ -->
+<section id="trust" class="section-sm">
+  <div class="container">
+    <p class="text-center mb-16" style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700;" data-i18n="trust_title">Impulsado por las mejores tecnologías</p>
+    <div class="trust-logos">
+      <span>OpenAI</span>
+      <span>Snowie.ai</span>
+      <span>Make.com</span>
+      <span>Google Workspace</span>
+      <span>WhatsApp Business</span>
+      <span>Calendly</span>
+    </div>
+    <div class="trust-footer">
+      <span class="pill pill-teal" style="font-size:.72rem;" data-i18n="trust_badge">Conforme con la protección de datos suiza (nLPD) y europea (RGPD)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
+<section id="how" class="section">
+  <div class="container">
+    <div class="text-center mb-44">
+      <span class="pill pill-purple mb-16" style="display:inline-flex;margin-bottom:16px;">🔄 Process</span>
+      <h2 data-i18n="how_title">Cómo funciona</h2>
+      <p style="color:var(--muted);margin-top:12px;font-size:.95rem;" data-i18n="how_sub">Del análisis al crecimiento en tres pasos simples.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card card-gradient step-card" style="--c1:rgba(0,212,170,.12);--c2:rgba(0,212,170,.04);">
+        <span class="step-num">01</span>
+        <div class="step-icon">🔍</div>
+        <h3 class="step-title" data-i18n="step1_title">1. Análisis</h3>
+        <p class="step-desc" data-i18n="step1_desc">Auditamos tu negocio e identificamos los procesos de mayor impacto para automatizar primero.</p>
+      </div>
+      <div class="card card-gradient step-card" style="--c1:rgba(124,58,237,.12);--c2:rgba(124,58,237,.04);">
+        <span class="step-num">02</span>
+        <div class="step-icon">⚙️</div>
+        <h3 class="step-title" data-i18n="step2_title">2. Configuración</h3>
+        <p class="step-desc" data-i18n="step2_desc">Tus agentes IA están configurados e integrados en tus herramientas existentes en 48 horas.</p>
+      </div>
+      <div class="card card-gradient step-card" style="--c1:rgba(0,212,170,.12);--c2:rgba(124,58,237,.04);">
+        <span class="step-num">03</span>
+        <div class="step-icon">📈</div>
+        <h3 class="step-title" data-i18n="step3_title">3. Crecimiento</h3>
+        <p class="step-desc" data-i18n="step3_desc">Recibe leads cualificados automáticamente, 24/7, mientras te concentras en tu negocio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ DEMO ══════════════ -->
+<section id="demo" class="section">
+  <div class="container">
+    <div class="text-center mb-44">
+      <span class="pill pill-teal mb-16" style="display:inline-flex;margin-bottom:16px;">🤖 Demo</span>
+      <h2 data-i18n="demo_title">Demos interactivas por sector</h2>
+      <p style="color:var(--muted);margin-top:12px;font-size:.95rem;" data-i18n="demo_sub">Haz clic en un sector para interactuar en directo con un empleado digital.</p>
+    </div>
+
+    <!-- Consent -->
+    <div class="consent-box" id="consent-box">
+      <div class="ai-notice">
+        <span>⚠️</span>
+        <span data-i18n="demo_ai_notice">Aviso importante: Nuestros asistentes virtuales están impulsados por IA. Las conversaciones pueden grabarse para garantizar la calidad. Al usar este sitio, aceptas nuestra política de privacidad.</span>
+      </div>
+      <label class="consent-label" id="consent-label">
+        <div class="consent-check" id="consent-check" role="checkbox" aria-checked="false" tabindex="0"></div>
+        <span class="consent-text" data-i18n="demo_ai_check">He leído y acepto la política de privacidad y el aviso sobre IA.</span>
+      </label>
+      <p class="consent-err-msg" id="consent-err" data-i18n="demo_consent_err">Por favor acepta para acceder a la demo.</p>
+    </div>
+
+    <!-- Sectors -->
+    <div class="sector-grid">
+      <button class="sector-card health" data-sector="health" data-agent="https://app.snowie.ai/chat/health-demo" aria-label="Demo Salud">
+        <div class="sector-icon">🏥</div>
+        <div class="sector-title" data-i18n="demo_health">Salud</div>
+        <div class="sector-desc" data-i18n="demo_health_desc">Consulta médica, dentista, fisio</div>
+        <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+      </button>
+      <button class="sector-card gastro" data-sector="gastro" data-agent="https://app.snowie.ai/chat/gastro-demo" aria-label="Demo Restauración">
+        <div class="sector-icon">🍽️</div>
+        <div class="sector-title" data-i18n="demo_gastro">Restauración</div>
+        <div class="sector-desc" data-i18n="demo_gastro_desc">Reservas y pedidos automatizados</div>
+        <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+      </button>
+      <button class="sector-card immo" data-sector="immo" data-agent="https://app.snowie.ai/chat/immo-demo" aria-label="Demo Inmobiliaria">
+        <div class="sector-icon">🏢</div>
+        <div class="sector-title" data-i18n="demo_immo">Inmobiliaria</div>
+        <div class="sector-desc" data-i18n="demo_immo_desc">Cualificación de leads 24/7</div>
+        <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+      </button>
+      <button class="sector-card coach" data-sector="coach" data-agent="https://app.snowie.ai/chat/coach-demo" aria-label="Demo Coaching">
+        <div class="sector-icon">🎯</div>
+        <div class="sector-title" data-i18n="demo_coach">Coaching</div>
+        <div class="sector-desc" data-i18n="demo_coach_desc">Citas y seguimiento de clientes</div>
+        <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Demo Modal -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <span class="modal-icon" id="modal-icon">🤖</span>
+        <div>
+          <div class="modal-title" id="modal-title">Agente IA</div>
+          <div class="modal-subtitle">FlowSuite Demo</div>
+        </div>
+      </div>
+      <div class="modal-head-right">
+        <span class="live-badge"><span class="live-dot"></span>Live</span>
+        <button class="modal-close" id="modal-close" aria-label="Cerrar demo">✕</button>
+      </div>
+    </div>
+    <div class="modal-ai-strip">
+      <span>⚠️</span>
+      <span data-i18n="demo_ai_notice">Asistente virtual impulsado por IA. Conversaciones pueden grabarse.</span>
+    </div>
+    <div class="modal-body">
+      <div id="snowie-mount"></div>
+      <div class="snowie-loading" id="snowie-loading">
+        <div class="spinner"></div>
+        <span class="snowie-loading-text">Cargando agente IA…</span>
+      </div>
+      <div class="snowie-error" id="snowie-error">
+        <span style="font-size:2rem;">😕</span>
+        <p style="color:var(--muted);font-size:.9rem;">No se pudo cargar el agente. Inténtalo de nuevo.</p>
+        <button class="btn btn-ghost" style="font-size:.85rem;padding:10px 20px;" onclick="document.getElementById('modal-overlay').classList.remove('open')">Cerrar</button>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <span class="modal-foot-text">Powered by <a href="https://snowie.ai" target="_blank" rel="noopener">Snowie.ai</a></span>
+      <button class="btn btn-ghost" style="font-size:.8rem;padding:8px 16px;" id="modal-close-btn" data-i18n="demo_close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PRICING ══════════════ -->
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="text-center mb-44">
+      <span class="pill pill-teal mb-16" style="display:inline-flex;margin-bottom:16px;">💰 Pricing</span>
+      <h2 data-i18n="pricing_title">Precios transparentes</h2>
+      <p style="color:var(--muted);margin-top:12px;font-size:.95rem;" data-i18n="pricing_note">Sin permanencia. IVA no incluido (exento art. 10 LTVA).</p>
+    </div>
+    <div class="pricing-notices">
+      <span class="pricing-notice notice-neutral" data-i18n="pricing_setup">🔧 Setup único desde 400 CHF</span>
+      <span class="pricing-notice notice-warn">⏳ Plazas limitadas este mes</span>
+    </div>
+    <div class="grid-3">
+      <!-- Plan 1 -->
+      <div class="card plan-card">
+        <div class="plan-name" data-i18n="plan1_name">Presencia</div>
+        <div class="plan-price">
+          <span class="plan-currency">CHF</span>
+          <span class="plan-amount" data-i18n="plan1_price">129</span>
+          <span class="plan-currency" data-i18n="pricing_month">/mes</span>
+        </div>
+        <ul class="plan-features">
+          <li data-i18n="plan1_f1">Agente IA texto 24/7</li>
+          <li data-i18n="plan1_f2">Integración web</li>
+          <li data-i18n="plan1_f3">Cualificación de leads</li>
+          <li data-i18n="plan1_f4">Dashboard básico</li>
+          <li data-i18n="plan1_f5">Soporte email</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar oferta</a>
+      </div>
+      <!-- Plan 2 (popular) -->
+      <div class="card plan-card plan-popular" style="border-color:rgba(124,58,237,.45);">
+        <span class="plan-badge" data-i18n="pricing_popular">⭐ El más popular</span>
+        <div class="plan-name" data-i18n="plan2_name">Captación</div>
+        <div class="plan-price">
+          <span class="plan-currency">CHF</span>
+          <span class="plan-amount" data-i18n="plan2_price">229</span>
+          <span class="plan-currency" data-i18n="pricing_month">/mes</span>
+        </div>
+        <ul class="plan-features">
+          <li data-i18n="plan2_f1">Agente IA voz + texto 24/7</li>
+          <li data-i18n="plan2_f2">Integración multicanal</li>
+          <li data-i18n="plan2_f3">CRM automatizado (Google Sheets)</li>
+          <li data-i18n="plan2_f4">Seguimientos automáticos</li>
+          <li data-i18n="plan2_f5">Informes mensuales</li>
+          <li data-i18n="plan2_f6">Soporte prioritario</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-primary" data-i18n="pricing_cta">Solicitar oferta</a>
+      </div>
+      <!-- Plan 3 -->
+      <div class="card plan-card">
+        <div class="plan-name" data-i18n="plan3_name">Suite</div>
+        <div class="plan-price">
+          <span class="plan-currency">CHF</span>
+          <span class="plan-amount" data-i18n="plan3_price">389</span>
+          <span class="plan-currency" data-i18n="pricing_month">/mes</span>
+        </div>
+        <ul class="plan-features">
+          <li data-i18n="plan3_f1">Todo de Captación</li>
+          <li data-i18n="plan3_f2">Agentes ilimitados</li>
+          <li data-i18n="plan3_f3">Integraciones a medida</li>
+          <li data-i18n="plan3_f4">Dashboard avanzado</li>
+          <li data-i18n="plan3_f5">Formación del equipo</li>
+          <li data-i18n="plan3_f6">Soporte dedicado 7/7</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar oferta</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="text-center mb-44">
+      <span class="pill pill-teal mb-16" style="display:inline-flex;margin-bottom:16px;">✉️ Contact</span>
+      <h2 data-i18n="contact_title">¿Listo para automatizar tu negocio?</h2>
+      <p style="color:var(--muted);margin-top:12px;font-size:.95rem;" data-i18n="contact_sub">Respuesta en 24h laborables. Primera consulta gratuita.</p>
+    </div>
+    <div class="contact-form-wrap">
+      <div class="form-card">
+        <div id="form-success" class="form-success">
+          <div class="success-icon">✅</div>
+          <h3 data-i18n="f_ok_title">¡Mensaje enviado!</h3>
+          <p style="color:var(--muted);margin-top:8px;" data-i18n="f_ok_desc">Nos ponemos en contacto en 24h laborables. ¡Hasta pronto!</p>
+        </div>
+        <form id="contact-form" novalidate>
+          <div class="form-grid-2" style="margin-bottom:18px;">
+            <div class="field">
+              <label for="f-name"><span data-i18n="f_name">Nombre completo</span> <span>*</span></label>
+              <input type="text" id="f-name" name="name" required autocomplete="name" placeholder="Ana García">
+            </div>
+            <div class="field">
+              <label for="f-company"><span data-i18n="f_company">Empresa</span></label>
+              <input type="text" id="f-company" name="company" autocomplete="organization" placeholder="Mi empresa">
+            </div>
+          </div>
+          <div class="form-grid-2" style="margin-bottom:18px;">
+            <div class="field">
+              <label for="f-email"><span data-i18n="f_email">Email profesional</span> <span>*</span></label>
+              <input type="email" id="f-email" name="email" required autocomplete="email" placeholder="ana@empresa.com">
+            </div>
+            <div class="field">
+              <label for="f-phone"><span data-i18n="f_phone">Teléfono (WhatsApp)</span></label>
+              <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+41 79 000 00 00">
+            </div>
+          </div>
+          <div class="field" style="margin-bottom:18px;">
+            <label for="f-sector"><span data-i18n="f_sector">Sector</span></label>
+            <select id="f-sector" name="sector">
+              <option value="" data-i18n="f_sector_ph">Selecciona tu sector</option>
+              <option value="health" data-i18n="f_sector_health">Salud / Médico</option>
+              <option value="gastro" data-i18n="f_sector_gastro">Restauración / Hostelería</option>
+              <option value="immo" data-i18n="f_sector_immo">Inmobiliaria</option>
+              <option value="coach" data-i18n="f_sector_coach">Coaching / Consultoría</option>
+              <option value="retail" data-i18n="f_sector_retail">Comercio / Retail</option>
+              <option value="other" data-i18n="f_sector_other">Otro</option>
+            </select>
+          </div>
+          <div class="field" style="margin-bottom:18px;">
+            <label for="f-msg"><span data-i18n="f_msg">Describe tu necesidad (opcional)</span></label>
+            <textarea id="f-msg" name="message" rows="4" placeholder="Cuéntanos qué proceso quieres automatizar…"></textarea>
+          </div>
+          <div class="form-check-wrap" id="form-check-wrap" style="margin-bottom:18px;">
+            <label class="form-check-label" id="form-check-label">
+              <div class="form-check-box" id="form-check-box" role="checkbox" aria-checked="false" tabindex="0"></div>
+              <span class="form-check-text" data-i18n="f_check">Acepto que mis datos sean tratados por FlowSuite y nuestros socios IA (Snowie.ai, Make.com) conforme a la política de privacidad (nLPD / RGPD).</span>
+            </label>
+            <p class="form-check-err" id="form-check-err" data-i18n="f_check_err">Este campo es obligatorio.</p>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" id="form-submit">
+            <span data-i18n="f_submit">Enviar solicitud →</span>
+          </button>
+          <div style="margin-top:20px;">
+            <div class="form-divider"><span data-i18n="f_or">o</span></div>
+            <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+              <a href="https://wa.me/41779413532" target="_blank" rel="noopener" class="btn btn-wa" style="flex:1;min-width:160px;">
+                💬 WhatsApp
+              </a>
+              <a href="mailto:hello@flowsuite.ch" class="btn btn-ghost" style="flex:1;min-width:160px;">
+                ✉️ hello@flowsuite.ch
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="logo" aria-label="FlowSuite">
+          <div class="logo-icon" aria-hidden="true">⚡</div>
+          <span>Flow<span class="logo-teal">Suite</span></span>
+        </a>
+        <p class="footer-tagline" data-i18n="footer_tagline">Inteligencia artificial al servicio de las PYMEs.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_nav">Navegación</div>
+        <a href="#demo" data-i18n="nav_demo">Probar demo</a>
+        <a href="#pricing" data-i18n="nav_pricing">Precios</a>
+        <a href="#contact" data-i18n="nav_contact">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_legal_nav">Legal</div>
+        <a href="#" data-i18n="footer_privacy">Privacidad</a>
+        <a href="#" data-i18n="footer_cgv">CGV</a>
+        <a href="#" data-i18n="footer_cookies">Cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer_vat">IVA: No sujeto según art. 10 LTVA (facturación anual &lt; CHF 100.000).</p>
+      <p data-i18n="footer_vat_de" style="margin-top:4px;"></p>
+      <p class="footer-impressum" data-i18n="footer_impressum">FlowSuite – Empresa individual a título accesorio (Einzelfirma im Nebenerwerb) de Rodrigo A. Díaz Videla · Chemin de la Raverettaz 6, CP 1862, 1862 Ormont-Dessous (Les Mosses), Vaud, Suisse.</p>
+      <p style="margin-top:12px;" data-i18n="footer_copy">© 2026 FlowSuite · Vaud, Suiza. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ COOKIE BANNER ══════════════ -->
+<div id="cookie-banner" role="region" aria-label="Cookie consent">
+  <p class="cookie-text">
+    <span data-i18n="cookie_text">Usamos cookies funcionales necesarias para el funcionamiento del sitio. </span>
+    <a href="#" data-i18n="footer_privacy">Privacidad</a>
+  </p>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-accept" id="cookie-accept" data-i18n="cookie_accept">Aceptar</button>
+    <button class="cookie-btn cookie-decline" id="cookie-decline" data-i18n="cookie_decline">Rechazar</button>
+  </div>
+</div>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script src="translations.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ── Language ── */
+  var currentLang = localStorage.getItem('fs_lang') || 'es';
+
+  function applyLang(lang) {
+    var t = TRANSLATIONS[lang] || TRANSLATIONS['es'];
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.textContent = t[key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function (btn) {
+      btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
+    });
+    document.documentElement.lang = lang;
+    currentLang = lang;
+    localStorage.setItem('fs_lang', lang);
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      applyLang(btn.getAttribute('data-lang'));
+    });
+  });
+
+  applyLang(currentLang);
+
+  /* ── Scroll header ── */
+  var header = document.getElementById('header');
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  /* ── Mobile menu ── */
+  var burger = document.getElementById('burger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', function () {
+    var isOpen = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      mobileMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ── Consent checkbox ── */
+  var consentCheck = document.getElementById('consent-check');
+  var consentChecked = false;
+  function toggleConsent() {
+    consentChecked = !consentChecked;
+    consentCheck.classList.toggle('checked', consentChecked);
+    consentCheck.setAttribute('aria-checked', consentChecked);
+    document.getElementById('consent-err').classList.remove('visible');
+    document.getElementById('consent-box').classList.remove('error');
+  }
+  document.getElementById('consent-label').addEventListener('click', toggleConsent);
+  consentCheck.addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggleConsent(); }
+  });
+
+  /* ── Demo modal ── */
+  var modalOverlay = document.getElementById('modal-overlay');
+  var snowieMountEl = document.getElementById('snowie-mount');
+  var snowieLoading = document.getElementById('snowie-loading');
+
+  function openModal(sector, agentUrl, icon, title) {
+    document.getElementById('modal-icon').textContent = icon;
+    document.getElementById('modal-title').textContent = title;
+    snowieMountEl.innerHTML = '';
+    snowieLoading.style.display = 'flex';
+    document.getElementById('snowie-error').classList.remove('visible');
+
+    var iframe = document.createElement('iframe');
+    // Validate URL to prevent XSS via data-agent attribute
+    var allowedOrigins = ['https://app.snowie.ai'];
+    var parsedUrl;
+    try { parsedUrl = new URL(agentUrl); } catch (e) { parsedUrl = null; }
+    if (!parsedUrl || !allowedOrigins.includes(parsedUrl.origin)) {
+      document.getElementById('snowie-error').classList.add('visible');
+      snowieLoading.style.display = 'none';
+      return;
+    }
+    iframe.src = parsedUrl.href;
+    iframe.style.cssText = 'width:100%;height:100%;min-height:440px;border:none;display:none;';
+    iframe.setAttribute('title', 'Demo ' + title);
+    iframe.addEventListener('load', function () {
+      snowieLoading.style.display = 'none';
+      iframe.style.display = 'block';
+    });
+    iframe.addEventListener('error', function () {
+      snowieLoading.style.display = 'none';
+      document.getElementById('snowie-error').classList.add('visible');
+    });
+    snowieMountEl.appendChild(iframe);
+
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    snowieMountEl.innerHTML = '';
+  }
+
+  var sectorData = {
+    health: { icon: '🏥' },
+    gastro: { icon: '🍽️' },
+    immo:   { icon: '🏢' },
+    coach:  { icon: '🎯' }
+  };
+
+  document.querySelectorAll('.sector-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      if (!consentChecked) {
+        document.getElementById('consent-err').classList.add('visible');
+        document.getElementById('consent-box').classList.add('error');
+        document.getElementById('consent-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      var sector = card.getAttribute('data-sector');
+      var agentUrl = card.getAttribute('data-agent');
+      var t = TRANSLATIONS[currentLang] || TRANSLATIONS['es'];
+      var titleKey = 'demo_' + sector;
+      var title = t[titleKey] || sector;
+      var icon = (sectorData[sector] || {}).icon || '🤖';
+      openModal(sector, agentUrl, icon, title);
+    });
+  });
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', function (e) {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  /* ── Contact form ── */
+  var formCheckBox = document.getElementById('form-check-box');
+  var formChecked = false;
+  function toggleFormCheck() {
+    formChecked = !formChecked;
+    formCheckBox.classList.toggle('checked', formChecked);
+    formCheckBox.setAttribute('aria-checked', formChecked);
+    document.getElementById('form-check-err').classList.remove('visible');
+    document.getElementById('form-check-wrap').classList.remove('error');
+  }
+  document.getElementById('form-check-label').addEventListener('click', toggleFormCheck);
+  formCheckBox.addEventListener('keydown', function (e) {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggleFormCheck(); }
+  });
+
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var valid = true;
+    if (!formChecked) {
+      document.getElementById('form-check-err').classList.add('visible');
+      document.getElementById('form-check-wrap').classList.add('error');
+      valid = false;
+    }
+    if (!valid) return;
+
+    var btn = document.getElementById('form-submit');
+    btn.disabled = true;
+    btn.style.opacity = '.6';
+
+    var form = e.target;
+    var data = new FormData(form);
+    fetch('https://hook.eu2.make.com/flowsuite-contact', {
+      method: 'POST',
+      body: JSON.stringify(Object.fromEntries(data)),
+      headers: { 'Content-Type': 'application/json' }
+    }).catch(function () {}).finally(function () {
+      form.style.display = 'none';
+      document.getElementById('form-success').classList.add('visible');
+    });
+  });
+
+  /* ── Cookie banner ── */
+  var cookieBanner = document.getElementById('cookie-banner');
+  if (localStorage.getItem('fs_cookie')) {
+    cookieBanner.classList.add('hidden');
+  }
+  document.getElementById('cookie-accept').addEventListener('click', function () {
+    localStorage.setItem('fs_cookie', '1');
+    cookieBanner.classList.add('hidden');
+  });
+  document.getElementById('cookie-decline').addEventListener('click', function () {
+    localStorage.setItem('fs_cookie', '0');
+    cookieBanner.classList.add('hidden');
+  });
+
+})();
+</script>
+</body>
+</html>
