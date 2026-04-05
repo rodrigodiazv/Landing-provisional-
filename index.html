@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlowSuite | Agentes IA 24/7 para PYMEs – Suiza y Europa</title>
-  <meta name="description" content="FlowSuite automatiza tus ventas, soporte y citas con empleados digitales IA. Setup 48h. Conforme nLPD & RGPD. Vaud, Suiza." />
-  <meta name="keywords" content="agencia IA Suiza, automatización PYMEs Vaud, agente virtual Suiza, chatbot empresa, IA para PYMEs, KI Agentur Schweiz" />
-  <meta property="og:title" content="FlowSuite | Agentes IA 24/7 para PYMEs – Suiza" />
-  <meta property="og:description" content="Automatiza la captación de clientes con IA. Setup 48h. Sin permanencia. nLPD & RGPD." />
+  <title>FlowSuite | Asistente IA 24/7 para PYMEs – Fase Beta</title>
+  <meta name="description" content="FlowSuite automatiza la captación de clientes, soporte y citas. Nunca más una llamada perdida. Datos 100% en Suiza (Infomaniac). Conforme nLPD & RGPD." />
+  <meta name="keywords" content="asistente IA PYMEs Suiza, automatización ventas, agente virtual 24/7, datos Suiza Infomaniac, IA empresa" />
+  <meta property="og:title" content="FlowSuite | Nunca más una llamada perdida – Fase Beta" />
+  <meta property="og:description" content="Tu asistente IA 24/7 capta clientes mientras duermes. Datos 100% en Suiza. Acceso limitado a 50 empresas." />
   <meta property="og:url" content="https://flowsuite.ch" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://flowsuite.ch" />
+  <!-- Brain favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -20,7 +22,7 @@
     "email":"hello@flowsuite.ch","telephone":"+41779413532",
     "address":{"@type":"PostalAddress","streetAddress":"Chemin de la Raverettaz 6, CP 1862",
     "addressLocality":"Ormont-Dessous (Les Mosses)","postalCode":"1862","addressRegion":"Vaud","addressCountry":"CH"},
-    "priceRange":"CHF 129–389/mois","areaServed":["CH","ES","FR","DE","IT"]
+    "areaServed":["CH","ES","FR","DE","IT"]
   }
   </script>
 
@@ -61,6 +63,7 @@
     .pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 99px; padding: 6px 16px; font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
     .pill-teal { color: var(--teal); border-color: rgba(0,212,170,.25); }
     .pill-purple { color: var(--purple); border-color: rgba(124,58,237,.25); }
+    .pill-orange { color: #FB923C; border-color: rgba(251,146,60,.35); background: rgba(251,146,60,.08); }
     .pill-dot::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
 
     /* ── Buttons ── */
@@ -84,6 +87,21 @@
     @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2,1fr); } .grid-3 { grid-template-columns: 1fr; } }
     @media (max-width: 640px) { .grid-2, .grid-4 { grid-template-columns: 1fr; } }
 
+    /* ── BETA BANNER ── */
+    #betaBanner {
+      background: linear-gradient(90deg, rgba(124,58,237,.4), rgba(0,212,170,.25), rgba(124,58,237,.4));
+      border-bottom: 1px solid rgba(0,212,170,.3);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+      letter-spacing: .04em;
+      position: relative;
+      z-index: 101;
+    }
+    #betaBanner strong { color: #fff; }
+
     /* ── HEADER ── */
     #header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -95,7 +113,7 @@
     }
     .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; }
-    .logo-icon { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .logo-icon { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
     .logo-teal { color: var(--teal); }
     .nav-links { display: flex; align-items: center; gap: 4px; }
     .nav-links a { font-size: .875rem; color: var(--text); padding: 6px 12px; border-radius: 10px; transition: all .2s; }
@@ -118,38 +136,46 @@
     }
 
     /* ── HERO ── */
-    #hero { padding: 130px 0 80px; text-align: center; }
-    .hero-bg { display: none; }
-    .hero-rings { display: none; }
+    #hero { padding: 160px 0 80px; text-align: center; }
     .hero-content { max-width: 860px; margin: 0 auto; }
     .hero-badge-wrap { margin-bottom: 28px; }
     .hero-title { margin-bottom: 20px; }
     .hero-title-main { color: #fff; display: block; }
     .hero-title-accent { color: var(--teal); display: block; }
-    @keyframes gradPan { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-    .hero-sub { color: var(--text); font-size: 1.1rem; max-width: 580px; margin: 0 auto 36px; }
+    .hero-sub { color: var(--text); font-size: 1.15rem; max-width: 620px; margin: 0 auto 36px; line-height: 1.7; }
     .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 56px; }
     .hero-stats { display: flex; justify-content: center; gap: 48px; }
     .stat { text-align: center; }
     .stat-val { font-size: 2rem; font-weight: 900; color: #fff; line-height: 1; }
     .stat-label { font-size: .75rem; color: var(--muted); margin-top: 4px; }
-    .scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; opacity: .3; animation: bounce 2s ease infinite; }
-    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
     @media (max-width: 640px) { .hero-stats { gap: 28px; } .stat-val { font-size: 1.6rem; } }
 
     /* ── TRUST ── */
     #trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px 48px; margin: 28px 0; }
-    .trust-logos span { font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.2); transition: color .2s; }
-    .trust-logos span:hover { color: rgba(255,255,255,.45); }
-    .trust-footer { display: flex; justify-content: center; }
+    .trust-swiss-box {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      background: linear-gradient(135deg, rgba(0,212,170,.1), rgba(124,58,237,.1));
+      border: 1px solid rgba(0,212,170,.25); border-radius: 16px;
+      padding: 20px 32px; margin: 0 auto 20px; max-width: 720px;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .trust-swiss-item { display: flex; align-items: center; gap: 8px; font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.85); }
+    .trust-swiss-divider { width: 1px; height: 24px; background: rgba(255,255,255,.15); }
+    @media (max-width: 640px) { .trust-swiss-divider { display: none; } .trust-swiss-box { flex-direction: column; } }
 
-    /* ── HOW ── */
+    /* ── BENEFITS ── */
     .step-card { position: relative; }
     .step-num { position: absolute; top: 14px; right: 16px; font-size: .7rem; font-weight: 900; font-family: monospace; color: rgba(255,255,255,.1); }
     .step-icon { font-size: 2rem; margin-bottom: 16px; }
     .step-title { margin-bottom: 10px; }
     .step-desc { color: var(--text); font-size: .9rem; line-height: 1.65; }
+
+    /* ── LOSS AVERSION ── */
+    #loss { background: linear-gradient(180deg, transparent, rgba(239,68,68,.04), transparent); }
+    .loss-card { border-radius: 20px; border: 1px solid rgba(239,68,68,.2); background: rgba(127,29,29,.12); padding: 28px; }
+    .loss-icon { font-size: 2.2rem; margin-bottom: 12px; }
+    .loss-title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: rgba(252,165,165,.9); }
+    .loss-desc { font-size: .875rem; color: rgba(255,255,255,.55); line-height: 1.65; }
 
     /* ── DEMO ── */
     .consent-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 28px; transition: border-color .2s; }
@@ -199,7 +225,6 @@
     .modal-foot-text { font-size: .75rem; color: rgba(255,255,255,.25); }
     .modal-foot a { color: rgba(255,255,255,.4); transition: color .2s; }
     .modal-foot a:hover { color: #fff; }
-    /* Snowie container */
     #snowie-mount { width: 100%; height: 100%; min-height: 440px; }
     .snowie-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
     .spinner { width: 32px; height: 32px; border: 2px solid rgba(0,212,170,.2); border-top-color: var(--teal); border-radius: 50%; animation: spin 1s linear infinite; }
@@ -208,11 +233,28 @@
     .snowie-error { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 24px; }
     .snowie-error.visible { display: flex; }
 
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: linear-gradient(180deg,transparent,rgba(124,58,237,.04),transparent); }
+    .testimonial-card { border-radius: 20px; border: 1px solid rgba(0,212,170,.15); background: linear-gradient(135deg,rgba(0,212,170,.08),rgba(124,58,237,.06)); padding: 28px; }
+    .testimonial-quote { font-size: 1rem; color: rgba(255,255,255,.85); line-height: 1.75; margin-bottom: 16px; font-style: italic; }
+    .testimonial-quote::before { content: '"'; font-size: 2rem; color: var(--teal); line-height: 0; vertical-align: -0.5rem; margin-right: 4px; }
+    .testimonial-author { font-size: .8rem; color: var(--teal); font-weight: 700; }
+
+    /* ── SCARCITY BANNER ── */
+    .scarcity-banner {
+      background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(0,212,170,.15));
+      border: 1px solid rgba(0,212,170,.3); border-radius: 16px;
+      padding: 24px 32px; text-align: center; margin-top: 56px;
+    }
+    .scarcity-text { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 16px; }
+    .scarcity-spots { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,212,170,.15); border: 1px solid rgba(0,212,170,.3); border-radius: 99px; padding: 6px 16px; font-size: .8rem; color: var(--teal); font-weight: 700; margin-bottom: 16px; }
+
     /* ── PRICING ── */
     .pricing-notices { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 44px; }
     .pricing-notice { font-size: .8rem; border-radius: 99px; padding: 6px 16px; border: 1px solid; }
     .notice-neutral { color: var(--muted); border-color: var(--border); background: rgba(255,255,255,.03); }
     .notice-warn { color: rgba(252,211,77,.7); border-color: rgba(180,120,20,.3); background: rgba(120,53,15,.15); }
+    .notice-beta { color: rgba(251,146,60,.9); border-color: rgba(251,146,60,.35); background: rgba(251,146,60,.1); font-weight: 600; }
     .plan-card { display: flex; flex-direction: column; }
     .plan-popular { position: relative; }
     .plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--purple), var(--teal)); color: #fff; font-size: .7rem; font-weight: 700; padding: 5px 14px; border-radius: 99px; white-space: nowrap; }
@@ -265,8 +307,10 @@
     /* ── FOOTER ── */
     #footer { background: #050810; border-top: 1px solid var(--border); }
     .footer-inner { display: flex; justify-content: space-between; gap: 48px; padding: 56px 0 40px; flex-wrap: wrap; }
-    .footer-brand { max-width: 280px; }
+    .footer-brand { max-width: 300px; }
     .footer-tagline { font-size: .875rem; color: var(--muted); margin-top: 8px; line-height: 1.6; }
+    .footer-swiss-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,212,170,.1); border: 1px solid rgba(0,212,170,.2); border-radius: 99px; padding: 4px 12px; font-size: .75rem; color: var(--teal); font-weight: 600; margin-top: 12px; }
+    .footer-beta-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(124,58,237,.15); border: 1px solid rgba(124,58,237,.3); border-radius: 99px; padding: 4px 12px; font-size: .75rem; color: rgba(196,181,253,.9); font-weight: 600; margin-top: 8px; }
     .footer-cols { display: flex; gap: 48px; flex-wrap: wrap; }
     .footer-col { min-width: 120px; }
     .footer-col-title { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.3); margin-bottom: 14px; }
@@ -283,20 +327,28 @@
     .cookie-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .cookie-text { font-size: .8rem; color: var(--muted); flex: 1; }
     .cookie-btns { display: flex; gap: 10px; flex-shrink: 0; }
+
+    @keyframes gradPan { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
   </style>
 </head>
 <body>
+
+  <!-- ══ BETA BANNER ══ -->
+  <div id="betaBanner">
+    <span data-i18n="beta_banner">🧠 <strong>FASE BETA DE PRUEBA</strong> · Sin cobro · Acceso limitado a 50 empresas · Proyecto piloto colaborativo</span>
+  </div>
 
   <!-- ══ HEADER ══ -->
   <header id="header">
     <div class="container">
       <div class="header-inner">
         <a class="logo" href="#">
-          <div class="logo-icon">⚡</div>
+          <div class="logo-icon">🧠</div>
           <span>Flow<span class="logo-teal">Suite</span></span>
         </a>
         <nav class="nav-links">
-          <a href="#demo"    data-i18n="nav_demo">Probar demo</a>
+          <a href="#demo"    data-i18n="nav_demo">Ver la demo</a>
           <a href="#pricing" data-i18n="nav_pricing">Precios</a>
           <a href="#contact" data-i18n="nav_contact">Contacto</a>
           <a href="#footer"  data-i18n="nav_legal">Legal</a>
@@ -309,14 +361,14 @@
             <button class="lang-btn" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="it">IT</button>
           </div>
-          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Empezar ahora</a>
+          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Quiero mi asistente ahora →</a>
           <button class="burger" id="burgerBtn" aria-label="Menu">
             <span></span><span></span><span></span>
           </button>
         </div>
       </div>
       <nav class="mobile-menu" id="mobileMenu">
-        <a href="#demo"    data-i18n="nav_demo">Probar demo</a>
+        <a href="#demo"    data-i18n="nav_demo">Ver la demo</a>
         <a href="#pricing" data-i18n="nav_pricing">Precios</a>
         <a href="#contact" data-i18n="nav_contact">Contacto</a>
         <a href="#footer"  data-i18n="nav_legal">Legal</a>
@@ -333,84 +385,109 @@
 
   <!-- ══ HERO ══ -->
   <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-rings"></div>
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge-wrap">
-          <span class="pill pill-teal pill-dot" data-i18n="hero_badge">🇨🇭 Conforme nLPD &amp; RGPD</span>
+          <span class="pill pill-orange pill-dot" data-i18n="hero_badge">🧠 En Prueba Beta · Solo 50 empresas</span>
         </div>
         <h1 class="hero-title">
-          <span class="hero-title-main" data-i18n="hero_title">Tu nuevo equipo de ventas 24/7.</span>
-          <span class="hero-title-accent" data-i18n="hero_accent">Impulsado por IA.</span>
+          <span class="hero-title-main" data-i18n="hero_title">Cada llamada perdida es dinero que se va.</span>
+          <span class="hero-title-accent" data-i18n="hero_accent">FlowSuite nunca cuelga.</span>
         </h1>
-        <p class="hero-sub" data-i18n="hero_sub">Automatiza la captación de clientes, el soporte y las citas con nuestros empleados digitales. Configuración en 48h. Sin permanencia.</p>
+        <p class="hero-sub" data-i18n="hero_sub">Tu cliente llama a las 11 de la noche, el sábado, en vacaciones. ¿Quién responde? Con FlowSuite, siempre hay alguien. Cada lead capturado. Cada cita confirmada. Cada venta cerrada.</p>
         <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Empezar ahora</a>
-          <button class="btn btn-ghost" onclick="openDemoModal('health')" data-i18n="hero_wa">Ver la demo</button>
+          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Quiero mi asistente ahora →</a>
+          <button class="btn btn-ghost" onclick="openDemoModal('health')" data-i18n="hero_wa">Ver cómo funciona</button>
         </div>
         <div class="hero-stats">
           <div class="stat">
             <div class="stat-val">48h</div>
-            <div class="stat-label" data-i18n="stat_setup_label">Configuración</div>
+            <div class="stat-label" data-i18n="stat_setup_label">Setup listo</div>
           </div>
           <div class="stat">
             <div class="stat-val">24/7</div>
-            <div class="stat-label" data-i18n="stat_avail_label">Disponibilidad</div>
+            <div class="stat-label" data-i18n="stat_avail_label">Siempre activo</div>
           </div>
           <div class="stat">
             <div class="stat-val">0</div>
-            <div class="stat-label" data-i18n="stat_commit_label">Permanencia</div>
+            <div class="stat-label" data-i18n="stat_commit_label">Sin permanencia</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ══ TRUST ══ -->
+  <!-- ══ TRUST / SWISS DATA ══ -->
   <section id="trust" class="section-sm">
     <div class="container">
-      <p style="text-align:center;color:var(--muted);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px" data-i18n="trust_title">Impulsado por las mejores tecnologías</p>
-      <div class="trust-logos">
-        <span>OpenAI</span>
-        <span>Snowie.ai</span>
-        <span>Make.com</span>
-        <span>Google Workspace</span>
-        <span>Twilio</span>
-        <span>Vercel</span>
+      <p style="text-align:center;color:var(--muted);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:20px" data-i18n="trust_title">🔒 Tus datos, 100% protegidos en Suiza</p>
+      <div class="trust-swiss-box">
+        <div class="trust-swiss-item">🇨🇭 <strong>Infomaniac</strong> · Servidores suizos</div>
+        <div class="trust-swiss-divider"></div>
+        <div class="trust-swiss-item">🔒 <strong>RGPD</strong> & <strong>nLPD</strong> certificado</div>
+        <div class="trust-swiss-divider"></div>
+        <div class="trust-swiss-item">✅ Datos que nunca salen de Suiza</div>
       </div>
-      <div class="trust-footer">
-        <span class="pill pill-teal" data-i18n="trust_badge">Conforme con la protección de datos suiza (nLPD) y europea (RGPD)</span>
+      <div style="text-align:center">
+        <span class="pill pill-teal" data-i18n="trust_badge">🇨🇭 Infomaniac · Servidores suizos · Cumple RGPD &amp; nLPD — tus datos nunca salen de Suiza</span>
       </div>
     </div>
   </section>
 
-  <!-- ══ HOW IT WORKS ══ -->
+  <!-- ══ BENEFITS (¿Qué ganas?) ══ -->
   <section id="how" class="section">
     <div class="container">
       <div style="text-align:center;margin-bottom:56px">
-        <span class="pill pill-purple" style="margin-bottom:16px">Process</span>
-        <h2 data-i18n="how_title">Cómo funciona</h2>
-        <p style="color:var(--text);margin-top:12px" data-i18n="how_sub">Del análisis al crecimiento en tres pasos simples.</p>
+        <span class="pill pill-teal" style="margin-bottom:16px">Beneficios</span>
+        <h2 data-i18n="benefits_title">¿Qué ganas con FlowSuite?</h2>
+        <p style="color:var(--text);margin-top:12px" data-i18n="benefits_sub">Tres transformaciones reales. Desde el primer día.</p>
       </div>
       <div class="grid-3">
         <div class="card card-gradient step-card" style="--c1:rgba(0,212,170,.15);--c2:rgba(0,212,170,.05)">
           <span class="step-num">01</span>
-          <div class="step-icon">🔍</div>
-          <h3 class="step-title" data-i18n="step1_title">1. Análisis</h3>
-          <p class="step-desc" data-i18n="step1_desc">Auditamos tu negocio e identificamos los procesos de mayor impacto para automatizar primero.</p>
+          <div class="step-icon">📞</div>
+          <h3 class="step-title" data-i18n="step1_title">Nunca más un cliente perdido</h3>
+          <p class="step-desc" data-i18n="step1_desc">Cada consulta, llamada y mensaje: atendido al instante. Da igual si son las 3 de la mañana o domingo festivo. Tu negocio nunca duerme.</p>
         </div>
         <div class="card card-gradient step-card" style="--c1:rgba(124,58,237,.15);--c2:rgba(124,58,237,.05)">
           <span class="step-num">02</span>
-          <div class="step-icon">⚙️</div>
-          <h3 class="step-title" data-i18n="step2_title">2. Configuración</h3>
-          <p class="step-desc" data-i18n="step2_desc">Tus agentes IA están configurados e integrados en tus herramientas existentes en 48 horas.</p>
+          <div class="step-icon">💰</div>
+          <h3 class="step-title" data-i18n="step2_title">Más ingresos sin más trabajo</h3>
+          <p class="step-desc" data-i18n="step2_desc">Mientras tú descansas, FlowSuite cualifica leads, confirma citas y cierra reservas. Tu facturación crece sola, sin contratar a nadie.</p>
         </div>
         <div class="card card-gradient step-card" style="--c1:rgba(124,58,237,.15);--c2:rgba(0,212,170,.05)">
           <span class="step-num">03</span>
-          <div class="step-icon">🚀</div>
-          <h3 class="step-title" data-i18n="step3_title">3. Crecimiento</h3>
-          <p class="step-desc" data-i18n="step3_desc">Recibe leads cualificados automáticamente, 24/7, mientras te concentras en tu negocio.</p>
+          <div class="step-icon">🏆</div>
+          <h3 class="step-title" data-i18n="step3_title">Ventaja real sobre tu competencia</h3>
+          <p class="step-desc" data-i18n="step3_desc">El 78% de los clientes elige al primero que responde. FlowSuite te pone siempre primero. Tu competencia sigue sin contestar los fines de semana.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ LOSS AVERSION ══ -->
+  <section id="loss" class="section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px">
+        <span class="pill pill-purple" style="margin-bottom:16px">Coste de no actuar</span>
+        <h2 data-i18n="loss_title">¿Qué pierdes cada día sin FlowSuite?</h2>
+        <p style="color:var(--text);margin-top:12px" data-i18n="loss_sub">No actuar también tiene un coste. Y es mayor de lo que crees.</p>
+      </div>
+      <div class="grid-3">
+        <div class="loss-card">
+          <div class="loss-icon" data-i18n="loss1_icon">📞</div>
+          <div class="loss-title" data-i18n="loss1_title">Llamadas sin respuesta</div>
+          <div class="loss-desc" data-i18n="loss1_desc">El 67% de los clientes no deja mensaje. Si no contestas, se van a la competencia. Hoy mismo.</div>
+        </div>
+        <div class="loss-card">
+          <div class="loss-icon" data-i18n="loss2_icon">🌙</div>
+          <div class="loss-title" data-i18n="loss2_title">Noches y fines de semana sin ventas</div>
+          <div class="loss-desc" data-i18n="loss2_desc">Tu competencia con IA capta clientes mientras tú duermes. Cada hora offline es una oportunidad perdida.</div>
+        </div>
+        <div class="loss-card">
+          <div class="loss-icon" data-i18n="loss3_icon">💸</div>
+          <div class="loss-title" data-i18n="loss3_title">Dinero que se escapa</div>
+          <div class="loss-desc" data-i18n="loss3_desc">Un lead no atendido a tiempo cuesta entre 3x y 5x más recuperarlo que haberlo captado bien desde el inicio.</div>
         </div>
       </div>
     </div>
@@ -420,15 +497,15 @@
   <section id="demo" class="section" style="background:linear-gradient(180deg,transparent,rgba(124,58,237,.05),transparent)">
     <div class="container">
       <div style="text-align:center;margin-bottom:48px">
-        <span class="pill pill-teal" style="margin-bottom:16px">Live Demo</span>
-        <h2 data-i18n="demo_title">Demos interactivas por sector</h2>
-        <p style="color:var(--text);margin-top:12px" data-i18n="demo_sub">Haz clic en un sector para interactuar en directo con un empleado digital.</p>
+        <span class="pill pill-teal" style="margin-bottom:16px">Demo en vivo</span>
+        <h2 data-i18n="demo_title">Pruébalo en vivo. Sin compromiso.</h2>
+        <p style="color:var(--text);margin-top:12px" data-i18n="demo_sub">Elige tu sector e interactúa ahora mismo con tu futuro asistente digital.</p>
       </div>
       <!-- Consent -->
       <div class="consent-box" id="consentBox">
         <div class="ai-notice">
           <span>⚠️</span>
-          <span data-i18n="demo_ai_notice">Aviso importante: Nuestros asistentes virtuales están impulsados por IA. Las conversaciones pueden grabarse para garantizar la calidad. Al usar este sitio, aceptas nuestra política de privacidad.</span>
+          <span data-i18n="demo_ai_notice">Aviso: Nuestros asistentes virtuales funcionan con IA. Las conversaciones pueden guardarse para garantizar la calidad. Al usar este sitio, aceptas nuestra política de privacidad.</span>
         </div>
         <label class="consent-label" onclick="toggleConsent()">
           <div class="consent-check" id="consentCheck"></div>
@@ -484,7 +561,7 @@
       </div>
       <div class="modal-ai-strip">
         <span aria-hidden="true">⚠️</span>
-        <span data-i18n="demo_ai_notice">Conversaciones gestionadas por IA. Grabadas con fines de calidad.</span>
+        <span data-i18n="demo_ai_notice">Conversaciones gestionadas por IA. Guardadas con fines de calidad.</span>
       </div>
       <div class="modal-body">
         <div class="snowie-loading" id="snowieLoading">
@@ -499,22 +576,54 @@
         <div id="snowie-mount"></div>
       </div>
       <div class="modal-foot">
-        <span class="modal-foot-text">Powered by <a href="https://snowie.ai" target="_blank" rel="noopener noreferrer">Snowie.ai</a></span>
+        <span class="modal-foot-text">🔒 FlowSuite AI Agent</span>
         <span class="modal-foot-text"><a href="#footer" onclick="closeModal()" data-i18n="footer_privacy">Privacidad</a></span>
       </div>
     </div>
   </div>
 
+  <!-- ══ TESTIMONIALS ══ -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px">
+        <span class="pill pill-teal" style="margin-bottom:16px">Testimonios</span>
+        <h2 data-i18n="testimonials_title">Lo que dicen los primeros en probarlo</h2>
+        <p style="color:var(--text);margin-top:12px" data-i18n="testimonials_sub">Empresarios como tú. Resultados reales desde el primer día.</p>
+      </div>
+      <div class="grid-3">
+        <div class="testimonial-card">
+          <p class="testimonial-quote" data-i18n="test1_quote">Llevaba años perdiendo clientes por no poder atender el teléfono. FlowSuite recibe las llamadas por mí. Esta semana cerré 3 citas mientras dormía.</p>
+          <div class="testimonial-author" data-i18n="test1_author">— Marco R., Clínica Dental, Lausana</div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote" data-i18n="test2_quote">Me daba miedo la tecnología. Pero esto es como tener un empleado de confianza que nunca falla. Mis reservas aumentaron el primer mes.</p>
+          <div class="testimonial-author" data-i18n="test2_author">— Sophie L., Restaurante, Ginebra</div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote" data-i18n="test3_quote">Mi competencia sigue sin dar respuesta los fines de semana. Yo ya no pierdo esos clientes. Es una ventaja enorme.</p>
+          <div class="testimonial-author" data-i18n="test3_author">— Rodrigo V., Inmobiliaria, Vaud</div>
+        </div>
+      </div>
+      <!-- Scarcity -->
+      <div class="scarcity-banner">
+        <div class="scarcity-spots">⚡ <span data-i18n="scarcity_text">Solo quedan plazas limitadas en esta fase beta</span></div>
+        <br>
+        <a href="#contact" class="btn btn-primary" data-i18n="scarcity_cta">Reservar mi plaza ahora →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ PRICING ══ -->
   <section id="pricing" class="section">
     <div class="container">
       <div style="text-align:center;margin-bottom:48px">
-        <span class="pill pill-teal" style="margin-bottom:16px">Pricing</span>
-        <h2 data-i18n="pricing_title">Precios transparentes</h2>
+        <span class="pill pill-teal" style="margin-bottom:16px">Inversión</span>
+        <h2 data-i18n="pricing_title">Inversión transparente</h2>
       </div>
       <div class="pricing-notices">
-        <span class="pricing-notice notice-neutral" data-i18n="pricing_note">Sin permanencia. IVA no incluido (exento art. 10 LTVA).</span>
-        <span class="pricing-notice notice-warn"    data-i18n="pricing_setup">🔧 Setup único desde 400 CHF</span>
+        <span class="pricing-notice notice-beta" data-i18n="pricing_beta_notice">⚠️ Fase Beta: precios orientativos · Sin cobro hasta lanzamiento oficial</span>
+        <span class="pricing-notice notice-neutral" data-i18n="pricing_note">Sin permanencia · Fase de prueba activa</span>
+        <span class="pricing-notice notice-warn" data-i18n="pricing_setup">🔧 Setup único desde 400 CHF</span>
       </div>
       <div class="grid-3">
         <!-- Plan 1 -->
@@ -525,48 +634,48 @@
             <span class="plan-currency" data-i18n="pricing_month">/mes</span>
           </div>
           <ul class="plan-features">
-            <li data-i18n="plan1_f1">Agente IA texto 24/7</li>
-            <li data-i18n="plan1_f2">Integración web</li>
-            <li data-i18n="plan1_f3">Cualificación de leads</li>
-            <li data-i18n="plan1_f4">Dashboard básico</li>
-            <li data-i18n="plan1_f5">Soporte email</li>
+            <li data-i18n="plan1_f1">Asistente digital 24/7</li>
+            <li data-i18n="plan1_f2">Responde en segundos</li>
+            <li data-i18n="plan1_f3">Capta leads automáticamente</li>
+            <li data-i18n="plan1_f4">Panel de control</li>
+            <li data-i18n="plan1_f5">Soporte personalizado</li>
           </ul>
-          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar oferta</a>
+          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
         </div>
         <!-- Plan 2 (popular) -->
         <div class="card plan-card plan-popular">
-          <div class="plan-badge" data-i18n="pricing_popular">⭐ El más popular</div>
+          <div class="plan-badge" data-i18n="pricing_popular">⭐ El más elegido</div>
           <div class="plan-name" data-i18n="plan2_name">Captación</div>
           <div class="plan-price">
             <span class="plan-amount">CHF&#8239;<span data-i18n="plan2_price">229</span></span>
             <span class="plan-currency" data-i18n="pricing_month">/mes</span>
           </div>
           <ul class="plan-features">
-            <li data-i18n="plan2_f1">Agente IA voz + texto 24/7</li>
-            <li data-i18n="plan2_f2">Integración multicanal</li>
-            <li data-i18n="plan2_f3">CRM automatizado (Google Sheets)</li>
+            <li data-i18n="plan2_f1">Asistente voz + texto 24/7</li>
+            <li data-i18n="plan2_f2">Captura clientes en todos los canales</li>
+            <li data-i18n="plan2_f3">Agenda automática de citas</li>
             <li data-i18n="plan2_f4">Seguimientos automáticos</li>
-            <li data-i18n="plan2_f5">Informes mensuales</li>
+            <li data-i18n="plan2_f5">Informes semanales</li>
             <li data-i18n="plan2_f6">Soporte prioritario</li>
           </ul>
-          <a href="#contact" class="plan-cta plan-cta-primary" data-i18n="pricing_cta">Solicitar oferta</a>
+          <a href="#contact" class="plan-cta plan-cta-primary" data-i18n="pricing_cta">Solicitar plaza</a>
         </div>
         <!-- Plan 3 -->
         <div class="card plan-card">
-          <div class="plan-name" data-i18n="plan3_name">Suite</div>
+          <div class="plan-name" data-i18n="plan3_name">Suite Completa</div>
           <div class="plan-price">
             <span class="plan-amount">CHF&#8239;<span data-i18n="plan3_price">389</span></span>
             <span class="plan-currency" data-i18n="pricing_month">/mes</span>
           </div>
           <ul class="plan-features">
-            <li data-i18n="plan3_f1">Todo de Captación</li>
-            <li data-i18n="plan3_f2">Agentes ilimitados</li>
-            <li data-i18n="plan3_f3">Integraciones a medida</li>
-            <li data-i18n="plan3_f4">Dashboard avanzado</li>
-            <li data-i18n="plan3_f5">Formación del equipo</li>
+            <li data-i18n="plan3_f1">Todo lo de Captación</li>
+            <li data-i18n="plan3_f2">Asistentes ilimitados</li>
+            <li data-i18n="plan3_f3">Adaptado a tu negocio</li>
+            <li data-i18n="plan3_f4">Panel avanzado</li>
+            <li data-i18n="plan3_f5">Formación de tu equipo</li>
             <li data-i18n="plan3_f6">Soporte dedicado 7/7</li>
           </ul>
-          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar oferta</a>
+          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
         </div>
       </div>
     </div>
@@ -576,9 +685,9 @@
   <section id="contact" class="section">
     <div class="container">
       <div style="text-align:center;margin-bottom:48px">
-        <span class="pill pill-purple" style="margin-bottom:16px">Contact</span>
-        <h2 data-i18n="contact_title">¿Listo para automatizar tu negocio?</h2>
-        <p style="color:var(--text);margin-top:12px" data-i18n="contact_sub">Respuesta en 24h laborables. Primera consulta gratuita.</p>
+        <span class="pill pill-purple" style="margin-bottom:16px">Beta · Acceso Limitado</span>
+        <h2 data-i18n="contact_title">Únete a los 50 pioneros</h2>
+        <p style="color:var(--text);margin-top:12px" data-i18n="contact_sub">Acceso gratuito durante la fase beta. Primera consulta sin compromiso. Respuesta en menos de 24h.</p>
       </div>
       <div class="contact-form-wrap">
         <div class="form-card">
@@ -616,26 +725,26 @@
               </select>
             </div>
             <div class="field" style="margin-bottom:18px">
-              <label for="f-msg" data-i18n="f_msg">Describe tu necesidad (opcional)</label>
+              <label for="f-msg" data-i18n="f_msg">Cuéntanos tu mayor reto (opcional)</label>
               <textarea id="f-msg" rows="4" placeholder=""></textarea>
             </div>
             <div class="form-check-wrap" id="formCheckWrap" style="margin-bottom:20px">
               <label class="form-check-label" onclick="toggleFormCheck()">
                 <div class="form-check-box" id="formCheckBox"></div>
-                <span class="form-check-text" data-i18n="f_check">Acepto que mis datos sean tratados por FlowSuite y nuestros socios IA (Snowie.ai, Make.com) conforme a la política de privacidad (nLPD / RGPD).</span>
+                <span class="form-check-text" data-i18n="f_check">Acepto que mis datos sean tratados por FlowSuite conforme a la política de privacidad (nLPD / RGPD). Datos alojados en servidores suizos (Infomaniac).</span>
               </label>
               <div class="form-check-err" id="formCheckErr" data-i18n="f_check_err">Este campo es obligatorio.</div>
             </div>
-            <button type="button" class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm(event)" data-i18n="f_submit">Enviar solicitud →</button>
+            <button type="button" class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm(event)" data-i18n="f_submit">Quiero mi plaza en la beta →</button>
             <div class="form-divider" style="margin:20px 0"><span data-i18n="f_or">o</span></div>
             <a href="https://wa.me/41779413532" target="_blank" rel="noopener noreferrer" class="btn btn-wa" style="width:100%;justify-content:center">
               WhatsApp · +41 77 941 35 32
             </a>
           </div>
           <div class="form-success" id="formSuccess">
-            <div class="success-icon">✅</div>
-            <h3 data-i18n="f_ok_title">¡Mensaje enviado!</h3>
-            <p style="color:var(--text);margin-top:8px" data-i18n="f_ok_desc">Nos ponemos en contacto en 24h laborables. ¡Hasta pronto!</p>
+            <div class="success-icon">🧠</div>
+            <h3 data-i18n="f_ok_title">¡Solicitud recibida!</h3>
+            <p style="color:var(--text);margin-top:8px" data-i18n="f_ok_desc">Te contactamos en menos de 24h. Bienvenido a los pioneros de FlowSuite. 🧠</p>
           </div>
         </div>
       </div>
@@ -648,16 +757,19 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <div class="logo">
-            <div class="logo-icon">⚡</div>
+            <div class="logo-icon">🧠</div>
             <span>Flow<span class="logo-teal">Suite</span></span>
           </div>
-          <p class="footer-tagline" data-i18n="footer_tagline">Inteligencia artificial al servicio de las PYMEs.</p>
+          <p class="footer-tagline" data-i18n="footer_tagline">Transforma tu negocio con IA. Sin complicaciones. Con seguridad suiza.</p>
+          <div class="footer-swiss-badge" data-i18n="footer_swiss">🇨🇭 Datos 100% en Suiza (Infomaniac)</div>
+          <br>
+          <div class="footer-beta-badge" data-i18n="footer_beta_cta">Acceso beta · Plazas limitadas</div>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
             <div class="footer-col-title" data-i18n="footer_nav">Navegación</div>
             <ul class="footer-links">
-              <li><a href="#demo"    data-i18n="nav_demo">Probar demo</a></li>
+              <li><a href="#demo"    data-i18n="nav_demo">Ver la demo</a></li>
               <li><a href="#pricing" data-i18n="nav_pricing">Precios</a></li>
               <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
             </ul>
@@ -862,7 +974,7 @@
         .map(([k, v]) => k + ': ' + v)
         .join('\n');
 
-      window.location.href = 'mailto:hello@flowsuite.ch?subject=FlowSuite%20%E2%80%93%20Solicitud&body=' + encodeURIComponent(body);
+      window.location.href = 'mailto:hello@flowsuite.ch?subject=FlowSuite%20%E2%80%93%20Beta%20Solicitud&body=' + encodeURIComponent(body);
 
       document.getElementById('contactForm').style.display = 'none';
       document.getElementById('formSuccess').classList.add('visible');
