@@ -10,4 +10,8 @@
   "keywords": [],
   "author": "rodrigodiazv",
   "license": "MIT"
+  "description": "FlowSuite - Agentes IA para tu negocio",
+  "scripts": {
+    "build": "echo 'Ready for deployment'"
+  }
 }

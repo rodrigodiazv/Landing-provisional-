@@ -12,4 +12,6 @@
       ]
     }
   ]
+  "buildCommand": "echo 'Static HTML site'",
+  "outputDirectory": "."
 }
