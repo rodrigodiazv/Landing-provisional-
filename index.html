@@ -974,7 +974,9 @@
         .map(([k, v]) => k + ': ' + v)
         .join('\n');
 
-      window.location.href = 'mailto:hello@flowsuite.ch?subject=FlowSuite%20%E2%80%93%20Beta%20Solicitud&body=' + encodeURIComponent(body);
+      const subjects = { es: 'FlowSuite%20%E2%80%93%20Solicitud%20Beta', fr: 'FlowSuite%20%E2%80%93%20Demande%20B%C3%AAta', de: 'FlowSuite%20%E2%80%93%20Beta-Anfrage', en: 'FlowSuite%20%E2%80%93%20Beta%20Request', it: 'FlowSuite%20%E2%80%93%20Richiesta%20Beta' };
+      const subject = subjects[currentLang] || subjects.es;
+      window.location.href = 'mailto:hello@flowsuite.ch?subject=' + subject + '&body=' + encodeURIComponent(body);
 
       document.getElementById('contactForm').style.display = 'none';
       document.getElementById('formSuccess').classList.add('visible');
