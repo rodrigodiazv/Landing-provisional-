@@ -1,6 +1,15 @@
 {
   "name": "landing-provisional",
   "version": "1.0.0",
+  "description": "Landing page provisional site",
+  "private": true,
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site - no build step required'"
+  },
+  "keywords": [],
+  "author": "rodrigodiazv",
+  "license": "MIT"
   "description": "FlowSuite - Agentes IA para tu negocio",
   "scripts": {
     "build": "echo 'Ready for deployment'"
