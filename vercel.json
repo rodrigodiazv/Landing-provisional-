@@ -6,6 +6,7 @@
       "dest": "/$1"
     }
   ],
+  "outputDirectory": ".",
   "headers": [
     {
       "source": "/(.*)",
@@ -26,4 +27,8 @@
       ]
     }
   ]
+    }
+  ]
+  "buildCommand": "echo 'Static HTML site'",
+  "outputDirectory": "."
 }
