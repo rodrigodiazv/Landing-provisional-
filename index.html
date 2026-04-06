@@ -317,8 +317,7 @@
     <div class="container">
       <div class="header-inner">
         <a href="#" class="logo">
-          <div class="logo-icon">🤖</div>
-          Flow<span class="logo-teal">Suite</span>
+          <img src="logo.png" alt="FlowSuite" height="38" style="display:block;height:38px;width:auto;">
         </a>
         <nav class="nav-links">
           <a href="#demo" data-i18n="nav_demo">Ver la demo</a>
@@ -332,6 +331,7 @@
             <button class="lang-btn" data-lang="fr">FR</button>
             <button class="lang-btn" data-lang="de">DE</button>
             <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="it">IT</button>
           </div>
           <button class="burger" id="burger" aria-label="Menu">
             <span></span><span></span><span></span>
@@ -348,6 +348,7 @@
           <button class="lang-btn" data-lang="fr">FR</button>
           <button class="lang-btn" data-lang="de">DE</button>
           <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="it">IT</button>
         </div>
       </nav>
     </div>
@@ -390,19 +391,14 @@
   <!-- ── TRUST ── -->
   <section id="trust" class="section-sm">
     <div class="container">
-      <p style="text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;" data-i18n="trust_title">🔒 Tus datos, 100% protegidos en Suiza</p>
       <div class="trust-logos">
-        <span>🇨🇭 Infomaniac</span>
-        <span>🔒 RGPD</span>
-        <span>��️ nLPD</span>
         <span>🤖 OpenAI</span>
         <span>📞 Twilio</span>
         <span>📅 Cal.com</span>
         <span>⚡ n8n</span>
         <span>💬 WhatsApp</span>
-      </div>
-      <div class="trust-footer">
-        <span class="pill pill-teal" style="font-size:.7rem;" data-i18n="trust_badge">🇨🇭 Infomaniac · Servidores suizos · Cumple RGPD &amp; nLPD — tus datos nunca salen de Suiza</span>
+        <span>🔒 RGPD</span>
+        <span>🛡️ nLPD</span>
       </div>
     </div>
   </section>
@@ -418,20 +414,20 @@
         <div class="card card-gradient" style="--c1:rgba(0,212,170,.15);--c2:rgba(0,212,170,.05)">
           <div class="step-num">01</div>
           <div class="step-icon">📞</div>
-          <h3 class="step-title" data-i18n="step1_title">Nunca más un cliente perdido</h3>
-          <p class="step-desc" data-i18n="step1_desc">Cada consulta, llamada y mensaje: atendido al instante. Da igual si son las 3 de la mañana o domingo festivo. Tu negocio nunca duerme.</p>
+          <h3 class="step-title" data-i18n="benefit1_title">Nunca más un cliente perdido</h3>
+          <p class="step-desc" data-i18n="benefit1_desc">Cada consulta, llamada y mensaje: atendido al instante. Da igual si son las 3 de la mañana o domingo festivo. Tu negocio nunca duerme.</p>
         </div>
         <div class="card card-gradient" style="--c1:rgba(124,58,237,.15);--c2:rgba(124,58,237,.05)">
           <div class="step-num">02</div>
-          <div class="step-icon">��</div>
-          <h3 class="step-title" data-i18n="step2_title">Más ingresos sin más trabajo</h3>
-          <p class="step-desc" data-i18n="step2_desc">Mientras tú descansas, FlowSuite cualifica leads, confirma citas y cierra reservas. Tu facturación crece sola, sin contratar a nadie.</p>
+          <div class="step-icon">💰</div>
+          <h3 class="step-title" data-i18n="benefit2_title">Más ingresos sin más trabajo</h3>
+          <p class="step-desc" data-i18n="benefit2_desc">Mientras tú descansas, FlowSuite cualifica leads, confirma citas y cierra reservas. Tu facturación crece sola, sin contratar a nadie.</p>
         </div>
         <div class="card card-gradient" style="--c1:rgba(0,212,170,.12);--c2:rgba(124,58,237,.08)">
           <div class="step-num">03</div>
           <div class="step-icon">🚀</div>
-          <h3 class="step-title" data-i18n="step3_title">Ventaja real sobre tu competencia</h3>
-          <p class="step-desc" data-i18n="step3_desc">El 78% de los clientes elige al primero que responde. FlowSuite te pone siempre primero. Tu competencia sigue sin contestar los fines de semana.</p>
+          <h3 class="step-title" data-i18n="benefit3_title">Ventaja real sobre tu competencia</h3>
+          <p class="step-desc" data-i18n="benefit3_desc">El 78% de los clientes elige al primero que responde. FlowSuite te pone siempre primero. Tu competencia sigue sin contestar los fines de semana.</p>
         </div>
       </div>
 
@@ -455,6 +451,36 @@
           <div style="font-size:2rem;margin-bottom:12px;" data-i18n="loss3_icon">💸</div>
           <h3 style="color:rgb(248,113,113);margin-bottom:8px;" data-i18n="loss3_title">Dinero que se escapa</h3>
           <p class="step-desc" data-i18n="loss3_desc">Un lead no atendido a tiempo cuesta entre 3x y 5x más recuperarlo que haberlo captado bien desde el inicio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section id="how" class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px;">
+        <span class="pill pill-teal" style="margin-bottom:16px;" data-i18n="how_title">Cómo funciona</span>
+        <h2 style="margin-top:16px;" data-i18n="how_sub">Del análisis al crecimiento en tres pasos simples.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">🔍</div>
+          <h3 class="step-title" data-i18n="step1_title">1. Análisis</h3>
+          <p class="step-desc" data-i18n="step1_desc">Auditamos tu negocio e identificamos los procesos de mayor impacto para automatizar primero.</p>
+        </div>
+        <div class="card step-card" style="border-color:rgba(124,58,237,.3);">
+          <div class="step-num">02</div>
+          <div class="step-icon">⚙️</div>
+          <h3 class="step-title" data-i18n="step2_title">2. Configuración</h3>
+          <p class="step-desc" data-i18n="step2_desc">Tus agentes IA están configurados e integrados en tus herramientas existentes en 48 horas.</p>
+        </div>
+        <div class="card step-card" style="border-color:rgba(0,212,170,.3);">
+          <div class="step-num">03</div>
+          <div class="step-icon">📈</div>
+          <h3 class="step-title" data-i18n="step3_title">3. Crecimiento</h3>
+          <p class="step-desc" data-i18n="step3_desc">Recibe leads cualificados automáticamente, 24/7, mientras te concentras en tu negocio.</p>
         </div>
       </div>
     </div>
@@ -726,8 +752,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">
-            <div class="logo-icon">🤖</div>
-            Flow<span class="logo-teal">Suite</span>
+            <img src="logo.png" alt="FlowSuite" height="34" style="display:block;height:34px;width:auto;">
           </a>
           <p data-i18n="footer_tagline">Automatización inteligente al servicio de las PYMEs. Datos 100% en Suiza.</p>
           <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
