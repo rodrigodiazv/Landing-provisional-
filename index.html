@@ -583,9 +583,6 @@
   <!-- ── PRICING ── -->
   <section id="pricing" class="section">
     <div class="container">
-      <div style="text-align:center;margin-bottom:16px;">
-        <span class="pill pill-purple" data-i18n="pricing_title">Precios referenciales</span>
-      </div>
       <h2 style="text-align:center;margin-bottom:12px;" data-i18n="pricing_title">Precios referenciales</h2>
       <div class="pricing-notices">
         <span class="pricing-notice notice-warn" data-i18n="pricing_beta_notice">⚠️ Precios referenciales · Página en fase beta. Aún no se realizan cobros.</span>
@@ -888,8 +885,10 @@
         message: document.getElementById('f-msg').value,
       };
 
+      // Note: webhook endpoint configured for this static site
+      const WEBHOOK_URL = 'https://hook.eu2.make.com/flowsuite-beta';
       try {
-        await fetch('https://hook.eu2.make.com/flowsuite-beta', {
+        await fetch(WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
