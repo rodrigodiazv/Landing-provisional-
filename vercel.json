@@ -1,5 +1,1 @@
-{\n  "outputDirectory": ".",
-  "routes": [
-    { "src": "/", "dest": "/index.html" }
-  ]
-}
+{"version": 2, "outputDirectory": "."}
