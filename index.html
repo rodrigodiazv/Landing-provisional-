@@ -21,6 +21,7 @@
   <meta property="og:url" content="https://flowsuite.ch" />
   <meta property="og:type" content="website" />
   <link rel="canonical" href="https://flowsuite.ch" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
 
   <!-- JSON-LD -->
@@ -149,6 +150,11 @@
     .hero-bg { display: none; }
     .hero-rings { display: none; }
     .hero-content { max-width: 860px; margin: 0 auto; }
+    .hero-beta-banner { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg,rgba(249,115,22,.2),rgba(239,68,68,.15)); border: 1px solid rgba(249,115,22,.6); border-radius: 99px; padding: 8px 20px; font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fb923c; margin-bottom: 16px; animation: betaPulse 3s ease-in-out infinite; }
+    .hero-beta-banner-sm { font-size: .75rem; }
+    .hero-beta-wrap { margin-bottom: 20px; }
+    .footer-beta { color: #fb923c; font-weight: 700; margin-bottom: 8px; }
+    @keyframes betaPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,0); } 50% { box-shadow: 0 0 18px 4px rgba(249,115,22,.3); } }
     .hero-badge-wrap { margin-bottom: 28px; }
     .hero-title { margin-bottom: 20px; }
     .hero-title-main { color: #fff; display: block; }
@@ -429,6 +435,9 @@
   <section id="hero">
     <div class="container">
       <div class="hero-content">
+        <div class="hero-beta-wrap">
+          <span class="hero-beta-banner" data-i18n="hero_beta_badge">🧠 FASE BETA DE PRUEBA – SIN COBRO</span>
+        </div>
         <div class="hero-badge-wrap">
           <span class="pill pill-orange pill-dot" data-i18n="hero_badge">🧠 En Prueba Beta · Solo 50 empresas</span>
         </div>
@@ -698,6 +707,9 @@
         <span class="pricing-notice notice-neutral" data-i18n="pricing_note">Sin permanencia. IVA no incluido (exento art. 10 LTVA).</span>
         <span class="pricing-notice notice-warn"    data-i18n="pricing_setup">🔧 Setup único desde 400 CHF (precio referencial)</span>
       </div>
+      <div style="text-align:center;margin-bottom:32px">
+        <span class="hero-beta-banner hero-beta-banner-sm" data-i18n="pricing_beta">🧠 FASE BETA – Los precios mostrados son indicativos. Actualmente SIN COBRO.</span>
+      </div>
       <div class="grid-3">
         <!-- Plan 1 -->
         <div class="card plan-card">
@@ -876,6 +888,7 @@
       <div class="footer-bottom">
         <div class="footer-beta-notice" data-i18n="footer_beta">🧠 Este sitio está en fase BETA de desarrollo. Los precios son referenciales y las funcionalidades están sujetas a cambios.</div>
         <div class="footer-legal">
+          <p class="footer-beta" data-i18n="footer_beta">🧠 FASE BETA DE PRUEBA – Plataforma en fase de prueba colaborativa. SIN COBRO actualmente.</p>
           <p data-i18n="footer_vat">IVA: No sujeto según art. 10 LTVA (facturación anual &lt; CHF 100.000).</p>
           <p data-i18n="footer_vat_de">MwSt: Nicht mehrwertsteuerpflichtig gemäss Art. 10 MWSTG (Jahresumsatz &lt; CHF 100'000).</p>
           <p style="margin-top:8px" data-i18n="footer_impressum">FlowSuite – Empresa individual a título accesorio (Einzelfirma im Nebenerwerb) de Rodrigo A. Díaz Videla · Chemin de la Raverettaz 6, CP 1862, 1862 Ormont-Dessous (Les Mosses), Vaud, Suisse.</p>

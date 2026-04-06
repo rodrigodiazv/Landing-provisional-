@@ -53,6 +53,11 @@ const TRANSLATIONS = {
     beta_banner: "🧠 FASE BETA · EN DESARROLLO — Página en fase de elaboración. Precios referenciales. Funcionalidades sujetas a cambios. Próxima apertura al público.",
 
     // HERO
+    hero_beta_badge: "🧠 FASE BETA DE PRUEBA – SIN COBRO",
+    hero_title: "Tu nuevo equipo de ventas 24/7.",
+    hero_accent: "Impulsado por IA.",
+    hero_sub: "Automatiza la captación de clientes, el soporte y las citas con nuestros empleados digitales. Configuración en 48h. Sin permanencia.",
+    hero_cta: "Empezar ahora",
     hero_title: "Mientras tu competencia duerme, tus clientes llaman.",
     hero_accent: "Gana leads 24/7 sin hacer nada.",
     hero_sub: "FlowSuite convierte las llamadas perdidas en clientes reales. Automatiza tu captación, soporte y citas mientras tú te dedicas a lo que importa.",
@@ -112,6 +117,9 @@ const TRANSLATIONS = {
     scarcity_cta: "Reservar mi plaza ahora →",
 
     // PRICING
+    pricing_beta: "🧠 FASE BETA – Los precios mostrados son indicativos. Actualmente SIN COBRO.",
+    pricing_title: "Precios transparentes",
+    pricing_note: "Sin permanencia. IVA no incluido (exento art. 10 LTVA).",
     pricing_title: "Inversión transparente",
     pricing_beta_notice: "⚠️ Fase Beta: precios orientativos · Sin cobro hasta lanzamiento oficial",
     pricing_note: "Sin permanencia · Fase de prueba activa",
@@ -174,6 +182,8 @@ const TRANSLATIONS = {
     f_ok_desc: "Te contactamos en menos de 24h. Bienvenido a los pioneros de FlowSuite. 🧠",
 
     // FOOTER
+    footer_beta: "🧠 FASE BETA DE PRUEBA – Plataforma en fase de prueba colaborativa. SIN COBRO actualmente.",
+    footer_tagline: "Inteligencia artificial al servicio de las PYMEs.",
     footer_swiss: "🇨🇭 Datos 100% en Suiza (Infomaniac)",
     footer_beta_cta: "Acceso beta · Plazas limitadas",
     footer_tagline: "Transforma tu negocio con IA. Sin complicaciones. Con seguridad suiza.",
@@ -201,6 +211,11 @@ const TRANSLATIONS = {
     nav_pricing: "Tarifs",
     nav_contact: "Contact",
     nav_legal: "Mentions légales",
+    hero_beta_badge: "🧠 PHASE BÊTA DE TEST – SANS FACTURATION",
+    hero_title: "Votre nouvelle équipe de vente 24/7.",
+    hero_accent: "Propulsée par l'IA.",
+    hero_sub: "Automatisez l'acquisition de clients, le support et les rendez-vous avec nos employés digitaux. Configuration en 48h. Sans engagement de durée.",
+    hero_cta: "Commencer maintenant",
 
     beta_banner: "🧠 PHASE BÊTA DE TEST · Sans frais · Accès limité à 50 entreprises · Projet pilote collaboratif",
 
@@ -279,6 +294,8 @@ const TRANSLATIONS = {
     demo_ai_check: "J'ai lu et j'accepte la politique de confidentialité et l'avertissement IA.",
     demo_consent_err: "Veuillez accepter pour accéder à la démo.",
     demo_close: "Fermer",
+    pricing_beta: "🧠 PHASE BÊTA – Les prix affichés sont indicatifs. Actuellement SANS FACTURATION.",
+    pricing_title: "Tarifs transparents",
 
     testimonials_title: "Ce que disent les premiers à tester",
     testimonials_sub: "Des entrepreneurs comme vous. Des résultats réels dès le premier jour.",
@@ -369,6 +386,8 @@ const TRANSLATIONS = {
     f_or: "ou",
     f_ok_title: "Message envoyé !",
     f_ok_desc: "Nous vous contactons dans les 24h ouvrables. À très bientôt !",
+    footer_beta: "🧠 PHASE BÊTA DE TEST – Plateforme en phase de test collaboratif. SANS FACTURATION actuellement.",
+    footer_tagline: "L'intelligence artificielle au service des PME suisses.",
     footer_tagline: "Automatisation intelligente au service des PME. Données 100% en Suisse.",
     footer_nav: "Navigation",
     footer_legal_nav: "Légal",
@@ -391,6 +410,11 @@ const TRANSLATIONS = {
     nav_pricing: "Preise",
     nav_contact: "Kontakt",
     nav_legal: "Impressum",
+    hero_beta_badge: "🧠 BETA-TESTPHASE – KOSTENLOS",
+    hero_title: "Ihr neues Verkaufsteam, 24/7.",
+    hero_accent: "Angetrieben von KI.",
+    hero_sub: "Automatisieren Sie Kundengewinnung, Support und Termine mit unseren digitalen Mitarbeitern. Einrichtung in 48h. Ohne Mindestlaufzeit.",
+    hero_cta: "Jetzt starten",
 
     beta_banner: "🧠 BETA-TESTPHASE · Kostenlos · Begrenzter Zugang für 50 Unternehmen · Kollaboratives Pilotprojekt",
 
@@ -469,6 +493,9 @@ const TRANSLATIONS = {
     demo_ai_check: "Ich habe die Datenschutzrichtlinie und den KI-Hinweis gelesen und akzeptiere diese.",
     demo_consent_err: "Bitte akzeptieren Sie, um die Demo zu starten.",
     demo_close: "Schliessen",
+    pricing_beta: "🧠 BETA-PHASE – Die angezeigten Preise sind indikativ. Derzeit KOSTENLOS.",
+    pricing_title: "Transparente Preise",
+    pricing_note: "Ohne Mindestlaufzeit. Preise exkl. MwSt. (nicht steuerpflichtig gemäss Art. 10 MWSTG).",
 
     testimonials_title: "Was die Ersten sagen, die es testen",
     testimonials_sub: "Unternehmer wie Sie. Echte Ergebnisse ab dem ersten Tag.",
@@ -557,6 +584,8 @@ const TRANSLATIONS = {
     f_or: "oder",
     f_ok_title: "Nachricht gesendet!",
     f_ok_desc: "Wir melden uns innerhalb von 24 Werktunden. Bis bald!",
+    footer_beta: "🧠 BETA-TESTPHASE – Plattform in kollaborativer Testphase. Derzeit KOSTENLOS.",
+    footer_tagline: "Künstliche Intelligenz im Dienst Schweizer KMU.",
     footer_tagline: "Intelligente Automatisierung für KMU. Daten 100% in der Schweiz.",
     footer_nav: "Navigation",
     footer_legal_nav: "Rechtliches",
@@ -579,6 +608,11 @@ const TRANSLATIONS = {
     nav_pricing: "Pricing",
     nav_contact: "Contact",
     nav_legal: "Legal",
+    hero_beta_badge: "🧠 BETA TEST PHASE – FREE OF CHARGE",
+    hero_title: "Your new sales team, 24/7.",
+    hero_accent: "Powered by AI.",
+    hero_sub: "Automate client acquisition, support and appointments with our digital employees. Setup in 48h. No long-term commitment.",
+    hero_cta: "Get started now",
 
     beta_banner: "🧠 BETA TEST PHASE · Free access · Limited to 50 companies · Collaborative pilot project",
 
@@ -657,6 +691,9 @@ const TRANSLATIONS = {
     demo_ai_check: "I have read and accept the privacy policy and AI disclosure.",
     demo_consent_err: "Please accept to access the demo.",
     demo_close: "Close",
+    pricing_beta: "🧠 BETA PHASE – Displayed prices are indicative only. Currently FREE OF CHARGE.",
+    pricing_title: "Transparent pricing",
+    pricing_note: "No minimum commitment. Prices excl. VAT (exempt art. 10 VATL).",
 
     testimonials_title: "What the first testers say",
     testimonials_sub: "Business owners like you. Real results from day one.",
@@ -745,6 +782,8 @@ const TRANSLATIONS = {
     f_or: "or",
     f_ok_title: "Message sent!",
     f_ok_desc: "We will get back to you within 24 business hours. See you soon!",
+    footer_beta: "🧠 BETA TEST PHASE – Platform in collaborative testing phase. Currently FREE OF CHARGE.",
+    footer_tagline: "Artificial intelligence at the service of SMEs.",
     footer_tagline: "Smart automation at the service of SMEs. Data 100% in Switzerland.",
     footer_nav: "Navigation",
     footer_legal_nav: "Legal",
@@ -767,6 +806,11 @@ const TRANSLATIONS = {
     nav_pricing: "Prezzi",
     nav_contact: "Contatto",
     nav_legal: "Note legali",
+    hero_beta_badge: "🧠 FASE BETA DI TEST – SENZA ADDEBITO",
+    hero_title: "Il tuo nuovo team di vendita, 24/7.",
+    hero_accent: "Alimentato dall'IA.",
+    hero_sub: "Automatizza l'acquisizione clienti, l'assistenza e gli appuntamenti con i nostri dipendenti digitali. Configurazione in 48h. Senza vincoli.",
+    hero_cta: "Inizia ora",
 
     beta_banner: "🧠 FASE BETA DI PROVA · Senza costi · Accesso limitato a 50 aziende · Progetto pilota collaborativo",
 
@@ -845,6 +889,9 @@ const TRANSLATIONS = {
     demo_ai_check: "Ho letto e accetto l'informativa sulla privacy e l'avviso sull'IA.",
     demo_consent_err: "Accetta per accedere alla demo.",
     demo_close: "Chiudi",
+    pricing_beta: "🧠 FASE BETA – I prezzi mostrati sono indicativi. Attualmente SENZA ADDEBITO.",
+    pricing_title: "Prezzi trasparenti",
+    pricing_note: "Senza vincoli. IVA esclusa (non soggetto art. 10 LIVA).",
 
     testimonials_title: "Cosa dicono i primi a testarlo",
     testimonials_sub: "Imprenditori come te. Risultati reali dal primo giorno.",
@@ -933,6 +980,8 @@ const TRANSLATIONS = {
     f_or: "o",
     f_ok_title: "Messaggio inviato!",
     f_ok_desc: "Ti contatteremo entro 24 ore lavorative. A presto!",
+    footer_beta: "🧠 FASE BETA DI TEST – Piattaforma in fase di test collaborativa. Attualmente SENZA ADDEBITO.",
+    footer_tagline: "Intelligenza artificiale al servizio delle PMI.",
     footer_tagline: "Automazione intelligente al servizio delle PMI. Dati 100% in Svizzera.",
     footer_nav: "Navigazione",
     footer_legal_nav: "Legale",
