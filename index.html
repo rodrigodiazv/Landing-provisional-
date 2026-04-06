@@ -13,6 +13,15 @@
   <link rel="canonical" href="https://flowsuite.ch" />
   <!-- Brain favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <title>FlowSuite | Fase Beta – Agentes IA 24/7 para PYMEs</title>
+  <meta name="description" content="FlowSuite – Plataforma en fase beta. Automatiza ventas, soporte y citas con IA. Datos 100% en servidores Infomaniac (Suiza). Conforme nLPD & RGPD." />
+  <meta name="keywords" content="agencia IA Suiza, automatización PYMEs Vaud, agente virtual Suiza, chatbot empresa, IA para PYMEs, KI Agentur Schweiz" />
+  <meta property="og:title" content="FlowSuite | Fase Beta – Agentes IA 24/7 para PYMEs" />
+  <meta property="og:description" content="Plataforma en fase beta. Gana leads 24/7 sin hacer nada. Datos 100% en Suiza. nLPD & RGPD." />
+  <meta property="og:url" content="https://flowsuite.ch" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://flowsuite.ch" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -137,6 +146,8 @@
 
     /* ── HERO ── */
     #hero { padding: 160px 0 80px; text-align: center; }
+    .hero-bg { display: none; }
+    .hero-rings { display: none; }
     .hero-content { max-width: 860px; margin: 0 auto; }
     .hero-badge-wrap { margin-bottom: 28px; }
     .hero-title { margin-bottom: 20px; }
@@ -330,6 +341,34 @@
 
     @keyframes gradPan { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
     @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+    /* ── BETA BANNER ── */
+    #beta-bar {
+      background: linear-gradient(135deg, rgba(180,83,9,.95), rgba(120,53,15,.95));
+      border-bottom: 1px solid rgba(251,191,36,.3);
+      padding: 10px 20px;
+      text-align: center;
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(253,230,138,.95);
+      line-height: 1.5;
+      position: relative;
+      z-index: 200;
+    }
+    #beta-bar strong { color: #fde68a; }
+
+    /* ── TRUST (Swiss hosting) ── */
+    .trust-swiss-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 32px; margin: 24px 0; }
+    .trust-swiss-item { display: flex; align-items: center; gap: 10px; font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.75); }
+    .trust-swiss-icon { font-size: 1.3rem; }
+    .trust-swiss-item.accent { color: var(--teal); }
+
+    /* ── PRICING BETA NOTICE ── */
+    .pricing-beta-notice { background: linear-gradient(135deg, rgba(180,83,9,.2), rgba(120,53,15,.1)); border: 1px solid rgba(251,191,36,.25); border-radius: 12px; padding: 14px 20px; text-align: center; font-size: .85rem; color: rgba(253,186,116,.9); font-weight: 600; margin-bottom: 36px; }
+
+    /* ── FOOTER BETA / SWISS ── */
+    .footer-swiss-badge { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--teal); font-weight: 600; margin-bottom: 8px; }
+    .footer-beta-notice { font-size: .75rem; color: rgba(253,186,116,.7); margin-bottom: 12px; padding: 8px 12px; background: rgba(120,53,15,.15); border: 1px solid rgba(180,83,9,.2); border-radius: 8px; }
+
   </style>
 </head>
 <body>
@@ -337,6 +376,9 @@
   <!-- ══ BETA BANNER ══ -->
   <div id="betaBanner">
     <span data-i18n="beta_banner">🧠 <strong>FASE BETA DE PRUEBA</strong> · Sin cobro · Acceso limitado a 50 empresas · Proyecto piloto colaborativo</span>
+  <!-- ══ BETA BAR ══ -->
+  <div id="beta-bar" role="status" aria-label="Beta notice">
+    <span data-i18n="beta_banner">🧠 FASE BETA · EN DESARROLLO — Página en fase de elaboración. Precios referenciales. Funcionalidades sujetas a cambios. Próxima apertura al público.</span>
   </div>
 
   <!-- ══ HEADER ══ -->
@@ -398,6 +440,16 @@
         <div class="hero-ctas">
           <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Quiero mi asistente ahora →</a>
           <button class="btn btn-ghost" onclick="openDemoModal('health')" data-i18n="hero_wa">Ver cómo funciona</button>
+          <span class="pill pill-teal pill-dot" data-i18n="hero_badge">🇨🇭 Datos 100% en Suiza · RGPD + nLPD</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="hero-title-main" data-i18n="hero_title">Mientras tu competencia duerme, tus clientes llaman.</span>
+          <span class="hero-title-accent" data-i18n="hero_accent">Gana leads 24/7 sin hacer nada.</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero_sub">FlowSuite convierte las llamadas perdidas en clientes reales. Automatiza tu captación, soporte y citas mientras tú te dedicas a lo que importa.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Acceder a Beta</a>
+          <button class="btn btn-ghost" onclick="openDemoModal('health')" data-i18n="hero_wa">Ver la demo</button>
         </div>
         <div class="hero-stats">
           <div class="stat">
@@ -427,6 +479,20 @@
         <div class="trust-swiss-item">🔒 <strong>RGPD</strong> & <strong>nLPD</strong> certificado</div>
         <div class="trust-swiss-divider"></div>
         <div class="trust-swiss-item">✅ Datos que nunca salen de Suiza</div>
+      <p style="text-align:center;color:var(--muted);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px" data-i18n="trust_title">🇨🇭 Tus datos en Suiza. Siempre.</p>
+      <div class="trust-swiss-badges">
+        <div class="trust-swiss-item accent">
+          <span class="trust-swiss-icon">🇨🇭</span>
+          <span data-i18n="trust_swiss1">Datos 100% en servidores Infomaniac (Suiza)</span>
+        </div>
+        <div class="trust-swiss-item">
+          <span class="trust-swiss-icon">✅</span>
+          <span data-i18n="trust_swiss2">Cumple RGPD (UE) y nLPD (Suiza)</span>
+        </div>
+        <div class="trust-swiss-item">
+          <span class="trust-swiss-icon">🔒</span>
+          <span data-i18n="trust_swiss3">Tus datos NUNCA salen de Suiza</span>
+        </div>
       </div>
       <div style="text-align:center">
         <span class="pill pill-teal" data-i18n="trust_badge">🇨🇭 Infomaniac · Servidores suizos · Cumple RGPD &amp; nLPD — tus datos nunca salen de Suiza</span>
@@ -578,6 +644,8 @@
       <div class="modal-foot">
         <span class="modal-foot-text">🔒 FlowSuite AI Agent</span>
         <span class="modal-foot-text"><a href="#footer" onclick="closeModal()" data-i18n="footer_privacy">Privacidad</a></span>
+        <span class="modal-foot-text">FlowSuite AI Agent</span>
+        <span class="modal-foot-text"><a href="privacidad.html" data-i18n="footer_privacy">Privacidad</a></span>
       </div>
     </div>
   </div>
@@ -619,11 +687,16 @@
       <div style="text-align:center;margin-bottom:48px">
         <span class="pill pill-teal" style="margin-bottom:16px">Inversión</span>
         <h2 data-i18n="pricing_title">Inversión transparente</h2>
+        <span class="pill pill-teal" style="margin-bottom:16px">Pricing</span>
+        <h2 data-i18n="pricing_title">Precios referenciales</h2>
       </div>
+      <div class="pricing-beta-notice" data-i18n="pricing_beta_notice">⚠️ Precios referenciales · Página en fase beta de elaboración. Aún no se realizan cobros.</div>
       <div class="pricing-notices">
         <span class="pricing-notice notice-beta" data-i18n="pricing_beta_notice">⚠️ Fase Beta: precios orientativos · Sin cobro hasta lanzamiento oficial</span>
         <span class="pricing-notice notice-neutral" data-i18n="pricing_note">Sin permanencia · Fase de prueba activa</span>
         <span class="pricing-notice notice-warn" data-i18n="pricing_setup">🔧 Setup único desde 400 CHF</span>
+        <span class="pricing-notice notice-neutral" data-i18n="pricing_note">Sin permanencia. IVA no incluido (exento art. 10 LTVA).</span>
+        <span class="pricing-notice notice-warn"    data-i18n="pricing_setup">🔧 Setup único desde 400 CHF (precio referencial)</span>
       </div>
       <div class="grid-3">
         <!-- Plan 1 -->
@@ -641,6 +714,7 @@
             <li data-i18n="plan1_f5">Soporte personalizado</li>
           </ul>
           <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
+          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Acceder a Beta</a>
         </div>
         <!-- Plan 2 (popular) -->
         <div class="card plan-card plan-popular">
@@ -654,11 +728,15 @@
             <li data-i18n="plan2_f1">Asistente voz + texto 24/7</li>
             <li data-i18n="plan2_f2">Captura clientes en todos los canales</li>
             <li data-i18n="plan2_f3">Agenda automática de citas</li>
+            <li data-i18n="plan2_f1">Agente IA voz + texto 24/7</li>
+            <li data-i18n="plan2_f2">Integración multicanal</li>
+            <li data-i18n="plan2_f3">CRM automatizado</li>
             <li data-i18n="plan2_f4">Seguimientos automáticos</li>
             <li data-i18n="plan2_f5">Informes semanales</li>
             <li data-i18n="plan2_f6">Soporte prioritario</li>
           </ul>
           <a href="#contact" class="plan-cta plan-cta-primary" data-i18n="pricing_cta">Solicitar plaza</a>
+          <a href="#contact" class="plan-cta plan-cta-primary" data-i18n="pricing_cta">Acceder a Beta</a>
         </div>
         <!-- Plan 3 -->
         <div class="card plan-card">
@@ -676,6 +754,7 @@
             <li data-i18n="plan3_f6">Soporte dedicado 7/7</li>
           </ul>
           <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
+          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Acceder a Beta</a>
         </div>
       </div>
     </div>
@@ -688,6 +767,9 @@
         <span class="pill pill-purple" style="margin-bottom:16px">Beta · Acceso Limitado</span>
         <h2 data-i18n="contact_title">Únete a los 50 pioneros</h2>
         <p style="color:var(--text);margin-top:12px" data-i18n="contact_sub">Acceso gratuito durante la fase beta. Primera consulta sin compromiso. Respuesta en menos de 24h.</p>
+        <span class="pill pill-purple" style="margin-bottom:16px">Contact</span>
+        <h2 data-i18n="contact_title">¿Listo para ganar clientes mientras duermes?</h2>
+        <p style="color:var(--text);margin-top:12px" data-i18n="contact_sub">Respuesta en 24h laborables. Primera consulta gratuita.</p>
       </div>
       <div class="contact-form-wrap">
         <div class="form-card">
@@ -736,6 +818,11 @@
               <div class="form-check-err" id="formCheckErr" data-i18n="f_check_err">Este campo es obligatorio.</div>
             </div>
             <button type="button" class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm(event)" data-i18n="f_submit">Quiero mi plaza en la beta →</button>
+                <span class="form-check-text" data-i18n="f_check">Acepto que mis datos sean tratados por FlowSuite conforme a la política de privacidad (nLPD / RGPD). Datos alojados en servidores Infomaniac (Suiza).</span>
+              </label>
+              <div class="form-check-err" id="formCheckErr" data-i18n="f_check_err">Este campo es obligatorio.</div>
+            </div>
+            <button type="button" class="btn btn-primary" style="width:100%;justify-content:center" onclick="submitForm(event)" data-i18n="f_submit">Acceder a Beta →</button>
             <div class="form-divider" style="margin:20px 0"><span data-i18n="f_or">o</span></div>
             <a href="https://wa.me/41779413532" target="_blank" rel="noopener noreferrer" class="btn btn-wa" style="width:100%;justify-content:center">
               WhatsApp · +41 77 941 35 32
@@ -764,6 +851,8 @@
           <div class="footer-swiss-badge" data-i18n="footer_swiss">🇨🇭 Datos 100% en Suiza (Infomaniac)</div>
           <br>
           <div class="footer-beta-badge" data-i18n="footer_beta_cta">Acceso beta · Plazas limitadas</div>
+          <p class="footer-tagline" data-i18n="footer_tagline">Automatización inteligente al servicio de las PYMEs. Datos 100% en Suiza.</p>
+          <div class="footer-swiss-badge" data-i18n="footer_swiss">🇨🇭 Datos alojados en Infomaniac (Suiza) · RGPD + nLPD Cumplido</div>
         </div>
         <div class="footer-cols">
           <div class="footer-col">
@@ -777,14 +866,15 @@
           <div class="footer-col">
             <div class="footer-col-title" data-i18n="footer_legal_nav">Legal</div>
             <ul class="footer-links">
-              <li><a href="#" data-i18n="footer_privacy">Privacidad</a></li>
-              <li><a href="#" data-i18n="footer_cgv">CGV</a></li>
-              <li><a href="#" data-i18n="footer_cookies">Cookies</a></li>
+              <li><a href="privacidad.html" data-i18n="footer_privacy">Privacidad</a></li>
+              <li><a href="terminos.html"   data-i18n="footer_cgv">Términos de Uso</a></li>
+              <li><a href="#"              data-i18n="footer_cookies">Cookies</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
+        <div class="footer-beta-notice" data-i18n="footer_beta">🧠 Este sitio está en fase BETA de desarrollo. Los precios son referenciales y las funcionalidades están sujetas a cambios.</div>
         <div class="footer-legal">
           <p data-i18n="footer_vat">IVA: No sujeto según art. 10 LTVA (facturación anual &lt; CHF 100.000).</p>
           <p data-i18n="footer_vat_de">MwSt: Nicht mehrwertsteuerpflichtig gemäss Art. 10 MWSTG (Jahresumsatz &lt; CHF 100'000).</p>
