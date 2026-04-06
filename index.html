@@ -27,6 +27,8 @@
       --text-secondary: rgba(255,255,255,0.65);
       --text-muted: rgba(255,255,255,0.4);
       --border-neon: rgba(0,255,178,0.15);
+      --banner-height: 40px;
+      --header-height: 80px;
     }
 
     html { scroll-behavior: smooth; }
@@ -37,6 +39,7 @@
       color: var(--text-white);
       line-height: 1.6;
       overflow-x: hidden;
+      padding-top: calc(var(--banner-height) + var(--header-height));
     }
 
     /* ===== TYPOGRAPHY ===== */
@@ -48,7 +51,7 @@
     /* ===== HEADER ===== */
     header {
       position: fixed;
-      top: 0;
+      top: var(--banner-height);
       left: 0;
       right: 0;
       z-index: 100;
@@ -921,6 +924,24 @@
       color: var(--text-secondary);
       font-size: 1.1rem;
       line-height: 1.7;
+    }
+
+    /* ===== BETA BANNER ===== */
+    .beta-banner {
+      background: linear-gradient(90deg, rgba(0,255,178,0.15), rgba(124,58,237,0.15));
+      border-bottom: 1px solid var(--border-neon);
+      padding: 0.8rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--neon-teal);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 102;
     }
 
     /* ===== TRUST SECTION ===== */
