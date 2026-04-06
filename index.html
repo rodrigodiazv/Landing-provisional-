@@ -1,947 +1,854 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlowSuite | Agentes IA 24/7 para PYMEs – Suiza y Europa</title>
-  <meta name="description" content="FlowSuite automatiza tus ventas, soporte y citas con empleados digitales IA. Setup 48h. Conforme nLPD & RGPD. Vaud, Suiza." />
-  <meta name="keywords" content="agencia IA Suiza, automatización PYMEs Vaud, agente virtual Suiza, chatbot empresa, IA para PYMEs, KI Agentur Schweiz" />
-  <meta property="og:title" content="FlowSuite | Agentes IA 24/7 para PYMEs – Suiza" />
-  <meta property="og:description" content="Automatiza la captación de clientes con IA. Setup 48h. Sin permanencia. nLPD & RGPD." />
-  <meta property="og:url" content="https://flowsuite.ch" />
-  <meta property="og:type" content="website" />
-  <link rel="canonical" href="https://flowsuite.ch" />
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <link rel="apple-touch-icon" href="favicon.png"/>
-
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org","@type":"LocalBusiness",
-    "name":"FlowSuite","url":"https://flowsuite.ch",
-    "email":"hello@flowsuite.ch","telephone":"+41779413532",
-    "address":{"@type":"PostalAddress","streetAddress":"Chemin de la Raverettaz 6, CP 1862",
-    "addressLocality":"Ormont-Dessous (Les Mosses)","postalCode":"1862","addressRegion":"Vaud","addressCountry":"CH"},
-    "priceRange":"CHF 129–389/mois","areaServed":["CH","ES","FR","DE","IT"]
-  }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FlowSuite - Tu equipo digital 24/7. Automatiza ventas y citas para que tú hagas lo que amas. ROI en 30 días.">
+  <meta name="keywords" content="automatización ventas, agentes IA, leads 24/7, PYMEs, autónomos, Suiza">
+  <meta property="og:title" content="FlowSuite | Tu equipo digital. Tu libertad creativa.">
+  <meta property="og:description" content="Automatiza la venta. Multiplica tu impacto sin multiplicar tu stress.">
+  <meta property="og:image" content="logo.png">
+  <title>FlowSuite | Automatiza ventas. Recupera tu tiempo. Multiplica tu impacto.</title>
+  <link rel="icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ── Reset & base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
-      --teal: #00D4AA;
-      --purple: #7C3AED;
-      --bg: #080C10;
-      --surface: #0d1020;
-      --border: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.70);
-      --muted: rgba(255,255,255,0.40);
+      --bg-dark: #03040A;
+      --bg-surface: #0A0F1E;
+      --neon-teal: #00FFB2;
+      --neon-purple: #7C3AED;
+      --neon-pink: #FF2D6B;
+      --text-white: #FFFFFF;
+      --text-secondary: rgba(255,255,255,0.65);
+      --text-muted: rgba(255,255,255,0.4);
+      --border-neon: rgba(0,255,178,0.15);
     }
+
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: #fff; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 1.6; }
-    ::selection { background: rgba(0,212,170,0.2); }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 99px; }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
-    input, select, textarea { font-family: inherit; font-size: inherit; }
-
-    /* ── Layout ── */
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-    .section { padding: 96px 0; }
-    .section-sm { padding: 64px 0; }
-
-    /* ── Typography ── */
-    h1 { font-size: clamp(2.2rem, 5vw, 4.2rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; }
-    h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; line-height: 1.15; }
-    h3 { font-size: 1.1rem; font-weight: 700; }
-
-    /* ── Pill badge ── */
-    .pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 99px; padding: 6px 16px; font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
-    .pill-teal { color: var(--teal); border-color: rgba(0,212,170,.25); }
-    .pill-purple { color: var(--purple); border-color: rgba(124,58,237,.25); }
-    .pill-dot::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
-
-    /* ── Buttons ── */
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; border-radius: 14px; transition: all .2s; padding: 14px 28px; font-size: .95rem; }
-    .btn-primary { background: linear-gradient(135deg, var(--purple), var(--teal)); color: #fff; box-shadow: 0 8px 32px rgba(124,58,237,.35); }
-    .btn-primary:hover { opacity: .92; transform: scale(1.02); }
-    .btn-ghost { border: 1px solid rgba(255,255,255,.18); color: rgba(255,255,255,.75); }
-    .btn-ghost:hover { border-color: rgba(255,255,255,.4); color: #fff; background: rgba(255,255,255,.04); }
-    .btn-wa { border: 1px solid rgba(37,211,102,.3); color: #25D366; }
-    .btn-wa:hover { background: rgba(37,211,102,.08); }
-    .btn:active { transform: scale(.98); }
-
-    /* ── Cards ── */
-    .card { border-radius: 20px; border: 1px solid var(--border); background: var(--surface); padding: 28px; }
-    .card-gradient { background: linear-gradient(135deg, var(--c1, rgba(124,58,237,.15)), var(--c2, rgba(124,58,237,.05))); }
-
-    /* ── Grid helpers ── */
-    .grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    @media (max-width: 900px) { .grid-4 { grid-template-columns: repeat(2,1fr); } .grid-3 { grid-template-columns: 1fr; } }
-    @media (max-width: 640px) { .grid-2, .grid-4 { grid-template-columns: 1fr; } }
-
-    /* ── HEADER ── */
-    #header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 0; transition: all .3s;
-    }
-    #header.scrolled {
-      background: rgba(8,12,16,.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border); padding: 12px 0;
-    }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.1rem; }
-    .logo-icon { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--purple), var(--teal)); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .logo-teal { color: var(--teal); }
-    .nav-links { display: flex; align-items: center; gap: 4px; }
-    .nav-links a { font-size: .875rem; color: var(--text); padding: 6px 12px; border-radius: 10px; transition: all .2s; }
-    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.05); }
-    .lang-switcher { display: flex; align-items: center; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 99px; overflow: hidden; }
-    .lang-btn { font-size: .7rem; font-weight: 700; text-transform: uppercase; padding: 4px 10px; color: rgba(255,255,255,.4); transition: all .2s; letter-spacing: .05em; }
-    .lang-btn:hover { color: #fff; }
-    .lang-btn.lang-active { background: var(--teal); color: #000; }
-    .header-right { display: flex; align-items: center; gap: 12px; }
-    .burger { display: none; flex-direction: column; gap: 5px; width: 32px; }
-    .burger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s; margin: 0 auto; }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .burger { display: flex; }
-      .mobile-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(13,16,32,.98); border-top: 1px solid var(--border); padding: 16px 20px; }
-      .mobile-menu.open { display: block; }
-      .mobile-menu a { display: block; padding: 10px 0; font-size: .9rem; color: var(--text); border-bottom: 1px solid var(--border); }
-      .mobile-lang { display: flex; gap: 8px; padding-top: 12px; }
-      .mobile-lang .lang-btn { border: 1px solid var(--border); border-radius: 99px; padding: 5px 12px; }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #0F1428 100%);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* ── HERO ── */
-    #hero { padding: 130px 0 80px; text-align: center; }
-    .hero-bg { display: none; }
-    .hero-rings { display: none; }
-    .hero-content { max-width: 860px; margin: 0 auto; }
-    .hero-badge-wrap { margin-bottom: 28px; }
-    .hero-title { margin-bottom: 20px; }
-    .hero-title-main { color: #fff; display: block; }
-    .hero-title-accent { color: var(--teal); display: block; }
-    @keyframes gradPan { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-    .hero-sub { color: var(--text); font-size: 1.1rem; max-width: 580px; margin: 0 auto 36px; }
-    .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 56px; }
-    .hero-stats { display: flex; justify-content: center; gap: 48px; }
-    .stat { text-align: center; }
-    .stat-val { font-size: 2rem; font-weight: 900; color: #fff; line-height: 1; }
-    .stat-label { font-size: .75rem; color: var(--muted); margin-top: 4px; }
-    .scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; opacity: .3; animation: bounce 2s ease infinite; }
-    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
-    @media (max-width: 640px) { .hero-stats { gap: 28px; } .stat-val { font-size: 1.6rem; } }
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+    h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.15; }
+    h3 { font-size: 1.3rem; font-weight: 600; }
 
-    /* ── TRUST ── */
-    #trust { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .trust-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px 48px; margin: 28px 0; }
-    .trust-logos span { font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.2); transition: color .2s; }
-    .trust-logos span:hover { color: rgba(255,255,255,.45); }
-    .trust-footer { display: flex; justify-content: center; }
-
-    /* ── HOW ── */
-    .step-card { position: relative; }
-    .step-num { position: absolute; top: 14px; right: 16px; font-size: .7rem; font-weight: 900; font-family: monospace; color: rgba(255,255,255,.1); }
-    .step-icon { font-size: 2rem; margin-bottom: 16px; }
-    .step-title { margin-bottom: 10px; }
-    .step-desc { color: var(--text); font-size: .9rem; line-height: 1.65; }
-
-    /* ── DEMO ── */
-    .consent-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 28px; transition: border-color .2s; }
-    .consent-box.error { border-color: rgba(239,68,68,.6); background: rgba(127,29,29,.1); }
-    .ai-notice { display: flex; gap: 10px; margin-bottom: 14px; font-size: .875rem; color: rgba(251,191,36,.8); line-height: 1.6; }
-    .consent-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
-    .consent-check { width: 20px; height: 20px; border-radius: 6px; border: 2px solid rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; transition: all .2s; }
-    .consent-check.checked { background: var(--teal); border-color: var(--teal); }
-    .consent-text { font-size: .8rem; color: var(--muted); line-height: 1.55; }
-    .consent-err-msg { font-size: .75rem; color: rgb(248,113,113); margin-top: 8px; padding-left: 32px; display: none; }
-    .consent-err-msg.visible { display: block; }
-    .sector-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    @media (max-width: 768px) { .sector-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 480px) { .sector-grid { grid-template-columns: 1fr; } }
-    .sector-card { border-radius: 18px; border: 1px solid; padding: 24px 20px; cursor: pointer; transition: transform .2s; text-align: left; }
-    .sector-card:hover { transform: scale(1.02); }
-    .sector-card:active { transform: scale(.98); }
-    .sector-card.health { background: linear-gradient(135deg,rgba(16,185,129,.15),rgba(20,184,166,.08)); border-color: rgba(16,185,129,.3); }
-    .sector-card.gastro { background: linear-gradient(135deg,rgba(249,115,22,.15),rgba(239,68,68,.08)); border-color: rgba(249,115,22,.3); }
-    .sector-card.immo  { background: linear-gradient(135deg,rgba(59,130,246,.15),rgba(99,102,241,.08)); border-color: rgba(59,130,246,.3); }
-    .sector-card.coach { background: linear-gradient(135deg,rgba(168,85,247,.15),rgba(236,72,153,.08)); border-color: rgba(168,85,247,.3); }
-    .sector-icon { font-size: 2.2rem; margin-bottom: 10px; }
-    .sector-title { font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .sector-title:hover { color: var(--teal); }
-    .sector-desc { font-size: .8rem; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
-    .sector-try { font-size: .8rem; color: var(--teal); font-weight: 600; }
-
-    /* ── MODAL ── */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); backdrop-filter: blur(6px); z-index: 200; align-items: flex-end; justify-content: center; padding: 16px; }
-    .modal-overlay.open { display: flex; align-items: center; }
-    @media (max-width: 640px) { .modal-overlay.open { align-items: flex-end; } }
-    .modal { background: var(--surface); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; width: 100%; max-width: 520px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
-    .modal-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
-    .modal-head-left { display: flex; align-items: center; gap: 12px; }
-    .modal-icon { font-size: 1.4rem; }
-    .modal-title { font-weight: 600; font-size: .9rem; }
-    .modal-subtitle { font-size: .75rem; color: var(--muted); }
-    .modal-head-right { display: flex; align-items: center; gap: 8px; }
-    .live-badge { display: flex; align-items: center; gap: 6px; font-size: .7rem; color: #4ade80; background: rgba(74,222,128,.12); border: 1px solid rgba(74,222,128,.25); border-radius: 99px; padding: 4px 10px; }
-    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: pulse 1.5s infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
-    .modal-close { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,.08); color: var(--muted); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; transition: all .2s; }
-    .modal-close:hover { background: rgba(255,255,255,.15); color: #fff; }
-    .modal-ai-strip { padding: 10px 20px; background: rgba(120,53,15,.2); border-bottom: 1px solid rgba(180,83,9,.2); font-size: .75rem; color: rgba(253,186,116,.75); display: flex; gap: 8px; align-items: flex-start; }
-    .modal-body { flex: 1; overflow-y: auto; min-height: 440px; background: #080c14; position: relative; }
-    .modal-foot { padding: 10px 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
-    .modal-foot-text { font-size: .75rem; color: rgba(255,255,255,.25); }
-    .modal-foot a { color: rgba(255,255,255,.4); transition: color .2s; }
-    .modal-foot a:hover { color: #fff; }
-    /* Snowie container */
-    #snowie-mount { width: 100%; height: 100%; min-height: 440px; }
-    .snowie-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-    .spinner { width: 32px; height: 32px; border: 2px solid rgba(0,212,170,.2); border-top-color: var(--teal); border-radius: 50%; animation: spin 1s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .snowie-loading-text { font-size: .8rem; color: var(--muted); }
-    .snowie-error { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 24px; }
-    .snowie-error.visible { display: flex; }
-
-    /* ── PRICING ── */
-    .pricing-notices { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 44px; }
-    .pricing-notice { font-size: .8rem; border-radius: 99px; padding: 6px 16px; border: 1px solid; }
-    .notice-neutral { color: var(--muted); border-color: var(--border); background: rgba(255,255,255,.03); }
-    .notice-warn { color: rgba(252,211,77,.7); border-color: rgba(180,120,20,.3); background: rgba(120,53,15,.15); }
-    .plan-card { display: flex; flex-direction: column; }
-    .plan-popular { position: relative; }
-    .plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--purple), var(--teal)); color: #fff; font-size: .7rem; font-weight: 700; padding: 5px 14px; border-radius: 99px; white-space: nowrap; }
-    .plan-name { font-size: 1.25rem; font-weight: 800; margin-bottom: 6px; }
-    .plan-price { display: flex; align-items: flex-end; gap: 4px; margin-bottom: 20px; }
-    .plan-amount { font-size: 2.6rem; font-weight: 900; line-height: 1; }
-    .plan-currency { font-size: .9rem; color: var(--muted); margin-bottom: 4px; }
-    .plan-features { list-style: none; margin-bottom: 24px; flex: 1; }
-    .plan-features li { display: flex; align-items: flex-start; gap: 8px; font-size: .875rem; color: var(--text); margin-bottom: 10px; }
-    .plan-features li::before { content: '✓'; color: var(--teal); flex-shrink: 0; margin-top: 2px; }
-    .plan-cta { width: 100%; padding: 12px; border-radius: 12px; font-size: .875rem; font-weight: 700; transition: all .2s; text-align: center; display: block; }
-    .plan-cta-primary { background: linear-gradient(135deg, var(--purple), #5B21B6); color: #fff; box-shadow: 0 6px 24px rgba(124,58,237,.3); }
-    .plan-cta-primary:hover { opacity: .9; transform: scale(1.02); }
-    .plan-cta-secondary { border: 1px solid rgba(255,255,255,.18); color: #fff; }
-    .plan-cta-secondary:hover { background: rgba(255,255,255,.05); }
-
-    /* ── CONTACT ── */
-    .contact-form-wrap { max-width: 640px; margin: 0 auto; }
-    .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
-    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    @media (max-width: 600px) { .form-grid-2 { grid-template-columns: 1fr; } }
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    .field label { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.45); letter-spacing: .04em; }
-    .field label span { color: rgb(248,113,113); }
-    .field input, .field select, .field textarea {
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
-      border-radius: 12px; padding: 12px 16px; color: #fff; font-size: .9rem;
-      transition: border-color .2s, box-shadow .2s; width: 100%;
-    }
-    .field input:focus, .field select:focus, .field textarea:focus {
-      outline: none; border-color: rgba(0,212,170,.45); box-shadow: 0 0 0 3px rgba(0,212,170,.1);
-    }
-    .field select { appearance: none; }
-    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.25); }
-    .form-check-wrap { background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
-    .form-check-wrap.error { border-color: rgba(239,68,68,.5); background: rgba(127,29,29,.08); }
-    .form-check-label { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
-    .form-check-box { width: 20px; height: 20px; border-radius: 6px; border: 2px solid rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; transition: all .2s; }
-    .form-check-box.checked { background: var(--teal); border-color: var(--teal); }
-    .form-check-text { font-size: .8rem; color: var(--muted); line-height: 1.55; }
-    .form-check-err { font-size: .75rem; color: rgb(248,113,113); margin-top: 8px; padding-left: 32px; display: none; }
-    .form-check-err.visible { display: block; }
-    .form-divider { display: flex; align-items: center; gap: 12px; }
-    .form-divider::before, .form-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .form-divider span { font-size: .8rem; color: var(--muted); }
-    .form-success { text-align: center; padding: 40px 20px; display: none; }
-    .form-success.visible { display: block; }
-    .form-success .success-icon { font-size: 3.5rem; margin-bottom: 16px; }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }
-    .testimonial-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px; }
-    .testimonial-stars { color: #FBBF24; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
-    .testimonial-quote { font-size: .9rem; color: var(--text); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-    .testimonial-author { font-size: .8rem; color: var(--muted); font-weight: 600; }
-
-    /* ── SCARCITY BANNER ── */
-    .scarcity-band { background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(0,212,170,.1)); border-top: 1px solid rgba(124,58,237,.3); border-bottom: 1px solid rgba(124,58,237,.3); padding: 36px 0; text-align: center; }
-    .scarcity-text { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
-
-    /* ── FOOTER ── */
-    #footer { border-top: 1px solid var(--border); padding: 56px 0 32px; }
-    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
-    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } }
-    .footer-brand p { font-size: .875rem; color: var(--muted); margin-top: 12px; line-height: 1.65; max-width: 320px; }
-    .footer-nav-title { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 14px; }
-    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-nav-links a { font-size: .875rem; color: var(--muted); transition: color .2s; }
-    .footer-nav-links a:hover { color: #fff; }
-    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; }
-    .footer-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-    .footer-badge { font-size: .7rem; padding: 5px 12px; border-radius: 99px; border: 1px solid var(--border); color: var(--muted); }
-    .footer-legal { font-size: .72rem; color: rgba(255,255,255,.2); line-height: 1.75; }
-
-    /* ── COOKIE BANNER ── */
-    #cookie-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 300; width: calc(100% - 40px); max-width: 560px; background: rgba(13,16,32,.97); border: 1px solid var(--border); border-radius: 18px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; backdrop-filter: blur(12px); box-shadow: 0 20px 60px rgba(0,0,0,.6); }
-    #cookie-banner.hidden { display: none; }
-    .cookie-text { font-size: .8rem; color: var(--muted); flex: 1; }
-    .cookie-text a { color: rgba(255,255,255,.45); text-decoration: underline; }
-    .cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
-    .cookie-btns button { font-size: .78rem; font-weight: 600; padding: 7px 14px; border-radius: 10px; }
-    .cookie-accept { background: var(--teal); color: #000; }
-    .cookie-decline { background: rgba(255,255,255,.08); color: var(--muted); }
-
-    /* ── BETA BANNER ── */
-    #beta-banner { background: linear-gradient(90deg, rgba(124,58,237,.25), rgba(0,212,170,.15)); border-bottom: 1px solid rgba(124,58,237,.3); padding: 10px 20px; text-align: center; font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.6); letter-spacing: .04em; }
-
-  
-
-  </style>
-</head>
-<body>
-
-  <!-- ── BETA BANNER ── -->
-  <div id="beta-banner" data-i18n="beta_banner">🧠 FASE BETA DE PRUEBA · Sin cobro · Acceso limitado a 50 empresas · Proyecto piloto colaborativo</div>
-
-  <!-- ── HEADER ── -->
-  <header id="header">
-    <div class="container">
-      <div class="header-inner">
-        <a href="#" class="logo">
-          <img src="logo.png" alt="FlowSuite" height="38" style="display:block;height:38px;width:auto;">
-        </a>
-        <nav class="nav-links">
-          <a href="#demo" data-i18n="nav_demo">Ver la demo</a>
-          <a href="#pricing" data-i18n="nav_pricing">Precios</a>
-          <a href="#contact" data-i18n="nav_contact">Contacto</a>
-          <a href="privacidad.html" data-i18n="nav_legal">Legal</a>
-        </nav>
-        <div class="header-right">
-          <div class="lang-switcher">
-            <button class="lang-btn lang-active" data-lang="es">ES</button>
-            <button class="lang-btn" data-lang="fr">FR</button>
-            <button class="lang-btn" data-lang="de">DE</button>
-            <button class="lang-btn" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="it">IT</button>
-          </div>
-          <button class="burger" id="burger" aria-label="Menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-      <nav class="mobile-menu" id="mobile-menu">
-        <a href="#demo" data-i18n="nav_demo">Ver la demo</a>
-        <a href="#pricing" data-i18n="nav_pricing">Precios</a>
-        <a href="#contact" data-i18n="nav_contact">Contacto</a>
-        <a href="privacidad.html" data-i18n="nav_legal">Legal</a>
-        <div class="mobile-lang">
-          <button class="lang-btn lang-active" data-lang="es">ES</button>
-          <button class="lang-btn" data-lang="fr">FR</button>
-          <button class="lang-btn" data-lang="de">DE</button>
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="it">IT</button>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ── HERO ── -->
-  <section id="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge-wrap">
-          <span class="pill pill-teal pill-dot" data-i18n="hero_badge">🧠 En Prueba Beta · Solo 50 empresas</span>
-        </div>
-        <h1 class="hero-title">
-          <span class="hero-title-main" data-i18n="hero_title">Cada llamada perdida es dinero que se va.</span>
-          <span class="hero-title-accent" data-i18n="hero_accent">FlowSuite nunca cuelga.</span>
-        </h1>
-        <p class="hero-sub" data-i18n="hero_sub">Tu cliente llama a las 11 de la noche, el sábado, en vacaciones. ¿Quién responde? Con FlowSuite, siempre hay alguien. Cada lead capturado. Cada cita confirmada. Cada venta cerrada.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Quiero mi asistente ahora →</a>
-          <a href="#demo" class="btn btn-wa">💬 <span data-i18n="hero_wa">Ver cómo funciona</span></a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-val" style="color:var(--teal)">48h</div>
-            <div class="stat-label" data-i18n="stat_setup_label">Setup listo</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">24/7</div>
-            <div class="stat-label" data-i18n="stat_avail_label">Siempre activo</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val" style="color:var(--teal)">0</div>
-            <div class="stat-label" data-i18n="stat_commit_label">Sin permanencia</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── TRUST ── -->
-  <section id="trust" class="section-sm">
-    <div class="container">
-      <div class="trust-logos">
-        <span>🤖 OpenAI</span>
-        <span>📞 Twilio</span>
-        <span>📅 Cal.com</span>
-        <span>⚡ n8n</span>
-        <span>💬 WhatsApp</span>
-        <span>🔒 RGPD</span>
-        <span>🛡️ nLPD</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── BENEFITS ── -->
-  <section id="benefits" class="section">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:56px;">
-        <span class="pill pill-purple" style="margin-bottom:16px;" data-i18n="benefits_title">¿Qué ganas con FlowSuite?</span>
-        <h2 style="margin-top:16px;" data-i18n="benefits_sub">Tres transformaciones reales. Desde el primer día.</h2>
-      </div>
-      <div class="grid-3">
-        <div class="card card-gradient" style="--c1:rgba(0,212,170,.15);--c2:rgba(0,212,170,.05)">
-          <div class="step-num">01</div>
-          <div class="step-icon">📞</div>
-          <h3 class="step-title" data-i18n="benefit1_title">Nunca más un cliente perdido</h3>
-          <p class="step-desc" data-i18n="benefit1_desc">Cada consulta, llamada y mensaje: atendido al instante. Da igual si son las 3 de la mañana o domingo festivo. Tu negocio nunca duerme.</p>
-        </div>
-        <div class="card card-gradient" style="--c1:rgba(124,58,237,.15);--c2:rgba(124,58,237,.05)">
-          <div class="step-num">02</div>
-          <div class="step-icon">💰</div>
-          <h3 class="step-title" data-i18n="benefit2_title">Más ingresos sin más trabajo</h3>
-          <p class="step-desc" data-i18n="benefit2_desc">Mientras tú descansas, FlowSuite cualifica leads, confirma citas y cierra reservas. Tu facturación crece sola, sin contratar a nadie.</p>
-        </div>
-        <div class="card card-gradient" style="--c1:rgba(0,212,170,.12);--c2:rgba(124,58,237,.08)">
-          <div class="step-num">03</div>
-          <div class="step-icon">🚀</div>
-          <h3 class="step-title" data-i18n="benefit3_title">Ventaja real sobre tu competencia</h3>
-          <p class="step-desc" data-i18n="benefit3_desc">El 78% de los clientes elige al primero que responde. FlowSuite te pone siempre primero. Tu competencia sigue sin contestar los fines de semana.</p>
-        </div>
-      </div>
-
-      <!-- LOSS cards -->
-      <div style="margin-top:64px;text-align:center;margin-bottom:40px;">
-        <h2 data-i18n="loss_title">¿Qué pierdes cada día sin FlowSuite?</h2>
-        <p style="color:var(--muted);margin-top:10px;" data-i18n="loss_sub">No actuar también tiene un coste. Y es mayor de lo que crees.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card" style="border-color:rgba(239,68,68,.2);background:rgba(127,29,29,.1)">
-          <div style="font-size:2rem;margin-bottom:12px;" data-i18n="loss1_icon">📞</div>
-          <h3 style="color:rgb(248,113,113);margin-bottom:8px;" data-i18n="loss1_title">Llamadas sin respuesta</h3>
-          <p class="step-desc" data-i18n="loss1_desc">El 67% de los clientes no deja mensaje. Si no contestas, se van a la competencia. Hoy mismo.</p>
-        </div>
-        <div class="card" style="border-color:rgba(239,68,68,.2);background:rgba(127,29,29,.1)">
-          <div style="font-size:2rem;margin-bottom:12px;" data-i18n="loss2_icon">🌙</div>
-          <h3 style="color:rgb(248,113,113);margin-bottom:8px;" data-i18n="loss2_title">Noches y fines de semana sin ventas</h3>
-          <p class="step-desc" data-i18n="loss2_desc">Tu competencia con IA capta clientes mientras tú duermes. Cada hora offline es una oportunidad perdida.</p>
-        </div>
-        <div class="card" style="border-color:rgba(239,68,68,.2);background:rgba(127,29,29,.1)">
-          <div style="font-size:2rem;margin-bottom:12px;" data-i18n="loss3_icon">💸</div>
-          <h3 style="color:rgb(248,113,113);margin-bottom:8px;" data-i18n="loss3_title">Dinero que se escapa</h3>
-          <p class="step-desc" data-i18n="loss3_desc">Un lead no atendido a tiempo cuesta entre 3x y 5x más recuperarlo que haberlo captado bien desde el inicio.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS ── -->
-  <section id="how" class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:56px;">
-        <span class="pill pill-teal" style="margin-bottom:16px;" data-i18n="how_title">Cómo funciona</span>
-        <h2 style="margin-top:16px;" data-i18n="how_sub">Del análisis al crecimiento en tres pasos simples.</h2>
-      </div>
-      <div class="grid-3">
-        <div class="card step-card">
-          <div class="step-num">01</div>
-          <div class="step-icon">🔍</div>
-          <h3 class="step-title" data-i18n="step1_title">1. Análisis</h3>
-          <p class="step-desc" data-i18n="step1_desc">Auditamos tu negocio e identificamos los procesos de mayor impacto para automatizar primero.</p>
-        </div>
-        <div class="card step-card" style="border-color:rgba(124,58,237,.3);">
-          <div class="step-num">02</div>
-          <div class="step-icon">⚙️</div>
-          <h3 class="step-title" data-i18n="step2_title">2. Configuración</h3>
-          <p class="step-desc" data-i18n="step2_desc">Tus agentes IA están configurados e integrados en tus herramientas existentes en 48 horas.</p>
-        </div>
-        <div class="card step-card" style="border-color:rgba(0,212,170,.3);">
-          <div class="step-num">03</div>
-          <div class="step-icon">📈</div>
-          <h3 class="step-title" data-i18n="step3_title">3. Crecimiento</h3>
-          <p class="step-desc" data-i18n="step3_desc">Recibe leads cualificados automáticamente, 24/7, mientras te concentras en tu negocio.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── DEMO ── -->
-  <section id="demo" class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:40px;">
-        <span class="pill pill-teal" style="margin-bottom:16px;" data-i18n="demo_title">Pruébalo en vivo. Sin compromiso.</span>
-        <h2 style="margin-top:16px;" data-i18n="demo_sub">Elige tu sector e interactúa ahora mismo con tu futuro asistente digital.</h2>
-      </div>
-
-      <!-- Consent -->
-      <div class="consent-box" id="demo-consent-box" style="max-width:680px;margin:0 auto 28px;">
-        <div class="ai-notice">
-          <span>⚠️</span>
-          <span data-i18n="demo_ai_notice">Nuestros asistentes virtuales funcionan con IA. Las conversaciones pueden guardarse para garantizar la calidad. Al usar este sitio, aceptas nuestra política de privacidad.</span>
-        </div>
-        <label class="consent-label" id="demo-consent-label">
-          <div class="consent-check" id="demo-consent-check"></div>
-          <span class="consent-text" data-i18n="demo_ai_check">He leído y acepto la política de privacidad y el aviso sobre IA.</span>
-        </label>
-        <p class="consent-err-msg" id="demo-consent-err" data-i18n="demo_consent_err">Por favor acepta para acceder a la demo.</p>
-      </div>
-
-      <div class="sector-grid" style="max-width:860px;margin:0 auto;">
-        <div class="sector-card health" data-sector="health" onclick="openDemo(this)">
-          <div class="sector-icon">🏥</div>
-          <div class="sector-title" data-i18n="demo_health">Salud</div>
-          <div class="sector-desc" data-i18n="demo_health_desc">Consulta médica, dentista, fisio</div>
-          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
-        </div>
-        <div class="sector-card gastro" data-sector="gastro" onclick="openDemo(this)">
-          <div class="sector-icon">🍽️</div>
-          <div class="sector-title" data-i18n="demo_gastro">Restauración</div>
-          <div class="sector-desc" data-i18n="demo_gastro_desc">Reservas y pedidos automatizados</div>
-          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
-        </div>
-        <div class="sector-card immo" data-sector="immo" onclick="openDemo(this)">
-          <div class="sector-icon">🏠</div>
-          <div class="sector-title" data-i18n="demo_immo">Inmobiliaria</div>
-          <div class="sector-desc" data-i18n="demo_immo_desc">Cualificación de leads 24/7</div>
-          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
-        </div>
-        <div class="sector-card coach" data-sector="coach" onclick="openDemo(this)">
-          <div class="sector-icon">🎯</div>
-          <div class="sector-title" data-i18n="demo_coach">Coaching</div>
-          <div class="sector-desc" data-i18n="demo_coach_desc">Citas y seguimiento de clientes</div>
-          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── DEMO MODAL ── -->
-  <div class="modal-overlay" id="demo-modal">
-    <div class="modal">
-      <div class="modal-head">
-        <div class="modal-head-left">
-          <span class="modal-icon" id="modal-icon">🤖</span>
-          <div>
-            <div class="modal-title" id="modal-title">Asistente FlowSuite</div>
-            <div class="modal-subtitle">FlowSuite IA</div>
-          </div>
-        </div>
-        <div class="modal-head-right">
-          <div class="live-badge"><div class="live-dot"></div> LIVE</div>
-          <button class="modal-close" onclick="closeDemo()" aria-label="Cerrar">✕</button>
-        </div>
-      </div>
-      <div class="modal-ai-strip">
-        <span>⚠️</span>
-        <span data-i18n="demo_ai_notice">Nuestros asistentes virtuales funcionan con IA. Las conversaciones pueden guardarse para garantizar la calidad.</span>
-      </div>
-      <div class="modal-body">
-        <div id="snowie-mount">
-          <div class="snowie-loading" id="snowie-loading">
-            <div class="spinner"></div>
-            <div class="snowie-loading-text">Cargando asistente…</div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-foot">
-        <span class="modal-foot-text">Powered by FlowSuite IA · <a href="privacidad.html">Privacidad</a></span>
-        <button class="btn btn-ghost" style="padding:6px 14px;font-size:.78rem;" onclick="closeDemo()" data-i18n="demo_close">Cerrar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── TESTIMONIALS ── -->
-  <section id="testimonials" class="section">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:48px;">
-        <h2 data-i18n="testimonials_title">Lo que dicen los primeros en probarlo</h2>
-        <p style="color:var(--muted);margin-top:10px;" data-i18n="testimonials_sub">Empresarios como tú. Resultados reales desde el primer día.</p>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote" data-i18n="test1_quote">"Llevaba años perdiendo clientes por no poder atender el teléfono. FlowSuite recibe las llamadas por mí. Esta semana cerré 3 citas mientras dormía."</p>
-          <p class="testimonial-author" data-i18n="test1_author">— Marco R., Clínica Dental, Lausana</p>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote" data-i18n="test2_quote">"Me daba miedo la tecnología. Pero esto es como tener un empleado de confianza que nunca falla. Mis reservas aumentaron el primer mes."</p>
-          <p class="testimonial-author" data-i18n="test2_author">— Sophie L., Restaurante, Ginebra</p>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-quote" data-i18n="test3_quote">"Mi competencia sigue sin dar respuesta los fines de semana. Yo ya no pierdo esos clientes. Es una ventaja enorme."</p>
-          <p class="testimonial-author" data-i18n="test3_author">— Rodrigo V., Inmobiliaria, Vaud</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SCARCITY ── -->
-  <div class="scarcity-band">
-    <div class="container">
-      <p class="scarcity-text" data-i18n="scarcity_text">⚡ Solo quedan plazas limitadas en esta fase beta</p>
-      <a href="#contact" class="btn btn-primary" data-i18n="scarcity_cta">Reservar mi plaza ahora →</a>
-    </div>
-  </div>
-
-  <!-- ── PRICING ── -->
-  <section id="pricing" class="section">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:12px;" data-i18n="pricing_title">Precios referenciales</h2>
-      <div class="pricing-notices">
-        <span class="pricing-notice notice-warn" data-i18n="pricing_beta_notice">⚠️ Precios referenciales · Página en fase beta. Aún no se realizan cobros.</span>
-        <span class="pricing-notice notice-neutral" data-i18n="pricing_note">Sin permanencia. IVA no incluido (exento art. 10 LTVA).</span>
-        <span class="pricing-notice notice-neutral" data-i18n="pricing_setup">🔧 Setup único desde 400 CHF (precio referencial)</span>
-      </div>
-      <div class="grid-3" style="margin-top:8px;">
-
-        <!-- Plan 1 -->
-        <div class="card plan-card">
-          <div class="plan-name" data-i18n="plan1_name">Presencia</div>
-          <div class="plan-price">
-            <span class="plan-amount" data-i18n="plan1_price">129</span>
-            <span class="plan-currency"><span data-i18n="pricing_month">/mes</span> CHF</span>
-          </div>
-          <ul class="plan-features">
-            <li data-i18n="plan1_f1">Asistente digital 24/7</li>
-            <li data-i18n="plan1_f2">Responde en segundos</li>
-            <li data-i18n="plan1_f3">Capta leads automáticamente</li>
-            <li data-i18n="plan1_f4">Panel de control</li>
-            <li data-i18n="plan1_f5">Soporte personalizado</li>
-          </ul>
-          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
-        </div>
-
-        <!-- Plan 2 — Popular -->
-        <div class="card plan-card plan-popular">
-          <div class="plan-badge" data-i18n="pricing_popular">⭐ El más popular</div>
-          <div class="plan-name" data-i18n="plan2_name">Captación</div>
-          <div class="plan-price">
-            <span class="plan-amount" data-i18n="plan2_price">229</span>
-            <span class="plan-currency"><span data-i18n="pricing_month">/mes</span> CHF</span>
-          </div>
-          <ul class="plan-features">
-            <li data-i18n="plan2_f1">Asistente voz + texto 24/7</li>
-            <li data-i18n="plan2_f2">Captura clientes en todos los canales</li>
-            <li data-i18n="plan2_f3">Agenda automática de citas</li>
-            <li data-i18n="plan2_f4">Seguimientos automáticos</li>
-            <li data-i18n="plan2_f5">Informes semanales</li>
-            <li data-i18n="plan2_f6">Soporte prioritario</li>
-          </ul>
-          <a href="#contact" class="plan-cta plan-cta-primary" data-i18n="pricing_cta">Solicitar plaza</a>
-        </div>
-
-        <!-- Plan 3 -->
-        <div class="card plan-card">
-          <div class="plan-name" data-i18n="plan3_name">Suite Completa</div>
-          <div class="plan-price">
-            <span class="plan-amount" data-i18n="plan3_price">389</span>
-            <span class="plan-currency"><span data-i18n="pricing_month">/mes</span> CHF</span>
-          </div>
-          <ul class="plan-features">
-            <li data-i18n="plan3_f1">Todo lo de Captación</li>
-            <li data-i18n="plan3_f2">Asistentes ilimitados</li>
-            <li data-i18n="plan3_f3">Adaptado a tu negocio</li>
-            <li data-i18n="plan3_f4">Panel avanzado</li>
-            <li data-i18n="plan3_f5">Formación de tu equipo</li>
-            <li data-i18n="plan3_f6">Soporte dedicado 7/7</li>
-          </ul>
-          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CONTACT ── -->
-  <section id="contact" class="section" style="background:var(--surface);border-top:1px solid var(--border);">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:40px;">
-        <h2 data-i18n="contact_title">Únete a los 50 pioneros</h2>
-        <p style="color:var(--muted);margin-top:10px;" data-i18n="contact_sub">Acceso gratuito durante la fase beta. Primera consulta sin compromiso. Respuesta en menos de 24h.</p>
-      </div>
-      <div class="contact-form-wrap">
-        <div class="form-card">
-          <form id="contact-form" novalidate>
-            <div class="form-grid-2" style="margin-bottom:18px;">
-              <div class="field">
-                <label for="f-name"><span>*</span> <span data-i18n="f_name">Nombre completo</span></label>
-                <input type="text" id="f-name" name="name" required autocomplete="name" data-i18n-ph="f_name" placeholder="Nombre completo" />
-              </div>
-              <div class="field">
-                <label for="f-company"><span data-i18n="f_company">Empresa</span></label>
-                <input type="text" id="f-company" name="company" autocomplete="organization" data-i18n-ph="f_company" placeholder="Empresa" />
-              </div>
-            </div>
-            <div class="form-grid-2" style="margin-bottom:18px;">
-              <div class="field">
-                <label for="f-email"><span>*</span> <span data-i18n="f_email">Email profesional</span></label>
-                <input type="email" id="f-email" name="email" required autocomplete="email" data-i18n-ph="f_email" placeholder="Email profesional" />
-              </div>
-              <div class="field">
-                <label for="f-phone"><span data-i18n="f_phone">Teléfono (WhatsApp)</span></label>
-                <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+41 79 000 00 00" />
-              </div>
-            </div>
-            <div class="field" style="margin-bottom:18px;">
-              <label for="f-sector"><span>*</span> <span data-i18n="f_sector">Sector</span></label>
-              <select id="f-sector" name="sector" required>
-                <option value="" data-i18n="f_sector_ph">Selecciona tu sector</option>
-                <option value="health" data-i18n="f_sector_health">Salud / Médico</option>
-                <option value="gastro" data-i18n="f_sector_gastro">Restauración / Hostelería</option>
-                <option value="immo" data-i18n="f_sector_immo">Inmobiliaria</option>
-                <option value="coach" data-i18n="f_sector_coach">Coaching / Consultoría</option>
-                <option value="retail" data-i18n="f_sector_retail">Comercio / Retail</option>
-                <option value="other" data-i18n="f_sector_other">Otro</option>
-              </select>
-            </div>
-            <div class="field" style="margin-bottom:22px;">
-              <label for="f-msg"><span data-i18n="f_msg">Cuéntanos tu mayor reto (opcional)</span></label>
-              <textarea id="f-msg" name="message" rows="3" data-i18n-ph="f_msg" placeholder="Cuéntanos tu mayor reto (opcional)"></textarea>
-            </div>
-            <div class="form-check-wrap" id="f-check-wrap" style="margin-bottom:22px;">
-              <label class="form-check-label" id="f-check-label">
-                <div class="form-check-box" id="f-check-box"></div>
-                <span class="form-check-text" data-i18n="f_check">Acepto que mis datos sean tratados por FlowSuite conforme a la política de privacidad (nLPD / RGPD). Datos alojados en servidores suizos (Infomaniac).</span>
-              </label>
-              <p class="form-check-err" id="f-check-err" data-i18n="f_check_err">Este campo es obligatorio.</p>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="f_submit">Quiero mi plaza en la beta →</button>
-            <div class="form-divider" style="margin:20px 0;">
-              <span data-i18n="f_or">o</span>
-            </div>
-            <a href="https://wa.me/41779413532" target="_blank" rel="noopener noreferrer" class="btn btn-wa" style="width:100%;justify-content:center;">
-              💬 WhatsApp: +41 77 941 35 32
-            </a>
-          </form>
-          <div class="form-success" id="form-success">
-            <div class="success-icon">🎉</div>
-            <h3 style="margin-bottom:10px;" data-i18n="f_ok_title">¡Solicitud recibida!</h3>
-            <p style="color:var(--muted);" data-i18n="f_ok_desc">Te contactamos en menos de 24h. Bienvenido a los pioneros de FlowSuite. 🧠</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer id="footer">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">
-            <img src="logo.png" alt="FlowSuite" height="34" style="display:block;height:34px;width:auto;">
-          </a>
-          <p data-i18n="footer_tagline">Automatización inteligente al servicio de las PYMEs. Datos 100% en Suiza.</p>
-          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
-            <span class="pill pill-teal" style="font-size:.65rem;" data-i18n="footer_swiss">🇨🇭 Datos 100% en Suiza (Infomaniac)</span>
-            <a href="#contact" class="pill pill-purple" style="font-size:.65rem;" data-i18n="footer_beta_cta">Acceso beta · Plazas limitadas</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-nav-title" data-i18n="footer_nav">Navegación</div>
-          <ul class="footer-nav-links">
-            <li><a href="#demo" data-i18n="nav_demo">Ver la demo</a></li>
-            <li><a href="#pricing" data-i18n="nav_pricing">Precios</a></li>
-            <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-nav-title" data-i18n="footer_legal_nav">Legal</div>
-          <ul class="footer-nav-links">
-            <li><a href="privacidad.html" data-i18n="footer_privacy">Privacidad</a></li>
-            <li><a href="terminos.html" data-i18n="footer_cgv">Términos de Uso</a></li>
-            <li><a href="privacidad.html#cookies" data-i18n="footer_cookies">Cookies</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div class="footer-badges">
-          <span class="footer-badge" data-i18n="footer_swiss">🇨🇭 Datos alojados en Infomaniac (Suiza) · RGPD + nLPD Cumplido</span>
-        </div>
-        <div class="footer-legal">
-          <p data-i18n="footer_beta">🧠 Este sitio está en fase BETA de desarrollo. Los precios son referenciales y las funcionalidades están sujetas a cambios.</p>
-          <p data-i18n="footer_vat">IVA: No sujeto según art. 10 LTVA (facturación anual &lt; CHF 100.000).</p>
-          <p data-i18n="footer_impressum">FlowSuite – Empresa individual a título accesorio (Einzelfirma im Nebenerwerb) de Rodrigo A. Díaz Videla · Chemin de la Raverettaz 6, CP 1862, 1862 Ormont-Dessous (Les Mosses), Vaud, Suisse.</p>
-          <p style="margin-top:14px;" data-i18n="footer_copy">© 2026 FlowSuite · Vaud, Suiza. Todos los derechos reservados.</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ── COOKIE BANNER ── -->
-  <div id="cookie-banner">
-    <p class="cookie-text" data-i18n="cookie_text">Usamos cookies funcionales necesarias para el funcionamiento del sitio. <a href="privacidad.html#cookies">Saber más</a></p>
-    <div class="cookie-btns">
-      <button class="cookie-accept" id="cookie-accept" data-i18n="cookie_accept">Aceptar</button>
-      <button class="cookie-decline" id="cookie-decline" data-i18n="cookie_decline">Rechazar</button>
-    </div>
-  </div>
-
-  <!-- ── SCRIPTS ── -->
-  <script src="translations.js"></script>
-  <script>
-    // ── Language switcher ──
-    function applyLang(lang) {
-      const t = TRANSLATIONS[lang] || TRANSLATIONS['es'];
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (t[key] !== undefined) el.textContent = t[key];
-      });
-      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-        const key = el.getAttribute('data-i18n-ph');
-        if (t[key] !== undefined) el.placeholder = t[key];
-      });
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
-      });
-      document.documentElement.lang = lang;
-      try { localStorage.setItem('flowsuite_lang', lang); } catch(e) {}
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: transparent;
+      backdrop-filter: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
     }
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
-    });
-
-    // Restore saved language
-    (function() {
-      try {
-        const saved = localStorage.getItem('flowsuite_lang');
-        if (saved && TRANSLATIONS[saved]) applyLang(saved);
-      } catch(e) {}
-    })();
-
-    // ── Scroll header ──
-    window.addEventListener('scroll', () => {
-      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
-    }, { passive: true });
-
-    // ── Mobile menu ──
-    document.getElementById('burger').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('open');
-    });
-    document.querySelectorAll('.mobile-menu a').forEach(a => {
-      a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
-    });
-
-    // ── Demo consent + modal ──
-    let demoConsented = false;
-    document.getElementById('demo-consent-label').addEventListener('click', () => {
-      demoConsented = !demoConsented;
-      document.getElementById('demo-consent-check').classList.toggle('checked', demoConsented);
-      document.getElementById('demo-consent-box').classList.remove('error');
-      document.getElementById('demo-consent-err').classList.remove('visible');
-    });
-
-    const SECTOR_LABELS = { health: '🏥', gastro: '🍽️', immo: '🏠', coach: '🎯' };
-    function openDemo(card) {
-      if (!demoConsented) {
-        document.getElementById('demo-consent-box').classList.add('error');
-        document.getElementById('demo-consent-err').classList.add('visible');
-        document.getElementById('demo-consent-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
-      const sector = card.getAttribute('data-sector');
-      document.getElementById('modal-icon').textContent = SECTOR_LABELS[sector] || '🤖';
-      document.getElementById('modal-title').textContent = card.querySelector('.sector-title').textContent;
-      document.getElementById('demo-modal').classList.add('open');
-      document.body.style.overflow = 'hidden';
+    header.scrolled {
+      background: rgba(3, 4, 10, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-neon);
     }
-    function closeDemo() {
-      document.getElementById('demo-modal').classList.remove('open');
-      document.body.style.overflow = '';
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
     }
-    document.getElementById('demo-modal').addEventListener('click', e => {
-      if (e.target === document.getElementById('demo-modal')) closeDemo();
-    });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDemo(); });
 
-    // ── Contact form ──
-    let formChecked = false;
-    document.getElementById('f-check-label').addEventListener('click', () => {
-      formChecked = !formChecked;
-      document.getElementById('f-check-box').classList.toggle('checked', formChecked);
-      document.getElementById('f-check-wrap').classList.remove('error');
-      document.getElementById('f-check-err').classList.remove('visible');
-    });
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text-white);
+      font-weight: 700;
+      font-size: 1.4rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
 
-    document.getElementById('contact-form').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      let valid = true;
-      if (!formChecked) {
-        document.getElementById('f-check-wrap').classList.add('error');
-        document.getElementById('f-check-err').classList.add('visible');
-        valid = false;
-      }
-      if (!valid) return;
+    .logo-brand img {
+      height: 50px;
+      width: auto;
+    }
 
-      const btn = this.querySelector('[type=submit]');
-      btn.disabled = true;
-      btn.textContent = '…';
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-      const data = {
-        name: document.getElementById('f-name').value,
-        company: document.getElementById('f-company').value,
-        email: document.getElementById('f-email').value,
-        phone: document.getElementById('f-phone').value,
-        sector: document.getElementById('f-sector').value,
-        message: document.getElementById('f-msg').value,
-      };
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
 
-      // Note: webhook endpoint configured for this static site
-      const WEBHOOK_URL = 'https://hook.eu2.make.com/flowsuite-beta';
-      try {
-        await fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-          signal: AbortSignal.timeout(8000),
-        }).catch(() => {});
-      } catch(err) {}
+    .nav-links a:hover {
+      color: var(--neon-teal);
+    }
 
-      this.style.display = 'none';
-      document.getElementById('form-success').classList.add('visible');
-    });
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
 
-    // ── Cookie banner ──
-    (function() {
-      try {
-        if (localStorage.getItem('fs_cookie')) {
-          document.getElementById('cookie-banner').classList.add('hidden');
-          return;
-        }
-      } catch(e) {}
-      document.getElementById('cookie-accept').addEventListener('click', () => {
-        try { localStorage.setItem('fs_cookie', '1'); } catch(e) {}
-        document.getElementById('cookie-banner').classList.add('hidden');
-      });
-      document.getElementById('cookie-decline').addEventListener('click', () => {
-        try { localStorage.setItem('fs_cookie', '0'); } catch(e) {}
-        document.getElementById('cookie-banner').classList.add('hidden');
-      });
-    })();
-  </script>
-</body>
-</html>
+    .lang-selector {
+      display: flex;
+      gap: 0.5rem;
+      background: rgba(0, 255, 178, 0.08);
+      border: 1px solid var(--border-neon);
+      border-radius: 8px;
+      padding: 0.3rem;
+    }
+
+    .lang-btn {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--neon-teal);
+      color: var(--bg-dark);
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: var(--neon-teal);
+    }
+
+    .burger-menu { display: none; }
+
+    /* ===== HERO ===== */
+    #hero {
+      padding: 160px 2rem 100px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    #hero::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent 0%, rgba(0,255,178,0.03) 50%, transparent 100%),
+        repeating-linear-gradient(
+          0deg,
+          rgba(0,255,178,0.02) 0px,
+          rgba(0,255,178,0.02) 2px,
+          transparent 2px,
+          transparent 4px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-logo-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-logo-large img {
+      height: 90px;
+      width: auto;
+      filter: drop-shadow(0 0 20px rgba(0,255,178,0.3));
+    }
+
+    .hero-logo-text {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, var(--neon-teal), var(--neon-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0, 255, 178, 0.1);
+      border: 1px solid var(--border-neon);
+      border-radius: 99px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      color: var(--neon-teal);
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title-main {
+      display: block;
+      color: var(--text-white);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title-accent {
+      display: block;
+      background: linear-gradient(120deg, var(--neon-teal), #00D686);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      color: var(--text-secondary);
+      max-width: 750px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .hero-value-prop {
+      background: linear-gradient(135deg, rgba(0,255,178,0.1), rgba(124,58,237,0.1));
+      border: 1px solid var(--border-neon);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin: 2rem auto;
+      max-width: 700px;
+      font-size: 1.05rem;
+      color: var(--neon-teal);
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      justify-content: center;
+      margin: 2.5rem 0;
+    }
+
+    .btn {
+      padding: 1.1rem 2.2rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--neon-teal), #00D686);
+      color: var(--bg-dark);
+      box-shadow: 0 0 40px rgba(0, 255, 178, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 60px rgba(0, 255, 178, 0.5);
+      transform: scale(1.03);
+    }
+
+    .btn-secondary {
+      background: rgba(0, 255, 178, 0.12);
+      border: 1.5px solid var(--neon-teal);
+      color: var(--neon-teal);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 255, 178, 0.25);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      margin-top: 5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border-neon);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      color: var(--neon-teal);
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 0 20px rgba(0, 255, 178, 0.2);
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 7rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section > h2 {
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+      line-height: 1.7;
+    }
+
+    /* ===== VALUE SECTION ===== */
+    #value {
+      background: rgba(0, 255, 178, 0.03);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .value-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-neon);
+      border-radius: 14px;
+      padding: 2.5rem 2rem;
+      transition: all 0.3s;
+    }
+
+    .value-card:hover {
+      border-color: var(--neon-teal);
+      box-shadow: 0 0 40px rgba(0, 255, 178, 0.25);
+      transform: translateY(-6px);
+    }
+
+    .value-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-card h3 {
+      color: var(--text-white);
+      margin-bottom: 1rem;
+      font-size: 1.35rem;
+    }
+
+    .value-card p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .value-stat {
+      color: var(--neon-teal);
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    /* ===== PROBLEM SECTION ===== */
+    #problem {
+      background: rgba(255, 45, 107, 0.04);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .problem-card {
+      background: var(--bg-surface);
+      border: 1px solid rgba(255, 45, 107, 0.2);
+      border-radius: 14px;
+      padding: 2.5rem 2rem;
+      transition: all 0.3s;
+    }
+
+    .problem-card:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 30px rgba(255, 45, 107, 0.15);
+    }
+
+    .problem-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .problem-card h3 {
+      color: var(--text-white);
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .problem-card p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .problem-stat {
+      color: var(--neon-pink);
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    /* ===== ROI SECTION ===== */
+    #roi {
+      background: linear-gradient(135deg, rgba(0,255,178,0.08), rgba(124,58,237,0.08));
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .roi-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-neon);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+
+    .roi-title {
+      color: var(--neon-teal);
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .roi-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--neon-teal);
+      margin: 1rem 0;
+      font-family: 'Space Grotesk', sans-serif;
+      text-shadow: 0 0 30px rgba(0, 255, 178, 0.3);
+    }
+
+    .roi-text {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    #how-works {
+      background: rgba(124, 58, 237, 0.03);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .timeline-step {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-neon);
+      border-radius: 14px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      text-align: center;
+    }
+
+    .timeline-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-teal));
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--bg-dark);
+      box-shadow: 0 0 30px rgba(0, 255, 178, 0.2);
+    }
+
+    .timeline-step h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .timeline-step p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ===== DEMOS SECTION ===== */
+    #demos {
+      background: rgba(0, 255, 178, 0.02);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
+      margin-top: 3rem;
+    }
+
+    .demo-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-neon);
+      border-radius: 14px;
+      padding: 2.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .demo-card:hover {
+      border-color: var(--neon-teal);
+      box-shadow: 0 0 50px rgba(0, 255, 178, 0.3);
+      transform: translateY(-6px);
+    }
+
+    .demo-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .demo-card h3 {
+      color: var(--text-white);
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
+    }
+
+    .demo-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .demo-btn {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      background: rgba(0, 255, 178, 0.15);
+      border: 1px solid var(--neon-teal);
+      color: var(--neon-teal);
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .demo-btn:hover {
+      background: rgba(0, 255, 178, 0.3);
+      box-shadow: 0 0 20px rgba(0, 255, 178, 0.2);
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    #testimonials {
+      background: rgba(0, 255, 178, 0.02);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-neon);
+      border-radius: 14px;
+      padding: 2.2rem;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .testimonial-author {
+      font-weight: 700;
+      color: var(--neon-teal);
+      font-size: 0.95rem;
+    }
+
+    /* ===== PRICING SECTION ===== */
+    #pricing {
+      background: rgba(124, 58, 237, 0.02);
+    }
+
+    .pricing-note {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      padding: 1.2rem;
+      background: rgba(0, 255, 178, 0.08);
+      border-left: 3px solid var(--neon-teal);
+      border-radius: 8px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .price-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-neon);
+      border-radius: 14px;
+      padding: 2.5rem;
+      position: relative;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-card.popular {
+      border-color: var(--neon-teal);
+      box-shadow: 0 0 50px rgba(0, 255, 178, 0.25);
+      transform: scale(1.03);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--neon-teal), var(--neon-purple));
+      color: var(--bg-dark);
+      padding: 0.5rem 1.2rem;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 0 20px rgba(0, 255, 178, 0.3);
+    }
+
+    .price-name {
+      font-size: 1.5rem;
+      color: var(--text-white);
+      margin-bottom: 0.5rem;
+      margin-top: 1.2rem;
+      font-weight: 700;
+    }
+
+    .price-amount {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--neon-teal);
+      margin-bottom: 0.3rem;
+      font-family: 'Space Grotesk', sans-serif;
+      text-shadow: 0 0 20px rgba(0, 255, 178, 0.2);
+    }
+
+    .price-period {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .price-features {
+      list-style: none;
+      margin-bottom: 2.5rem;
+      flex: 1;
+    }
+
+    .price-features li {
+      padding: 0.8rem 0;
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      border-bottom: 1px solid rgba(0, 255, 178, 0.1);
+      line-height: 1.6;
+    }
+
+    .price-features li::before {
+      content: '✓ ';
+      color: var(--neon-teal);
+      font-weight: 700;
+      margin-right: 0.6rem;
+    }
+
+    .price-features li:last-child {
+      border-bottom: none;
+    }
+
+    .price-cta {
+      padding: 1rem 1.8rem;
+      background: rgba(0, 255, 178, 0.15);
+      border: 1px solid var(--neon-teal);
+      color: var(--neon-teal);
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    .price-cta:hover {
+      background: rgba(0, 255, 178, 0.3);
+    }
+
+    .price-card.popular .price-cta {
+      background: linear-gradient(135deg, var(--neon-teal), #00D686);
+      color: var(--bg-dark);
+      border: none;
+      box-shadow: 0 0 30px rgba(0, 255, 178, 0.3);
+    }
+
+    .price-card.popular .price-cta:hover {
+      box-shadow: 0 0 50px rgba(0, 255, 178, 0.5);
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    #contact {
+      background: rgba(0, 255, 178, 0.03);
+    }
+
+    .contact-wrapper {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.6rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-neon);
+      border-radius: 10px;
+      color: var(--text-white);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--neon-teal);
+      box-shadow: 0 0 20px rgba(0, 255, 178, 0.2);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      padding: 1.2rem;
+      background: rgba(0, 255, 178, 0.08);
+      border: 1px solid var(--border-neon);
+      border-radius: 10px;
+    }
+
+    .form-checkbox input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin-top: 0.2rem;
+      cursor: pointer;
+      accent-color: var(--neon-teal);
+      flex-shrink: 0;
+    }
+
+    .form-checkbox label {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      line-height: 1.6;
+    }
+
+    .form-error {
+      color: var(--neon-pink);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+      display: none;
+    }
+    
