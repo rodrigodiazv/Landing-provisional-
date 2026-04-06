@@ -1374,84 +1374,6 @@
       .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     }
 
-    /* ===== DEMO MODAL ===== */
-    .demo-modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 300;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-
-    .demo-modal-overlay.active {
-      display: flex;
-    }
-
-    .demo-modal {
-      background: var(--bg-surface);
-      border: 1.5px solid var(--border-neon);
-      border-radius: 16px;
-      padding: 2.5rem;
-      max-width: 600px;
-      width: 100%;
-      position: relative;
-    }
-
-    .demo-modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .demo-modal-close:hover {
-      color: var(--text-white);
-    }
-
-    .demo-modal h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--text-white);
-    }
-
-    .demo-notice {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background: rgba(0, 255, 178, 0.06);
-      border: 1px solid var(--border-neon);
-      border-radius: 8px;
-    }
-
-    .demo-consent-error {
-      color: var(--neon-pink);
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-      display: none;
-    }
-
-    .demo-iframe-wrapper {
-      display: none;
-      margin-top: 1.5rem;
-    }
-
-    .demo-iframe-wrapper iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      border-radius: 10px;
-    }
-
     /* ===== MOBILE NAV ===== */
     .mobile-nav {
       display: none;
@@ -1521,7 +1443,6 @@
       .price-card.popular { transform: none; }
 
       .demo-modal { padding: 1.5rem; }
-      .demo-iframe-wrapper iframe { height: 350px; }
 
     }
 
