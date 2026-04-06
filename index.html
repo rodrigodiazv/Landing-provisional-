@@ -1323,7 +1323,7 @@
       </h1>
       <p class="hero-subtitle" data-i18n="hero_sub">FlowSuite convierte las llamadas perdidas en clientes reales. Automatiza tu captación, soporte y citas mientras tú te dedicas a lo que importa.</p>
       <div class="hero-ctas">
-        <a href="https://landing-provisional-beta.vercel.app" class="btn btn-primary" data-i18n="hero_cta">Acceder a Beta</a>
+        <a href="https://landing-provisional-beta.vercel.app" data-app-url class="btn btn-primary" data-i18n="hero_cta">Acceder a Beta</a>
         <a href="#demos" class="btn btn-secondary" data-i18n="hero_wa">Ver la demo</a>
       </div>
       <div class="hero-stats">
@@ -1449,25 +1449,25 @@
         <div class="demo-icon">🏥</div>
         <h3 data-i18n="demo_health">Salud</h3>
         <p data-i18n="demo_health_desc">Consulta médica, dentista, fisio</p>
-        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Salud')" data-i18n="demo_try">Probar este agente →</button>
+        <button class="demo-btn" onclick="openDemo(APP_URL,'Salud')" data-i18n="demo_try">Probar este agente →</button>
       </div>
       <div class="demo-card">
         <div class="demo-icon">🍽️</div>
         <h3 data-i18n="demo_gastro">Restauración</h3>
         <p data-i18n="demo_gastro_desc">Reservas y pedidos automatizados</p>
-        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Restauración')" data-i18n="demo_try">Probar este agente →</button>
+        <button class="demo-btn" onclick="openDemo(APP_URL,'Restauración')" data-i18n="demo_try">Probar este agente →</button>
       </div>
       <div class="demo-card">
         <div class="demo-icon">🏘️</div>
         <h3 data-i18n="demo_immo">Inmobiliaria</h3>
         <p data-i18n="demo_immo_desc">Cualificación de leads 24/7</p>
-        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Inmobiliaria')" data-i18n="demo_try">Probar este agente →</button>
+        <button class="demo-btn" onclick="openDemo(APP_URL,'Inmobiliaria')" data-i18n="demo_try">Probar este agente →</button>
       </div>
       <div class="demo-card">
         <div class="demo-icon">🧑‍💼</div>
         <h3 data-i18n="demo_coach">Coaching</h3>
         <p data-i18n="demo_coach_desc">Citas y seguimiento de clientes</p>
-        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Coaching')" data-i18n="demo_try">Probar este agente →</button>
+        <button class="demo-btn" onclick="openDemo(APP_URL,'Coaching')" data-i18n="demo_try">Probar este agente →</button>
       </div>
     </div>
   </section>
@@ -1627,7 +1627,7 @@
           <div class="form-error" id="form-consent-err" style="margin-bottom:1rem;" data-i18n="f_check_err">Este campo es obligatorio.</div>
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1.05rem;" data-i18n="f_submit">Quiero mi plaza en la beta →</button>
           <p style="text-align:center;margin:1.5rem 0;color:var(--text-muted);font-size:0.95rem;" data-i18n="f_or">o</p>
-          <a href="https://landing-provisional-beta.vercel.app" class="btn btn-secondary" style="width:100%;justify-content:center;text-decoration:none;">🚀 Acceder directamente a la Beta</a>
+          <a href="https://landing-provisional-beta.vercel.app" data-app-url class="btn btn-secondary" style="width:100%;justify-content:center;text-decoration:none;">🚀 Acceder directamente a la Beta</a>
         </form>
       </div>
       <div id="form-success" class="form-success">
@@ -1691,8 +1691,12 @@
   <!-- Scripts -->
   <script src="translations.js"></script>
   <script>
+    // ===== APP CONFIG =====
+    var APP_URL = 'https://landing-provisional-beta.vercel.app';
+
     // ===== LANGUAGE SYSTEM =====
     function applyLang(lang) {
+      if (typeof TRANSLATIONS === 'undefined') return;
       if (!TRANSLATIONS[lang]) lang = 'es';
       var t = TRANSLATIONS[lang];
       document.querySelectorAll('[data-i18n]').forEach(function(el) {
@@ -1711,6 +1715,13 @@
     }
 
     function setLang(lang) { applyLang(lang); }
+
+    function getTranslation(key) {
+      if (typeof TRANSLATIONS === 'undefined') return '';
+      var lang = localStorage.getItem('flowsuite_lang') || 'es';
+      var t = TRANSLATIONS[lang] || TRANSLATIONS['es'];
+      return t ? (t[key] || '') : '';
+    }
 
     // ===== HEADER SCROLL EFFECT =====
     var mainHeader = document.getElementById('main-header');
@@ -1749,13 +1760,11 @@
 
     document.getElementById('modal-start-btn').addEventListener('click', function() {
       if (!demoConsentCheck.checked) {
-        var lang = localStorage.getItem('flowsuite_lang') || 'es';
-        var t = TRANSLATIONS[lang] || TRANSLATIONS['es'];
-        demoConsentErr.textContent = t['demo_consent_err'] || 'Por favor acepta para acceder a la demo.';
+        demoConsentErr.textContent = getTranslation('demo_consent_err') || 'Por favor acepta para acceder a la demo.';
         demoConsentErr.style.display = 'block';
         return;
       }
-      var url = this.dataset.url || 'https://landing-provisional-beta.vercel.app';
+      var url = this.dataset.url || APP_URL;
       modalConsentSection.style.display = 'none';
       modalIframeSection.style.display = 'block';
       document.getElementById('demo-iframe').src = url;
@@ -1815,8 +1824,11 @@
       cookieBanner.classList.remove('visible');
     });
 
-    // ===== INIT: Apply saved language =====
+    // ===== INIT: Apply saved language & set app links =====
     (function() {
+      document.querySelectorAll('[data-app-url]').forEach(function(el) {
+        el.href = APP_URL;
+      });
       var savedLang = localStorage.getItem('flowsuite_lang') || 'es';
       applyLang(savedLang);
     })();

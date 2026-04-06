@@ -1,4 +1,0 @@
-127.0.0.1 - - [06/Apr/2026 07:54:08] "GET /index.html HTTP/1.1" 200 -
-127.0.0.1 - - [06/Apr/2026 07:54:08] "GET /logo.png HTTP/1.1" 200 -
-127.0.0.1 - - [06/Apr/2026 07:54:08] "GET /translations.js HTTP/1.1" 200 -
-127.0.0.1 - - [06/Apr/2026 07:54:08] "GET /favicon.png HTTP/1.1" 200 -
