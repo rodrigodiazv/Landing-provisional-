@@ -27,6 +27,8 @@
       --text-secondary: rgba(255,255,255,0.65);
       --text-muted: rgba(255,255,255,0.4);
       --border-neon: rgba(0,255,178,0.15);
+      --banner-height: 40px;
+      --header-height: 80px;
     }
 
     html { scroll-behavior: smooth; }
@@ -37,7 +39,7 @@
       color: var(--text-white);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-top: 120px;
+      padding-top: calc(var(--banner-height) + var(--header-height));
     }
 
     /* ===== TYPOGRAPHY ===== */
@@ -49,7 +51,7 @@
     /* ===== HEADER ===== */
     header {
       position: fixed;
-      top: 40px;
+      top: var(--banner-height);
       left: 0;
       right: 0;
       z-index: 100;
