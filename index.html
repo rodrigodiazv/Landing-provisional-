@@ -170,7 +170,7 @@
           transparent 4px
         );
       pointer-events: none;
-      z-index: 0;
+      z-index: -1;
     }
 
     .hero-content {
@@ -853,16 +853,6 @@
     }
     
 
-    /* ===== BETA BANNER ===== */
-    .beta-banner {
-      background: linear-gradient(90deg, rgba(0,255,178,0.12), rgba(124,58,237,0.12));
-      border-bottom: 1px solid var(--border-neon);
-      text-align: center;
-      padding: 0.75rem 2rem;
-      font-size: 0.85rem;
-      color: var(--neon-teal);
-      font-weight: 500;
-
     .form-submit-btn {
       width: 100%;
       padding: 1.2rem;
@@ -931,20 +921,6 @@
       color: var(--text-secondary);
       font-size: 1.1rem;
       line-height: 1.7;
-    }
-
-    /* ===== BETA BANNER ===== */
-    .beta-banner {
-      background: linear-gradient(90deg, rgba(0,255,178,0.15), rgba(124,58,237,0.15));
-      border-bottom: 1px solid var(--border-neon);
-      padding: 0.8rem 2rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--neon-teal);
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      position: relative;
-      z-index: 101;
     }
 
     /* ===== TRUST SECTION ===== */
@@ -1663,12 +1639,6 @@
   </style>
 </head>
 <body>
-
-  <!-- Beta Banner -->
-  <div class="beta-banner" id="beta-banner">
-    <span data-i18n="beta_banner">🧠 FASE BETA · EN DESARROLLO — Página en fase de elaboración. Precios referenciales. Funcionalidades sujetas a cambios. Próxima apertura al público.</span>
-    <span data-i18n="beta_banner">🧠 FASE BETA DE PRUEBA · Sin cobro · Acceso limitado a 50 empresas · Proyecto piloto colaborativo</span>
-  </div>
 
   <!-- Header -->
   <header id="main-header">
