@@ -264,4 +264,660 @@
     .form-success.visible { display: block; }
     .form-success .success-icon { font-size: 3.5rem; margin-bottom: 16px; }
 
-    
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr; } }
+    .testimonial-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px; }
+    .testimonial-stars { color: #FBBF24; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .testimonial-quote { font-size: .9rem; color: var(--text); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testimonial-author { font-size: .8rem; color: var(--muted); font-weight: 600; }
+
+    /* ── SCARCITY BANNER ── */
+    .scarcity-band { background: linear-gradient(135deg, rgba(124,58,237,.2), rgba(0,212,170,.1)); border-top: 1px solid rgba(124,58,237,.3); border-bottom: 1px solid rgba(124,58,237,.3); padding: 36px 0; text-align: center; }
+    .scarcity-text { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+
+    /* ── FOOTER ── */
+    #footer { border-top: 1px solid var(--border); padding: 56px 0 32px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } }
+    .footer-brand p { font-size: .875rem; color: var(--muted); margin-top: 12px; line-height: 1.65; max-width: 320px; }
+    .footer-nav-title { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 14px; }
+    .footer-nav-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-nav-links a { font-size: .875rem; color: var(--muted); transition: color .2s; }
+    .footer-nav-links a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; }
+    .footer-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+    .footer-badge { font-size: .7rem; padding: 5px 12px; border-radius: 99px; border: 1px solid var(--border); color: var(--muted); }
+    .footer-legal { font-size: .72rem; color: rgba(255,255,255,.2); line-height: 1.75; }
+
+    /* ── COOKIE BANNER ── */
+    #cookie-banner { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 300; width: calc(100% - 40px); max-width: 560px; background: rgba(13,16,32,.97); border: 1px solid var(--border); border-radius: 18px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; backdrop-filter: blur(12px); box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+    #cookie-banner.hidden { display: none; }
+    .cookie-text { font-size: .8rem; color: var(--muted); flex: 1; }
+    .cookie-text a { color: rgba(255,255,255,.45); text-decoration: underline; }
+    .cookie-btns { display: flex; gap: 8px; flex-shrink: 0; }
+    .cookie-btns button { font-size: .78rem; font-weight: 600; padding: 7px 14px; border-radius: 10px; }
+    .cookie-accept { background: var(--teal); color: #000; }
+    .cookie-decline { background: rgba(255,255,255,.08); color: var(--muted); }
+
+    /* ── BETA BANNER ── */
+    #beta-banner { background: linear-gradient(90deg, rgba(124,58,237,.25), rgba(0,212,170,.15)); border-bottom: 1px solid rgba(124,58,237,.3); padding: 10px 20px; text-align: center; font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.6); letter-spacing: .04em; }
+
+  
+
+  </style>
+</head>
+<body>
+
+  <!-- ── BETA BANNER ── -->
+  <div id="beta-banner" data-i18n="beta_banner">🧠 FASE BETA DE PRUEBA · Sin cobro · Acceso limitado a 50 empresas · Proyecto piloto colaborativo</div>
+
+  <!-- ── HEADER ── -->
+  <header id="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <div class="logo-icon">🤖</div>
+          Flow<span class="logo-teal">Suite</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#demo" data-i18n="nav_demo">Ver la demo</a>
+          <a href="#pricing" data-i18n="nav_pricing">Precios</a>
+          <a href="#contact" data-i18n="nav_contact">Contacto</a>
+          <a href="privacidad.html" data-i18n="nav_legal">Legal</a>
+        </nav>
+        <div class="header-right">
+          <div class="lang-switcher">
+            <button class="lang-btn lang-active" data-lang="es">ES</button>
+            <button class="lang-btn" data-lang="fr">FR</button>
+            <button class="lang-btn" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <button class="burger" id="burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <nav class="mobile-menu" id="mobile-menu">
+        <a href="#demo" data-i18n="nav_demo">Ver la demo</a>
+        <a href="#pricing" data-i18n="nav_pricing">Precios</a>
+        <a href="#contact" data-i18n="nav_contact">Contacto</a>
+        <a href="privacidad.html" data-i18n="nav_legal">Legal</a>
+        <div class="mobile-lang">
+          <button class="lang-btn lang-active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge-wrap">
+          <span class="pill pill-teal pill-dot" data-i18n="hero_badge">🧠 En Prueba Beta · Solo 50 empresas</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="hero-title-main" data-i18n="hero_title">Cada llamada perdida es dinero que se va.</span>
+          <span class="hero-title-accent" data-i18n="hero_accent">FlowSuite nunca cuelga.</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero_sub">Tu cliente llama a las 11 de la noche, el sábado, en vacaciones. ¿Quién responde? Con FlowSuite, siempre hay alguien. Cada lead capturado. Cada cita confirmada. Cada venta cerrada.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Quiero mi asistente ahora →</a>
+          <a href="#demo" class="btn btn-wa">💬 <span data-i18n="hero_wa">Ver cómo funciona</span></a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-val" style="color:var(--teal)">48h</div>
+            <div class="stat-label" data-i18n="stat_setup_label">Setup listo</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">24/7</div>
+            <div class="stat-label" data-i18n="stat_avail_label">Siempre activo</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val" style="color:var(--teal)">0</div>
+            <div class="stat-label" data-i18n="stat_commit_label">Sin permanencia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST ── -->
+  <section id="trust" class="section-sm">
+    <div class="container">
+      <p style="text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;" data-i18n="trust_title">🔒 Tus datos, 100% protegidos en Suiza</p>
+      <div class="trust-logos">
+        <span>🇨🇭 Infomaniac</span>
+        <span>🔒 RGPD</span>
+        <span>��️ nLPD</span>
+        <span>🤖 OpenAI</span>
+        <span>📞 Twilio</span>
+        <span>📅 Cal.com</span>
+        <span>⚡ n8n</span>
+        <span>💬 WhatsApp</span>
+      </div>
+      <div class="trust-footer">
+        <span class="pill pill-teal" style="font-size:.7rem;" data-i18n="trust_badge">🇨🇭 Infomaniac · Servidores suizos · Cumple RGPD &amp; nLPD — tus datos nunca salen de Suiza</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BENEFITS ── -->
+  <section id="benefits" class="section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:56px;">
+        <span class="pill pill-purple" style="margin-bottom:16px;" data-i18n="benefits_title">¿Qué ganas con FlowSuite?</span>
+        <h2 style="margin-top:16px;" data-i18n="benefits_sub">Tres transformaciones reales. Desde el primer día.</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card card-gradient" style="--c1:rgba(0,212,170,.15);--c2:rgba(0,212,170,.05)">
+          <div class="step-num">01</div>
+          <div class="step-icon">📞</div>
+          <h3 class="step-title" data-i18n="step1_title">Nunca más un cliente perdido</h3>
+          <p class="step-desc" data-i18n="step1_desc">Cada consulta, llamada y mensaje: atendido al instante. Da igual si son las 3 de la mañana o domingo festivo. Tu negocio nunca duerme.</p>
+        </div>
+        <div class="card card-gradient" style="--c1:rgba(124,58,237,.15);--c2:rgba(124,58,237,.05)">
+          <div class="step-num">02</div>
+          <div class="step-icon">��</div>
+          <h3 class="step-title" data-i18n="step2_title">Más ingresos sin más trabajo</h3>
+          <p class="step-desc" data-i18n="step2_desc">Mientras tú descansas, FlowSuite cualifica leads, confirma citas y cierra reservas. Tu facturación crece sola, sin contratar a nadie.</p>
+        </div>
+        <div class="card card-gradient" style="--c1:rgba(0,212,170,.12);--c2:rgba(124,58,237,.08)">
+          <div class="step-num">03</div>
+          <div class="step-icon">🚀</div>
+          <h3 class="step-title" data-i18n="step3_title">Ventaja real sobre tu competencia</h3>
+          <p class="step-desc" data-i18n="step3_desc">El 78% de los clientes elige al primero que responde. FlowSuite te pone siempre primero. Tu competencia sigue sin contestar los fines de semana.</p>
+        </div>
+      </div>
+
+      <!-- LOSS cards -->
+      <div style="margin-top:64px;text-align:center;margin-bottom:40px;">
+        <h2 data-i18n="loss_title">¿Qué pierdes cada día sin FlowSuite?</h2>
+        <p style="color:var(--muted);margin-top:10px;" data-i18n="loss_sub">No actuar también tiene un coste. Y es mayor de lo que crees.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card" style="border-color:rgba(239,68,68,.2);background:rgba(127,29,29,.1)">
+          <div style="font-size:2rem;margin-bottom:12px;" data-i18n="loss1_icon">📞</div>
+          <h3 style="color:rgb(248,113,113);margin-bottom:8px;" data-i18n="loss1_title">Llamadas sin respuesta</h3>
+          <p class="step-desc" data-i18n="loss1_desc">El 67% de los clientes no deja mensaje. Si no contestas, se van a la competencia. Hoy mismo.</p>
+        </div>
+        <div class="card" style="border-color:rgba(239,68,68,.2);background:rgba(127,29,29,.1)">
+          <div style="font-size:2rem;margin-bottom:12px;" data-i18n="loss2_icon">🌙</div>
+          <h3 style="color:rgb(248,113,113);margin-bottom:8px;" data-i18n="loss2_title">Noches y fines de semana sin ventas</h3>
+          <p class="step-desc" data-i18n="loss2_desc">Tu competencia con IA capta clientes mientras tú duermes. Cada hora offline es una oportunidad perdida.</p>
+        </div>
+        <div class="card" style="border-color:rgba(239,68,68,.2);background:rgba(127,29,29,.1)">
+          <div style="font-size:2rem;margin-bottom:12px;" data-i18n="loss3_icon">💸</div>
+          <h3 style="color:rgb(248,113,113);margin-bottom:8px;" data-i18n="loss3_title">Dinero que se escapa</h3>
+          <p class="step-desc" data-i18n="loss3_desc">Un lead no atendido a tiempo cuesta entre 3x y 5x más recuperarlo que haberlo captado bien desde el inicio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEMO ── -->
+  <section id="demo" class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px;">
+        <span class="pill pill-teal" style="margin-bottom:16px;" data-i18n="demo_title">Pruébalo en vivo. Sin compromiso.</span>
+        <h2 style="margin-top:16px;" data-i18n="demo_sub">Elige tu sector e interactúa ahora mismo con tu futuro asistente digital.</h2>
+      </div>
+
+      <!-- Consent -->
+      <div class="consent-box" id="demo-consent-box" style="max-width:680px;margin:0 auto 28px;">
+        <div class="ai-notice">
+          <span>⚠️</span>
+          <span data-i18n="demo_ai_notice">Nuestros asistentes virtuales funcionan con IA. Las conversaciones pueden guardarse para garantizar la calidad. Al usar este sitio, aceptas nuestra política de privacidad.</span>
+        </div>
+        <label class="consent-label" id="demo-consent-label">
+          <div class="consent-check" id="demo-consent-check"></div>
+          <span class="consent-text" data-i18n="demo_ai_check">He leído y acepto la política de privacidad y el aviso sobre IA.</span>
+        </label>
+        <p class="consent-err-msg" id="demo-consent-err" data-i18n="demo_consent_err">Por favor acepta para acceder a la demo.</p>
+      </div>
+
+      <div class="sector-grid" style="max-width:860px;margin:0 auto;">
+        <div class="sector-card health" data-sector="health" onclick="openDemo(this)">
+          <div class="sector-icon">🏥</div>
+          <div class="sector-title" data-i18n="demo_health">Salud</div>
+          <div class="sector-desc" data-i18n="demo_health_desc">Consulta médica, dentista, fisio</div>
+          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+        </div>
+        <div class="sector-card gastro" data-sector="gastro" onclick="openDemo(this)">
+          <div class="sector-icon">🍽️</div>
+          <div class="sector-title" data-i18n="demo_gastro">Restauración</div>
+          <div class="sector-desc" data-i18n="demo_gastro_desc">Reservas y pedidos automatizados</div>
+          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+        </div>
+        <div class="sector-card immo" data-sector="immo" onclick="openDemo(this)">
+          <div class="sector-icon">🏠</div>
+          <div class="sector-title" data-i18n="demo_immo">Inmobiliaria</div>
+          <div class="sector-desc" data-i18n="demo_immo_desc">Cualificación de leads 24/7</div>
+          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+        </div>
+        <div class="sector-card coach" data-sector="coach" onclick="openDemo(this)">
+          <div class="sector-icon">🎯</div>
+          <div class="sector-title" data-i18n="demo_coach">Coaching</div>
+          <div class="sector-desc" data-i18n="demo_coach_desc">Citas y seguimiento de clientes</div>
+          <div class="sector-try" data-i18n="demo_try">Probar este agente →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DEMO MODAL ── -->
+  <div class="modal-overlay" id="demo-modal">
+    <div class="modal">
+      <div class="modal-head">
+        <div class="modal-head-left">
+          <span class="modal-icon" id="modal-icon">🤖</span>
+          <div>
+            <div class="modal-title" id="modal-title">Asistente FlowSuite</div>
+            <div class="modal-subtitle">FlowSuite IA</div>
+          </div>
+        </div>
+        <div class="modal-head-right">
+          <div class="live-badge"><div class="live-dot"></div> LIVE</div>
+          <button class="modal-close" onclick="closeDemo()" aria-label="Cerrar">✕</button>
+        </div>
+      </div>
+      <div class="modal-ai-strip">
+        <span>⚠️</span>
+        <span data-i18n="demo_ai_notice">Nuestros asistentes virtuales funcionan con IA. Las conversaciones pueden guardarse para garantizar la calidad.</span>
+      </div>
+      <div class="modal-body">
+        <div id="snowie-mount">
+          <div class="snowie-loading" id="snowie-loading">
+            <div class="spinner"></div>
+            <div class="snowie-loading-text">Cargando asistente…</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <span class="modal-foot-text">Powered by FlowSuite IA · <a href="privacidad.html">Privacidad</a></span>
+        <button class="btn btn-ghost" style="padding:6px 14px;font-size:.78rem;" onclick="closeDemo()" data-i18n="demo_close">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px;">
+        <h2 data-i18n="testimonials_title">Lo que dicen los primeros en probarlo</h2>
+        <p style="color:var(--muted);margin-top:10px;" data-i18n="testimonials_sub">Empresarios como tú. Resultados reales desde el primer día.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote" data-i18n="test1_quote">"Llevaba años perdiendo clientes por no poder atender el teléfono. FlowSuite recibe las llamadas por mí. Esta semana cerré 3 citas mientras dormía."</p>
+          <p class="testimonial-author" data-i18n="test1_author">— Marco R., Clínica Dental, Lausana</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote" data-i18n="test2_quote">"Me daba miedo la tecnología. Pero esto es como tener un empleado de confianza que nunca falla. Mis reservas aumentaron el primer mes."</p>
+          <p class="testimonial-author" data-i18n="test2_author">— Sophie L., Restaurante, Ginebra</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote" data-i18n="test3_quote">"Mi competencia sigue sin dar respuesta los fines de semana. Yo ya no pierdo esos clientes. Es una ventaja enorme."</p>
+          <p class="testimonial-author" data-i18n="test3_author">— Rodrigo V., Inmobiliaria, Vaud</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SCARCITY ── -->
+  <div class="scarcity-band">
+    <div class="container">
+      <p class="scarcity-text" data-i18n="scarcity_text">⚡ Solo quedan plazas limitadas en esta fase beta</p>
+      <a href="#contact" class="btn btn-primary" data-i18n="scarcity_cta">Reservar mi plaza ahora →</a>
+    </div>
+  </div>
+
+  <!-- ── PRICING ── -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:16px;">
+        <span class="pill pill-purple" data-i18n="pricing_title">Precios referenciales</span>
+      </div>
+      <h2 style="text-align:center;margin-bottom:12px;" data-i18n="pricing_title">Precios referenciales</h2>
+      <div class="pricing-notices">
+        <span class="pricing-notice notice-warn" data-i18n="pricing_beta_notice">⚠️ Precios referenciales · Página en fase beta. Aún no se realizan cobros.</span>
+        <span class="pricing-notice notice-neutral" data-i18n="pricing_note">Sin permanencia. IVA no incluido (exento art. 10 LTVA).</span>
+        <span class="pricing-notice notice-neutral" data-i18n="pricing_setup">🔧 Setup único desde 400 CHF (precio referencial)</span>
+      </div>
+      <div class="grid-3" style="margin-top:8px;">
+
+        <!-- Plan 1 -->
+        <div class="card plan-card">
+          <div class="plan-name" data-i18n="plan1_name">Presencia</div>
+          <div class="plan-price">
+            <span class="plan-amount" data-i18n="plan1_price">129</span>
+            <span class="plan-currency"><span data-i18n="pricing_month">/mes</span> CHF</span>
+          </div>
+          <ul class="plan-features">
+            <li data-i18n="plan1_f1">Asistente digital 24/7</li>
+            <li data-i18n="plan1_f2">Responde en segundos</li>
+            <li data-i18n="plan1_f3">Capta leads automáticamente</li>
+            <li data-i18n="plan1_f4">Panel de control</li>
+            <li data-i18n="plan1_f5">Soporte personalizado</li>
+          </ul>
+          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
+        </div>
+
+        <!-- Plan 2 — Popular -->
+        <div class="card plan-card plan-popular">
+          <div class="plan-badge" data-i18n="pricing_popular">⭐ El más popular</div>
+          <div class="plan-name" data-i18n="plan2_name">Captación</div>
+          <div class="plan-price">
+            <span class="plan-amount" data-i18n="plan2_price">229</span>
+            <span class="plan-currency"><span data-i18n="pricing_month">/mes</span> CHF</span>
+          </div>
+          <ul class="plan-features">
+            <li data-i18n="plan2_f1">Asistente voz + texto 24/7</li>
+            <li data-i18n="plan2_f2">Captura clientes en todos los canales</li>
+            <li data-i18n="plan2_f3">Agenda automática de citas</li>
+            <li data-i18n="plan2_f4">Seguimientos automáticos</li>
+            <li data-i18n="plan2_f5">Informes semanales</li>
+            <li data-i18n="plan2_f6">Soporte prioritario</li>
+          </ul>
+          <a href="#contact" class="plan-cta plan-cta-primary" data-i18n="pricing_cta">Solicitar plaza</a>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="card plan-card">
+          <div class="plan-name" data-i18n="plan3_name">Suite Completa</div>
+          <div class="plan-price">
+            <span class="plan-amount" data-i18n="plan3_price">389</span>
+            <span class="plan-currency"><span data-i18n="pricing_month">/mes</span> CHF</span>
+          </div>
+          <ul class="plan-features">
+            <li data-i18n="plan3_f1">Todo lo de Captación</li>
+            <li data-i18n="plan3_f2">Asistentes ilimitados</li>
+            <li data-i18n="plan3_f3">Adaptado a tu negocio</li>
+            <li data-i18n="plan3_f4">Panel avanzado</li>
+            <li data-i18n="plan3_f5">Formación de tu equipo</li>
+            <li data-i18n="plan3_f6">Soporte dedicado 7/7</li>
+          </ul>
+          <a href="#contact" class="plan-cta plan-cta-secondary" data-i18n="pricing_cta">Solicitar plaza</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="section" style="background:var(--surface);border-top:1px solid var(--border);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:40px;">
+        <h2 data-i18n="contact_title">Únete a los 50 pioneros</h2>
+        <p style="color:var(--muted);margin-top:10px;" data-i18n="contact_sub">Acceso gratuito durante la fase beta. Primera consulta sin compromiso. Respuesta en menos de 24h.</p>
+      </div>
+      <div class="contact-form-wrap">
+        <div class="form-card">
+          <form id="contact-form" novalidate>
+            <div class="form-grid-2" style="margin-bottom:18px;">
+              <div class="field">
+                <label for="f-name"><span>*</span> <span data-i18n="f_name">Nombre completo</span></label>
+                <input type="text" id="f-name" name="name" required autocomplete="name" data-i18n-ph="f_name" placeholder="Nombre completo" />
+              </div>
+              <div class="field">
+                <label for="f-company"><span data-i18n="f_company">Empresa</span></label>
+                <input type="text" id="f-company" name="company" autocomplete="organization" data-i18n-ph="f_company" placeholder="Empresa" />
+              </div>
+            </div>
+            <div class="form-grid-2" style="margin-bottom:18px;">
+              <div class="field">
+                <label for="f-email"><span>*</span> <span data-i18n="f_email">Email profesional</span></label>
+                <input type="email" id="f-email" name="email" required autocomplete="email" data-i18n-ph="f_email" placeholder="Email profesional" />
+              </div>
+              <div class="field">
+                <label for="f-phone"><span data-i18n="f_phone">Teléfono (WhatsApp)</span></label>
+                <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+41 79 000 00 00" />
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:18px;">
+              <label for="f-sector"><span>*</span> <span data-i18n="f_sector">Sector</span></label>
+              <select id="f-sector" name="sector" required>
+                <option value="" data-i18n="f_sector_ph">Selecciona tu sector</option>
+                <option value="health" data-i18n="f_sector_health">Salud / Médico</option>
+                <option value="gastro" data-i18n="f_sector_gastro">Restauración / Hostelería</option>
+                <option value="immo" data-i18n="f_sector_immo">Inmobiliaria</option>
+                <option value="coach" data-i18n="f_sector_coach">Coaching / Consultoría</option>
+                <option value="retail" data-i18n="f_sector_retail">Comercio / Retail</option>
+                <option value="other" data-i18n="f_sector_other">Otro</option>
+              </select>
+            </div>
+            <div class="field" style="margin-bottom:22px;">
+              <label for="f-msg"><span data-i18n="f_msg">Cuéntanos tu mayor reto (opcional)</span></label>
+              <textarea id="f-msg" name="message" rows="3" data-i18n-ph="f_msg" placeholder="Cuéntanos tu mayor reto (opcional)"></textarea>
+            </div>
+            <div class="form-check-wrap" id="f-check-wrap" style="margin-bottom:22px;">
+              <label class="form-check-label" id="f-check-label">
+                <div class="form-check-box" id="f-check-box"></div>
+                <span class="form-check-text" data-i18n="f_check">Acepto que mis datos sean tratados por FlowSuite conforme a la política de privacidad (nLPD / RGPD). Datos alojados en servidores suizos (Infomaniac).</span>
+              </label>
+              <p class="form-check-err" id="f-check-err" data-i18n="f_check_err">Este campo es obligatorio.</p>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="f_submit">Quiero mi plaza en la beta →</button>
+            <div class="form-divider" style="margin:20px 0;">
+              <span data-i18n="f_or">o</span>
+            </div>
+            <a href="https://wa.me/41779413532" target="_blank" rel="noopener noreferrer" class="btn btn-wa" style="width:100%;justify-content:center;">
+              💬 WhatsApp: +41 77 941 35 32
+            </a>
+          </form>
+          <div class="form-success" id="form-success">
+            <div class="success-icon">🎉</div>
+            <h3 style="margin-bottom:10px;" data-i18n="f_ok_title">¡Solicitud recibida!</h3>
+            <p style="color:var(--muted);" data-i18n="f_ok_desc">Te contactamos en menos de 24h. Bienvenido a los pioneros de FlowSuite. 🧠</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo" style="margin-bottom:12px;display:inline-flex;">
+            <div class="logo-icon">🤖</div>
+            Flow<span class="logo-teal">Suite</span>
+          </a>
+          <p data-i18n="footer_tagline">Automatización inteligente al servicio de las PYMEs. Datos 100% en Suiza.</p>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+            <span class="pill pill-teal" style="font-size:.65rem;" data-i18n="footer_swiss">🇨🇭 Datos 100% en Suiza (Infomaniac)</span>
+            <a href="#contact" class="pill pill-purple" style="font-size:.65rem;" data-i18n="footer_beta_cta">Acceso beta · Plazas limitadas</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-nav-title" data-i18n="footer_nav">Navegación</div>
+          <ul class="footer-nav-links">
+            <li><a href="#demo" data-i18n="nav_demo">Ver la demo</a></li>
+            <li><a href="#pricing" data-i18n="nav_pricing">Precios</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-nav-title" data-i18n="footer_legal_nav">Legal</div>
+          <ul class="footer-nav-links">
+            <li><a href="privacidad.html" data-i18n="footer_privacy">Privacidad</a></li>
+            <li><a href="terminos.html" data-i18n="footer_cgv">Términos de Uso</a></li>
+            <li><a href="privacidad.html#cookies" data-i18n="footer_cookies">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-badges">
+          <span class="footer-badge" data-i18n="footer_swiss">🇨🇭 Datos alojados en Infomaniac (Suiza) · RGPD + nLPD Cumplido</span>
+        </div>
+        <div class="footer-legal">
+          <p data-i18n="footer_beta">🧠 Este sitio está en fase BETA de desarrollo. Los precios son referenciales y las funcionalidades están sujetas a cambios.</p>
+          <p data-i18n="footer_vat">IVA: No sujeto según art. 10 LTVA (facturación anual &lt; CHF 100.000).</p>
+          <p data-i18n="footer_impressum">FlowSuite – Empresa individual a título accesorio (Einzelfirma im Nebenerwerb) de Rodrigo A. Díaz Videla · Chemin de la Raverettaz 6, CP 1862, 1862 Ormont-Dessous (Les Mosses), Vaud, Suisse.</p>
+          <p style="margin-top:14px;" data-i18n="footer_copy">© 2026 FlowSuite · Vaud, Suiza. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── COOKIE BANNER ── -->
+  <div id="cookie-banner">
+    <p class="cookie-text" data-i18n="cookie_text">Usamos cookies funcionales necesarias para el funcionamiento del sitio. <a href="privacidad.html#cookies">Saber más</a></p>
+    <div class="cookie-btns">
+      <button class="cookie-accept" id="cookie-accept" data-i18n="cookie_accept">Aceptar</button>
+      <button class="cookie-decline" id="cookie-decline" data-i18n="cookie_decline">Rechazar</button>
+    </div>
+  </div>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="translations.js"></script>
+  <script>
+    // ── Language switcher ──
+    function applyLang(lang) {
+      const t = TRANSLATIONS[lang] || TRANSLATIONS['es'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (t[key] !== undefined) el.placeholder = t[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('lang-active', btn.getAttribute('data-lang') === lang);
+      });
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('flowsuite_lang', lang); } catch(e) {}
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+    });
+
+    // Restore saved language
+    (function() {
+      try {
+        const saved = localStorage.getItem('flowsuite_lang');
+        if (saved && TRANSLATIONS[saved]) applyLang(saved);
+      } catch(e) {}
+    })();
+
+    // ── Scroll header ──
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Mobile menu ──
+    document.getElementById('burger').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+    });
+
+    // ── Demo consent + modal ──
+    let demoConsented = false;
+    document.getElementById('demo-consent-label').addEventListener('click', () => {
+      demoConsented = !demoConsented;
+      document.getElementById('demo-consent-check').classList.toggle('checked', demoConsented);
+      document.getElementById('demo-consent-box').classList.remove('error');
+      document.getElementById('demo-consent-err').classList.remove('visible');
+    });
+
+    const SECTOR_LABELS = { health: '🏥', gastro: '🍽️', immo: '🏠', coach: '🎯' };
+    function openDemo(card) {
+      if (!demoConsented) {
+        document.getElementById('demo-consent-box').classList.add('error');
+        document.getElementById('demo-consent-err').classList.add('visible');
+        document.getElementById('demo-consent-box').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      const sector = card.getAttribute('data-sector');
+      document.getElementById('modal-icon').textContent = SECTOR_LABELS[sector] || '🤖';
+      document.getElementById('modal-title').textContent = card.querySelector('.sector-title').textContent;
+      document.getElementById('demo-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDemo() {
+      document.getElementById('demo-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('demo-modal').addEventListener('click', e => {
+      if (e.target === document.getElementById('demo-modal')) closeDemo();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDemo(); });
+
+    // ── Contact form ──
+    let formChecked = false;
+    document.getElementById('f-check-label').addEventListener('click', () => {
+      formChecked = !formChecked;
+      document.getElementById('f-check-box').classList.toggle('checked', formChecked);
+      document.getElementById('f-check-wrap').classList.remove('error');
+      document.getElementById('f-check-err').classList.remove('visible');
+    });
+
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      let valid = true;
+      if (!formChecked) {
+        document.getElementById('f-check-wrap').classList.add('error');
+        document.getElementById('f-check-err').classList.add('visible');
+        valid = false;
+      }
+      if (!valid) return;
+
+      const btn = this.querySelector('[type=submit]');
+      btn.disabled = true;
+      btn.textContent = '…';
+
+      const data = {
+        name: document.getElementById('f-name').value,
+        company: document.getElementById('f-company').value,
+        email: document.getElementById('f-email').value,
+        phone: document.getElementById('f-phone').value,
+        sector: document.getElementById('f-sector').value,
+        message: document.getElementById('f-msg').value,
+      };
+
+      try {
+        await fetch('https://hook.eu2.make.com/flowsuite-beta', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+          signal: AbortSignal.timeout(8000),
+        }).catch(() => {});
+      } catch(err) {}
+
+      this.style.display = 'none';
+      document.getElementById('form-success').classList.add('visible');
+    });
+
+    // ── Cookie banner ──
+    (function() {
+      try {
+        if (localStorage.getItem('fs_cookie')) {
+          document.getElementById('cookie-banner').classList.add('hidden');
+          return;
+        }
+      } catch(e) {}
+      document.getElementById('cookie-accept').addEventListener('click', () => {
+        try { localStorage.setItem('fs_cookie', '1'); } catch(e) {}
+        document.getElementById('cookie-banner').classList.add('hidden');
+      });
+      document.getElementById('cookie-decline').addEventListener('click', () => {
+        try { localStorage.setItem('fs_cookie', '0'); } catch(e) {}
+        document.getElementById('cookie-banner').classList.add('hidden');
+      });
+    })();
+  </script>
+</body>
+</html>
