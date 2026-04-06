@@ -27,7 +27,6 @@
       --text-secondary: rgba(255,255,255,0.65);
       --text-muted: rgba(255,255,255,0.4);
       --border-neon: rgba(0,255,178,0.15);
-      --banner-height: 40px;
       --header-height: 80px;
     }
 
@@ -39,7 +38,7 @@
       color: var(--text-white);
       line-height: 1.6;
       overflow-x: hidden;
-      padding-top: calc(var(--banner-height) + var(--header-height));
+      padding-top: var(--header-height);
     }
 
     /* ===== TYPOGRAPHY ===== */
@@ -51,7 +50,7 @@
     /* ===== HEADER ===== */
     header {
       position: fixed;
-      top: var(--banner-height);
+      top: 0;
       left: 0;
       right: 0;
       z-index: 100;
@@ -1532,6 +1531,108 @@
       .hero-stats { grid-template-columns: repeat(3, 1fr); }
       section { padding: 4rem 1.2rem; }
     }
+
+    /* ===== COOKIE BANNER ===== */
+    #cookie-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      max-width: 360px;
+      background: rgba(10, 15, 30, 0.97);
+      border: 1px solid rgba(0, 255, 178, 0.35);
+      border-radius: 16px;
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 0 40px rgba(0, 255, 178, 0.12), 0 8px 32px rgba(0,0,0,0.5);
+      backdrop-filter: blur(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #cookie-banner.hide {
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+    }
+
+    .cookie-banner-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--neon-teal);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cookie-banner-text {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.1rem;
+    }
+
+    .cookie-banner-text a {
+      color: var(--neon-teal);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .cookie-banner-text a:hover {
+      opacity: 0.8;
+    }
+
+    .cookie-banner-actions {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .cookie-btn-accept {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      background: linear-gradient(135deg, var(--neon-teal), #00D686);
+      color: var(--bg-dark);
+      border: none;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .cookie-btn-accept:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 178, 0.4);
+      transform: scale(1.02);
+    }
+
+    .cookie-btn-reject {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'Space Grotesk', sans-serif;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .cookie-btn-reject:hover {
+      border-color: rgba(255,255,255,0.45);
+      color: var(--text-white);
+    }
+
+    @media (max-width: 480px) {
+      #cookie-banner {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        max-width: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2108,6 +2209,20 @@
     </div>
   </footer>
 
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="hide" role="dialog" aria-label="Consentimiento de cookies">
+    <div class="cookie-banner-title">🍪 Cookies &amp; Privacidad</div>
+    <p class="cookie-banner-text">
+      Usamos cookies propias para mejorar tu experiencia. Puedes consultar nuestra
+      <a href="privacidad.html">Política de Privacidad</a> y nuestros
+      <a href="terminos.html">Términos y Condiciones</a>.
+    </p>
+    <div class="cookie-banner-actions">
+      <button id="cookie-btn-accept" class="cookie-btn-accept">Aceptar</button>
+      <button id="cookie-btn-reject" class="cookie-btn-reject">Rechazar</button>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="translations.js"></script>
   <script>
@@ -2237,6 +2352,27 @@
       });
       var savedLang = localStorage.getItem('flowsuite_lang') || 'es';
       applyLang(savedLang);
+    })();
+
+    // ===== COOKIE BANNER =====
+    (function() {
+      var cookieBanner = document.getElementById('cookie-banner');
+      if (!cookieBanner) return;
+      var consent = localStorage.getItem('flowsuite_cookie_consent');
+      if (consent) return;
+      cookieBanner.classList.remove('hide');
+
+      document.getElementById('cookie-btn-accept').addEventListener('click', function() {
+        localStorage.setItem('flowsuite_cookie_consent', 'accepted');
+        cookieBanner.classList.add('hide');
+        setTimeout(function() { cookieBanner.remove(); }, 300);
+      });
+
+      document.getElementById('cookie-btn-reject').addEventListener('click', function() {
+        localStorage.setItem('flowsuite_cookie_consent', 'rejected');
+        cookieBanner.classList.add('hide');
+        setTimeout(function() { cookieBanner.remove(); }, 300);
+      });
     })();
   </script>
 
