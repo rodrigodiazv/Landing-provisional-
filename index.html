@@ -852,3 +852,975 @@
       display: none;
     }
     
+
+    /* ===== BETA BANNER ===== */
+    .beta-banner {
+      background: linear-gradient(90deg, rgba(0,255,178,0.12), rgba(124,58,237,0.12));
+      border-bottom: 1px solid var(--border-neon);
+      text-align: center;
+      padding: 0.75rem 2rem;
+      font-size: 0.85rem;
+      color: var(--neon-teal);
+      font-weight: 500;
+    }
+
+    /* ===== TRUST SECTION ===== */
+    #trust {
+      background: linear-gradient(135deg, rgba(0,255,178,0.05), rgba(124,58,237,0.05));
+      border-top: 1px solid var(--border-neon);
+      border-bottom: 1px solid var(--border-neon);
+      padding: 3rem 2rem;
+      margin: 0;
+      max-width: 100%;
+    }
+
+    .trust-content {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .trust-content h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-white);
+    }
+
+    .trust-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,255,178,0.08);
+      border: 1px solid var(--border-neon);
+      border-radius: 99px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .trust-badge-box {
+      display: inline-block;
+      background: rgba(0,255,178,0.1);
+      border: 1px solid var(--border-neon);
+      border-radius: 99px;
+      padding: 0.8rem 2rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* ===== SCARCITY BAR ===== */
+    .scarcity-bar {
+      background: linear-gradient(90deg, rgba(255,45,107,0.15), rgba(255,45,107,0.05));
+      border-top: 1px solid rgba(255,45,107,0.3);
+      border-bottom: 1px solid rgba(255,45,107,0.3);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .scarcity-bar p {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-neon);
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand img {
+      height: 45px;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .footer-swiss-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,255,178,0.08);
+      border: 1px solid var(--border-neon);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      color: var(--neon-teal);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col h4 {
+      color: var(--text-white);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--neon-teal); }
+
+    .footer-beta-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--neon-teal), var(--neon-purple));
+      color: var(--bg-dark);
+      padding: 0.8rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .footer-beta-cta:hover {
+      box-shadow: 0 0 30px rgba(0,255,178,0.3);
+      transform: scale(1.02);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-neon);
+      padding-top: 2rem;
+    }
+
+    .footer-beta-notice {
+      background: rgba(0,255,178,0.06);
+      border: 1px solid var(--border-neon);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .footer-legal-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 1.5rem;
+    }
+
+    /* ===== COOKIE BANNER ===== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-neon);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      z-index: 200;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .cookie-banner.visible { transform: translateY(0); }
+
+    .cookie-btns { display: flex; gap: 0.8rem; }
+
+    .cookie-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .cookie-btn.accept { background: var(--neon-teal); color: var(--bg-dark); }
+
+    .cookie-btn.decline {
+      background: transparent;
+      border: 1px solid var(--border-neon);
+      color: var(--text-secondary);
+    }
+
+    .cookie-btn:hover { opacity: 0.85; }
+
+    /* ===== DEMO MODAL ===== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 4, 10, 0.88);
+      backdrop-filter: blur(6px);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-neon);
+      border-radius: 16px;
+      max-width: 720px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid var(--border-neon);
+    }
+
+    .modal-header h3 { font-size: 1.1rem; color: var(--text-white); }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1.6rem;
+      line-height: 1;
+      transition: color 0.2s;
+      padding: 0 0.3rem;
+    }
+
+    .modal-close:hover { color: var(--text-white); }
+
+    .modal-consent {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-neon);
+    }
+
+    .modal-consent p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .modal-consent-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .modal-consent-check input {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      accent-color: var(--neon-teal);
+    }
+
+    .modal-consent-check label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    .modal-consent-err {
+      color: var(--neon-pink);
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+      display: none;
+    }
+
+    .modal-consent-btn {
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(135deg, var(--neon-teal), #00D686);
+      color: var(--bg-dark);
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .modal-consent-btn:hover { box-shadow: 0 0 20px rgba(0,255,178,0.3); }
+
+    .modal-iframe-container { display: none; }
+
+    .modal-iframe-container iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+    }
+
+    /* ===== FORM SUCCESS ===== */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .form-success .success-icon { font-size: 4rem; margin-bottom: 1rem; }
+
+    .form-success h3 {
+      color: var(--neon-teal);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-success p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      .burger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0.5rem;
+      }
+
+      .burger-menu span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--text-white);
+        transition: all 0.3s;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .price-card.popular { transform: none; }
+
+      .hero-logo-large { flex-direction: column; gap: 0.8rem; }
+
+      .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Beta Banner -->
+  <div class="beta-banner" id="beta-banner">
+    <span data-i18n="beta_banner">🧠 FASE BETA · EN DESARROLLO — Página en fase de elaboración. Precios referenciales. Funcionalidades sujetas a cambios. Próxima apertura al público.</span>
+  </div>
+
+  <!-- Header -->
+  <header id="main-header">
+    <div class="header-inner">
+      <a href="#" class="logo-brand">
+        <img src="logo.png" alt="FlowSuite Logo">
+        <span>FlowSuite</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#demos" data-i18n="nav_demo">Ver la demo</a></li>
+          <li><a href="#pricing" data-i18n="nav_pricing">Precios</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+          <li><a href="terminos.html" data-i18n="nav_legal">Legal</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <div class="lang-selector">
+          <button class="lang-btn active" data-lang="es" onclick="setLang('es')">ES</button>
+          <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+          <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" data-lang="it" onclick="setLang('it')">IT</button>
+        </div>
+        <button class="burger-menu" id="burger-btn" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-logo-large">
+        <img src="logo.png" alt="FlowSuite Logo">
+        <span class="hero-logo-text">FlowSuite</span>
+      </div>
+      <div class="hero-badge">
+        <span data-i18n="hero_badge">🇨🇭 Datos 100% en Suiza · RGPD + nLPD</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-title-main" data-i18n="hero_title">Mientras tu competencia duerme, tus clientes llaman.</span>
+        <span class="hero-title-accent" data-i18n="hero_accent">Gana leads 24/7 sin hacer nada.</span>
+      </h1>
+      <p class="hero-subtitle" data-i18n="hero_sub">FlowSuite convierte las llamadas perdidas en clientes reales. Automatiza tu captación, soporte y citas mientras tú te dedicas a lo que importa.</p>
+      <div class="hero-ctas">
+        <a href="https://landing-provisional-beta.vercel.app" class="btn btn-primary" data-i18n="hero_cta">Acceder a Beta</a>
+        <a href="#demos" class="btn btn-secondary" data-i18n="hero_wa">Ver la demo</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value">48h</div>
+          <div class="stat-label" data-i18n="stat_setup_label">Configuración</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">24/7</div>
+          <div class="stat-label" data-i18n="stat_avail_label">Disponibilidad</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0</div>
+          <div class="stat-label" data-i18n="stat_commit_label">Permanencia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <div id="trust">
+    <div class="trust-content">
+      <h2 data-i18n="trust_title">🇨🇭 Tus datos en Suiza. Siempre.</h2>
+      <div class="trust-items">
+        <div class="trust-item" data-i18n="trust_swiss1">Datos 100% en servidores Infomaniac (Suiza)</div>
+        <div class="trust-item" data-i18n="trust_swiss2">Cumple RGPD (UE) y nLPD (Suiza)</div>
+        <div class="trust-item" data-i18n="trust_swiss3">Tus datos NUNCA salen de Suiza</div>
+      </div>
+      <div class="trust-badge-box">
+        <span data-i18n="trust_badge">Conforme con la protección de datos suiza (nLPD) y europea (RGPD)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits Section -->
+  <section id="value">
+    <h2 data-i18n="benefits_title">¿Qué ganas con FlowSuite?</h2>
+    <p class="section-subtitle" data-i18n="benefits_sub">Tres transformaciones reales. Desde el primer día.</p>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon">🚀</div>
+        <h3 data-i18n="benefit1_title">Nunca más un cliente perdido</h3>
+        <p data-i18n="benefit1_desc">Cada consulta, llamada y mensaje: atendido al instante. Da igual si son las 3 de la mañana o domingo festivo. Tu negocio nunca duerme.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💰</div>
+        <h3 data-i18n="benefit2_title">Más ingresos sin más trabajo</h3>
+        <p data-i18n="benefit2_desc">Mientras tú descansas, FlowSuite cualifica leads, confirma citas y cierra reservas. Tu facturación crece sola, sin contratar a nadie.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <h3 data-i18n="benefit3_title">Ventaja real sobre tu competencia</h3>
+        <p data-i18n="benefit3_desc">El 78% de los clientes elige al primero que responde. FlowSuite te pone siempre primero. Tu competencia sigue sin contestar los fines de semana.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem / Loss Section -->
+  <section id="problem">
+    <h2 data-i18n="loss_title">¿Qué pierdes cada día sin FlowSuite?</h2>
+    <p class="section-subtitle" data-i18n="loss_sub">No actuar también tiene un coste. Y es mayor de lo que crees.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon" data-i18n="loss1_icon">📞</div>
+        <h3 data-i18n="loss1_title">Llamadas sin respuesta</h3>
+        <p data-i18n="loss1_desc">El 67% de los clientes no deja mensaje. Si no contestas, se van a la competencia. Hoy mismo.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" data-i18n="loss2_icon">🌙</div>
+        <h3 data-i18n="loss2_title">Noches y fines de semana sin ventas</h3>
+        <p data-i18n="loss2_desc">Tu competencia con IA capta clientes mientras tú duermes. Cada hora offline es una oportunidad perdida.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" data-i18n="loss3_icon">💸</div>
+        <h3 data-i18n="loss3_title">Dinero que se escapa</h3>
+        <p data-i18n="loss3_desc">Un lead no atendido a tiempo cuesta entre 3x y 5x más recuperarlo que haberlo captado bien desde el inicio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Section -->
+  <section id="roi">
+    <h2>Tu inversión se recupera en 30 días</h2>
+    <div class="roi-box">
+      <div class="roi-title">ROI GARANTIZADO</div>
+      <div class="roi-number">30 días</div>
+      <p class="roi-text">Nuestros clientes recuperan su inversión en menos de un mes. Leads cualificados automáticos, citas confirmadas y ventas cerradas 24/7 sin intervención humana.</p>
+    </div>
+    <div style="text-align:center;margin-top:2rem;">
+      <a href="#contact" class="btn btn-primary">Empezar ahora →</a>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-works">
+    <h2 data-i18n="how_title">Cómo funciona</h2>
+    <p class="section-subtitle" data-i18n="how_sub">Del análisis al crecimiento en tres pasos simples.</p>
+    <div class="timeline">
+      <div class="timeline-step">
+        <div class="timeline-number">1</div>
+        <h3 data-i18n="step1_title">1. Análisis</h3>
+        <p data-i18n="step1_desc">Auditamos tu negocio e identificamos los procesos de mayor impacto para automatizar primero.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-number">2</div>
+        <h3 data-i18n="step2_title">2. Configuración</h3>
+        <p data-i18n="step2_desc">Tus agentes IA están configurados e integrados en tus herramientas existentes en 48 horas.</p>
+      </div>
+      <div class="timeline-step">
+        <div class="timeline-number">3</div>
+        <h3 data-i18n="step3_title">3. Crecimiento</h3>
+        <p data-i18n="step3_desc">Recibe leads cualificados automáticamente, 24/7, mientras te concentras en tu negocio.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demos Section -->
+  <section id="demos">
+    <h2 data-i18n="demo_title">Pruébalo en vivo. Sin compromiso.</h2>
+    <p class="section-subtitle" data-i18n="demo_sub">Elige tu sector e interactúa ahora mismo con tu futuro asistente digital.</p>
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="demo-icon">🏥</div>
+        <h3 data-i18n="demo_health">Salud</h3>
+        <p data-i18n="demo_health_desc">Consulta médica, dentista, fisio</p>
+        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Salud')" data-i18n="demo_try">Probar este agente →</button>
+      </div>
+      <div class="demo-card">
+        <div class="demo-icon">🍽️</div>
+        <h3 data-i18n="demo_gastro">Restauración</h3>
+        <p data-i18n="demo_gastro_desc">Reservas y pedidos automatizados</p>
+        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Restauración')" data-i18n="demo_try">Probar este agente →</button>
+      </div>
+      <div class="demo-card">
+        <div class="demo-icon">🏘️</div>
+        <h3 data-i18n="demo_immo">Inmobiliaria</h3>
+        <p data-i18n="demo_immo_desc">Cualificación de leads 24/7</p>
+        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Inmobiliaria')" data-i18n="demo_try">Probar este agente →</button>
+      </div>
+      <div class="demo-card">
+        <div class="demo-icon">🧑‍💼</div>
+        <h3 data-i18n="demo_coach">Coaching</h3>
+        <p data-i18n="demo_coach_desc">Citas y seguimiento de clientes</p>
+        <button class="demo-btn" onclick="openDemo('https://landing-provisional-beta.vercel.app','Coaching')" data-i18n="demo_try">Probar este agente →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Modal -->
+  <div class="modal-overlay" id="demo-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modal-title">Demo</h3>
+        <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">&times;</button>
+      </div>
+      <div class="modal-consent" id="modal-consent-section">
+        <p data-i18n="demo_ai_notice">⚠️ Aviso: Nuestros asistentes virtuales funcionan con IA. Las conversaciones pueden guardarse para garantizar la calidad. Al usar este sitio, aceptas nuestra política de privacidad.</p>
+        <div class="modal-consent-check">
+          <input type="checkbox" id="demo-consent-check">
+          <label for="demo-consent-check" data-i18n="demo_ai_check">He leído y acepto la política de privacidad y el aviso sobre IA.</label>
+        </div>
+        <div class="modal-consent-err" id="demo-consent-err"></div>
+        <button class="modal-consent-btn" id="modal-start-btn" data-i18n="demo_try">Probar este agente →</button>
+      </div>
+      <div class="modal-iframe-container" id="modal-iframe-section">
+        <iframe id="demo-iframe" title="Demo FlowSuite" allow="microphone; camera" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2 data-i18n="testimonials_title">Lo que dicen los primeros en probarlo</h2>
+    <p class="section-subtitle" data-i18n="testimonials_sub">Empresarios como tú. Resultados reales desde el primer día.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p class="testimonial-text" data-i18n="test1_quote">"Llevaba años perdiendo clientes por no poder atender el teléfono. FlowSuite recibe las llamadas por mí. Esta semana cerré 3 citas mientras dormía."</p>
+        <div class="testimonial-author" data-i18n="test1_author">— Marco R., Clínica Dental, Lausana</div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text" data-i18n="test2_quote">"Me daba miedo la tecnología. Pero esto es como tener un empleado de confianza que nunca falla. Mis reservas aumentaron el primer mes."</p>
+        <div class="testimonial-author" data-i18n="test2_author">— Sophie L., Restaurante, Ginebra</div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text" data-i18n="test3_quote">"Mi competencia sigue sin dar respuesta los fines de semana. Yo ya no pierdo esos clientes. Es una ventaja enorme."</p>
+        <div class="testimonial-author" data-i18n="test3_author">— Rodrigo V., Inmobiliaria, Vaud</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scarcity Bar -->
+  <div class="scarcity-bar">
+    <p data-i18n="scarcity_text">⚡ Solo quedan plazas limitadas en esta fase beta</p>
+    <a href="#contact" class="btn btn-primary" data-i18n="scarcity_cta">Reservar mi plaza ahora →</a>
+  </div>
+
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <h2 data-i18n="pricing_title">Precios referenciales</h2>
+    <div class="pricing-note">
+      <span data-i18n="pricing_beta_notice">⚠️ Precios referenciales · Página en fase beta de elaboración. Aún no se realizan cobros.</span>
+    </div>
+    <p class="section-subtitle" data-i18n="pricing_note">Sin permanencia. IVA no incluido (exento art. 10 LTVA).</p>
+    <p style="text-align:center;color:var(--neon-teal);font-weight:600;margin-bottom:2.5rem;" data-i18n="pricing_setup">🔧 Setup único desde 400 CHF (precio referencial)</p>
+    <div class="pricing-grid">
+      <!-- Plan 1: Presencia -->
+      <div class="price-card">
+        <div class="price-name" data-i18n="plan1_name">Presencia</div>
+        <div class="price-amount">CHF <span data-i18n="plan1_price">129</span></div>
+        <div class="price-period" data-i18n="pricing_month">/mes</div>
+        <ul class="price-features">
+          <li data-i18n="plan1_f1">Asistente digital 24/7</li>
+          <li data-i18n="plan1_f2">Responde en segundos</li>
+          <li data-i18n="plan1_f3">Capta leads automáticamente</li>
+          <li data-i18n="plan1_f4">Panel de control</li>
+          <li data-i18n="plan1_f5">Soporte personalizado</li>
+        </ul>
+        <button class="price-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="pricing_cta">Solicitar plaza</button>
+      </div>
+      <!-- Plan 2: Captación (popular) -->
+      <div class="price-card popular">
+        <div class="price-badge" data-i18n="pricing_popular">⭐ El más popular</div>
+        <div class="price-name" data-i18n="plan2_name">Captación</div>
+        <div class="price-amount">CHF <span data-i18n="plan2_price">229</span></div>
+        <div class="price-period" data-i18n="pricing_month">/mes</div>
+        <ul class="price-features">
+          <li data-i18n="plan2_f1">Asistente voz + texto 24/7</li>
+          <li data-i18n="plan2_f2">Captura clientes en todos los canales</li>
+          <li data-i18n="plan2_f3">Agenda automática de citas</li>
+          <li data-i18n="plan2_f4">Seguimientos automáticos</li>
+          <li data-i18n="plan2_f5">Informes semanales</li>
+          <li data-i18n="plan2_f6">Soporte prioritario</li>
+        </ul>
+        <button class="price-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="pricing_cta">Solicitar plaza</button>
+      </div>
+      <!-- Plan 3: Suite Completa -->
+      <div class="price-card">
+        <div class="price-name" data-i18n="plan3_name">Suite Completa</div>
+        <div class="price-amount">CHF <span data-i18n="plan3_price">389</span></div>
+        <div class="price-period" data-i18n="pricing_month">/mes</div>
+        <ul class="price-features">
+          <li data-i18n="plan3_f1">Todo lo de Captación</li>
+          <li data-i18n="plan3_f2">Asistentes ilimitados</li>
+          <li data-i18n="plan3_f3">Adaptado a tu negocio</li>
+          <li data-i18n="plan3_f4">Panel avanzado</li>
+          <li data-i18n="plan3_f5">Formación de tu equipo</li>
+          <li data-i18n="plan3_f6">Soporte dedicado 7/7</li>
+        </ul>
+        <button class="price-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" data-i18n="pricing_cta">Solicitar plaza</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2 data-i18n="contact_title">Únete a los 50 pioneros</h2>
+    <p class="section-subtitle" data-i18n="contact_sub">Acceso gratuito durante la fase beta. Primera consulta sin compromiso. Respuesta en menos de 24h.</p>
+    <div class="contact-wrapper">
+      <div id="form-wrapper">
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="f-name" data-i18n="f_name">Nombre completo</label>
+            <input type="text" id="f-name" name="name" data-i18n-placeholder="f_name" placeholder="Nombre completo" required>
+            <div class="form-error">Este campo es obligatorio.</div>
+          </div>
+          <div class="form-group">
+            <label for="f-company" data-i18n="f_company">Empresa</label>
+            <input type="text" id="f-company" name="company" data-i18n-placeholder="f_company" placeholder="Empresa">
+          </div>
+          <div class="form-group">
+            <label for="f-email" data-i18n="f_email">Email profesional</label>
+            <input type="email" id="f-email" name="email" data-i18n-placeholder="f_email" placeholder="Email profesional" required>
+            <div class="form-error">Este campo es obligatorio.</div>
+          </div>
+          <div class="form-group">
+            <label for="f-phone" data-i18n="f_phone">Teléfono (WhatsApp)</label>
+            <input type="tel" id="f-phone" name="phone" data-i18n-placeholder="f_phone" placeholder="Teléfono (WhatsApp)" required>
+            <div class="form-error">Este campo es obligatorio.</div>
+          </div>
+          <div class="form-group">
+            <label for="f-sector" data-i18n="f_sector">Sector</label>
+            <select id="f-sector" name="sector" required>
+              <option value="" disabled selected data-i18n="f_sector_ph">Selecciona tu sector</option>
+              <option value="health" data-i18n="f_sector_health">Salud / Médico</option>
+              <option value="gastro" data-i18n="f_sector_gastro">Restauración / Hostelería</option>
+              <option value="immo" data-i18n="f_sector_immo">Inmobiliaria</option>
+              <option value="coach" data-i18n="f_sector_coach">Coaching / Consultoría</option>
+              <option value="retail" data-i18n="f_sector_retail">Comercio / Retail</option>
+              <option value="other" data-i18n="f_sector_other">Otro</option>
+            </select>
+            <div class="form-error">Este campo es obligatorio.</div>
+          </div>
+          <div class="form-group">
+            <label for="f-msg" data-i18n="f_msg">Describe tu necesidad (opcional)</label>
+            <textarea id="f-msg" name="message" data-i18n-placeholder="f_msg" placeholder="Describe tu necesidad (opcional)"></textarea>
+          </div>
+          <div class="form-checkbox">
+            <input type="checkbox" id="form-consent" name="consent">
+            <label for="form-consent" data-i18n="f_check">Acepto que mis datos sean tratados por FlowSuite conforme a la política de privacidad (nLPD / RGPD). Datos alojados en servidores Infomaniac (Suiza).</label>
+          </div>
+          <div class="form-error" id="form-consent-err" style="margin-bottom:1rem;" data-i18n="f_check_err">Este campo es obligatorio.</div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1.05rem;" data-i18n="f_submit">Quiero mi plaza en la beta →</button>
+          <p style="text-align:center;margin:1.5rem 0;color:var(--text-muted);font-size:0.95rem;" data-i18n="f_or">o</p>
+          <a href="https://landing-provisional-beta.vercel.app" class="btn btn-secondary" style="width:100%;justify-content:center;text-decoration:none;">🚀 Acceder directamente a la Beta</a>
+        </form>
+      </div>
+      <div id="form-success" class="form-success">
+        <div class="success-icon">🎉</div>
+        <h3 data-i18n="f_ok_title">¡Solicitud recibida!</h3>
+        <p data-i18n="f_ok_desc">Te contactamos en menos de 24h. Bienvenido a los pioneros de FlowSuite. 🧠</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="logo.png" alt="FlowSuite">
+          <div class="footer-brand-name">FlowSuite</div>
+          <p class="footer-tagline" data-i18n="footer_tagline">Automatización inteligente al servicio de las PYMEs. Datos 100% en Suiza.</p>
+          <div class="footer-swiss-badge">
+            <span data-i18n="footer_swiss">🇨🇭 Datos alojados en Infomaniac (Suiza) · RGPD + nLPD Cumplido</span>
+          </div>
+          <br>
+          <a href="#contact" class="footer-beta-cta" data-i18n="footer_beta_cta">Acceso beta · Plazas limitadas</a>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_nav">Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#demos" data-i18n="nav_demo">Ver la demo</a></li>
+            <li><a href="#pricing" data-i18n="nav_pricing">Precios</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-i18n="footer_legal_nav">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="privacidad.html" data-i18n="footer_privacy">Privacidad</a></li>
+            <li><a href="terminos.html" data-i18n="footer_cgv">Términos de Uso</a></li>
+            <li><a href="privacidad.html#cookies" data-i18n="footer_cookies">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-beta-notice" data-i18n="footer_beta">🧠 Este sitio está en fase BETA de desarrollo. Los precios son referenciales y las funcionalidades están sujetas a cambios.</div>
+        <p class="footer-legal-text" data-i18n="footer_vat">IVA: No sujeto según art. 10 LTVA (facturación anual &lt; CHF 100.000).</p>
+        <p class="footer-legal-text" data-i18n="footer_vat_de">MwSt: Nicht mehrwertsteuerpflichtig gemäss Art. 10 MWSTG (Jahresumsatz &lt; CHF 100'000).</p>
+        <p class="footer-legal-text" data-i18n="footer_impressum">FlowSuite – Empresa individual a título accesorio (Einzelfirma im Nebenerwerb) de Rodrigo A. Díaz Videla · Chemin de la Raverettaz 6, CP 1862, 1862 Ormont-Dessous (Les Mosses), Vaud, Suisse.</p>
+        <div class="footer-copy" data-i18n="footer_copy">© 2026 FlowSuite · Vaud, Suiza. Todos los derechos reservados.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookie-banner">
+    <span data-i18n="cookie_text">Usamos cookies funcionales necesarias para el funcionamiento del sitio.</span>
+    <div class="cookie-btns">
+      <button class="cookie-btn accept" id="cookie-accept" data-i18n="cookie_accept">Aceptar</button>
+      <button class="cookie-btn decline" id="cookie-decline" data-i18n="cookie_decline">Rechazar</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="translations.js"></script>
+  <script>
+    // ===== LANGUAGE SYSTEM =====
+    function applyLang(lang) {
+      if (!TRANSLATIONS[lang]) lang = 'es';
+      var t = TRANSLATIONS[lang];
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n-placeholder');
+        if (t[key] !== undefined) el.placeholder = t[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang;
+      localStorage.setItem('flowsuite_lang', lang);
+    }
+
+    function setLang(lang) { applyLang(lang); }
+
+    // ===== HEADER SCROLL EFFECT =====
+    var mainHeader = document.getElementById('main-header');
+    window.addEventListener('scroll', function() {
+      mainHeader.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ===== DEMO MODAL =====
+    var modalOverlay = document.getElementById('demo-modal');
+    var modalConsentSection = document.getElementById('modal-consent-section');
+    var modalIframeSection = document.getElementById('modal-iframe-section');
+    var demoConsentCheck = document.getElementById('demo-consent-check');
+    var demoConsentErr = document.getElementById('demo-consent-err');
+
+    function openDemo(url, title) {
+      document.getElementById('modal-title').textContent = title;
+      modalConsentSection.style.display = 'block';
+      modalIframeSection.style.display = 'none';
+      demoConsentCheck.checked = false;
+      demoConsentErr.style.display = 'none';
+      document.getElementById('modal-start-btn').dataset.url = url;
+      modalOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+      document.getElementById('demo-iframe').src = '';
+    }
+
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', function(e) {
+      if (e.target === modalOverlay) closeModal();
+    });
+
+    document.getElementById('modal-start-btn').addEventListener('click', function() {
+      if (!demoConsentCheck.checked) {
+        var lang = localStorage.getItem('flowsuite_lang') || 'es';
+        var t = TRANSLATIONS[lang] || TRANSLATIONS['es'];
+        demoConsentErr.textContent = t['demo_consent_err'] || 'Por favor acepta para acceder a la demo.';
+        demoConsentErr.style.display = 'block';
+        return;
+      }
+      var url = this.dataset.url || 'https://landing-provisional-beta.vercel.app';
+      modalConsentSection.style.display = 'none';
+      modalIframeSection.style.display = 'block';
+      document.getElementById('demo-iframe').src = url;
+    });
+
+    // Escape key closes modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ===== CONTACT FORM =====
+    var contactForm = document.getElementById('contact-form');
+    var formWrapper = document.getElementById('form-wrapper');
+    var formSuccess = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var valid = true;
+
+      contactForm.querySelectorAll('[required]').forEach(function(field) {
+        var err = field.parentElement.querySelector('.form-error');
+        if (!field.value.trim()) {
+          valid = false;
+          if (err) err.style.display = 'block';
+        } else {
+          if (err) err.style.display = 'none';
+        }
+      });
+
+      var consentBox = document.getElementById('form-consent');
+      var consentErrEl = document.getElementById('form-consent-err');
+      if (!consentBox.checked) {
+        valid = false;
+        consentErrEl.style.display = 'block';
+      } else {
+        consentErrEl.style.display = 'none';
+      }
+
+      if (valid) {
+        formWrapper.style.display = 'none';
+        formSuccess.style.display = 'block';
+        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // ===== COOKIE BANNER =====
+    var cookieBanner = document.getElementById('cookie-banner');
+    if (!localStorage.getItem('flowsuite_cookies')) {
+      setTimeout(function() { cookieBanner.classList.add('visible'); }, 1500);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', function() {
+      localStorage.setItem('flowsuite_cookies', 'accepted');
+      cookieBanner.classList.remove('visible');
+    });
+    document.getElementById('cookie-decline').addEventListener('click', function() {
+      localStorage.setItem('flowsuite_cookies', 'declined');
+      cookieBanner.classList.remove('visible');
+    });
+
+    // ===== INIT: Apply saved language =====
+    (function() {
+      var savedLang = localStorage.getItem('flowsuite_lang') || 'es';
+      applyLang(savedLang);
+    })();
+  </script>
+
+</body>
+</html>
