@@ -1615,11 +1615,11 @@ window.openDemo=function(s){
   var cs=document.getElementById('demo-consent-section');if(cs)cs.style.display='block';
   var iw=document.getElementById('demo-iframe-wrapper');if(iw)iw.style.display='none';
   var df=document.getElementById('demo-iframe');if(df)df.src='';
-  var dm=document.getElementById('demo-modal');if(dm)dm.classList.add('open');
+  var dm=document.getElementById('demo-modal');if(dm)dm.classList.add('active');
   document.body.style.overflow='hidden';
 };
 window.closeDemo=function(){
-  var dm=document.getElementById('demo-modal');if(dm)dm.classList.remove('open');
+  var dm=document.getElementById('demo-modal');if(dm)dm.classList.remove('active');
   var df=document.getElementById('demo-iframe');if(df)df.src='';
   document.body.style.overflow='';
 };
