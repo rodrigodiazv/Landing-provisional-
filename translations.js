@@ -14,19 +14,23 @@ const TRANSLATIONS = {
     beta_banner: "🧠 FASE BETA DE PRUEBA · Sin cobro · Acceso limitado a 50 empresas · Proyecto piloto colaborativo",
 
     // HERO
-    hero_badge: "🧠 En Prueba Beta · Solo 50 empresas",
-    hero_title: "Cada llamada perdida es dinero que se va.",
-    hero_accent: "FlowSuite nunca cuelga.",
-    hero_sub: "Tu cliente llama a las 11 de la noche, el sábado, en vacaciones. ¿Quién responde? Con FlowSuite, siempre hay alguien. Cada lead capturado. Cada cita confirmada. Cada venta cerrada.",
-    hero_cta: "Quiero mi asistente ahora →",
-    hero_wa: "Ver cómo funciona",
-    stat_setup_label: "Setup listo",
-    stat_avail_label: "Siempre activo",
-    stat_commit_label: "Sin permanencia",
+    hero_badge: "🇨🇭 Datos 100% en Suiza · RGPD + nLPD",
+    hero_beta_badge: "🧠 FASE BETA DE PRUEBA – SIN COBRO",
+    hero_title: "Mientras tu competencia duerme, tus clientes llaman.",
+    hero_accent: "Gana leads 24/7 sin hacer nada.",
+    hero_sub: "FlowSuite convierte las llamadas perdidas en clientes reales. Automatiza tu captación, soporte y citas mientras tú te dedicas a lo que importa.",
+    hero_cta: "Acceder a Beta",
+    hero_wa: "Ver la demo",
+    stat_setup_label: "Configuración",
+    stat_avail_label: "Disponibilidad",
+    stat_commit_label: "Permanencia",
 
     // TRUST
-    trust_title: "🔒 Tus datos, 100% protegidos en Suiza",
-    trust_badge: "🇨🇭 Infomaniac · Servidores suizos · Cumple RGPD & nLPD — tus datos nunca salen de Suiza",
+    trust_title: "🇨🇭 Tus datos en Suiza. Siempre.",
+    trust_swiss1: "Datos 100% en servidores Infomaniac (Suiza)",
+    trust_swiss2: "Cumple RGPD (UE) y nLPD (Suiza)",
+    trust_swiss3: "Tus datos NUNCA salen de Suiza",
+    trust_badge: "Conforme con la protección de datos suiza (nLPD) y europea (RGPD)",
 
     // BENEFITS (¿Qué ganas?)
     benefits_title: "¿Qué ganas con FlowSuite?",
@@ -50,30 +54,6 @@ const TRANSLATIONS = {
     loss3_icon: "💸",
     loss3_title: "Dinero que se escapa",
     loss3_desc: "Un lead no atendido a tiempo cuesta entre 3x y 5x más recuperarlo que haberlo captado bien desde el inicio.",
-    beta_banner: "🧠 FASE BETA · EN DESARROLLO — Página en fase de elaboración. Precios referenciales. Funcionalidades sujetas a cambios. Próxima apertura al público.",
-
-    // HERO
-    hero_beta_badge: "🧠 FASE BETA DE PRUEBA – SIN COBRO",
-    hero_title: "Tu nuevo equipo de ventas 24/7.",
-    hero_accent: "Impulsado por IA.",
-    hero_sub: "Automatiza la captación de clientes, el soporte y las citas con nuestros empleados digitales. Configuración en 48h. Sin permanencia.",
-    hero_cta: "Empezar ahora",
-    hero_title: "Mientras tu competencia duerme, tus clientes llaman.",
-    hero_accent: "Gana leads 24/7 sin hacer nada.",
-    hero_sub: "FlowSuite convierte las llamadas perdidas en clientes reales. Automatiza tu captación, soporte y citas mientras tú te dedicas a lo que importa.",
-    hero_cta: "Acceder a Beta",
-    hero_wa: "Ver la demo",
-    hero_badge: "🇨🇭 Datos 100% en Suiza · RGPD + nLPD",
-    stat_setup_label: "Configuración",
-    stat_avail_label: "Disponibilidad",
-    stat_commit_label: "Permanencia",
-
-    // TRUST
-    trust_title: "🇨🇭 Tus datos en Suiza. Siempre.",
-    trust_swiss1: "Datos 100% en servidores Infomaniac (Suiza)",
-    trust_swiss2: "Cumple RGPD (UE) y nLPD (Suiza)",
-    trust_swiss3: "Tus datos NUNCA salen de Suiza",
-    trust_badge: "Conforme con la protección de datos suiza (nLPD) y europea (RGPD)",
 
     // HOW IT WORKS
     how_title: "Cómo funciona",
@@ -118,13 +98,6 @@ const TRANSLATIONS = {
 
     // PRICING
     pricing_beta: "🧠 FASE BETA – Los precios mostrados son indicativos. Actualmente SIN COBRO.",
-    pricing_title: "Precios transparentes",
-    pricing_note: "Sin permanencia. IVA no incluido (exento art. 10 LTVA).",
-    pricing_title: "Inversión transparente",
-    pricing_beta_notice: "⚠️ Fase Beta: precios orientativos · Sin cobro hasta lanzamiento oficial",
-    pricing_note: "Sin permanencia · Fase de prueba activa",
-    pricing_setup: "🔧 Setup único desde 400 CHF",
-    pricing_popular: "⭐ El más elegido",
     pricing_title: "Precios referenciales",
     pricing_beta_notice: "⚠️ Precios referenciales · Página en fase beta de elaboración. Aún no se realizan cobros.",
     pricing_note: "Sin permanencia. IVA no incluido (exento art. 10 LTVA).",
@@ -171,8 +144,6 @@ const TRANSLATIONS = {
     f_sector_coach: "Coaching / Consultoría",
     f_sector_retail: "Comercio / Retail",
     f_sector_other: "Otro",
-    f_msg: "Cuéntanos tu mayor reto (opcional)",
-    f_check: "Acepto que mis datos sean tratados por FlowSuite conforme a la política de privacidad (nLPD / RGPD). Datos alojados en servidores suizos (Infomaniac).",
     f_msg: "Describe tu necesidad (opcional)",
     f_check: "Acepto que mis datos sean tratados por FlowSuite conforme a la política de privacidad (nLPD / RGPD). Datos alojados en servidores Infomaniac (Suiza).",
     f_check_err: "Este campo es obligatorio.",
@@ -182,11 +153,6 @@ const TRANSLATIONS = {
     f_ok_desc: "Te contactamos en menos de 24h. Bienvenido a los pioneros de FlowSuite. 🧠",
 
     // FOOTER
-    footer_beta: "🧠 FASE BETA DE PRUEBA – Plataforma en fase de prueba colaborativa. SIN COBRO actualmente.",
-    footer_tagline: "Inteligencia artificial al servicio de las PYMEs.",
-    footer_swiss: "🇨🇭 Datos 100% en Suiza (Infomaniac)",
-    footer_beta_cta: "Acceso beta · Plazas limitadas",
-    footer_tagline: "Transforma tu negocio con IA. Sin complicaciones. Con seguridad suiza.",
     footer_tagline: "Automatización inteligente al servicio de las PYMEs. Datos 100% en Suiza.",
     footer_nav: "Navegación",
     footer_legal_nav: "Legal",
@@ -194,6 +160,7 @@ const TRANSLATIONS = {
     footer_cgv: "Términos de Uso",
     footer_cookies: "Cookies",
     footer_swiss: "🇨🇭 Datos alojados en Infomaniac (Suiza) · RGPD + nLPD Cumplido",
+    footer_beta_cta: "Acceso beta · Plazas limitadas",
     footer_beta: "🧠 Este sitio está en fase BETA de desarrollo. Los precios son referenciales y las funcionalidades están sujetas a cambios.",
     footer_vat: "IVA: No sujeto según art. 10 LTVA (facturación anual < CHF 100.000).",
     footer_vat_de: "MwSt: Nicht mehrwertsteuerpflichtig gemäss Art. 10 MWSTG (Jahresumsatz < CHF 100'000).",
