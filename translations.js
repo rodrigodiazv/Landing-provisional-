@@ -16,8 +16,8 @@ const TRANSLATIONS = {
     // HERO
     hero_badge: "🇨🇭 Datos 100% en Suiza · RGPD + nLPD",
     hero_beta_badge: "🧠 FASE BETA DE PRUEBA – SIN COBRO",
-    hero_title: "Mientras tu competencia duerme, tus clientes llaman.",
-    hero_accent: "Gana leads 24/7 sin hacer nada.",
+    hero_title: "Mientras tu competencia duerme, tus clientes llaman",
+    hero_accent: "Gana leads 24/7 sin hacer nada",
     hero_sub: "FlowSuite convierte las llamadas perdidas en clientes reales. Automatiza tu captación, soporte y citas mientras tú te dedicas a lo que importa.",
     hero_cta: "Acceder a Beta",
     hero_wa: "Ver la demo",
