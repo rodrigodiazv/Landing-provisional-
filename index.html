@@ -1893,7 +1893,37 @@ var l=localStorage.getItem('fs_lang')||'es';
   window.process = { env: {} };
 </script>
 <script src="https://sidewidget.vercel.app/react-widget-uv.iife.js"></script>
-<react-widget-uv agent_id="33c13ac4-3b27-4c7a-bb79-8dc199d89d98" schema="d7035a8e-3f44-4877-a11f-3b17d8ef808611" type="thunderemotionlite"></react-widget-uv>
+<react-widget-uv agent_id="33c13ac4-3b27-4c7a-bb79-8dc199d89d98" schema="d7035a8e-3f44-4877-a11f-3b17d8ef808611" type="thunderemotionlite" auto_open="true"></react-widget-uv>
+<script>
+(function(){
+  function openSnowieWidget(){
+    var w=document.querySelector('react-widget-uv');
+    if(!w)return;
+    // Try common trigger: button or clickable root inside shadow DOM or light DOM
+    var btn=w.querySelector('button')||w.shadowRoot&&w.shadowRoot.querySelector('button');
+    if(btn){btn.click();return;}
+    // Fallback: click the element itself
+    w.click();
+  }
+  // Wait for the widget script to define and render the custom element
+  var attempts=0;
+  var maxAttempts=20;
+  var interval=setInterval(function(){
+    attempts++;
+    var w=document.querySelector('react-widget-uv');
+    var btn=w&&(w.querySelector('button')||(w.shadowRoot&&w.shadowRoot.querySelector('button')));
+    if(btn){
+      clearInterval(interval);
+      // Small delay so the widget finishes its own initialisation
+      setTimeout(openSnowieWidget,500);
+    } else if(attempts>=maxAttempts){
+      clearInterval(interval);
+      // Last-resort attempt after 3 s
+      setTimeout(openSnowieWidget,3000);
+    }
+  },300);
+})();
+</script>
 
 </body>
 </html>
