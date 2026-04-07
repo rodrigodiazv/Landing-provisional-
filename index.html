@@ -253,9 +253,27 @@
 
 
 /* ── Snowie widget constraints ── */
+react-widget-uv {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 64px !important;
+  height: 64px !important;
+  max-width: 64px !important;
+  max-height: 64px !important;
+  z-index: 9999 !important;
+  overflow: visible !important;
+}
 
 @media(max-width: 768px) {
-  
+  react-widget-uv {
+    bottom: 16px !important;
+    right: 16px !important;
+    width: 56px !important;
+    height: 56px !important;
+    max-width: 56px !important;
+    max-height: 56px !important;
+  }
 }
 
 </style>
@@ -266,7 +284,7 @@
   window.process = { env: {} };
 </script>
 <script src="https://sidewidget.vercel.app/react-widget-uv.iife.js"></script>
-<react-widget-uv agent_id="33c13ac4-3b27-4c7a-bb79-8dc199d89d98" schema="d7035a8e-3f44-4877-a11f-3b17d8ef808611" type="thunderemotionlite"></react-widget-uv>
+<react-widget-uv agent_id="33c13ac4-3b27-4c7a-bb79-8dc199d89d98" schema="d7035a8e-3f44-4877-a11f-3b17d8ef808611" type="thunderemotionlite" autostart="false"></react-widget-uv>
 
 
 
