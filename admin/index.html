@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FlowSuite Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+<style>
+:root {
+  --bg: #06091a;
+  --s1: #0c1126;
+  --s2: #121a36;
+  --s3: #1a2444;
+  --teal: #00d4aa;
+  --teal-a: rgba(0,212,170,0.12);
+  --teal-b: rgba(0,212,170,0.06);
+  --purple: #a855f7;
+  --purple-a: rgba(168,85,247,0.12);
+  --text: #dde4f0;
+  --muted: #5a6a8a;
+  --border: rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.1);
+  --danger: #f43f5e;
+  --warn: #fb923c;
+  --ok: #34d399;
+  --sw: 240px;
+  --r: 10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;}
+
+/* GATE */
+#gate{display:flex;align-items:center;justify-content:center;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,rgba(0,212,170,0.06) 0%,transparent 60%);}
+.gate-wrap{width:340px;text-align:center;}
+.gate-logo{width:64px;height:64px;margin:0 auto 24px;background:var(--s2);border:1px solid var(--border2);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.gate-h{font-size:20px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px;}
+.gate-sub{color:var(--muted);font-size:13px;margin-bottom:32px;}
+.field{width:100%;background:var(--s1);border:1px solid var(--border2);border-radius:8px;padding:13px 16px;color:var(--text);font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+.field:focus{border-color:var(--teal);}
+.btn-main{width:100%;margin-top:10px;padding:13px;background:var(--teal);color:#06091a;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s;}
+.btn-main:hover{opacity:.88;}
+.gate-err{color:var(--danger);font-size:12px;margin-top:10px;display:none;}
+
+/* APP */
+#app{display:none;}
+#app.on{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sb{width:var(--sw);background:var(--s1);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100;}
+.sb-brand{padding:22px 20px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.sb-icon{width:32px;height:32px;background:var(--teal-a);border:1px solid rgba(0,212,170,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.sb-name{font-size:15px;font-weight:700;color:var(--teal);letter-spacing:-.3px;}
+.sb-role{font-size:10px;color:var(--muted);}
+.sb-sec{padding:16px 12px 4px;}
+.sb-lbl{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;padding:0 8px;margin-bottom:6px;}
+.nav{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:8px;cursor:pointer;color:var(--muted);font-size:13px;font-weight:500;transition:all .15s;user-select:none;position:relative;}
+.nav:hover{background:var(--s2);color:var(--text);}
+.nav.on{background:var(--teal-a);color:var(--teal);}
+.nav-ic{font-size:15px;width:18px;text-align:center;flex-shrink:0;}
+.nav-badge{margin-left:auto;background:var(--teal);color:#06091a;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;}
+.sb-agents{padding:14px 12px 20px;margin-top:auto;border-top:1px solid var(--border);}
+.ag-row{display:flex;align-items:center;gap:8px;padding:5px 8px;font-size:12px;color:var(--muted);}
+.pulse{width:7px;height:7px;border-radius:50%;flex-shrink:0;position:relative;}
+.pulse.on{background:var(--ok);}
+.pulse.on::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid var(--ok);opacity:0;animation:ring 2s infinite;}
+@keyframes ring{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(1.8)}}
+.pulse.dev{background:var(--warn);}
+.pulse.off{background:var(--s3);}
+
+/* MAIN */
+.main{margin-left:var(--sw);flex:1;min-height:100vh;display:flex;flex-direction:column;}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:15px 28px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:50;}
+.topbar-t{font-size:15px;font-weight:600;}
+.topbar-r{display:flex;align-items:center;gap:10px;}
+.btn{padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:opacity .2s;white-space:nowrap;}
+.btn:hover{opacity:.85;}
+.btn-teal{background:var(--teal);color:#06091a;}
+.btn-ghost{background:var(--s2);color:var(--muted);}
+.btn-green{background:#25D366;color:white;}
+
+/* TABS */
+.tab{display:none;padding:28px;flex:1;}
+.tab.on{display:block;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.stat{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+.stat-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.stat-v{font-size:28px;font-weight:700;margin:5px 0 3px;}
+.stat-ch{font-size:11px;color:var(--ok);}
+
+/* TABLE */
+.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.card-h{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);}
+.card-title{font-size:14px;font-weight:600;}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:var(--s2);}
+th{padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+td{padding:13px 16px;font-size:13px;border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--s2);}
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:5px;font-size:11px;font-weight:600;}
+.bg{background:rgba(52,211,153,.12);color:var(--ok);}
+.bt{background:var(--teal-a);color:var(--teal);}
+.by{background:rgba(251,146,60,.12);color:var(--warn);}
+.bm{background:var(--s3);color:var(--muted);}
+.bp{background:var(--purple-a);color:var(--purple);}
+
+/* SECTION HEADER */
+.sh{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;}
+.sh-t{font-size:18px;font-weight:700;letter-spacing:-.3px;}
+.sh-sub{font-size:13px;color:var(--muted);margin-top:3px;}
+
+/* BUILDER */
+.builder-grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;}
+.panel{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:24px;}
+.panel-t{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:18px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.fg{margin-bottom:14px;}
+.fg.full,.full{grid-column:1/-1;}
+label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;}
+input[type=text],input[type=tel],input[type=url],input[type=color],select,textarea{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:7px;padding:9px 12px;color:var(--text);font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);}
+select option{background:var(--s2);}
+textarea{resize:vertical;min-height:72px;}
+input[type=color]{height:38px;padding:4px 8px;cursor:pointer;}
+
+/* PHOTOS */
+.slot{border:1.5px dashed var(--border2);border-radius:9px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.slot:hover{border-color:var(--teal);background:var(--teal-b);}
+.slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.slot-bg{position:absolute;inset:0;background-size:cover;background-position:center;display:none;}
+.slot.filled .slot-bg{display:block;}
+.slot.filled .slot-ph{display:none;}
+.slot-ph{pointer-events:none;padding:10px;}
+.slot-ico{font-size:18px;margin-bottom:4px;}
+.slot-lbl{font-size:10px;color:var(--muted);}
+.sl-logo{height:84px;}
+.sl-cover{height:108px;}
+.sl-gal{height:72px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+/* OUTPUT */
+.output{background:var(--s1);border:1px solid rgba(0,212,170,.25);border-radius:var(--r);padding:22px;margin-top:18px;display:none;}
+.output.on{display:block;}
+.url-box{background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:10px 12px;font-size:11px;color:var(--teal);font-family:monospace;word-break:break-all;margin-bottom:12px;}
+.msg-box{background:var(--bg);border:1px solid var(--border2);border-radius:6px;padding:12px;font-size:12px;color:var(--text);white-space:pre-wrap;max-height:220px;overflow-y:auto;margin-bottom:12px;}
+.btns-row{display:flex;gap:10px;}
+.btn-f{flex:1;padding:10px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Inter',sans-serif;text-align:center;transition:opacity .2s;}
+.btn-f:hover{opacity:.85;}
+
+/* PLANS */
+.plans-sel{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.plan-o{border:2px solid var(--border2);border-radius:9px;padding:14px 12px;cursor:pointer;transition:all .15s;text-align:center;}
+.plan-o:hover{border-color:var(--teal);}
+.plan-o.on{border-color:var(--teal);background:var(--teal-a);}
+.plan-n{font-size:13px;font-weight:700;}
+.plan-p{font-size:11px;color:var(--muted);margin-top:3px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--s2);border:1px solid var(--border2);border-radius:9px;padding:12px 18px;font-size:13px;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(10px);transition:all .25s;pointer-events:none;z-index:999;}
+.toast.on{opacity:1;transform:translateY(0);}
+.toast.ok{border-color:rgba(0,212,170,.4);}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--s3);border-radius:2px;}
+
+@media(max-width:900px){
+  :root{--sw:58px;}
+  .sb-name,.sb-role,.sb-lbl,.nav span,.sb-agents{display:none;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .builder-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── GATE ────────────────────────────── -->
+<div id="gate">
+  <div class="gate-wrap">
+    <div class="gate-logo">🧠</div>
+    <div class="gate-h">FlowSuite Admin</div>
+    <div class="gate-sub">Área restringida — solo equipo interno</div>
+    <input class="field" type="password" id="pw" placeholder="Contraseña de acceso" autocomplete="current-password">
+    <button class="btn-main" onclick="auth()">Entrar al panel</button>
+    <div class="gate-err" id="gerr">Contraseña incorrecta. Intenta de nuevo.</div>
+  </div>
+</div>
+
+<!-- ── APP ─────────────────────��──────── -->
+<div id="app">
+  <!-- Sidebar -->
+  <aside class="sb">
+    <div class="sb-brand">
+      <div class="sb-icon">🧠</div>
+      <div>
+        <div class="sb-name">FlowSuite</div>
+        <div class="sb-role">Panel de administración</div>
+      </div>
+    </div>
+    <div class="sb-sec">
+      <div class="sb-lbl">Principal</div>
+      <div class="nav on" onclick="tab('clientes',this)"><span class="nav-ic">👥</span><span>Clientes</span><span class="nav-badge">3</span></div>
+      <div class="nav" onclick="tab('demos',this)"><span class="nav-ic">⚡</span><span>Demo Builder</span></div>
+      <div class="nav" onclick="tab('propuestas',this)"><span class="nav-ic">📄</span><span>Propuestas</span></div>
+    </div>
+    <div class="sb-sec">
+      <div class="sb-lbl">Sistema</div>
+      <div class="nav" onclick="tab('agentes',this)"><span class="nav-ic">🤖</span><span>Agentes</span></div>
+      <div class="nav" onclick="tab('config',this)"><span class="nav-ic">⚙️</span><span>Configuración</span></div>
+    </div>
+    <div class="sb-agents">
+      <div class="sb-lbl" style="padding:0;margin-bottom:8px;">Estado agentes</div>
+      <div class="ag-row"><span class="pulse on"></span><span>PROSPECT</span></div>
+      <div class="ag-row"><span class="pulse dev"></span><span>CLOSER</span></div>
+      <div class="ag-row"><span class="pulse off"></span><span>SUPPORT</span></div>
+      <div class="ag-row"><span class="pulse off"></span><span>CREATOR</span></div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-t" id="ttitle">Clientes</div>
+      <div class="topbar-r">
+        <button class="btn btn-ghost" onclick="logout()">↩ Salir</button>
+        <button class="btn btn-teal" onclick="goDemo()">⚡ Nueva demo</button>
+      </div>
+    </div>
+
+    <!-- ── TAB CLIENTES ── -->
+    <div class="tab on" id="t-clientes">
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-lbl">Clientes activos</div>
+          <div class="stat-v" style="color:var(--teal)">3</div>
+          <div class="stat-ch">↑ +1 este mes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">MRR estimado</div>
+          <div class="stat-v">387 CHF</div>
+          <div class="stat-ch">↑ en crecimiento</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">Leads totales</div>
+          <div class="stat-v">24</div>
+          <div class="stat-ch">↑ +8 esta semana</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">Demos enviadas</div>
+          <div class="stat-v" id="demos-count">0</div>
+          <div class="stat-ch" style="color:var(--muted)">Genera la primera →</div>
+        </div>
+      </div>
+
+      <div class="sh">
+        <div><div class="sh-t">Clientes</div><div class="sh-sub">Gestión de cuentas y contratos activos</div></div>
+        <button class="btn btn-teal">+ Añadir cliente</button>
+      </div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Negocio</th><th>Plan</th><th>Inicio</th><th>Próx. pago</th><th>MRR</th><th>Estado</th><th></th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div style="font-weight:600">Donc Alpine</div><div style="font-size:11px;color:var(--muted)">donc-alpine.ch</div></td>
+              <td><span class="badge bt">Captación</span></td>
+              <td style="color:var(--muted)">Mar 2026</td>
+              <td style="color:var(--muted)">Nov 2026</td>
+              <td>229 CHF</td>
+              <td><span class="badge bg">Activo</span></td>
+              <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px">Ver panel</button></td>
+            </tr>
+            <tr>
+              <td><div style="font-weight:600">Cliente 2</div><div style="font-size:11px;color:var(--muted)">Trial activo</div></td>
+              <td><span class="badge bp">Suite</span></td>
+              <td style="color:var(--muted)">Oct 2026</td>
+              <td style="color:var(--muted)">—</td>
+              <td style="color:var(--muted)">—</td>
+              <td><span class="badge by">Trial</span></td>
+              <td><button class="btn btn-teal" style="padding:4px 10px;font-size:11px">Convertir</button></td>
+            </tr>
+            <tr>
+              <td><div style="font-weight:600">Cliente 3</div><div style="font-size:11px;color:var(--muted)">Nueva incorporación</div></td>
+              <td><span class="badge bm">Presencia</span></td>
+              <td style="color:var(--muted)">Oct 2026</td>
+              <td style="color:var(--muted)">Nov 2026</td>
+              <td>129 CHF</td>
+              <td><span class="badge bg">Activo</span></td>
+              <td><button class="btn btn-ghost" style="padding:4px 10px;font-size:11px">Ver panel</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── TAB DEMO BUILDER ── -->
+    <div class="tab" id="t-demos">
+      <div class="sh">
+        <div><div class="sh-t">Demo Builder</div><div class="sh-sub">Genera una demo personalizada con fotos para enviar por WhatsApp en segundos</div></div>
+      </div>
+
+      <div class="builder-grid">
+        <div>
+          <div class="panel">
+            <div class="panel-t">Datos del negocio</div>
+            <div class="grid2">
+              <div class="fg">
+                <label>Nombre del negocio *</label>
+                <input type="text" id="b-n" placeholder="Ej: Bar du Lac">
+              </div>
+              <div class="fg">
+                <label>Sector *</label>
+                <select id="b-s">
+                  <option value="">Seleccionar…</option>
+                  <option>Restaurante / Bar</option>
+                  <option>Alojamiento / Hotel</option>
+                  <option>Tienda esquí / deportes</option>
+                  <option>Clínica / Fisioterapia</option>
+                  <option>Dentista</option>
+                  <option>Coach / Consultor</option>
+                  <option>Inmobiliaria</option>
+                  <option>Taller mecánico</option>
+                  <option>Estética / Belleza</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label>Ciudad</label>
+                <input type="text" id="b-c" placeholder="Ej: Lausanne">
+              </div>
+              <div class="fg">
+                <label>Idioma de la demo</label>
+                <select id="b-l">
+                  <option value="es">🇪🇸 Español</option>
+                  <option value="fr">🇫🇷 Français</option>
+                  <option value="de">🇩🇪 Deutsch</option>
+                  <option value="en">🇬🇧 English</option>
+                  <option value="it">🇮🇹 Italiano</option>
+                </select>
+              </div>
+              <div class="fg full">
+                <label>Slogan / descripción corta</label>
+                <input type="text" id="b-sl" placeholder="Ej: La mejor terraza con vistas a los Alpes">
+              </div>
+              <div class="fg">
+                <label>Teléfono / WhatsApp</label>
+                <input type="tel" id="b-t" placeholder="+41 79 000 00 00">
+              </div>
+              <div class="fg">
+                <label>Color de marca</label>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <input type="color" id="b-col-picker" value="#00d4aa" style="width:44px;flex-shrink:0;" onchange="document.getElementById('b-col').value=this.value">
+                  <input type="text" id="b-col" value="#00d4aa" placeholder="#00d4aa" style="font-family:monospace" oninput="document.getElementById('b-col-picker').value=this.value">
+                </div>
+              </div>
+              <div class="fg">
+                <label>Web (opcional)</label>
+                <input type="url" id="b-w" placeholder="https://negocio.ch">
+              </div>
+              <div class="fg">
+                <label>Instagram (opcional)</label>
+                <input type="text" id="b-ig" placeholder="@negocio">
+              </div>
+              <div class="fg full">
+                <label>Servicios / puntos clave (uno por línea)</label>
+                <textarea id="b-sv" placeholder="Menú del día 18 CHF&#10;Terraza con vistas&#10;Reservas online&#10;Carta de vinos seleccionada"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="output" id="out">
+            <div class="panel-t" style="color:var(--teal)">✅ Demo generada</div>
+            <div class="url-box" id="out-url"></div>
+            <div class="msg-box" id="out-wa"></div>
+            <div class="btns-row">
+              <button class="btn-f btn-teal" onclick="copyLink()">📋 Copiar link</button>
+              <button class="btn-f btn-green" onclick="openWA()">💬 WhatsApp</button>
+              <button class="btn-f btn-ghost" onclick="openDemo()">👁 Ver demo</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel">
+            <div class="panel-t">Fotos del negocio</div>
+            <label style="margin-bottom:5px">Logo</label>
+            <div class="slot sl-logo" id="sl-logo" style="margin-bottom:12px">
+              <input type="file" accept="image/*" onchange="loadImg(this,'sl-logo','p-logo')">
+              <div class="slot-bg" id="bg-sl-logo"></div>
+              <div class="slot-ph"><div class="slot-ico">🏷️</div><div class="slot-lbl">Logo del negocio</div></div>
+            </div>
+            <label style="margin-bottom:5px">Portada / fachada</label>
+            <div class="slot sl-cover" id="sl-cover" style="margin-bottom:16px">
+              <input type="file" accept="image/*" onchange="loadImg(this,'sl-cover','p-cover')">
+              <div class="slot-bg" id="bg-sl-cover"></div>
+              <div class="slot-ph"><div class="slot-ico">🏔️</div><div class="slot-lbl">Foto de portada o fachada</div></div>
+            </div>
+            <label style="margin-bottom:5px">Galería (hasta 4 fotos)</label>
+            <div class="g2">
+              <div class="slot sl-gal" id="sl-g1"><input type="file" accept="image/*" onchange="loadImg(this,'sl-g1','p-g1')"><div class="slot-bg" id="bg-sl-g1"></div><div class="slot-ph"><div class="slot-ico">📸</div></div></div>
+              <div class="slot sl-gal" id="sl-g2"><input type="file" accept="image/*" onchange="loadImg(this,'sl-g2','p-g2')"><div class="slot-bg" id="bg-sl-g2"></div><div class="slot-ph"><div class="slot-ico">📸</div></div></div>
+              <div class="slot sl-gal" id="sl-g3"><input type="file" accept="image/*" onchange="loadImg(this,'sl-g3','p-g3')"><div class="slot-bg" id="bg-sl-g3"></div><div class="slot-ph"><div class="slot-ico">📸</div></div></div>
+              <div class="slot sl-gal" id="sl-g4"><input type="file" accept="image/*" onchange="loadImg(this,'sl-g4','p-g4')"><div class="slot-bg" id="bg-sl-g4"></div><div class="slot-ph"><div class="slot-ico">📸</div></div></div>
+            </div>
+          </div>
+          <button class="btn btn-teal" style="width:100%;padding:14px;margin-top:14px;font-size:14px;border-radius:9px" onclick="gen()">⚡ Generar demo personalizada</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB PROPUESTAS ── -->
+    <div class="tab" id="t-propuestas">
+      <div class="sh"><div><div class="sh-t">Propuestas</div><div class="sh-sub">Genera una carta de propuesta personalizada para WhatsApp</div></div></div>
+      <div class="panel" style="max-width:620px">
+        <div class="panel-t">Plan recomendado</div>
+        <div class="plans-sel">
+          <div class="plan-o on" onclick="selPlan(this,'presencia')"><div class="plan-n">Presencia</div><div class="plan-p">129 CHF/mes</div></div>
+          <div class="plan-o" onclick="selPlan(this,'captacion')"><div class="plan-n">Captación</div><div class="plan-p">229 CHF/mes</div></div>
+          <div class="plan-o" onclick="selPlan(this,'suite')"><div class="plan-n">Suite</div><div class="plan-p">389 CHF/mes</div></div>
+        </div>
+        <div class="grid2">
+          <div class="fg"><label>Nombre del contacto</label><input type="text" id="p-cn" placeholder="Ej: Marie Dupont"></div>
+          <div class="fg"><label>Negocio</label><input type="text" id="p-neg" placeholder="Ej: Hôtel du Lac"></div>
+          <div class="fg full"><label>Notas adicionales (opcional)</label><textarea id="p-nota" placeholder="Ej: Tiene muchas llamadas perdidas los fines de semana, quiere automatizar la respuesta…"></textarea></div>
+        </div>
+        <button class="btn btn-teal" style="width:100%;padding:12px" onclick="genProp()">📄 Generar propuesta</button>
+        <div id="prop-out" style="display:none;margin-top:16px">
+          <div class="msg-box" id="prop-msg"></div>
+          <button class="btn btn-green" style="width:100%;padding:11px;font-size:13px" onclick="sendProp()">💬 Enviar por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TAB AGENTES ── -->
+    <div class="tab" id="t-agentes">
+      <div class="sh"><div><div class="sh-t">Ecosistema de agentes</div><div class="sh-sub">Estado y configuración del equipo digital FlowSuite</div></div></div>
+      <div class="card">
+        <table>
+          <thead><tr><th>Agente</th><th>Función</th><th>Plataforma</th><th>Idiomas</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td><strong>PROSPECT</strong><br><span style="font-size:10px;color:var(--muted)">ID: 89f12538</span></td><td>Captación y primer contacto</td><td>Snowie.ai</td><td>ES/EN/FR/DE/IT</td><td><span class="badge bg">● Activo</span></td></tr>
+            <tr><td><strong>CLOSER</strong></td><td>Cierre de ventas</td><td>Snowie.ai</td><td>ES/EN/FR</td><td><span class="badge by">⏳ En desarrollo</span></td></tr>
+            <tr><td><strong>SUPPORT</strong></td><td>Soporte 24/7 al cliente</td><td>—</td><td>—</td><td><span class="badge bm">○ Pendiente</span></td></tr>
+            <tr><td><strong>CREATOR</strong></td><td>Contenido redes sociales</td><td>—</td><td>—</td><td><span class="badge bm">○ Pendiente</span></td></tr>
+            <tr><td><strong>EXECUTOR</strong></td><td>Automatizaciones y tareas</td><td>—</td><td>—</td><td><span class="badge bm">○ Pendiente</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── TAB CONFIG ── -->
+    <div class="tab" id="t-config">
+      <div class="sh"><div><div class="sh-t">Configuración</div><div class="sh-sub">Datos del sistema FlowSuite</div></div></div>
+      <div class="panel" style="max-width:480px">
+        <div class="panel-t">Datos de la empresa</div>
+        <div class="fg"><label>Dominio principal</label><input type="text" value="flowsuite.ch" style="opacity:.6" readonly></div>
+        <div class="fg"><label>URL base de demos</label><input type="text" id="demo-base" value="https://flowsuite.ch/demo"></div>
+        <div class="fg"><label>WhatsApp ventas (ES)</label><input type="text" value="+34 634 13 44 66"></div>
+        <div class="fg"><label>WhatsApp ventas (CH)</label><input type="text" value="+41 77 941 35 32"></div>
+        <div class="fg"><label>Email</label><input type="text" value="hello@flowsuite.ch"></div>
+        <div class="fg"><label>Snowie Agent ID (PROSPECT)</label><input type="text" value="89f12538-fbf4-4cec-97e1-1fd63a902f13" style="font-family:monospace;font-size:11px"></div>
+        <div class="fg"><label>Snowie Schema ID</label><input type="text" value="d7035a8e-3f44-4877-a11f-3b17d8ef8086" style="font-family:monospace;font-size:11px"></div>
+        <button class="btn btn-teal" style="padding:10px 20px" onclick="toast('✅ Guardado','ok')">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast-el"></div>
+
+<script>
+// ── AUTH ──
+const HASH='f7bf3182ef3f49ec1b85d913dea8872f2ea6d3f0aabcf9a96adddd0471be7fd4';
+async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');}
+async function auth(){
+  const h=await sha256(document.getElementById('pw').value);
+  if(h===HASH){localStorage.setItem('fs_auth','1');document.getElementById('gate').style.display='none';document.getElementById('app').classList.add('on');}
+  else{document.getElementById('gerr').style.display='block';document.getElementById('pw').style.borderColor='var(--danger)';}
+}
+document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')auth();});
+function logout(){localStorage.removeItem('fs_auth');location.reload();}
+function goDemo(){tab('demos',document.querySelector('.nav:nth-child(2)'));}
+if(localStorage.getItem('fs_auth')==='1'){document.getElementById('gate').style.display='none';document.getElementById('app').classList.add('on');}
+
+// ── TABS ──
+const ttls={clientes:'Clientes',demos:'Demo Builder',propuestas:'Propuestas',agentes:'Agentes',config:'Configuración'};
+function tab(n,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.nav').forEach(v=>v.classList.remove('on'));
+  document.getElementById('t-'+n).classList.add('on');
+  if(el)el.classList.add('on');
+  document.getElementById('ttitle').textContent=ttls[n]||n;
+}
+
+// ── PHOTOS ──
+const P={};
+function loadImg(inp,sid,key){
+  const f=inp.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const dims={logo:[80,80],'cover':[320,150]};
+    const isLogo=key==='p-logo',isCover=key==='p-cover';
+    const [mw,mh]=isLogo?[80,80]:isCover?[320,150]:[160,120];
+    const q=isLogo?.55:isCover?.5:.45;
+    compress(e.target.result,mw,mh,q,b64=>{
+      P[key]=b64;
+      document.getElementById(sid).classList.add('filled');
+      document.getElementById('bg-'+sid).style.backgroundImage=`url(${b64})`;
+    });
+  };
+  r.readAsDataURL(f);
+}
+function compress(src,mw,mh,q,cb){
+  const img=new Image();
+  img.onload=()=>{
+    let w=img.width,h=img.height;
+    if(w>mw){h=h*mw/w;w=mw;}
+    if(h>mh){w=w*mh/h;h=mh;}
+    const c=document.createElement('canvas');
+    c.width=Math.round(w);c.height=Math.round(h);
+    c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+    cb(c.toDataURL('image/jpeg',q));
+  };
+  img.src=src;
+}
+
+// ── GENERATE DEMO ──
+let lastUrl='',lastWa='';
+let demoCount=parseInt(localStorage.getItem('fs_demos')||'0');
+document.getElementById('demos-count').textContent=demoCount;
+
+function gen(){
+  const n=document.getElementById('b-n').value.trim();
+  const s=document.getElementById('b-s').value;
+  if(!n||!s){toast('⚠️ Nombre y sector son obligatorios','warn');return;}
+  const d={
+    n,s,
+    c:document.getElementById('b-c').value.trim(),
+    sl:document.getElementById('b-sl').value.trim(),
+    l:document.getElementById('b-l').value,
+    t:document.getElementById('b-t').value.trim(),
+    w:document.getElementById('b-w').value.trim(),
+    ig:document.getElementById('b-ig').value.trim(),
+    col:document.getElementById('b-col').value.trim()||'#00d4aa',
+    sv:document.getElementById('b-sv').value.trim(),
+    trial:new Date().toISOString().split('T')[0],
+    logo:P['p-logo']||'',cover:P['p-cover']||'',
+    g1:P['p-g1']||'',g2:P['p-g2']||'',g3:P['p-g3']||'',g4:P['p-g4']||''
+  };
+  const base=document.getElementById('demo-base').value||'https://flowsuite.ch/demo';
+  const comp=LZString.compressToEncodedURIComponent(JSON.stringify(d));
+  lastUrl=`${base}#${comp}`;
+  lastWa=buildWA(n,s,d.c,lastUrl);
+  document.getElementById('out-url').textContent=lastUrl;
+  document.getElementById('out-wa').textContent=lastWa;
+  document.getElementById('out').classList.add('on');
+  demoCount++;
+  localStorage.setItem('fs_demos',demoCount);
+  document.getElementById('demos-count').textContent=demoCount;
+  toast('✅ Demo generada correctamente','ok');
+  document.getElementById('out').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function buildWA(n,s,c,url){
+  const ct=c?` en ${c}`:'';
+  return `Hola 👋
+
+He preparado una demo personalizada de *FlowSuite* para *${n}*${ct}.
+
+Así quedaría tu panel con asistente IA integrado:
+✅ Disponible 24/7 — responde consultas automáticamente
+✅ Captura leads aunque estés fuera de horario  
+✅ KPIs y métricas en tiempo real
+✅ Adaptado al sector: _${s}_
+
+👉 ${url}
+
+Incluye *14 días gratis del plan Suite completo* — sin compromiso ni tarjeta.
+
+¿Tienes 5 minutos esta semana para verlo juntos?
+
+— FlowSuite | flowsuite.ch`;
+}
+function copyLink(){navigator.clipboard.writeText(lastUrl).then(()=>toast('✅ Link copiado','ok'));}
+function openWA(){
+  const t=document.getElementById('b-t').value.replace(/[\s\+]/g,'').replace(/^0/,'41');
+  const u=`https://wa.me/${t}?text=${encodeURIComponent(lastWa)}`;
+  window.open(u,'_blank');
+}
+function openDemo(){window.open(lastUrl,'_blank');}
+
+// ── PROPOSALS ──
+let curPlan='presencia';
+const PLANS={
+  presencia:{n:'Presencia',p:'129 CHF/mes',setup:'400 CHF',inc:'Chat web + WhatsApp + Telegram + 1 agente IA'},
+  captacion:{n:'Captación',p:'229 CHF/mes',setup:'600 CHF',inc:'Todo Presencia + agente de voz + CRM automático + contenido'},
+  suite:{n:'Suite',p:'389 CHF/mes',setup:'900 CHF',inc:'Todo Captación + agentes ilimitados + analytics + integraciones'}
+};
+function selPlan(el,k){
+  document.querySelectorAll('.plan-o').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');curPlan=k;
+}
+function genProp(){
+  const cn=document.getElementById('p-cn').value.trim()||'estimado/a';
+  const neg=document.getElementById('p-neg').value.trim();
+  const nota=document.getElementById('p-nota').value.trim();
+  const p=PLANS[curPlan];
+  const msg=`Hola ${cn} 👋${neg?`\n\nGracias por tu interés en FlowSuite para *${neg}*.`:''}
+
+Basándome en lo que me comentaste, te recomiendo el plan *${p.n}*:
+
+💡 *Incluye:*
+${p.inc}
+
+💰 *Inversión mensual:* ${p.p}
+🔧 *Setup inicial:* ${p.setup} (pago único)
+⚡ *Tiempo de activación:* 24–48h
+🔓 *Sin permanencia* — cancelas cuando quieras
+${nota?`\n📌 ${nota}\n`:''}
+¿Tienes alguna pregunta? Puedo explicarte cualquier detalle o prepararte una demo personalizada en minutos.
+
+— FlowSuite | flowsuite.ch | hello@flowsuite.ch`;
+  document.getElementById('prop-msg').textContent=msg;
+  document.getElementById('prop-out').style.display='block';
+}
+function sendProp(){
+  window.open(`https://wa.me/41779413532?text=${encodeURIComponent(document.getElementById('prop-msg').textContent)}`,'_blank');
+}
+
+// ── TOAST ──
+let _tt;
+function toast(msg,type='info'){
+  const el=document.getElementById('toast-el');
+  el.textContent=msg;el.className=`toast on${type==='ok'?' ok':''}`;\n  clearTimeout(_tt);_tt=setTimeout(()=>{el.className='toast';},2800);
+}
+</script>
+</body>
+</html>
