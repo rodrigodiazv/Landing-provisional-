@@ -415,6 +415,44 @@ footer{border-top:1px solid var(--bd);padding:clamp(28px,4vw,48px) var(--pad);po
 .foot-links a:hover,.foot-links span:hover{color:var(--tx)}
 .foot-copy{max-width:1120px;margin:28px auto 0;padding-top:18px;border-top:1px solid var(--bd);font-size:11.5px;color:var(--t2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
+/* AGENT ROSTER */
+.agent-roster{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:680px){.agent-roster{grid-template-columns:1fr 1fr}}
+.ar-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:16px;transition:border-color .15s}
+.ar-card.active{border-color:rgba(34,197,94,.3)}
+.ar-card.pending{border-color:var(--bd)}
+.ar-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ar-ico{font-size:22px;flex-shrink:0}
+.ar-nm{font-size:13px;font-weight:800}
+.ar-role{font-size:11px;color:var(--t2);margin-top:1px}
+.ar-desc{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:10px}
+.ar-langs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.ar-lang{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--tla);color:var(--teal);border:1px solid var(--tlb)}
+.ar-btn{width:100%;padding:8px;border:none;border-radius:7px;font-family:var(--font);font-size:12px;font-weight:700;cursor:pointer;transition:opacity .15s}
+.ar-btn.act{background:linear-gradient(180deg,#16f0c5,var(--teal));color:#020e09}
+.ar-btn.pnd{background:var(--s2);color:var(--t2);border:1px solid var(--bd2)}
+.ar-btn:hover{opacity:.85}
+
+/* PACK EDITOR */
+.pack-ed-row{display:grid;grid-template-columns:120px 1fr 1fr 1fr auto;gap:8px;align-items:center;padding:10px 14px;background:var(--s1);border:1px solid var(--bd);border-radius:9px;margin-bottom:7px}
+@media(max-width:680px){.pack-ed-row{grid-template-columns:1fr 1fr;gap:6px}}
+.pack-ed-nm{font-size:12px;font-weight:800;color:var(--teal)}
+.pack-ed-inp{background:rgba(4,6,15,.7);border:1px solid var(--bd2);border-radius:7px;padding:7px 10px;color:var(--tx);font-family:var(--font);font-size:13px;outline:none;width:100%;transition:border-color .2s;-webkit-appearance:none}
+.pack-ed-inp:focus{border-color:var(--teal)}
+.pack-ed-label{font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+
+/* CHANNELS */
+.ch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:860px){.ch-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:580px){.ch-grid{grid-template-columns:1fr 1fr}}
+.ch-card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:14px;text-align:center;transition:border-color .15s}
+.ch-card.on{border-color:rgba(34,197,94,.3)}
+.ch-ico{font-size:26px;margin-bottom:7px}
+.ch-nm{font-size:12px;font-weight:700;margin-bottom:3px}
+.ch-st{font-size:10.5px;color:var(--t2)}
+.ch-st.ok{color:var(--ok)}
+.ch-toggle{margin-top:9px;display:flex;justify-content:center}
+
 /* TOAST */
 .toast{position:fixed;bottom:16px;right:16px;background:var(--s2);border:1px solid var(--bd2);border-radius:11px;padding:10px 17px;font-size:13px;font-weight:600;opacity:0;transform:translateY(8px);transition:all .22s;pointer-events:none;z-index:99999}
 .toast.on{opacity:1;transform:none}
@@ -782,18 +820,8 @@ footer{border-top:1px solid var(--bd);padding:clamp(28px,4vw,48px) var(--pad);po
           <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Historique</span></div><div id="chg-hist" style="padding:0 18px"></div></div>
         </div>
         <div class="ppanel" id="cpp-int">
-          <p style="font-size:13px;color:var(--t2);margin-bottom:14px">Connectez vos outils existants à FlowSuite.</p>
-          <div class="int-grid">
-            <div class="int-c" onclick="toggleInt(this,'WhatsApp Business')"><div class="int-ico">💬</div><div><div class="int-nm">WhatsApp Business</div><div class="int-st">Non connecté</div></div></div>
-            <div class="int-c conn" onclick="toggleInt(this,'Google Calendar')"><div class="int-ico">📅</div><div><div class="int-nm">Google Calendar</div><div class="int-st ok">Connecté</div></div></div>
-            <div class="int-c" onclick="toggleInt(this,'HubSpot')"><div class="int-ico">🔶</div><div><div class="int-nm">HubSpot CRM</div><div class="int-st">Non connecté</div></div></div>
-            <div class="int-c" onclick="toggleInt(this,'Instagram')"><div class="int-ico">📸</div><div><div class="int-nm">Instagram</div><div class="int-st">Non connecté</div></div></div>
-            <div class="int-c" onclick="toggleInt(this,'Stripe')"><div class="int-ico">💳</div><div><div class="int-nm">Stripe</div><div class="int-st">Non connecté</div></div></div>
-            <div class="int-c" onclick="toggleInt(this,'Make/Zapier')"><div class="int-ico">⚡</div><div><div class="int-nm">Make / Zapier</div><div class="int-st">Non connecté</div></div></div>
-            <div class="int-c" onclick="toggleInt(this,'Google Business')"><div class="int-ico">🗺️</div><div><div class="int-nm">Google Business</div><div class="int-st">Non connecté</div></div></div>
-            <div class="int-c" onclick="toggleInt(this,'Shopify')"><div class="int-ico">🛒</div><div><div class="int-nm">Shopify</div><div class="int-st">Non connecté</div></div></div>
-            <div class="int-c" onclick="toggleInt(this,'Notion/Airtable')"><div class="int-ico">📓</div><div><div class="int-nm">Notion / Airtable</div><div class="int-st">Non connecté</div></div></div>
-          </div>
+          <p style="font-size:13px;color:var(--t2);margin-bottom:16px">Connectez tous vos canaux et outils à FlowSuite. Votre agent sera présent partout.</p>
+          <div id="int-grid-client"></div>
         </div>
         <div class="ppanel" id="cpp-settings">
           <div class="pc">
@@ -837,8 +865,11 @@ footer{border-top:1px solid var(--bd);padding:clamp(28px,4vw,48px) var(--pad);po
       <nav class="sb-nav">
         <div class="sni adm on" onclick="apNav('dash',this)" data-tip="Dashboard">📊</div>
         <div class="sni adm" onclick="apNav('clients',this)" data-tip="Clients">👥</div>
+        <div class="sni adm" onclick="apNav('agents',this)" data-tip="Agents">🤖</div>
         <div class="sni adm" onclick="apNav('builder',this)" data-tip="Demo Builder">🎨</div>
         <div class="sni adm" onclick="apNav('plans',this)" data-tip="Plans & prix">💎</div>
+        <div class="sni adm" onclick="apNav('packs',this)" data-tip="Paquetes min/video">📦</div>
+        <div class="sni adm" onclick="apNav('channels',this)" data-tip="Canaux & Réseaux">📡</div>
         <div class="sni adm" onclick="apNav('config',this)" data-tip="Config">⚙️</div>
       </nav>
       <div class="sb-foot"><div class="sb-init" style="background:linear-gradient(135deg,var(--vi),#6d28d9)">R</div></div>
@@ -918,6 +949,34 @@ footer{border-top:1px solid var(--bd);padding:clamp(28px,4vw,48px) var(--pad);po
             </div></div>
           </div>
         </div>
+        <!-- AGENTS ROSTER -->
+        <div class="ppanel" id="app-agents">
+          <p style="font-size:13px;color:var(--t2);margin-bottom:16px">Roster completo de agentes FlowSuite — activa, configura y despliega cada uno.</p>
+          <div id="agent-roster-grid"></div>
+        </div>
+
+        <!-- PAQUETES EDITOR -->
+        <div class="ppanel" id="app-packs">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+            <div><div style="font-size:15px;font-weight:800;margin-bottom:3px">Paquetes de minutos y video</div><div style="font-size:13px;color:var(--t2)">Edita precios y minutos de las recargas. Se publican en la landing al guardar.</div></div>
+            <button class="pbtn" onclick="savePacksAdmin()">Guardar</button>
+          </div>
+          <div style="margin-bottom:22px">
+            <div style="font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">🎙️ Recargas vocales</div>
+            <div id="voice-pack-editor"></div>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:#b79dfb;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">🎥 Recargas video IA</div>
+            <div id="video-pack-editor"></div>
+          </div>
+        </div>
+
+        <!-- CANALES OMNICANAL -->
+        <div class="ppanel" id="app-channels">
+          <p style="font-size:13px;color:var(--t2);margin-bottom:16px">Activa y configura los canales disponibles para todos los clientes. Estado global.</p>
+          <div id="channels-grid"></div>
+        </div>
+
         <div class="ppanel" id="app-plans">
           <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;flex-wrap:wrap;gap:10px">
             <div><div style="font-size:15px;font-weight:800;margin-bottom:3px">Plans et tarifs</div><div style="font-size:13px;color:var(--t2)">Les modifications se publient immédiatement sur la landing.</div></div>
@@ -1415,7 +1474,7 @@ function initClientPanel() {
   document.querySelectorAll('#style-opts .opt').forEach(b => b.classList.toggle('on', b.getAttribute('onclick')?.includes(selSty)));
   document.querySelectorAll('#voice-opts .opt').forEach(b => b.classList.toggle('on', b.getAttribute('onclick')?.includes(selVoi)));
   kbEntries = c.kb || []; changes = c.changes || [];
-  renderKB(); renderChgHist();
+  renderKB(); renderChgHist(); renderClientIntegrations();
   if (c.biz) document.getElementById('biz-nm').value = c.biz;
 }
 function cpNav(id, el) {
@@ -1500,8 +1559,34 @@ async function applyNL() {
 }
 function toggleInt(el, nm) {
   const st = el.querySelector('.int-st');
-  if (el.classList.contains('conn')) { el.classList.remove('conn'); st.className='int-st'; st.textContent='Non connecté'; toast(nm+' déconnecté'); }
-  else { el.classList.add('conn'); st.className='int-st ok'; st.textContent='Connecté'; toast('✅ '+nm+' connecté','ok'); }
+  const on = !el.classList.contains('conn');
+  el.classList.toggle('conn', on);
+  st.className = 'int-st' + (on ? ' ok' : '');
+  st.textContent = on ? 'Connecté' : 'Non connecté';
+  // Guardar estado
+  const saved = JSON.parse(localStorage.getItem('fs_client_int') || '{}');
+  saved[nm] = on;
+  localStorage.setItem('fs_client_int', JSON.stringify(saved));
+  toast((on ? '✅ ' : '○ ') + nm + (on ? ' connecté' : ' déconnecté'), on ? 'ok' : '');
+}
+
+function renderClientIntegrations() {
+  const saved = JSON.parse(localStorage.getItem('fs_client_int') || '{}');
+  const el = document.getElementById('int-grid-client');
+  if (!el) return;
+  const cats = [...new Set(CLIENT_CHANNELS.map(c => c.cat))];
+  el.innerHTML = cats.map(cat => {
+    const items = CLIENT_CHANNELS.filter(c => c.cat === cat);
+    return '<div style="margin-bottom:16px">' +
+      '<div style="font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);margin-bottom:8px">' + cat + '</div>' +
+      '<div class="int-grid">' +
+      items.map(c => {
+        const on = saved[c.nm] === true;
+        return '<div class="int-c ' + (on?'conn':'') + '" onclick="toggleInt(this,\'' + c.nm.replace(/'/g,"\\'") + '\')">' +
+          '<div class="int-ico">' + c.ico + '</div>' +
+          '<div><div class="int-nm">' + c.nm + '</div><div class="int-st ' + (on?'ok':'') + '">' + (on?'Connecté':'Non connecté') + '</div></div></div>';
+      }).join('') + '</div></div>';
+  }).join('');
 }
 function saveBiz() {
   const cls = getClients();
@@ -1540,10 +1625,12 @@ function apNav(id, el) {
   const panel = document.getElementById('app-'+id);
   if (panel) panel.classList.add('on');
   if (el) el.classList.add('on');
-  const ts = {dash:'Dashboard',clients:'Clients',builder:'Demo Builder',plans:'Plans & prix',config:'Configuration'};
+  const ts = {dash:'Dashboard',clients:'Clients',agents:'Agents & Roster',builder:'Demo Builder',plans:'Plans & prix',packs:'Paquetes de minutos',channels:'Canaux & Réseaux sociaux',config:'Configuration'};
   document.getElementById('ap-pbar').textContent = ts[id] || id;
   if (id==='clients') renderClients();
   if (id==='plans') renderPlanEditor();
+  if (id==='packs') renderPackEditor();
+  if (id==='agents') renderAgentRoster();
 }
 let showCF = false;
 function toggleCreateForm() { showCF=!showCF; document.getElementById('create-form-card').style.display=showCF?'block':'none'; document.getElementById('new-pin-box').style.display='none'; }
@@ -1626,6 +1713,245 @@ function toast(msg, type) {
   clearTimeout(_toast);
   _toast = setTimeout(() => { el.className='toast'; }, 2700);
 }
+
+
+// ═══════════════════════════════
+// AGENT ROSTER (Admin)
+// ═══════════════════════════════
+const AGENT_ROSTER = [
+  {id:'flow',   nm:'FLOW',       role:'Captación & primer contacto', ico:'🤖', status:'active',
+   langs:['FR','DE','IT','EN','ES'], desc:'Captura leads, cualifica y agenda. Agente principal activo.',
+   platform:'Retell AI', kb:'v2.1'},
+  {id:'cierra', nm:'CIERRA',     role:'Cierre de ventas',            ico:'🎯', status:'pending',
+   langs:['ES','FR','EN'], desc:'Gestiona objeciones, negocia y cierra ventas cualificadas.',
+   platform:'Retell AI', kb:'-'},
+  {id:'acoge',  nm:'ACOGE',      role:'Onboarding de clientes',      ico:'🤝', status:'pending',
+   langs:['FR','DE','ES','EN'], desc:'Recibe al nuevo cliente, activa su panel y guía el setup.',
+   platform:'Retell AI', kb:'-'},
+  {id:'cuida',  nm:'CUIDA',      role:'Soporte 24/7',                ico:'💎', status:'pending',
+   langs:['FR','DE','IT','EN','ES'], desc:'Atiende a clientes activos, gestiona incidencias.',
+   platform:'Retell AI', kb:'-'},
+  {id:'crea',   nm:'CREA',       role:'Contenido & redes sociales',  ico:'✨', status:'pending',
+   langs:['FR','DE','ES','EN'], desc:'Genera posts, vídeos y copy para redes según la KB del cliente.',
+   platform:'Claude API', kb:'-'},
+  {id:'sigue',  nm:'SIGUE',      role:'Seguimiento & reactivación',  ico:'🔁', status:'pending',
+   langs:['FR','DE','ES','EN'], desc:'Reactiva leads fríos y hace seguimiento post-venta.',
+   platform:'Retell AI', kb:'-'},
+  {id:'busca',  nm:'BUSCA',      role:'Prospección outbound',        ico:'🔍', status:'pending',
+   langs:['FR','DE','ES','EN'], desc:'Prospección en frío, LinkedIn y listas de contactos.',
+   platform:'Claude API', kb:'-'},
+  {id:'salud',  nm:'SALUD',      role:'Demo — Clínicas & Salud',     ico:'🏥', status:'demo',
+   langs:['FR','DE','IT','EN','ES'], desc:'Demo para clínicas, fisioterapia, dentistas y centros médicos.',
+   platform:'Retell AI', kb:'-'},
+  {id:'recep',  nm:'RÉCEPTION',  role:'Demo — Restauración',         ico:'🍽️', status:'demo',
+   langs:['FR','DE','IT','EN','ES'], desc:'Demo para restaurantes, hoteles y hostelería.',
+   platform:'Retell AI', kb:'-'},
+  {id:'piso',   nm:'HOME',       role:'Demo — Inmobiliaria',         ico:'🏠', status:'demo',
+   langs:['FR','DE','ES','EN'], desc:'Demo para agencias y consultoras inmobiliarias.',
+   platform:'Retell AI', kb:'-'},
+  {id:'guia',   nm:'GUIDE',      role:'Demo — Coaches',              ico:'🌟', status:'demo',
+   langs:['FR','DE','ES','EN'], desc:'Demo para coaches, consultores y formadores.',
+   platform:'Retell AI', kb:'-'},
+  {id:'taller', nm:'ATELIER',    role:'Demo — Talleres & Oficios',   ico:'🔧', status:'demo',
+   langs:['FR','DE','IT','ES'], desc:'Demo para talleres mecánicos, artesanos y oficios.',
+   platform:'Retell AI', kb:'-'},
+];
+
+function renderAgentRoster() {
+  const sLabel = {active:'Activo',pending:'Pendiente',demo:'Demo'};
+  const sTg    = {active:'tg-ok',pending:'tg-w',demo:'tg-vi'};
+  document.getElementById('agent-roster-grid').innerHTML =
+    '<div class="agent-roster">' +
+    AGENT_ROSTER.map(a =>
+      '<div class="ar-card ' + a.status + '">' +
+      '<div class="ar-head"><div class="ar-ico">' + a.ico + '</div>' +
+      '<div><div class="ar-nm">' + a.nm + ' <span class="tg ' + sTg[a.status] + '" style="font-size:9px;padding:1px 6px">' + sLabel[a.status] + '</span></div>' +
+      '<div class="ar-role">' + a.role + '</div></div></div>' +
+      '<div class="ar-desc">' + a.desc + '</div>' +
+      '<div class="ar-langs">' + a.langs.map(l => '<span class="ar-lang">' + l + '</span>').join('') + '</div>' +
+      '<div style="font-size:10.5px;color:var(--t2);margin-bottom:8px">Motor: ' + a.platform + (a.kb !== '-' ? ' · KB ' + a.kb : '') + '</div>' +
+      '<button class="ar-btn ' + (a.status === 'active' ? 'act' : 'pnd') + '" onclick="toggleAgent(\'' + a.id + '\')">' +
+      (a.status === 'active' ? '✓ Activo — ver config' : a.status === 'demo' ? '▶ Activar demo' : '▶ Activar agente') +
+      '</button></div>'
+    ).join('') + '</div>';
+}
+
+function toggleAgent(id) {
+  const a = AGENT_ROSTER.find(x => x.id === id);
+  if (!a) return;
+  if (a.status === 'active') toast('FLOW activo en Retell AI · gestión en retell.ai', 'ok');
+  else if (a.status === 'demo') toast('Demo ' + a.nm + ' — configura en el Builder 🎨');
+  else toast('Agente ' + a.nm + ' — en desarrollo. Disponible próximamente.');
+}
+
+// ═══════════════════════════════
+// PACKS EDITOR (Admin)
+// ═══════════════════════════════
+function getPacksData() {
+  const s = localStorage.getItem('fs_packs');
+  if (s) return JSON.parse(s);
+  return {
+    voice: [
+      {nm:'Starter',  min:50,   chf:9,   rate:'0,18'},
+      {nm:'Pro',      min:200,  chf:33,  rate:'0,165'},
+      {nm:'Business', min:500,  chf:74,  rate:'0,148'},
+      {nm:'Ultra',    min:1000, chf:130, rate:'0,13'},
+    ],
+    video: [
+      {nm:'Vidéo 15', min:15, chf:5},
+      {nm:'Vidéo 60', min:60, chf:16},
+    ]
+  };
+}
+function savePacksData(d) { localStorage.setItem('fs_packs', JSON.stringify(d)); }
+let editPacks = null;
+
+function renderPackEditor() {
+  const d = editPacks || getPacksData();
+  document.getElementById('voice-pack-editor').innerHTML =
+    '<div style="display:flex;flex-direction:column;gap:7px">' +
+    d.voice.map((p, i) =>
+      '<div class="pack-ed-row">' +
+      '<div class="pack-ed-nm">' + p.nm + '</div>' +
+      '<div><div class="pack-ed-label">Minutos</div><input class="pack-ed-inp" type="number" value="' + p.min + '" onchange="upPack(\'voice\',' + i + ',\'min\',+this.value)"></div>' +
+      '<div><div class="pack-ed-label">CHF</div><input class="pack-ed-inp" type="number" value="' + p.chf + '" onchange="upPack(\'voice\',' + i + ',\'chf\',+this.value)"></div>' +
+      '<div><div class="pack-ed-label">CHF/min</div><input class="pack-ed-inp" type="text" value="' + p.rate + '" onchange="upPack(\'voice\',' + i + ',\'rate\',this.value)"></div>' +
+      '</div>'
+    ).join('') + '</div>';
+
+  document.getElementById('video-pack-editor').innerHTML =
+    '<div style="display:flex;flex-direction:column;gap:7px">' +
+    d.video.map((p, i) =>
+      '<div class="pack-ed-row">' +
+      '<div class="pack-ed-nm">' + p.nm + '</div>' +
+      '<div><div class="pack-ed-label">Minutos</div><input class="pack-ed-inp" type="number" value="' + p.min + '" onchange="upPack(\'video\',' + i + ',\'min\',+this.value)"></div>' +
+      '<div><div class="pack-ed-label">CHF</div><input class="pack-ed-inp" type="number" value="' + p.chf + '" onchange="upPack(\'video\',' + i + ',\'chf\',+this.value)"></div>' +
+      '<div></div>' +
+      '</div>'
+    ).join('') + '</div>';
+}
+
+function upPack(type, i, field, val) {
+  if (!editPacks) editPacks = getPacksData();
+  editPacks[type][i][field] = val;
+}
+
+function savePacksAdmin() {
+  const d = editPacks || getPacksData();
+  savePacksData(d);
+  const vp = document.getElementById('voice-packs');
+  if (vp) vp.innerHTML = d.voice.map(p =>
+    '<div class="pack"><div class="pack-nm">' + p.nm + '</div>' +
+    '<div class="pack-min">' + p.min + '<span> min</span></div>' +
+    '<div class="pack-price">' + p.chf + ' CHF</div>' +
+    '<div class="pack-rate">' + p.rate + ' CHF/min</div>' +
+    '<span class="pack-save">−' + Math.round((1 - p.chf/(p.min*0.22))*100) + '% vs tarif</span></div>'
+  ).join('');
+  const vid = document.getElementById('video-packs');
+  if (vid) vid.innerHTML = d.video.map(p =>
+    '<div class="vpack"><div style="font-size:24px">' + (p.min<=15?'🎥':'🎬') + '</div>' +
+    '<div><div style="font-size:13px;font-weight:700;color:#b79dfb">' + p.nm + '</div>' +
+    '<div style="font-size:12.5px;color:var(--t2)">' + p.min + ' min · ' + p.chf + ' CHF</div></div></div>'
+  ).join('');
+  editPacks = null;
+  toast('✅ Paquetes actualizados en la landing', 'ok');
+}
+
+// ═══════════════════════════════
+// CHANNELS — OMNICANAL (Admin)
+// ═══════════════════════════════
+const ALL_CHANNELS = [
+  {id:'wa',    nm:'WhatsApp Business',  ico:'💬', cat:'Messagerie'},
+  {id:'tg',    nm:'Telegram',           ico:'✈️', cat:'Messagerie'},
+  {id:'fbm',   nm:'Facebook Messenger', ico:'💙', cat:'Messagerie'},
+  {id:'sms',   nm:'SMS / Twilio',       ico:'📨', cat:'Messagerie'},
+  {id:'ig',    nm:'Instagram',          ico:'📸', cat:'Réseaux sociaux'},
+  {id:'fb',    nm:'Facebook',           ico:'👤', cat:'Réseaux sociaux'},
+  {id:'li',    nm:'LinkedIn',           ico:'💼', cat:'Réseaux sociaux'},
+  {id:'yt',    nm:'YouTube',            ico:'▶️', cat:'Réseaux sociaux'},
+  {id:'tt',    nm:'TikTok',             ico:'🎵', cat:'Réseaux sociaux'},
+  {id:'x',     nm:'X / Twitter',        ico:'𝕏', cat:'Réseaux sociaux'},
+  {id:'gm',    nm:'Gmail',              ico:'📧', cat:'Email & Vidéo'},
+  {id:'ot',    nm:'Outlook',            ico:'📮', cat:'Email & Vidéo'},
+  {id:'zoom',  nm:'Zoom',               ico:'📹', cat:'Email & Vidéo'},
+  {id:'meet',  nm:'Google Meet',        ico:'🎥', cat:'Email & Vidéo'},
+  {id:'hs',    nm:'HubSpot',            ico:'🔶', cat:'CRM & Agenda'},
+  {id:'at',    nm:'Airtable',           ico:'📋', cat:'CRM & Agenda'},
+  {id:'no',    nm:'Notion',             ico:'📓', cat:'CRM & Agenda'},
+  {id:'gc',    nm:'Google Calendar',    ico:'📅', cat:'CRM & Agenda'},
+  {id:'ca',    nm:'Calendly',           ico:'🗓️', cat:'CRM & Agenda'},
+  {id:'st',    nm:'Stripe',             ico:'💳', cat:'Paiements'},
+  {id:'tw',    nm:'Twint',              ico:'🇨🇭', cat:'Paiements'},
+  {id:'pp',    nm:'PayPal',             ico:'💰', cat:'Paiements'},
+  {id:'sp',    nm:'Shopify',            ico:'🛒', cat:'Paiements'},
+  {id:'mk',    nm:'Make.com',           ico:'⚡', cat:'Automation'},
+  {id:'zp',    nm:'Zapier',             ico:'🔗', cat:'Automation'},
+  {id:'gb',    nm:'Google Business',    ico:'🗺️', cat:'Automation'},
+];
+const DEFAULT_ON = new Set(['gm','at','gc','mk']);
+
+function renderChannelsGrid() {
+  const saved = JSON.parse(localStorage.getItem('fs_channels') || '{}');
+  const cats = [...new Set(ALL_CHANNELS.map(c => c.cat))];
+  document.getElementById('channels-grid').innerHTML = cats.map(cat => {
+    const items = ALL_CHANNELS.filter(c => c.cat === cat);
+    return '<div style="margin-bottom:22px">' +
+      '<div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);margin-bottom:9px">' + cat + '</div>' +
+      '<div class="ch-grid">' +
+      items.map(c => {
+        const on = saved[c.id] !== undefined ? saved[c.id] : DEFAULT_ON.has(c.id);
+        return '<div class="ch-card ' + (on?'on':'') + '" id="ch-' + c.id + '">' +
+          '<div class="ch-ico">' + c.ico + '</div>' +
+          '<div class="ch-nm">' + c.nm + '</div>' +
+          '<div class="ch-st ' + (on?'ok':'') + '">' + (on?'Actif':'Inactif') + '</div>' +
+          '<div class="ch-toggle"><div class="toggle ' + (on?'on':'') + '" onclick="toggleChannel(\'' + c.id + '\',this)"></div></div>' +
+          '</div>';
+      }).join('') + '</div></div>';
+  }).join('');
+}
+
+function toggleChannel(id, toggleEl) {
+  toggleEl.classList.toggle('on');
+  const on = toggleEl.classList.contains('on');
+  const card = document.getElementById('ch-' + id);
+  if (card) {
+    card.classList.toggle('on', on);
+    const st = card.querySelector('.ch-st');
+    if (st) { st.textContent = on ? 'Actif' : 'Inactif'; st.className = 'ch-st' + (on?' ok':''); }
+  }
+  const states = JSON.parse(localStorage.getItem('fs_channels') || '{}');
+  states[id] = on;
+  localStorage.setItem('fs_channels', JSON.stringify(states));
+  const ch = ALL_CHANNELS.find(c => c.id === id);
+  toast((on ? '✅ ' : '○ ') + (ch ? ch.nm : id) + (on ? ' activé' : ' désactivé'), on ? 'ok' : '');
+}
+
+// ═══════════════════════════════
+// INTEGRACIONES CLIENTE — OMNICANAL
+// ═══════════════════════════════
+const CLIENT_CHANNELS = [
+  {nm:'WhatsApp Business',  ico:'💬', cat:'Messagerie'},
+  {nm:'Telegram',           ico:'✈️', cat:'Messagerie'},
+  {nm:'Facebook Messenger', ico:'💙', cat:'Messagerie'},
+  {nm:'SMS / Twilio',       ico:'📨', cat:'Messagerie'},
+  {nm:'Instagram',          ico:'📸', cat:'Réseaux'},
+  {nm:'Facebook',           ico:'👤', cat:'Réseaux'},
+  {nm:'LinkedIn',           ico:'💼', cat:'Réseaux'},
+  {nm:'YouTube',            ico:'▶️', cat:'Réseaux'},
+  {nm:'TikTok',             ico:'🎵', cat:'Réseaux'},
+  {nm:'X / Twitter',        ico:'𝕏', cat:'Réseaux'},
+  {nm:'Google Calendar',    ico:'📅', cat:'CRM & Agenda'},
+  {nm:'HubSpot',            ico:'🔶', cat:'CRM & Agenda'},
+  {nm:'Airtable / Notion',  ico:'📋', cat:'CRM & Agenda'},
+  {nm:'Calendly',           ico:'🗓️', cat:'CRM & Agenda'},
+  {nm:'Stripe',             ico:'💳', cat:'Paiements'},
+  {nm:'Twint',              ico:'🇨🇭', cat:'Paiements'},
+  {nm:'PayPal',             ico:'💰', cat:'Paiements'},
+  {nm:'Shopify',            ico:'🛒', cat:'Paiements'},
+  {nm:'Make.com / Zapier',  ico:'⚡', cat:'Automation'},
+  {nm:'Google Business',    ico:'🗺️', cat:'Automation'},
+];
+
 
 // ═══════════════════════════════
 // INIT
