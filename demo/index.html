@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FlowSuite — Panel de tu negocio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<script src="/assets/vendor/lz-string-1.5.0.min.js"></script>
 <link rel="icon" href="/favicon.png">
 <style>
 :root{--accent:#00d4aa;--bg:#f8f9fc;--white:#fff;--dark:#0a0f1e;--text:#1a2035;--muted:#6b7a99;--border:#e8ecf4;--r:12px}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+html,body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
 #loading{position:fixed;inset:0;background:#06091a;display:flex;align-items:center;justify-content:center;z-index:200;flex-direction:column;gap:16px}
 .ld-logo{font-size:32px;animation:pulse2 1.5s infinite}
 .ld-t{color:rgba(255,255,255,.4);font-size:13px}
@@ -18,7 +18,7 @@ html,body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
 #trial-banner{background:linear-gradient(90deg,#0a0f1e,#1a2444);color:white;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .trial-left{display:flex;align-items:center;gap:10px;font-size:13px}
 .trial-days{background:var(--accent);color:#06091a;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px}
-.trial-btn{background:var(--accent);color:#06091a;border:none;border-radius:7px;padding:8px 18px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;cursor:pointer}
+.trial-btn{background:var(--accent);color:#06091a;border:none;border-radius:7px;padding:8px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:700;cursor:pointer}
 .hero{position:relative;height:220px;background:linear-gradient(135deg,#0a0f1e,#1a2444);overflow:hidden;display:flex;align-items:flex-end;padding:24px}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.35}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,15,30,.9) 30%,rgba(10,15,30,.3) 100%)}
@@ -60,7 +60,7 @@ html,body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
 .msg.bot{background:var(--bg);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px}
 .msg.user{background:var(--accent);color:#06091a;align-self:flex-end;border-bottom-right-radius:4px}
 .chat-input-row{display:flex;gap:10px;padding:12px 16px;border-top:1px solid var(--border)}
-.chat-inp{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Inter',sans-serif;font-size:13px;outline:none;background:var(--bg)}
+.chat-inp{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;outline:none;background:var(--bg)}
 .chat-inp:focus{border-color:var(--accent)}
 .chat-send{width:40px;height:40px;background:var(--accent);border:none;border-radius:8px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .typing{display:flex;gap:4px;align-items:center;padding:8px 4px}
@@ -79,7 +79,7 @@ html,body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
 .pc-ul{list-style:none;margin:14px 0;display:flex;flex-direction:column;gap:7px}
 .pc-ul li{font-size:12px;color:var(--muted);display:flex;gap:7px}
 .pc-ul li::before{content:'\u2713';color:var(--accent);font-weight:700;flex-shrink:0}
-.pc-btn{width:100%;padding:11px;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.pc-btn{width:100%;padding:11px;border-radius:8px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
 .pc-btn-accent{background:var(--accent);color:#06091a}
 .pc-btn-ghost{background:var(--bg);border:1px solid var(--border);color:var(--text)}
 .footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:12px}
@@ -89,9 +89,9 @@ html,body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
 .modal{background:var(--white);border-radius:14px;padding:30px;max-width:420px;width:100%;text-align:center}
 .modal h3{font-size:18px;font-weight:700;margin-bottom:8px}
 .modal p{color:var(--muted);font-size:13px;margin-bottom:20px}
-.modal-inp{width:100%;border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-family:'Inter',sans-serif;font-size:13px;margin-bottom:10px;outline:none}
+.modal-inp{width:100%;border:1px solid var(--border);border-radius:8px;padding:11px 14px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;margin-bottom:10px;outline:none}
 .modal-inp:focus{border-color:var(--accent)}
-.modal-btn{width:100%;padding:12px;background:var(--accent);color:#06091a;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.modal-btn{width:100%;padding:12px;background:var(--accent);color:#06091a;border:none;border-radius:8px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;cursor:pointer}
 .modal-close{font-size:12px;color:var(--muted);cursor:pointer;margin-top:12px;display:block}
 .empty{text-align:center;padding:48px 20px;color:var(--muted)}
 .empty-ico{font-size:36px;margin-bottom:12px}
@@ -120,19 +120,24 @@ html,body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);
 <div class="modal-bg" id="modal"><div class="modal"><div style="font-size:28px;margin-bottom:12px">&#x1F389;</div><h3>¡Activa tu plan!</h3><p>Déjanos tus datos y te contactamos en menos de 24h.</p><input class="modal-inp" id="m-nombre" placeholder="Tu nombre"><input class="modal-inp" id="m-tel" placeholder="WhatsApp / teléfono"><input class="modal-inp" id="m-email" placeholder="Email (opcional)"><button class="modal-btn" onclick="submitModal()">Enviar y activar &rarr;</button><span class="modal-close" onclick="closeModal()">Cerrar</span></div></div>
 <script>
 let D={},selectedPlanModal='';
-function init(){const h=location.hash.slice(1);if(h){try{D=JSON.parse(LZString.decompressFromEncodedURIComponent(h));}catch(e){D=SAMPLE;}}else{D=SAMPLE;}applyData();document.getElementById('loading').style.display='none';}
+// Demo data comes from the URL (#...) and is untrusted: escape text and allow only https: URLs.
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function safeUrl(u){try{var x=new URL(String(u||''));return x.protocol==='https:'?x.href:'';}catch(e){return '';}}
+function safeTel(v){return String(v||'').replace(/[^\d+]/g,'').slice(0,20);}
+function sanitize(d){var o={};['n','s','c','sl','l','ig','sv','trial'].forEach(function(k){o[k]=typeof d[k]==='string'?d[k].slice(0,k==='sv'?1500:200):'';});o.t=safeTel(d.t);o.w=safeUrl(d.w);['logo','cover','g1','g2','g3','g4'].forEach(function(k){o[k]=safeUrl(d[k]);});o.col=/^#[0-9a-fA-F]{6}$/.test(d.col||'')?d.col:'#00d4aa';if(['es','fr','de','it','en'].indexOf(o.l)<0)o.l='es';return o;}
+function init(){const h=location.hash.slice(1);if(h){try{D=sanitize(JSON.parse(LZString.decompressFromEncodedURIComponent(h))||{});}catch(e){D=SAMPLE;}}else{D=SAMPLE;}applyData();document.getElementById('loading').style.display='none';}
 const SAMPLE={n:'Bar du Lac',s:'Restaurante / Bar',c:'Lausanne',sl:'La mejor terraza con vistas al lago',l:'fr',t:'+41 79 000 00 00',w:'https://flowsuite.ch',ig:'@bardulac',col:'#00d4aa',sv:'Menu del dia 22 CHF\nTerraza con vistas\nReservas online',trial:new Date().toISOString().split('T')[0],logo:'',cover:'',g1:'',g2:'',g3:'',g4:''};
 function applyData(){document.documentElement.style.setProperty('--accent',D.col||'#00d4aa');if(D.n)document.title=D.n+' — FlowSuite';if(D.trial){const d=Math.max(0,14-Math.floor((new Date()-new Date(D.trial))/(864e5)));document.getElementById('days-badge').textContent=d+' dia'+(d!==1?'s':'');document.getElementById('days-txt').textContent=d>0?'restantes del trial':'— trial terminado';if(d<=0)document.getElementById('trial-banner').style.background='linear-gradient(90deg,#7c2d2d,#a13535)';}
-if(D.cover)document.getElementById('hero-bg').style.backgroundImage='url('+D.cover+')';
-if(D.logo){document.getElementById('hero-logo').innerHTML='<img src="'+D.logo+'" alt="logo">';}else{const em={'Restaurante / Bar':'&#x1F37D;&#xFE0F;','Alojamiento / Hotel':'&#x1F3E8;','Clinica / Fisioterapia':'&#x1F3E5;','Dentista':'&#x1F9B7;','Coach / Consultor':'&#x1F4BC;','Inmobiliaria':'&#x1F3E0;','Taller mecanico':'&#x1F527;'};document.getElementById('logo-emoji').innerHTML=em[D.s]||'&#x1F3E2;';}
+if(D.cover)document.getElementById('hero-bg').style.backgroundImage='url("'+encodeURI(D.cover)+'")';
+if(D.logo){document.getElementById('hero-logo').innerHTML='<img src="'+esc(D.logo)+'" alt="logo">';}else{const em={'Restaurante / Bar':'&#x1F37D;&#xFE0F;','Alojamiento / Hotel':'&#x1F3E8;','Clinica / Fisioterapia':'&#x1F3E5;','Dentista':'&#x1F9B7;','Coach / Consultor':'&#x1F4BC;','Inmobiliaria':'&#x1F3E0;','Taller mecanico':'&#x1F527;'};document.getElementById('logo-emoji').innerHTML=em[D.s]||'&#x1F3E2;';}
 document.getElementById('hero-name').textContent=D.n||'Tu negocio';
 document.getElementById('hero-sector').textContent=[D.s,D.c].filter(Boolean).join(' · ');
 if(D.sl)document.getElementById('hero-slogan').textContent='"'+D.sl+'"';
 document.getElementById('agent-name').textContent='Asistente de '+(D.n||'tu negocio');
 document.getElementById('agent-sector').textContent=D.s||'Asistente personalizado';
-if(D.sv){const sv=D.sv.split('\n').map(s=>s.trim()).filter(Boolean);if(sv.length){document.getElementById('svcs-section').style.display='block';document.getElementById('svc-list').innerHTML=sv.map(s=>'<div class="svc-tag"><span class="svc-dot"></span>'+s+'</div>').join('');}}
-const lr=document.getElementById('links-row');const lk=[];if(D.t)lk.push('<a class="link-btn" href="tel:'+D.t+'">&#x1F4DE; Llamar</a>');if(D.t)lk.push('<a class="link-btn" href="https://wa.me/'+D.t.replace(/[\s\+]/g,'')+'" target="_blank">&#x1F4AC; WhatsApp</a>');if(D.w)lk.push('<a class="link-btn" href="'+D.w+'" target="_blank">&#x1F310; Web</a>');lr.innerHTML=lk.join('');
-const imgs=[D.logo,D.cover,D.g1,D.g2,D.g3,D.g4].filter(Boolean);if(imgs.length){const gi=document.getElementById('gal-inicio');gi.style.display='grid';gi.innerHTML=imgs.slice(0,4).map(s=>'<img src="'+s+'" alt="">').join('');document.getElementById('gal-full').innerHTML=imgs.map(s=>'<img src="'+s+'" alt="">').join('');}else{document.getElementById('gal-empty').style.display='block';}
+if(D.sv){const sv=D.sv.split('\n').map(s=>s.trim()).filter(Boolean);if(sv.length){document.getElementById('svcs-section').style.display='block';document.getElementById('svc-list').innerHTML=sv.map(s=>'<div class="svc-tag"><span class="svc-dot"></span>'+esc(s)+'</div>').join('');}}
+const lr=document.getElementById('links-row');const lk=[];if(D.t)lk.push('<a class="link-btn" href="tel:'+esc(D.t)+'">&#x1F4DE; Llamar</a>');if(D.t)lk.push('<a class="link-btn" href="https://wa.me/'+esc(D.t.replace(/\+/g,''))+'" target="_blank" rel="noopener noreferrer">&#x1F4AC; WhatsApp</a>');if(D.w)lk.push('<a class="link-btn" href="'+esc(D.w)+'" target="_blank" rel="noopener noreferrer">&#x1F310; Web</a>');lr.innerHTML=lk.join('');
+const imgs=[D.logo,D.cover,D.g1,D.g2,D.g3,D.g4].filter(Boolean);if(imgs.length){const gi=document.getElementById('gal-inicio');gi.style.display='grid';gi.innerHTML=imgs.slice(0,4).map(s=>'<img src="'+esc(s)+'" alt="">').join('');document.getElementById('gal-full').innerHTML=imgs.map(s=>'<img src="'+esc(s)+'" alt="">').join('');}else{document.getElementById('gal-empty').style.display='block';}
 const greet={'es':'Hola! Soy el asistente de '+(D.n||'tu negocio')+'. Como puedo ayudarte?','fr':'Bonjour! Je suis l\'assistant de '+(D.n||'votre etablissement')+'. Comment puis-je vous aider?','de':'Hallo! Ich bin der Assistent von '+(D.n||'Ihrem Betrieb')+'. Wie kann ich helfen?','en':'Hello! I am the assistant for '+(D.n||'your business')+'. How can I help you?','it':'Ciao! Sono l\'assistente di '+(D.n||'la tua attivita')+'. Come posso aiutarti?'};
 addMsg(greet[D.l||'es']||greet.es,'bot');}
 function showSect(id,el){document.querySelectorAll('.sect').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.tni').forEach(t=>t.classList.remove('on'));document.getElementById('s-'+id).classList.add('on');if(el)el.classList.add('on');}
