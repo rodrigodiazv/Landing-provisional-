@@ -5,6 +5,7 @@
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Permissions-Policy" content="microphone=(self)">
 <title>FlowSuite — Trabaja por ti y tú te dedicas a lo que más te gusta</title>
 <meta name="description" content="Agente IA para artistas, negocios, terapeutas y creadores. FLOW trabaja 24/7. Tú te dedicas a lo que mejor sabes hacer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3035,6 +3036,9 @@ async function startFlowVoice(){
 
   if(Convo){
     try {
+      // Pedir micrófono explícitamente primero (user gesture activo)
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+
       _flowConv = await Convo.startSession({
         agentId: FLOW_AGENT_ID,
         onConnect: ()=>{
@@ -3055,6 +3059,12 @@ async function startFlowVoice(){
       return;
     } catch(e){
       console.warn('SDK falló, usando widget:', e.message);
+      if(e.name === 'NotAllowedError' || e.message.includes('Permission') || e.message.includes('denied')){
+        // Micrófono denegado — mostrar instrucciones claras
+        if(btn){ btn.disabled=false; btn.textContent='🎙️ Hablar con FLOW'; }
+        _showMicInstructions();
+        return;
+      }
     }
   }
 
@@ -3084,6 +3094,25 @@ async function startFlowVoice(){
     if(attempts < 25) setTimeout(tryClick, 120);
   };
   setTimeout(tryClick, 400);
+}
+
+function _showMicInstructions(){
+  const ov = document.getElementById('flow-overlay');
+  if(!ov) return;
+  ov.style.display = 'flex';
+  ov.style.opacity = '1';
+
+  const sub = document.querySelector('#flow-overlay .ov-sub');
+  const btn = document.getElementById('ov-start-btn');
+
+  if(sub) sub.innerHTML = `
+    <strong style="color:var(--coral,#ff6b6b)">⚠️ Micrófono bloqueado</strong><br><br>
+    En Chrome Android: toca los <strong>3 puntos ···</strong> arriba derecha<br>
+    → <strong>Configuración</strong> → <strong>Configuración del sitio</strong><br>
+    → <strong>Micrófono</strong> → Permitir para flowsuite.ch<br><br>
+    Luego recarga la página.
+  `;
+  if(btn){ btn.disabled=false; btn.textContent='🔄 Reintentar'; }
 }
 
 function endFlowCall(){
