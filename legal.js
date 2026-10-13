@@ -4,7 +4,8 @@
 (function () {
   const UPDATED = '13.10.2026';
   const MAIL = '<a href="mailto:info@flowsuite.ch">info@flowsuite.ch</a>';
-  const ADDR = 'Rodrigo A. Díaz Videla · FlowSuite<br>Chemin de la Raverettaz 6, 1862 Ormont-Dessous (Les Mosses), Vaud, ' ;
+  // Postal address intentionally not published yet (pending a P.O. box / business address).
+  const ADDR = 'Rodrigo A. Díaz Videla · FlowSuite<br>Vaud, ';
   const PHONES = '+41 77 941 35 32 · +34 634 13 44 66 (WhatsApp)';
   const FDPIC = '<a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener noreferrer">edoeb.admin.ch</a>';
 
@@ -21,8 +22,8 @@
     es: {
       tabs: { imprint: 'Aviso legal', privacy: 'Privacidad', terms: 'Condiciones', dpa: 'DPA', cookies: 'Cookies' },
       updated: 'Última actualización: ' + UPDATED,
-      imprint: `<h3>Titular del sitio</h3><p>${ADDR}Suiza<br>Forma jurídica: empresa individual (Einzelfirma), actividad a título accesorio<br>Email: ${MAIL} · Tel.: ${PHONES}</p>
-<h3>Responsable del contenido</h3><p>Rodrigo A. Díaz Videla (dirección anterior).</p>
+      imprint: `<h3>Titular del sitio</h3><p>${ADDR}Suiza<br>Forma jurídica: empresa individual (Einzelfirma), actividad a título accesorio<br>Email: ${MAIL} · Tel.: ${PHONES}<br>Dirección postal: se publicará próximamente. Mientras tanto, para cualquier comunicación (también legal) escribe a ${MAIL}.</p>
+<h3>Responsable del contenido</h3><p>Rodrigo A. Díaz Videla.</p>
 <h3>Fase beta</h3><p>FlowSuite está en fase beta. Las funciones, precios y textos pueden cambiar. Los precios mostrados son orientativos y no constituyen una oferta vinculante hasta la firma de un contrato.</p>
 <h3>Ejemplos</h3><p>Los nombres de negocios y conversaciones que aparecen en las demostraciones de esta web son <strong>ejemplos ficticios</strong> con fines ilustrativos.</p>
 <h3>Enlaces externos</h3><p>No somos responsables del contenido de sitios de terceros enlazados desde esta web.</p>
@@ -63,8 +64,8 @@
     fr: {
       tabs: { imprint: 'Mentions légales', privacy: 'Confidentialité', terms: 'Conditions', dpa: 'DPA', cookies: 'Cookies' },
       updated: 'Dernière mise à jour : ' + UPDATED,
-      imprint: `<h3>Éditeur du site</h3><p>${ADDR}Suisse<br>Forme juridique : entreprise individuelle (raison individuelle), activité accessoire<br>E-mail : ${MAIL} · Tél. : ${PHONES}</p>
-<h3>Responsable du contenu</h3><p>Rodrigo A. Díaz Videla (adresse ci-dessus).</p>
+      imprint: `<h3>Éditeur du site</h3><p>${ADDR}Suisse<br>Forme juridique : entreprise individuelle (raison individuelle), activité accessoire<br>E-mail : ${MAIL} · Tél. : ${PHONES}<br>Adresse postale : sera publiée prochainement. En attendant, pour toute communication (y compris juridique), écris à ${MAIL}.</p>
+<h3>Responsable du contenu</h3><p>Rodrigo A. Díaz Videla.</p>
 <h3>Phase bêta</h3><p>FlowSuite est en phase bêta. Les fonctions, prix et textes peuvent changer. Les prix affichés sont indicatifs et ne constituent pas une offre ferme avant la conclusion d’un contrat.</p>
 <h3>Exemples</h3><p>Les noms d’entreprises et conversations des démonstrations de ce site sont des <strong>exemples fictifs</strong> à but illustratif.</p>
 <h3>Liens externes</h3><p>Nous ne sommes pas responsables du contenu des sites tiers liés depuis ce site.</p>
@@ -105,8 +106,8 @@
     de: {
       tabs: { imprint: 'Impressum', privacy: 'Datenschutz', terms: 'AGB', dpa: 'AVV', cookies: 'Cookies' },
       updated: 'Letzte Aktualisierung: ' + UPDATED,
-      imprint: `<h3>Betreiber der Website</h3><p>${ADDR}Schweiz<br>Rechtsform: Einzelfirma im Nebenerwerb<br>E-Mail: ${MAIL} · Tel.: ${PHONES}</p>
-<h3>Verantwortlich für den Inhalt</h3><p>Rodrigo A. Díaz Videla (Adresse oben).</p>
+      imprint: `<h3>Betreiber der Website</h3><p>${ADDR}Schweiz<br>Rechtsform: Einzelfirma im Nebenerwerb<br>E-Mail: ${MAIL} · Tel.: ${PHONES}<br>Postadresse: wird in Kürze veröffentlicht. Bis dahin für jede Mitteilung (auch rechtliche) bitte an ${MAIL} schreiben.</p>
+<h3>Verantwortlich für den Inhalt</h3><p>Rodrigo A. Díaz Videla.</p>
 <h3>Beta-Phase</h3><p>FlowSuite befindet sich in der Beta-Phase. Funktionen, Preise und Texte können sich ändern. Angezeigte Preise sind Richtwerte und kein verbindliches Angebot vor Vertragsabschluss.</p>
 <h3>Beispiele</h3><p>Firmennamen und Gespräche in den Demos dieser Website sind <strong>fiktive Beispiele</strong> zur Veranschaulichung.</p>
 <h3>Externe Links</h3><p>Für Inhalte verlinkter Websites Dritter übernehmen wir keine Verantwortung.</p>
@@ -147,8 +148,8 @@
     it: {
       tabs: { imprint: 'Note legali', privacy: 'Privacy', terms: 'Condizioni', dpa: 'DPA', cookies: 'Cookie' },
       updated: 'Ultimo aggiornamento: ' + UPDATED,
-      imprint: `<h3>Titolare del sito</h3><p>${ADDR}Svizzera<br>Forma giuridica: ditta individuale, attività accessoria<br>E-mail: ${MAIL} · Tel.: ${PHONES}</p>
-<h3>Responsabile dei contenuti</h3><p>Rodrigo A. Díaz Videla (indirizzo sopra).</p>
+      imprint: `<h3>Titolare del sito</h3><p>${ADDR}Svizzera<br>Forma giuridica: ditta individuale, attività accessoria<br>E-mail: ${MAIL} · Tel.: ${PHONES}<br>Indirizzo postale: sarà pubblicato a breve. Nel frattempo, per qualsiasi comunicazione (anche legale) scrivi a ${MAIL}.</p>
+<h3>Responsabile dei contenuti</h3><p>Rodrigo A. Díaz Videla.</p>
 <h3>Fase beta</h3><p>FlowSuite è in fase beta. Funzioni, prezzi e testi possono cambiare. I prezzi indicati sono orientativi e non costituiscono un’offerta vincolante prima della firma di un contratto.</p>
 <h3>Esempi</h3><p>I nomi di attività e le conversazioni nelle demo di questo sito sono <strong>esempi fittizi</strong> a scopo illustrativo.</p>
 <h3>Link esterni</h3><p>Non siamo responsabili dei contenuti dei siti di terzi collegati.</p>
@@ -189,8 +190,8 @@
     en: {
       tabs: { imprint: 'Legal notice', privacy: 'Privacy', terms: 'Terms', dpa: 'DPA', cookies: 'Cookies' },
       updated: 'Last updated: ' + UPDATED,
-      imprint: `<h3>Site operator</h3><p>${ADDR}Switzerland<br>Legal form: sole proprietorship (Einzelfirma), secondary activity<br>E-mail: ${MAIL} · Phone: ${PHONES}</p>
-<h3>Responsible for content</h3><p>Rodrigo A. Díaz Videla (address above).</p>
+      imprint: `<h3>Site operator</h3><p>${ADDR}Switzerland<br>Legal form: sole proprietorship (Einzelfirma), secondary activity<br>E-mail: ${MAIL} · Phone: ${PHONES}<br>Postal address: to be published shortly. In the meantime, for any communication (including legal notices) write to ${MAIL}.</p>
+<h3>Responsible for content</h3><p>Rodrigo A. Díaz Videla.</p>
 <h3>Beta phase</h3><p>FlowSuite is in beta. Features, prices and texts may change. Prices shown are indicative and are not a binding offer until a contract is signed.</p>
 <h3>Examples</h3><p>Business names and conversations in the demos on this site are <strong>fictitious examples</strong> for illustration only.</p>
 <h3>External links</h3><p>We are not responsible for the content of third-party sites linked from this site.</p>

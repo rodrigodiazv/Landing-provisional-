@@ -111,4 +111,4 @@ El Builder solo está dentro del **panel de administración** (🔐 → Builder)
 
 **FlowSuite** – Rodrigo A. Díaz Videla  
 📧 info@flowsuite.ch  
-📍 Chemin de la Raverettaz 6, 1862 Ormont-Dessous (Les Mosses), Vaud, Suiza
+📍 Vaud, Suiza
