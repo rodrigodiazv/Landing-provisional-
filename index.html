@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>FlowSuite — Trabaja por ti y tú te dedicas a lo que más te gusta</title>
+<title>FlowSuite — Agentes IA que trabajan por ti</title>
 <meta name="description" content="Agente IA para artistas, negocios, terapeutas y creadores. FLOW trabaja 24/7. Tú te dedicas a lo que mejor sabes hacer.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.png">
+<link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
 :root{
   --bg:#02030d;--s1:#060d1a;--s2:#0b1526;--s3:#101e34;
@@ -101,7 +102,8 @@ nav{position:sticky;top:0;z-index:90;height:62px;display:flex;align-items:center
   font-size:12px;font-weight:700;color:var(--t2);cursor:pointer;transition:all .15s}
 .lb:hover{background:rgba(255,255,255,.06);color:var(--tx)}
 .lb.on{background:var(--tla);color:var(--teal);border-color:var(--tlb)}
-@media(max-width:500px){.lang-sw{display:none}}
+.lang-sel-m{display:none;background:var(--s2);color:var(--tx);border:1px solid var(--bd2);border-radius:8px;padding:6px 8px;font:700 12px var(--font)}
+@media(max-width:500px){.lang-sw{display:none}.lang-sel-m{display:block}}
 .btn-user{display:flex;align-items:center;gap:7px;background:var(--teal);color:#020e09;
   padding:9px 18px;border-radius:var(--rs);font-size:13px;font-weight:800;cursor:pointer;border:none;transition:opacity .15s}
 .btn-user:hover{opacity:.88}
@@ -497,13 +499,26 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 .toast.on{opacity:1;transform:none}
 .toast.ok{border-color:rgba(34,197,94,.35);color:var(--ok)}
 .toast.err{border-color:rgba(239,68,68,.35);color:var(--err)}
+/* i18n / legal / form helpers */
+.lnk{color:var(--teal);cursor:pointer;text-decoration:underline}
+.hp-field{position:absolute!important;left:-10000px;width:1px;height:1px;overflow:hidden}
+.ab-note{font-size:10.5px;color:var(--t2);text-align:center;margin:-8px 16px 12px}
+.legal-content{font-size:13px;color:var(--t2);line-height:1.85}
+.legal-content h3{font-family:var(--serif);font-size:14.5px;color:var(--tx);margin:18px 0 6px}
+.legal-content p{margin-bottom:8px}
+.legal-content ul{margin:0 0 10px 18px}
+.legal-content li{margin-bottom:4px}
+.legal-content a{color:var(--teal)}
+.legal-content strong{color:var(--tx)}
+.legal-upd{font-size:11.5px;opacity:.8}
+.pfg input[type=number]{width:100%}
+code{font-family:ui-monospace,monospace;font-size:.92em;background:rgba(255,255,255,.06);padding:1px 5px;border-radius:5px}
 </style>
 </head>
 <body>
-<div class="cookie-banner" id="cookie-banner">
-  <p>🍪 Solo cookies funcionales esenciales. Sin tracking. <span style="color:var(--teal);cursor:pointer" onclick="showLegal('cookies')">Más info</span>.</p>
-  <button class="cb-btn cb-rej" onclick="hideCookies()">Solo necesarias</button>
-  <button class="cb-btn cb-ok" onclick="hideCookies()">Aceptar</button>
+<div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookies">
+  <p><span data-i18n="cookie_text">🍪 Solo usamos almacenamiento técnico necesario (idioma y preferencias). Sin tracking ni publicidad.</span> <span class="lnk" onclick="showLegal('cookies')" data-i18n="cookie_more">Más info</span>.</p>
+  <button class="cb-btn cb-ok" onclick="hideCookies()" data-i18n="cookie_ok">Entendido</button>
 </div>
 
 <nav>
@@ -511,50 +526,54 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
     <div class="nav-brain">🧠</div>FlowSuite
   </a>
   <div class="nav-links">
-    <a href="#para-quien">Para quién</a>
-    <a href="#como-funciona">Cómo funciona</a>
-    <a href="#precios">Precios</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#para-quien" data-i18n="nav_for">Para quién</a>
+    <a href="#como-funciona" data-i18n="nav_how">Cómo funciona</a>
+    <a href="#precios" data-i18n="nav_pricing">Precios</a>
+    <a href="#faq" data-i18n="nav_faq">FAQ</a>
+    <a href="#contacto" data-i18n="nav_contact">Contacto</a>
   </div>
   <div class="nav-end">
-    <div class="lang-sw">
-      <button class="lb on" data-l="fr" onclick="setLang('fr',this)">🇫🇷</button>
-      <button class="lb" data-l="de" onclick="setLang('de',this)">🇩🇪</button>
-      <button class="lb" data-l="it" onclick="setLang('it',this)">🇮🇹</button>
-      <button class="lb" data-l="en" onclick="setLang('en',this)">🇬🇧</button>
-      <button class="lb" data-l="es" onclick="setLang('es',this)">🇪🇸</button>
+    <div class="lang-sw" role="group" aria-label="Language">
+      <button class="lb" data-l="fr" onclick="setLang('fr')" lang="fr" title="Français">FR</button>
+      <button class="lb" data-l="de" onclick="setLang('de')" lang="de" title="Deutsch">DE</button>
+      <button class="lb" data-l="it" onclick="setLang('it')" lang="it" title="Italiano">IT</button>
+      <button class="lb" data-l="en" onclick="setLang('en')" lang="en" title="English">EN</button>
+      <button class="lb" data-l="es" onclick="setLang('es')" lang="es" title="Español">ES</button>
     </div>
-    <button class="btn-user" id="btn-user" onclick="openModal('client')">🤖 Mi espacio</button>
-    <button class="btn-admin" onclick="openModal('admin')" title="Admin">🔐</button>
+    <select class="lang-sel-m" id="lang-sel-m" onchange="setLang(this.value)" data-i18n-aria="lang_label" aria-label="Idioma">
+      <option value="fr">FR</option><option value="de">DE</option><option value="it">IT</option><option value="en">EN</option><option value="es">ES</option>
+    </select>
+    <button class="btn-user" id="btn-user" onclick="openModal('client')" data-i18n="btn_user">🤖 Mi espacio</button>
+    <button class="btn-admin" onclick="openAdmin()" data-i18n-title="admin_title" data-i18n-aria="admin_title" title="Administración" aria-label="Administración">🔐</button>
   </div>
 </nav>
-<div class="beta-bar">
-  <span id="beta-bar-text"><strong>Accès bêta gratuit</strong> · Sans carte · Sans engagement · Ton agent IA en 48h</span>
+<div class="beta-bar" data-i18n-html="beta_bar">
+  <strong>Acceso beta gratuito</strong> · Sin tarjeta · Sin permanencia · Tu agente IA en 48 h
 </div>
 
+<main>
 <section id="hero">
 <div class="hero-inner z1">
   <div>
     <div class="hero-badge">
       <span class="pulse"></span>
-      Artistas · Terapeutas · Negocios · Creativos · Todo sector
+      <span data-i18n="hero_badge">Artistas · Terapeutas · Negocios · Creativos · Todo sector</span>
     </div>
     <h1>
-      <span class="hero-h1-line1 grad-teal" id="hero-l1">FlowSuite<br>trabaja por ti</span>
+      <span class="hero-h1-line1 grad-teal" data-i18n-html="hero_l1">FlowSuite<br>trabaja por ti</span>
     </h1>
-    <p class="hero-h1-line2" id="hero-l2">
+    <p class="hero-h1-line2" data-i18n-html="hero_l2">
       y tú te dedicas a <strong>lo que más te gusta</strong><br>y <strong>mejor sabes hacer.</strong>
     </p>
     <div class="hero-ctas">
-      <button class="btn btn-teal" onclick="goTo('#contacto')" id="hero-cta1">Acceso beta gratuito</button>
-      <button class="btn btn-ghost" onclick="openModal('client')" id="hero-cta2">Mi espacio →</button>
+      <button class="btn btn-teal" onclick="goTo('#contacto')" data-i18n="hero_cta1">Acceso beta gratuito</button>
+      <button class="btn btn-ghost" onclick="openModal('client')" data-i18n="hero_cta2">Mi espacio →</button>
     </div>
     <div class="hero-trust">
-      <span id="tr1">Beta gratuita · Sin tarjeta</span>
-      <span id="tr2">Setup en 48h</span>
-      <span id="tr3">5 idiomas · 24/7</span>
-      <span id="tr4">Datos en Suiza</span>
+      <span data-i18n="tr1">Beta gratuita · Sin tarjeta</span>
+      <span data-i18n="tr2">Puesta en marcha en 48 h</span>
+      <span data-i18n="tr3">5 idiomas · 24/7</span>
+      <span data-i18n="tr4">Empresa en Suiza (Vaud)</span>
     </div>
     <div class="sector-ticker" id="sector-ticker"></div>
   </div>
@@ -562,36 +581,35 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
   <div class="agent-box">
     <div class="demo-tabs" id="demo-tabs"></div>
     <div class="ab-head">
-      <div class="ab-av"><img src="data:image/jpeg;base64,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" alt="FLOW"></div>
+      <div class="ab-av"><img src="/assets/flow-avatar.jpg" alt="FLOW" width="140" height="140"></div>
       <div class="ab-ring"></div>
-      <div><div class="ab-name" id="ab-name">FLOW · Tu agente IA</div><div class="ab-role">Activo 24/7 · 5 idiomas</div></div>
-      <div class="ab-live"><span class="pulse"></span><span id="ab-live">En directo</span></div>
+      <div><div class="ab-name" id="ab-name">FLOW · Tu agente IA</div><div class="ab-role" data-i18n="demo_role">Asistente de IA · 5 idiomas</div></div>
+      <div class="ab-live"><span class="pulse"></span><span data-i18n="demo_live">Demo</span></div>
     </div>
-    <div class="ab-msgs" id="ab-msgs"></div>
+    <div class="ab-msgs" id="ab-msgs" aria-live="polite"></div>
     <div class="ab-bar">
-      <div class="ab-inp"><span style="color:var(--t2)" id="ab-ph">Escribe o toca el micro…</span><div class="ab-cursor"></div></div>
-      <button class="ab-mic" onclick="activateVoice()">🎙️</button>
+      <div class="ab-inp"><span style="color:var(--t2)" data-i18n="demo_ph">Escribe o toca el micro…</span><div class="ab-cursor"></div></div>
+      <button class="ab-mic" onclick="activateVoice()" aria-label="Mic">🎙️</button>
     </div>
+    <div class="ab-note" data-i18n="demo_note">Conversación de ejemplo ficticia</div>
   </div>
 </div>
 </section>
 
 <div class="stats-band z1">
-  <div class="stat-c"><div class="sv">24/7</div><div class="sl">Disponibilidad</div></div>
-  <div class="stat-c"><div class="sv">5</div><div class="sl">Idiomas</div></div>
-  <div class="stat-c"><div class="sv">&lt;30s</div><div class="sl">Respuesta</div></div>
-  <div class="stat-c"><div class="sv">30+</div><div class="sl">Sectores</div></div>
-  <div class="stat-c"><div class="sv">48h</div><div class="sl">Para empezar</div></div>
+  <div class="stat-c"><div class="sv">24/7</div><div class="sl" data-i18n="st_avail">Disponibilidad</div></div>
+  <div class="stat-c"><div class="sv">5</div><div class="sl" data-i18n="st_langs">Idiomas</div></div>
+  <div class="stat-c"><div class="sv" id="st-sectors">40+</div><div class="sl" data-i18n="st_sectors">Sectores</div></div>
+  <div class="stat-c"><div class="sv">48h</div><div class="sl" data-i18n="st_start">Para empezar</div></div>
+  <div class="stat-c"><div class="sv">14</div><div class="sl" data-i18n="st_trial">Días de prueba</div></div>
 </div>
 
 <section class="section section-alt z1" id="para-quien">
 <div class="wrap">
   <div class="sectors-intro">
-    <span class="eyebrow" id="s-pq-eye">Pour qui</span>
-    <h2 style="margin-bottom:12px" id="s-pq-h2">Un agent IA pour <span class="grad-vi">chaque histoire</span></h2>
-    <p style="font-size:16px;color:var(--t2);line-height:1.75;max-width:560px" id="s-pq-sub">
-      Que tu sois musicien, thérapeute, restaurateur, bijoutier, photographe ou coach — FlowSuite comprend ton monde et parle à tes clients comme toi le ferais.
-    </p>
+    <span class="eyebrow" data-i18n="for_eyebrow">Para quién</span>
+    <h2 style="margin-bottom:12px" data-i18n-html="for_h2">Un agente IA para <span class="grad-vi">cada historia</span></h2>
+    <p style="font-size:16px;color:var(--t2);line-height:1.75;max-width:560px" data-i18n="for_p"></p>
   </div>
   <div class="sectors-cats" id="sectors-cats"></div>
 </div>
@@ -599,82 +617,59 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 
 <section class="section z1" id="como-funciona">
 <div class="wrap">
-  <span class="eyebrow" id="s-cf-eye">Comment ça marche</span>
-  <h2 style="margin-bottom:10px" id="s-cf-h2">3 étapes. <span class="grad-teal">Présence complète.</span></h2>
-  <p style="font-size:15px;color:var(--t2);margin-bottom:0;max-width:500px;line-height:1.75" id="s-cf-sub">
-    Sans code. Sans agence. Sans attendre des semaines. Ton agent IA opérationnel en 48 heures.
-  </p>
+  <span class="eyebrow" data-i18n="how_eyebrow">Cómo funciona</span>
+  <h2 style="margin-bottom:10px" data-i18n-html="how_h2">3 pasos. <span class="grad-teal">Presencia completa.</span></h2>
+  <p style="font-size:15px;color:var(--t2);margin-bottom:0;max-width:500px;line-height:1.75" data-i18n="how_p"></p>
   <div class="steps-grid">
     <div class="step-card card card-glow">
       <div class="step-n">1</div>
       <div class="step-ico" style="background:var(--tla);border-color:var(--tlb)">🎯</div>
-      <div class="step-t" id="s-step1-t">Raconte-nous ton histoire</div>
-      <div class="step-d" id="s-step1-d">Tu remplis un formulaire sur ton activité, tes services, ton style et tes canaux. Le Builder Pro génère ta présence en 60 secondes.</div>
+      <div class="step-t" data-i18n="s1_t"></div>
+      <div class="step-d" data-i18n="s1_d"></div>
     </div>
     <div class="step-card card">
       <div class="step-n">2</div>
       <div class="step-ico" style="background:var(--via);border-color:var(--vib)">⚡</div>
-      <div class="step-t" id="s-step2-t">L'IA construit tout</div>
-      <div class="step-d" id="s-step2-d">Logo IA · Landing cinématique · Agent vocal ElevenLabs · Pack réseaux sociaux · Tous les canaux configurés.</div>
+      <div class="step-t" data-i18n="s2_t"></div>
+      <div class="step-d" data-i18n="s2_d"></div>
     </div>
     <div class="step-card card">
       <div class="step-n">3</div>
       <div class="step-ico" style="background:var(--coa);border-color:var(--cob)">🚀</div>
-      <div class="step-t" id="s-step3-t">Tu te consacres à ton métier</div>
-      <div class="step-d" id="s-step3-d">FLOW répond aux appels, qualifie les leads, prend les rendez-vous et publie du contenu. Toi, tu te concentres sur ton art.</div>
+      <div class="step-t" data-i18n="s3_t"></div>
+      <div class="step-d" data-i18n="s3_d"></div>
     </div>
   </div>
   <div style="text-align:center;margin-top:32px">
-    <button class="btn btn-vi" onclick="goTo('#contacto')" id="s-cf-cta">Essayer gratuitement 14 jours →</button>
+    <button class="btn btn-vi" onclick="goTo('#contacto')" data-i18n="how_cta">Probar gratis 14 días →</button>
   </div>
 </div>
 </section>
 
 <section class="section section-alt z1">
 <div class="wrap">
-  <span class="eyebrow" id="s-ag-eye">Agents IA</span>
-  <h2 style="margin-bottom:10px" id="s-ag-h2">Une équipe digitale. <span class="grad-coral">Chacun dans son rôle.</span></h2>
-  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:520px;line-height:1.75" id="s-ag-sub">
-    Chaque agent a un rôle précis. Sans surcharge. Sans confusion. Le modèle le plus efficace d'automatisation.
-  </p>
+  <span class="eyebrow" data-i18n="ag_eyebrow">Agentes IA</span>
+  <h2 style="margin-bottom:10px" data-i18n-html="ag_h2"></h2>
+  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:520px;line-height:1.75" data-i18n="ag_p"></p>
   <div class="agents-scroll" id="agents-grid"></div>
 </div>
 </section>
 
 <section class="section z1" id="precios">
 <div class="wrap">
-  <span class="eyebrow" id="s-pr-eye">Prix</span>
-  <h2 style="margin-bottom:10px" id="s-pr-h2">Clair dès le <span class="grad-teal">premier jour.</span></h2>
-  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:500px;line-height:1.75" id="s-pr-sub">
-    Sans engagement. Sans surprises. Accès bêta 100% gratuit pendant le programme.
-  </p>
+  <span class="eyebrow" data-i18n="pr_eyebrow">Precios</span>
+  <h2 style="margin-bottom:10px" data-i18n-html="pr_h2"></h2>
+  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:500px;line-height:1.75" data-i18n="pr_p"></p>
   <div class="plans-grid" id="plans-grid"></div>
-  <p style="font-size:12px;color:var(--t2);text-align:center;margin-top:16px" id="s-pr-note">
-    Prix en CHF · TVA non applicable (entreprise individuelle phase bêta) · 14 jours d'essai gratuit · Annulation à tout moment
-  </p>
-</div>
-</section>
-
-<!-- PAQUETES DE RECARGA -->
-<section class="section z1" id="paquetes">
-<div class="wrap">
-  <span class="eyebrow" id="s-pk-eye">Packs de recharge</span>
-  <h2 style="margin-bottom:10px">Plus de minutes <span class="grad-coral">en 2 clics.</span></h2>
-  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:520px;line-height:1.75" id="s-pk-sub">
-    Besoin de plus de minutes ? Active un pack depuis ton espace client. Sans appeler personne, sans attendre.
-  </p>
-  <div id="packs-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px"></div>
-  <p style="font-size:12px;color:var(--t2);text-align:center;margin-top:16px" id="s-pk-note">
-    Les packs s'activent instantanément · Valables 12 mois · Cumulables avec tout plan actif
-  </p>
+  <p style="font-size:12px;color:var(--t2);text-align:center;margin-top:16px" data-i18n="pr_note"></p>
 </div>
 </section>
 
 <section class="section section-alt z1" id="faq">
 <div class="wrap">
-  <span class="eyebrow" id="s-fq-eye">FAQ</span>
-  <h2 style="margin-bottom:clamp(28px,4vw,44px)" id="s-fq-h2">Questions <span class="grad-vi">fréquentes</span></h2>
-  <div class="qa-wrap" id="faq-container"><!-- rendered by renderFAQ() --></div>
+  <span class="eyebrow" data-i18n="faq_eyebrow">FAQ</span>
+  <h2 style="margin-bottom:clamp(28px,4vw,44px)" data-i18n-html="faq_h2"></h2>
+  <div class="qa-wrap" id="faq-list"></div>
 </div>
 </section>
 
@@ -682,117 +677,56 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 <div class="wrap">
   <div class="grid2">
     <div>
-      <span class="eyebrow" id="s-ct-eye">Commencer</span>
-      <h2 style="margin-top:14px;margin-bottom:14px" id="s-ct-h2">Bêta gratuite.<br><span class="grad-teal">Sans engagement.</span></h2>
-      <p style="font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:26px;max-width:440px" id="s-ct-sub">
-        Remplis le formulaire ou écris-nous sur WhatsApp. <strong style="color:var(--tx)">La personne qui construit FlowSuite te répond directement.</strong>
-      </p>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:20px">🇨🇭</span><div><strong>Suisse</strong> · CHF · Infomaniak · nLPD</div></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><span style="font-size:20px">🇪🇸</span><div><strong>Espagne & LATAM</strong> · RGPD</div></div>
-      <a class="wa-link" href="https://wa.me/41779413532" target="_blank" rel="noopener" id="s-wa-ch">💬 WhatsApp Suisse · +41 77 941 35 32</a>
-      <a class="wa-link" href="https://wa.me/34634134466" target="_blank" rel="noopener" id="s-wa-es">💬 WhatsApp Espagne · +34 634 13 44 66</a>
-      <p style="font-size:12px;color:var(--t2);margin-top:16px" id="s-legal-cta">Sans carte. Sans commercial. Si ça ne convient pas, tu pars et c'est tout.</p>
+      <span class="eyebrow" data-i18n="ct_eyebrow">Empezar</span>
+      <h2 style="margin-top:14px;margin-bottom:14px" data-i18n-html="ct_h2"></h2>
+      <p style="font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:26px;max-width:440px" data-i18n-html="ct_p"></p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:20px">🇨🇭</span><div data-i18n-html="ct_ch"></div></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><span style="font-size:20px">🇪🇸</span><div data-i18n-html="ct_es"></div></div>
+      <a class="wa-link" href="https://wa.me/41779413532" target="_blank" rel="noopener noreferrer" data-i18n="ct_wa_ch">💬 WhatsApp Suiza — +41 77 941 35 32</a>
+      <a class="wa-link" href="https://wa.me/34634134466" target="_blank" rel="noopener noreferrer" data-i18n="ct_wa_es">💬 WhatsApp España — +34 634 13 44 66</a>
+      <p style="font-size:12px;color:var(--t2);margin-top:16px" data-i18n="ct_small"></p>
     </div>
     <div class="lead-card">
       <div id="form-wrap">
-        <div style="font-size:17px;font-weight:800;font-family:var(--serif);margin-bottom:5px">Reserva tu plaza beta</div>
-        <div style="font-size:13px;color:var(--t2);margin-bottom:18px">Respuesta en menos de 24h. Sin spam.</div>
-        <form id="lead-form" onsubmit="submitLead(event)">
+        <div style="font-size:17px;font-weight:800;font-family:var(--serif);margin-bottom:5px" data-i18n="f_title">Reserva tu plaza beta</div>
+        <div style="font-size:13px;color:var(--t2);margin-bottom:18px" data-i18n="f_sub"></div>
+        <form id="lead-form" onsubmit="submitLead(event)" novalidate>
           <div class="fgrid2">
-            <div class="fg"><label id="fl-nm">Prénom *</label><input id="f-name" type="text" placeholder="Marc Dupont" required></div>
-            <div class="fg"><label id="fl-biz">Activité *</label><input id="f-biz" type="text" placeholder="Ton studio, atelier, clinique…" required></div>
+            <div class="fg"><label for="f-name" data-i18n="f_name">Nombre *</label><input id="f-name" type="text" maxlength="120" autocomplete="name" data-i18n-ph="f_name_ph" required></div>
+            <div class="fg"><label for="f-biz" data-i18n="f_biz">Negocio *</label><input id="f-biz" type="text" maxlength="160" autocomplete="organization" data-i18n-ph="f_biz_ph" required></div>
           </div>
-          <div class="fg"><label id="fl-em">Email *</label><input id="f-email" type="email" placeholder="marc@ton-business.ch" required></div>
-          <div class="fg"><label id="fl-tel">WhatsApp</label><input id="f-tel" type="tel" placeholder="+41 79 ··· / +34 6 ···"></div>
-          <div class="fg"><label id="fl-sec">Ton secteur *</label>
-            <select id="f-sector" required>
-              <option value="">Elige tu sector…</option>
-              <optgroup label="🍽 Gastronomía & Hostelería">
-                <option>Restaurante / Bar / Cafetería</option>
-                <option>Hotel / B&amp;B / Airbnb</option>
-                <option>Catering / Food Truck</option>
-                <option>Bodega / Catas de vino</option>
-              </optgroup>
-              <optgroup label="🎨 Creativos & Artistas">
-                <option>Músico / Banda / DJ</option>
-                <option>Estudio de Grabación</option>
-                <option>Fotografía / Videografía</option>
-                <option>Tatuador / Body Art</option>
-                <option>Joyería de Diseño / Orfebrería</option>
-                <option>Artista Visual / Ilustrador</option>
-                <option>Diseño Gráfico / UX-UI</option>
-                <option>Escritor / Copywriter</option>
-                <option>Ceramista / Artesano</option>
-                <option>Podcaster / YouTuber / Streamer</option>
-              </optgroup>
-              <optgroup label="🧘 Bienestar & Terapias">
-                <option>Yoga / Meditación / Mindfulness</option>
-                <option>Terapias Alternativas (Reiki, Acupuntura…)</option>
-                <option>Naturopatía / Herbalista</option>
-                <option>Life Coach / Counselor</option>
-                <option>Artes Marciales / Boxeo / MMA</option>
-                <option>Fitness / Crossfit / Personal Trainer</option>
-              </optgroup>
-              <optgroup label="🏥 Salud & Medicina">
-                <option>Clínica / Médico / Dentista</option>
-                <option>Fisioterapeuta / Osteópata</option>
-                <option>Psicólogo / Terapeuta</option>
-                <option>Farmacia / Parafarmacia</option>
-              </optgroup>
-              <optgroup label="🎵 Formación & Clases">
-                <option>Clases de Música (guitarra, piano…)</option>
-                <option>Escuela de Danza</option>
-                <option>Academia de Idiomas</option>
-                <option>Clases Particulares</option>
-                <option>Escuela de Artes Marciales</option>
-              </optgroup>
-              <optgroup label="💼 Servicios Profesionales">
-                <option>Abogado / Notario / Asesor</option>
-                <option>Contable / Gestoría</option>
-                <option>Inmobiliaria / Agencia</option>
-                <option>Startup / Agencia Digital</option>
-                <option>Freelancer Digital</option>
-              </optgroup>
-              <optgroup label="✂️ Moda & Belleza">
-                <option>Salón de Peluquería</option>
-                <option>Estética / Spa / Masajes</option>
-                <option>Boutique / Moda</option>
-                <option>Stylist / Personal Shopper</option>
-              </optgroup>
-              <optgroup label="🔧 Oficios & Comercio">
-                <option>Taller Mecánico / Garage</option>
-                <option>Electricista / Fontanero</option>
-                <option>Carpintero / Constructor</option>
-                <option>Comercio / Retail</option>
-              </optgroup>
-              <option>Otro</option>
-            </select>
+          <div class="fg"><label for="f-email" data-i18n="f_email">Email *</label><input id="f-email" type="email" maxlength="254" autocomplete="email" data-i18n-ph="f_email_ph" required></div>
+          <div class="fg"><label for="f-tel" data-i18n="f_tel">WhatsApp</label><input id="f-tel" type="tel" maxlength="25" autocomplete="tel" placeholder="+41 79 ··· / +34 6 ···"></div>
+          <div class="fg"><label for="f-sector" data-i18n="f_sector">Tu sector *</label>
+            <select id="f-sector" required></select>
           </div>
-          <div class="fg"><label id="fl-detail">Qu'est-ce que tu veux automatiser ? <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--t2)">(optionnel)</span></label>
-            <textarea id="f-detail" rows="2" placeholder="Appels, agenda, Instagram, WhatsApp…"></textarea></div>
+          <div class="fg"><label for="f-detail"><span data-i18n="f_detail">¿Qué quieres automatizar?</span> <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--t2)" data-i18n="f_optional">(opcional)</span></label>
+            <textarea id="f-detail" rows="2" maxlength="1000" data-i18n-ph="f_detail_ph"></textarea></div>
+          <div class="hp-field" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" type="text" tabindex="-1" autocomplete="off"></div>
           <div class="form-check">
             <input type="checkbox" id="f-consent" required>
-            <label for="f-consent" id="fl-consent">J'accepte le traitement de mes données selon la <span style="color:var(--teal);cursor:pointer" onclick="showLegal('privacy')">politique de confidentialité</span> (nLPD / RGPD). *</label>
+            <label for="f-consent" data-i18n-html="f_consent"></label>
           </div>
-          <div class="ferr" id="f-err"></div>
-          <button class="btn btn-teal" style="width:100%;padding:14px" type="submit" id="fl-cta">Demander l'accès bêta gratuit</button>
+          <div class="ferr" id="f-err" role="alert"></div>
+          <button class="btn btn-teal" style="width:100%;padding:14px" type="submit" id="f-submit" data-i18n="f_submit">Solicitar acceso beta gratuito</button>
         </form>
-        <p style="font-size:11.5px;color:var(--t2);margin-top:11px;line-height:1.65">Ningún envío activa ningún cargo. Te contactamos para activar el acceso.</p>
+        <p style="font-size:11.5px;color:var(--t2);margin-top:11px;line-height:1.65" data-i18n="f_note"></p>
       </div>
       <div id="form-ok" style="display:none;text-align:center;padding:20px 0">
-        <div style="font-size:46px;margin-bottom:12px" id="fl-ok-ico">🎉</div>
-        <div style="font-size:18px;font-weight:800;font-family:var(--serif);margin-bottom:8px" id="fl-ok-h">Demande reçue !</div>
-        <p style="font-size:13.5px;color:var(--t2);line-height:1.75;margin-bottom:16px" id="fl-ok-sub">Tu recevras ton code PIN par email dans moins de 24h.</p>
+        <div style="font-size:46px;margin-bottom:12px">🎉</div>
+        <div style="font-size:18px;font-weight:800;font-family:var(--serif);margin-bottom:8px" data-i18n="ok_title"></div>
+        <p style="font-size:13.5px;color:var(--t2);line-height:1.75;margin-bottom:16px" data-i18n="ok_text"></p>
         <div class="pin-box on" id="pin-box">
-          <div style="font-size:10px;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px" id="fl-pin-l">Ton code PIN d'accès</div>
+          <div style="font-size:10px;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px" data-i18n="ok_pin_label"></div>
           <div class="pin-val" id="pin-val">—</div>
-          <div style="font-size:12px;color:var(--t2)">Sauvegarde-le · Accès à ton espace FlowSuite</div>
+          <div style="font-size:12px;color:var(--t2)" data-i18n="ok_pin_note"></div>
         </div>
       </div>
     </div>
   </div>
 </div>
 </section>
+</main>
 
 <footer>
   <div class="foot-grid">
@@ -800,103 +734,90 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
       <div style="display:flex;align-items:center;gap:9px;font-size:18px;font-weight:700;font-family:var(--serif);margin-bottom:11px">
         <div class="nav-brain">🧠</div>FlowSuite
       </div>
-      <p style="font-size:12.5px;color:var(--t2);line-height:1.75;max-width:270px;margin-bottom:13px">
-        Agente IA para artistas, negocios y creadores. 24/7, 5 idiomas, Suiza.
-      </p>
-      <div style="font-size:11.5px;color:var(--t2);line-height:1.75">Fase beta activa · Vaud, Suiza<br>Empresa individual</div>
+      <p style="font-size:12.5px;color:var(--t2);line-height:1.75;max-width:270px;margin-bottom:13px" data-i18n="foot_desc"></p>
+      <div style="font-size:11.5px;color:var(--t2);line-height:1.75" data-i18n-html="foot_beta"></div>
     </div>
     <div>
-      <div class="foot-h">Producto</div>
+      <div class="foot-h" data-i18n="foot_product">Producto</div>
       <ul class="foot-links">
-        <li><a href="#para-quien">Para quién</a></li>
-        <li><a href="#como-funciona">Cómo funciona</a></li>
-        <li><a href="#precios">Precios</a></li>
-        <li><span onclick="openModal('client')">Mi espacio cliente</span></li>
+        <li><a href="#para-quien" data-i18n="nav_for">Para quién</a></li>
+        <li><a href="#como-funciona" data-i18n="nav_how">Cómo funciona</a></li>
+        <li><a href="#precios" data-i18n="nav_pricing">Precios</a></li>
+        <li><span onclick="openModal('client')" data-i18n="foot_client">Mi espacio cliente</span></li>
       </ul>
     </div>
     <div>
-      <div class="foot-h">Contacto</div>
+      <div class="foot-h" data-i18n="foot_contact">Contacto</div>
       <ul class="foot-links">
         <li><a href="mailto:info@flowsuite.ch">info@flowsuite.ch</a></li>
-        <li><a href="https://wa.me/41779413532" target="_blank">+41 77 941 35 32</a></li>
-        <li><a href="https://wa.me/34634134466" target="_blank">+34 634 13 44 66</a></li>
+        <li><a href="https://wa.me/41779413532" target="_blank" rel="noopener noreferrer">+41 77 941 35 32</a></li>
+        <li><a href="https://wa.me/34634134466" target="_blank" rel="noopener noreferrer">+34 634 13 44 66</a></li>
         <li><a href="https://flowsuite.ch">flowsuite.ch</a></li>
       </ul>
     </div>
     <div>
-      <div class="foot-h">Legal</div>
-      <ul class="foot-links">
-        <li><span onclick="showLegal('privacy')">Política de Privacidad</span></li>
-        <li><span onclick="showLegal('terms')">Términos de Uso</span></li>
-        <li><span onclick="showLegal('dpa')">DPA (nLPD / RGPD)</span></li>
-        <li><span onclick="showLegal('cookies')">Política de Cookies</span></li>
-      </ul>
+      <div class="foot-h" data-i18n="foot_legal">Legal</div>
+      <ul class="foot-links" id="foot-legal-links"></ul>
     </div>
   </div>
   <div class="foot-copy">
-    <span>© 2026 FlowSuite · Vaud, Suiza · Empresa individual</span>
-    <span>Infomaniak · Servidores Suiza · nLPD</span>
+    <span data-i18n="foot_copy">© 2026 FlowSuite · Rodrigo A. Díaz Videla · Vaud, Suiza</span>
+    <span data-i18n="foot_ai">FLOW es un asistente de inteligencia artificial.</span>
   </div>
 </footer>
 
 <div class="fav-wrap" id="fav-wrap">
   <div class="fav-bubble" id="fav-bubble">
-    <div class="fav-who"><div class="fav-av"><img src="data:image/jpeg;base64,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" alt="FLOW"></div><div><div class="fav-nm">FLOW</div><div style="font-size:10px;color:var(--t2)">FlowSuite · Activo</div></div></div>
-    <div class="fav-msg" id="fav-msg">¡Hola! Soy <strong>FLOW</strong>. ¿En qué puedo ayudarte hoy?</div>
+    <div class="fav-who"><div class="fav-av"><img src="/assets/flow-avatar.jpg" alt="FLOW"></div><span class="fav-nm">FLOW</span></div>
+    <div class="fav-msg" data-i18n-html="fav_msg"></div>
     <div class="fav-chips">
-      <button class="fav-chip" onclick="goTo('#para-quien')">🎨 Ver sectores</button>
-      <button class="fav-chip" onclick="goTo('#contacto')">📅 Beta gratis</button>
-      <button class="fav-chip" onclick="openModal('client')">🤖 Mi espacio</button>
+      <button class="fav-chip" onclick="goTo('#para-quien')" data-i18n="fav_c1">🎨 Ver sectores</button>
+      <button class="fav-chip" onclick="goTo('#contacto')" data-i18n="fav_c2">📅 Beta gratis</button>
+      <button class="fav-chip" onclick="openModal('client')" data-i18n="fav_c3">🤖 Mi espacio</button>
     </div>
   </div>
-  <button class="fav-btn" onclick="toggleFav()"><img src="data:image/jpeg;base64,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" alt="FLOW"></button>
+  <button class="fav-btn" onclick="toggleFav()" aria-label="FLOW"><img src="/assets/flow-avatar.jpg" alt="FLOW"></button>
 </div>
 
-<div id="modal-client" class="modal-overlay">
+<div id="modal-client" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cl-title">
   <div class="modal-box">
-    <div class="mb-ico"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCACMAIwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDipdIvrfJmsbuL/fhYf0qERHvX154iuLWCydnaMJjk5GK+XvFNzb3Ou3UtoB5RbAK9CfWsIzbdhyhZXMJ8qOKW2LFiTU5A7ilQDsKu5DV0VJZWj87b13mq8d7Nu9q1LaBrh7oRwyP5cm18ITtOM80ogjBwVwR6ihu4RVhLSV2HzZqS51G2tsh3LOOqqM4+tZ2q3ixIUh3BR8rFBlmP91f8a4rXr64QbEIiX+4nb6t3Pripb7GsYaXZ3Q8RWuOVbcM5C8/yqvF4t04yBLgSwknG5kOBXndikqwi8RzuDhSScDGK3rmFLq2DTHY+OHBz+dK7HyI9FtzFcxCW3kSWM9GQ5FS+VXluhald6DqSvAUYbvmjbmOUehHY17Np97pWu6Mt9p8Yif7ssJPMbeh/oe9OM9bMzlBpXRmCKmyRDzYP94/ypbhyjkCq0mr2FrKsN80q3D4EG1cgsTjmtUjJs0PJAr2/4Y2WjPp0MkdtbvKQMuyAtn6mvDZHcCltNUvbJy1ndT25/wCmblc1M4cxUJWPrpEt4x8qxqPYCqs2qadC5SS7tkYdmkANfK9x4j1W7AW51K8kXptaZsVWILncWBJ7nmkoMHUOa1HXVtQsF9qLqjjIjeUkEfSq8es6a/3b2H/vquSgvNOm8Q2lzrdu1xaGFgUHrniuiD+AZB82nXCEnnAPArdUk+pHPY0hqNm33bqE/wDAxW74TutPTUHuL2WNooULgAg5PtXJjT/h5L3vYvwatLQrH4f2F+JzfXzRlSjRhipIPuaJUNNGONTU6X4K+K4rbxvqtjqN1KY9R5hLNlWkBPJ9yOPwrR+KEtrHeF7ZkSQ5BYdvf8KpXP8Awqx44pNMF9bX6D5ZmuTgH6VxM1vFb3skUV5Lf26nzDNKxbPGcDPbOBXNKm1770Oim0/dINQmi06we5uTtbG1R357D39ap6B4T1TxUVuHhW1sj935clh7VLeWLa54z0rSG5hiAklA6E9TmvpHw5plvBZrGIwAowABXJVquLUY7s9GjRUk5S2R4v8A8K6a1s2tpWR4Sc8j5hXJ6n4RvdEdprCXzYj96J+jCvpTW7WPZ8q4zXBeI7ceUwC8fSuT29SEtzs+r0px2seEXmAvmKrCM8MjdU9R+FaPhbWJdL1DeHPluAkw7Mp6N/nvT9Zg+y6h+8H7mR9jfiMViCJoDIpGTbk7v9qM9f8AH8K9CMuZXR5VSHK7M9nEfnKrqcq3IPrXnvi+/J1qOW3xttGAOT94g5rb8PXOvXenCPSBbzLbgKwlyDjsfpiuk0rWfEGmwmC58HaBdIfvuYhvb6kiuyMZSipRVzgaUJOMmdt4d0TT9X0G1v8AyJSs6BgSxAB7jisnWNCjtZD5ZOO2TV3TviTf2GnraJ4PMMS52pFMNoz6DFc3qfirUb64d30eWJT0UNnFEac76omUo20Kz2bLJxVtLdgoyDVXTNYSS++z3VvLFJt3jcOorp0uLIqMk5+la8pjzHzfPEWNmAOShH6112ieDjLHbzandwWEU+DH52SzA9GwOg9CcZqjpEFskRvrxDLBZwvK0QODIdwAXPYEsMn0zT5fE17fg/bLjdaPP9pe3UARq+MAgdgMDA9APSrSSSbOuEEldnVrpPhi3aGJkvZ5Hz/y0VCcDPTBAHbqaW70jw64KNHcWZ6GQSCVVPuCAcfSsSPWYzbiJwskrldjB8bBnk/lSa1Bc2jwDzTIZMkJ5ZViQfTnPX+tJu+5nVpRqa7Dda8LSabOoDh4SeJUOUYDuCOKmtGXzoowP3Zw7+wAz/hU2nSzR+GNRNwrfZ2K8sCBvz298ZrJimaDTppn/wBbN8gPsetcld62NcJFqLvqb3w7mt28balqFyJXSNAqiKMuRk88DoOOte26R448Nf6hNQjW46eXKPLOfxrwX4ey6zDZ6idGjz50y72B6Dpn3/Cuql8PahPqarczWt1kgBmVsyfMckZ6cY689elefKCcnI9aMmoxj38v1PYLy9hmj37gVxwQa838VeL9EtpDA8xlmP8ABCu410WvWz6T4En2EC4tvlG3oRjivMNJ8MSyWFxeXDxpMybomIB3Mc8+2OOo56DHWsKUFOXvHRVqShH3Ec/4wuBeadJMtjcwRjDK7gdj3A5Fc/56yRx3fUD93KPUdD/Q/nWve6ZqU1zLAsrTRFfmbbtArnYv9GmktpGARvkJPQMOAT7Hp+NdkEkrI4KjlJ3Z6N8J7w2XiGCBmzC6mHn+MdUP5ZH4V7yI4pCAbbHHUqK+XPCd+1pfwMfv28gBB67c8/lX1TYuk0UERmjN06bxFuG8r649K9DCT0cTgxcdVIqTWdvg5hT8qz7iwhcEJEoPsK3GjWWWWGKWN5YjiRFYEp9R2rA8Tanc2Z0XT/D72kuo6vcNDHPId8cSqPmPHU+1dvPZHHy3OE8QweT4ttl24/0dv5irIzirt3Y6t/wlz2WvPb3U0dsZIbyCLy1dc8hh2IqdNMkkUNGN6noy8g1jLV3C1jw6wv4bWSO3u4zLa3KPDNGG2llJB4PYggEH1FbOo6LDpk0LaLpDalaTKrpcXO6Ybu67E2qCD65z1ridXbbNaEHu3867TwD4gl0/UbcyXEi22QJFDHle9XRqL4ZI64VLKzL3hrQbfXtUuodYsI9Nht0Zp7qJjCICQdu6NsgknHA255rVt7Ox8OOdQtNQk1i9hj2W7+X8sR/v/eJyBnAwMZzSeKneWB4tOlW5+1zNc3EynG9icKuDzhVwOfU1xccE8eo+U7tEY/mdlPQVpOyVzGadT4nZF/X9a1DV5IYryV2Jb+I9h1rC1q/VLdiOFAKQj+8e7Va1S63XAkbOWVgvPOCR/SuVvme8uzk/KoAUAcAV5EveqO52wtCnaKPov4BQ248NQyOFLTFixP1x/SvXDY2VpmURQq2Mhtoz+dfOvwO1d7fS7m1bJFvOenYNzn8wa9p0m5bVZ907MYI+NnIya8ypeFSSPZppVKUZeRV8bxPP4Su/lIVnznHXA6Vg+Ap4bvTDDOq/IcFWGaTx5oOuTWT2mn38ksLl5mMmFKjsBjiuS8P/AGzRFY3cxeWTHPToMVEYNLcuUldaaHVeL5rWztZBBFGp9AAK+bdan/4m1wRyjNyBXqfivVpp224ZSRkE9we9eR3RE2oTqQSAcKR65H/167MJCzuzhx1RNJI0tLuGW7jUn99wFb++OmPrX0T4ZvojqngHXZGHzSTabcse3Hyg183zII2gcjKSEjjgj3Fe4+BdLufEfwz1OxtZkS8j1FJ7aVztAYKN3PbrXfRVpaHnVneOpqeEtUfSNZ13XrxsRa3p97eQ56bopGCj8q3rPwhDf/Dnw5ZvPLYalbJ9tgu4/vRyP8xyO45FN8Y+EH1Twt4Z0zT54Y5dLXyZmZsB42A3geuTWh4usLq/u9K1Dw/cQw6hpYMaQzkiKaMjG0+9diTOVvsc/p02rf8ACRX2l+JzFJfppk0kNzDwtwgU8ketdj8HLJJfhxozsgYmI8ke5rkdNlvJfHb3Pic2kVy1hJbRQWjF1iR+CxPc81o+Fb3xl4W0WHR7CDQru0tiwhmmlZWZScjI/GlrcTsz5g8SwG3lsAf4lLfrUFtO0RGDXUeK9HvdV/syXTLfzxHGVYAjg5rKk8N6/FAxfTFUHncSMisad3G5rNWdiSz1PbKhduARmtWC4S6WV+skzEk+gHSuHuWuIWaOVAjKcED1q/pN9NBtwCQx7j8OD70pydtBRSvqbut2jNpySRqcoxU49CAaqaJpgls5LmUELzz7gDiuttURNLdrrGDHvfPfPT9KhvBFpmmvb5UqG3kj0KBv58VwSqbnpQp6K5ifD7W49C8XTJeYS0uiYmJ4Ctu+Un88fjX0Db20V3A8iPNHcbdqtDMyZH4GvlXUIyyrI3JfJz7g8/0r3vwDqlxa6Xas5aaERrnuV47eorHFR2qLc3wc2rwexY11dOgUpdSa0j4+ZEkLLIfrtriItPjmujNJDci3U5Ec0pYZzxkV7FfeKNJNpgmEcc5ABz/OvJvF/imGSR0s1GOnHeojUctLHXWneOtjB8W6uFaSaQgYUJEg9AOBXB2ETSF5m9yTVjXppJnVpDkk5+lLacQRRADLDcT7df6j8q7aUVGF+55FaTlOxranYn+z7IgHjg/lXqnwu8U6dofhaKHUpvKnZ3eTPfJ4P6VxkCxz3ggmPyxxocH0OR/KjRrNLm/urG4HzRltn04z/jV06rjPQmpSUoHrMvxM8PDpeA/nVY/EjQnP7u4JPsDXifi+0h0+SPah68gHFc815HwI4iPqc13e2aPPcD3XTtattY8cS3Fs5Ma24UE+pNehRqhQEyV8tWHiW5sZklgUBlAHHGRXVRfFG8WNQYMkD+9S5lJ3YnFrYf4LfUby0Mltc+X8xGMZqfxDcaxFBItxqOQO2yszwLq40WGSG9jZSWyuRW1falZ6mzF4ZCpPVeaycuVWRsk29TzwTC8ZopVHnZ4YDG6r+jWqtfKGj3BBhQSeecdPc/41s3Gn6TDOJkV4vUyt/QVJBLa2oY26gs3KnbjHv/hWFV2WhtSjzPUt6hK9w6WTHDEh5mHQAc4/pWT4kvS9tsYY85gBnrtFXHkjt7KWeY7c/wAWeT7fWuR1W7kurg/89CAqoO1c0IXZ2znyoZdfNZWzH+N5GH03CvcfheVn0KBX/uAZrwq7ZWuba3iOVhQISO5yST+Z/Svd/hlbumkWzIDtwAcCoxekUXhPiZo+J9JjeEkqCQOory+50lmnkbaQi17Zqe6RDHtyenFcp4l0qS2sowqnzJzjAFccJnZOnfU8N16E+aMfdBqexhzfWano8ez8doxXT+MdDNpbRSbcHOD69KxNMjElkjqf31uQ/vjsR9M16VOd4JHm1IWmdDBbk3AkLYd7ZQPqOD+uPzqJJS2pw3sLbJM7JU79uR+lPF8kkMbZAnQFlXseOR+P+HpWE83nXTSwkrKT26A+4/z3pNdRp9Bvjid5pwXOSp5BrlM1232CHW2iWZ1im3bWLNgZ+tGqeCmtLcupOeoJOc11RnzK5xSjyuxxQJ9KXJ9KnWE7yh4IOKmNk49TV2ZndHp3iDw9JHIDFj8qx/EDS6PpEKods9wWGQMEADn+dexSXWnyEltpP1ryP4uX0FzrkFtbYEdvBg4/vMcn9MVlBNvU0k10OTglY4d2LNgcsc1YS8IcjIWEEgsepxxgVUtVMpjjX7xwc/z/AJVek04zygRj90X4I9CM1Na1zWhdmfqOpS3TpHGCRnbFGOfbNQPAbRWUndchcuQciP8AHua10077DI7vxKcbTn7i/wCJqe8gt/3uRgKV347qB0/H+tZqa0SNnB/EzJ8KWP2zXrO2c4M7YHtwcV9ReGtFGlaYkhYI8aBlBGc183eG5PK8UaVMwCubpcgds8Yr6ytDG0GTxkAGsMXH3lfsdOCl7ja7mTpI33DyThG3EHB7c89Kk8UWUcypcMC21do2HAH5dKuP9ljkO9oQR/ex/Wqt9cO6cjbEOUXGCfc+n0rhS6Hfo3dHnHjqyjt/DV1c3WPkXCqONpYgD8fevH7MyWRDr/rIXxjrlT0z7da9L+NGp+VpFrYA/NcS+Yw/2V/+uR+VeY2kglEqNne6bgfbg/oc16NCFqfN3PMxM06vL2L+pKrOWt8qN2AM/cbrt+npWJDd7LwM/AJw/tzzWsJRvuIznaQhc/hg/wAgap6nYMzSTRjjKbvfIxn9K0i09GZSTWqIrm9xLPDkBXUZ+o/z+tPtNevrRGgE7tbtlfKkO4L9Aen4Vjkk7t3JAA/DvS4+YgnqcfjW8I2OWo7mrb2RkuWdDuVsMp9jWi1o2aybbUDbW8Jxk4I/I/8A16lOtt/cq22Z2Rp67rN9aakYkkO0j0rDvbiS4uGllJZn6mul8TWiG8mmI+4hNckTkD6U4u5LVjR01gkEr5xII8L7ZbH8s10OkajHaRQ71BBClgewUN/9auc02IuGQYBJDbuwAra+wLFBvmByuAsQ6ux+6v1Nc9d30OvDp7lLVL1rmUt081sgf3VzVQXPmwnJ+9KfxAAp2uRmxLLIQZ2HO3ovsPYdKow4TYoz8qEnPYmlSgtCq090W7GbZrNhIONtxGf/AB4V9dWaiS3jZGIyoPFfHZOyRHBwVZWz9DX1f4evhNpNs+7OUH8qyxqV02dGXt8rSNeWIOuJAH7/ADDIOKoXsZGckk1qRt5gJFZmt3cem6fdX85Hl2sTTMPXaM4/HpXDy32PQ57bnzj8WdT+2eL7mJTmOzAt1+o5b9SfyrmtNYmWH67T9Dn/ABqpfXMl1dSzzHdJI5kcn1Jyf51JaSeWyMMcGvY5OWHL2PBc+afM+pozMfOGMbZeM+4JyK0LG6Be0imwdxSI57FX4P5EVBYWpvLJgjATRPuUk9GByM+xq5cWaXMcU1uwjlOPvcbWB6H8ePyrnfY6l3OcdFN1eNj5RGwx74xVCRvkznnINXL3fDNOjKVYhuvoaz8bn9h0rqjscct9SdWzAAeoOaiOc0+E5LKem0/40YHY1TMzrfFd2VuZ4QfvLj9a5qMK2N2ePetrxeo/tVz/ALP9awlHFCQmy/BePFIpH8P3Rjge/ua17O6e4cu0hGzdh+6gD53+vYH3rAtlBuVU9PMUfpWzaQINPlPOdg7+rnP9K55pXOym7IoahJ9plluXUCJCI0+oHQfQf55qnDuG5m+81Wb1y90IjgRwKAij8CT9SahI+YGt4LqYTeths3+rIHXFfQ/hG9z4asJQTzCvX6V88kfLXtHgSRm8F2IJ6Rf1rlxyvFM68vlaTR6jo935lqzkg4OBXDfHTWPsXg4WaNiTUZRHj/pmvzN+u0fjW74cdjpaZPWSvJfj3dTS+KbS2d8wwWaMi+hZmLH9B+VcuGjzVF5HZiny0m0eYNy2aniIA56VGoFDj9z9WAr1TxTespxbpHdxH93INjqezY/kRUN5qGLhtrHY3JA9fX+lZ0bEMIwfkcbSP5VWLFlTJ9qxcFc6IzdjUkmjvIzHOQJx8u/19M/WseZPKdk5BBwQRginnkpz95CDTrljJaxSPy/3M+oHSriraET1Oisbfw4fBtxNNcXA1fzQFUIMg7TgAZ5Q85PXIH48sFkIyAcUtuMzRj1YCuktYY/JX5RWiVzGcuU//9k=" alt="FLOW"></div>
-    <div class="mb-title" id="cl-title">Mi espacio FlowSuite</div>
-    <div class="mb-sub" id="cl-sub">Introduce el PIN recibido por email al activar tu cuenta</div>
+    <div class="mb-ico"><img src="/assets/flow-avatar.jpg" alt="FLOW"></div>
+    <div class="mb-title" id="cl-title" data-i18n="cl_title">Mi espacio FlowSuite</div>
+    <div class="mb-sub" data-i18n="cl_sub"></div>
     <input class="mb-input" type="text" id="cl-pin" placeholder="ABC1234" maxlength="10" autocomplete="off" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="mb-btn mb-tl" onclick="doLogin()">Acceder a mi espacio</button>
-    <div class="mb-err" id="cl-err"></div>
-    <div class="mb-foot">¿Olvidaste el PIN? <span onclick="toast('Escribe a info@flowsuite.ch')">Recuperar →</span><br>Demo: <span onclick="document.getElementById('cl-pin').value='DEMO1234'">DEMO1234</span></div>
-    <span class="mb-cancel" onclick="closeModal('modal-client')">← Volver al sitio</span>
+    <button class="mb-btn mb-tl" onclick="doLogin()" data-i18n="cl_btn">Acceder a mi espacio</button>
+    <div class="mb-err" id="cl-err" role="alert"></div>
+    <div class="mb-foot"><span data-i18n="cl_forgot">¿Olvidaste el PIN?</span> <span onclick="toast(t('cl_recover_toast'))" data-i18n="cl_recover">Recuperar →</span><br><span data-i18n="cl_demo">Demo:</span> <span onclick="document.getElementById('cl-pin').value='DEMO1234'">DEMO1234</span></div>
+    <span class="mb-cancel" onclick="closeModal('modal-client')" data-i18n="cl_back">← Volver al sitio</span>
   </div>
 </div>
 
-<div id="modal-admin" class="modal-overlay">
+<div id="modal-admin" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="adm-title">
   <div class="modal-box">
     <div class="mb-ico">🔐</div>
-    <div class="mb-title">Administración FlowSuite</div>
-    <div class="mb-sub">Acceso exclusivo — Rodrigo Díaz Videla</div>
-    <input class="mb-input" type="password" id="adm-pw" placeholder="••••••••" style="letter-spacing:.1em;text-transform:none" onkeydown="if(event.key==='Enter')doAdmin()">
-    <button class="mb-btn mb-vi" onclick="doAdmin()">Entrar</button>
-    <div class="mb-err" id="adm-err"></div>
-    <span class="mb-cancel" onclick="closeModal('modal-admin')">← Volver</span>
+    <div class="mb-title" id="adm-title" data-i18n="adm_title">Administración FlowSuite</div>
+    <div class="mb-sub" data-i18n="adm_sub">Acceso restringido</div>
+    <input class="mb-input" type="password" id="adm-pw" placeholder="••••••••" autocomplete="current-password" maxlength="256" style="letter-spacing:.1em;text-transform:none" onkeydown="if(event.key==='Enter')doAdmin()">
+    <button class="mb-btn mb-vi" id="adm-btn" onclick="doAdmin()" data-i18n="adm_btn">Entrar</button>
+    <div class="mb-err" id="adm-err" role="alert"></div>
+    <span class="mb-cancel" onclick="closeModal('modal-admin')" data-i18n="adm_back">← Volver</span>
   </div>
 </div>
 
-<div id="legal-modal">
+<div id="legal-modal" role="dialog" aria-modal="true">
   <div class="legal-box">
-    <button class="legal-close" onclick="closeLegal()">✕</button>
-    <div style="display:flex;background:var(--s2);border-radius:var(--rs);padding:3px;margin-bottom:22px;flex-wrap:wrap;gap:4px">
-      <button class="lt on" onclick="lTab('privacy',this)">Privacidad</button>
-      <button class="lt" onclick="lTab('terms',this)">Condiciones</button>
-      <button class="lt" onclick="lTab('dpa',this)">DPA</button>
-      <button class="lt" onclick="lTab('cookies',this)">Cookies</button>
-    </div>
-    <div id="legal-content" style="font-size:13px;color:var(--t2);line-height:1.85"></div>
+    <button class="legal-close" onclick="closeLegal()" aria-label="Close">✕</button>
+    <div id="legal-tabs" style="display:flex;background:var(--s2);border-radius:var(--rs);padding:3px;margin-bottom:22px;flex-wrap:wrap;gap:4px"></div>
+    <div id="legal-content" class="legal-content"></div>
   </div>
 </div>
-<div class="toast" id="toast-el"></div>
+<div class="toast" id="toast-el" role="status" aria-live="polite"></div>
 <!-- CLIENT PANEL -->
 <div class="fsp" id="client-panel">
   <div class="fsp-hd">
     <button class="fsp-back" onclick="closePanel('client-panel')">←</button>
     <div class="fsp-title" id="cp-title">Mi espacio FlowSuite</div>
     <span class="badge-tl" id="cp-plan">Beta</span>
-    <button class="btn btn-teal" style="font-size:12px;padding:7px 14px;margin-left:8px" onclick="openBuilder()">🎨 Builder Pro</button>
   </div>
   <div class="fsp-body">
     <aside class="sb">
@@ -905,9 +826,9 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
         <div class="sni on" onclick="cpNav('dash',this)" data-tip="Panel">📊</div>
         <div class="sni" onclick="cpNav('web',this)" data-tip="Mi web">🌐</div>
         <div class="sni" onclick="cpNav('agent',this)" data-tip="Mi agente">🤖</div>
-        <div class="sni" onclick="cpNav('content',this)" data-tip="Contenido IA">✨</div>
+        <div class="sni" onclick="cpNav('content',this)" data-tip="Contenido">✨</div>
         <div class="sni" onclick="cpNav('kb',this)" data-tip="Base conocimiento">📚</div>
-        <div class="sni" onclick="cpNav('changes',this)" data-tip="Editar con IA">✍️</div>
+        <div class="sni" onclick="cpNav('changes',this)" data-tip="Solicitar cambios">✍️</div>
         <div class="sni" onclick="cpNav('int',this)" data-tip="Integraciones">🔌</div>
         <div class="sni" onclick="cpNav('settings',this)" data-tip="Ajustes">⚙️</div>
       </nav>
@@ -928,7 +849,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
           <div class="pc">
             <div style="display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--bd)">
               <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--tlb)"><img id="ag-av-dash" src="" style="width:100%;height:100%;object-fit:cover"></div>
-              <div><div style="font-size:14px;font-weight:800;font-family:var(--serif)" id="cp-ag-nm">Tu agente FlowSuite</div><div style="font-size:12px;color:var(--teal)">Activo · En línea</div></div>
+              <div><div style="font-size:14px;font-weight:800;font-family:var(--serif)" id="cp-ag-nm">Tu agente FlowSuite</div><div style="font-size:12px;color:var(--t2)">Estado: pendiente de activación por FlowSuite</div></div>
               <button class="pbtn" style="margin-left:auto;font-size:12px;padding:7px 14px" onclick="cpNav('agent',null)">Personalizar</button>
             </div>
             <div style="padding:12px 18px;font-size:13px;color:var(--t2)" id="cp-biz-desc">Configura tu negocio para personalizar tu agente.</div>
@@ -946,34 +867,9 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
               <button class="pbtn" onclick="saveAllSections()">💾 Guardar todo</button>
             </div>
           </div>
-          <!-- UPLOAD LOGO + FOTOS -->
-          <div class="pc" style="margin-bottom:14px">
-            <div class="pc-hd"><span class="pc-hd-t">📸 Logo y fotos</span><button class="pbtn" onclick="saveMedia()">Guardar</button></div>
-            <div style="padding:14px 18px">
-              <div class="pfg">
-                <label>Logo de tu negocio</label>
-                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-                  <div id="logo-preview" style="width:72px;height:72px;border-radius:12px;background:var(--s2);border:2px dashed var(--bd2);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;overflow:hidden;flex-shrink:0" onclick="document.getElementById('logo-upload').click()">🏪</div>
-                  <div>
-                    <button class="pbtn" onclick="document.getElementById('logo-upload').click()" style="margin-bottom:6px">📁 Cargar logo desde archivo</button>
-                    <div style="font-size:11.5px;color:var(--t2)">PNG, JPG, SVG · Máx 5MB · Fondo transparente recomendado</div>
-                  </div>
-                  <input id="logo-upload" type="file" accept="image/*" style="display:none" onchange="handleLogoUpload(this)">
-                </div>
-              </div>
-              <div class="pfg">
-                <label>Fotos de tu negocio / portafolio</label>
-                <div id="photos-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px"></div>
-                <button class="pbtn" onclick="document.getElementById('photos-upload').click()">📁 Añadir fotos desde archivo</button>
-                <span style="font-size:11.5px;color:var(--t2);margin-left:10px">JPG, PNG, WebP · Máx 10MB por foto</span>
-                <input id="photos-upload" type="file" accept="image/*" multiple style="display:none" onchange="handlePhotosUpload(this)">
-              </div>
-            </div>
-          </div>
-
           <div id="sections-editor"></div>
           <div style="margin-top:16px;padding:14px;background:var(--tla);border:1px solid var(--tlb);border-radius:10px;font-size:13px">
-            💡 <strong>Truco:</strong> usa el <button onclick="cpNav('changes',null)" style="color:var(--teal);background:none;border:none;cursor:pointer;font-weight:700;font-size:13px">Editor IA ✍️</button> para hacer cambios en lenguaje natural: "cambia el título del hero por…"
+            💡 <strong>Truco:</strong> usa <button onclick="cpNav('changes',null)" style="color:var(--teal);background:none;border:none;cursor:pointer;font-weight:700;font-size:13px">Solicitar cambios ✍️</button> para pedir cambios con tus palabras: "cambia el título por…"
           </div>
         </div>
 
@@ -1035,7 +931,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
         <!-- CONTENT IA -->
         <div class="ppanel" id="cpp-content">
           <div class="pc">
-            <div class="pc-hd"><span class="pc-hd-t">✨ Generador de contenido IA</span><button class="pbtn" onclick="generateContent()">Generar</button></div>
+            <div class="pc-hd"><span class="pc-hd-t">✨ Plantillas de contenido</span><button class="pbtn" onclick="generateContent()">Generar borrador</button></div>
             <div style="padding:16px 18px">
               <div class="pfg"><label>¿Qué quieres comunicar?</label>
                 <textarea id="ct-prompt" class="nl-ta" rows="3" placeholder="Ej: Nuevo servicio de sesión fotográfica estudio · Promo verano yoga · Inauguración estudio grabación…"></textarea>
@@ -1051,7 +947,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
                 </div>
               </div>
               <div id="ct-result" class="nl-result">
-                <div style="font-size:10px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px">✅ Contenido generado</div>
+                <div style="font-size:10px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.09em;margin-bottom:8px">✅ Borrador generado (revísalo antes de publicar)</div>
                 <div id="ct-text" style="font-size:13.5px;line-height:1.8;white-space:pre-wrap"></div>
                 <div style="display:flex;gap:8px;margin-top:12px">
                   <button class="pbtn" onclick="copyContent()">📋 Copiar</button>
@@ -1087,16 +983,16 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
         <!-- CAMBIOS IA -->
         <div class="ppanel" id="cpp-changes">
           <div class="pc">
-            <div class="pc-hd"><span class="pc-hd-t">✍️ Editor con IA</span></div>
+            <div class="pc-hd"><span class="pc-hd-t">✍️ Solicitar cambios</span></div>
             <div style="padding:16px 18px">
-              <p style="font-size:13px;color:var(--t2);margin-bottom:12px">Describe lo que quieres cambiar. La IA lo aplica automáticamente.</p>
+              <p style="font-size:13px;color:var(--t2);margin-bottom:12px">Describe lo que quieres cambiar. Lo registramos y lo aplicamos en tu web o tu agente.</p>
               <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px" id="nl-examples"></div>
               <textarea class="nl-ta" id="nl-inp" rows="4" placeholder="Ej: 'Cambia el título principal por…' · 'Añade que estamos cerrados los lunes' · 'El precio del servicio X es…'"></textarea>
               <div style="display:flex;gap:10px;align-items:center">
-                <button class="pbtn" id="nl-btn" onclick="applyNL()">Aplicar con IA</button>
+                <button class="pbtn" id="nl-btn" onclick="applyNL()">Registrar cambio</button>
                 <span id="nl-spin" style="display:none;font-size:13px;color:var(--t2)">⏳ Procesando…</span>
               </div>
-              <div class="nl-result" id="nl-result"><div style="font-size:10px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px">✅ Cambio aplicado</div><div id="nl-res-txt" style="font-size:13px;line-height:1.65"></div></div>
+              <div class="nl-result" id="nl-result"><div style="font-size:10px;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px">✅ Cambio registrado</div><div id="nl-res-txt" style="font-size:13px;line-height:1.65"></div></div>
             </div>
           </div>
           <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Historial de cambios</span></div><div id="chg-hist" style="padding:0 18px"></div></div>
@@ -1104,7 +1000,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 
         <!-- INTEGRACIONES -->
         <div class="ppanel" id="cpp-int">
-          <p style="font-size:13px;color:var(--t2);margin-bottom:16px">Conecta todos tus canales y herramientas a FlowSuite.</p>
+          <p style="font-size:13px;color:var(--t2);margin-bottom:16px">Marca los canales que quieres conectar. Los configuramos contigo; hasta entonces aparecen como «Solicitado».</p>
           <div id="int-grid-cp"></div>
         </div>
 
@@ -1143,6 +1039,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
     <button class="fsp-back" onclick="closePanel('admin-panel')">←</button>
     <div class="fsp-title">Administración FlowSuite</div>
     <span class="badge-vi">🔐 Admin · Rodrigo</span>
+    <button class="pbtn-g" style="margin-left:8px;font-size:12px" onclick="adminLogout()">⏏ Cerrar sesión</button>
   </div>
   <div class="fsp-body">
     <aside class="sb">
@@ -1151,7 +1048,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
         <div class="sni adm on" onclick="apNav('dash',this)" data-tip="Dashboard">📊</div>
         <div class="sni adm" onclick="apNav('clients',this)" data-tip="Clientes">👥</div>
         <div class="sni adm" onclick="apNav('agents-admin',this)" data-tip="Agentes">🤖</div>
-        <div class="sni adm" onclick="apNav('builder-admin',this)" data-tip="Builder Pro">🎨</div>
+        <div class="sni adm" onclick="apNav('builder-admin',this)" data-tip="Builder">🎨</div>
         <div class="sni adm" onclick="apNav('plans',this)" data-tip="Planes">💎</div>
         <div class="sni adm" onclick="apNav('channels-admin',this)" data-tip="Canales">📡</div>
         <div class="sni adm" onclick="apNav('config',this)" data-tip="Config">⚙️</div>
@@ -1170,11 +1067,9 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
           </div>
           <div style="display:grid;grid-template-columns:1fr 280px;gap:14px">
             <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Actividad reciente</span></div><div id="a-feed"></div></div>
-            <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Stack</span></div><div style="padding:10px 14px">
-              <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><span>ElevenLabs</span><span class="tg tg-ok">Activo</span></div>
-              <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><span>Make.com</span><span class="tg tg-ok">Activo</span></div>
-              <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><span>Vercel</span><span class="tg tg-ok">Activo</span></div>
-              <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13px"><span>Twilio</span><span class="tg tg-w">Trial</span></div>
+            <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Stack</span></div><div style="padding:10px 14px;font-size:13px;line-height:2">
+              ElevenLabs · Make.com · Vercel · Twilio · Snowie.ai
+              <div style="font-size:11.5px;color:var(--t2);line-height:1.6;margin-top:6px">El estado real de cada servicio se consulta en su propio panel.</div>
             </div></div>
           </div>
         </div>
@@ -1207,44 +1102,67 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
           <div id="admin-agent-roster"></div>
         </div>
         <div class="ppanel" id="app-builder-admin">
-          <div style="margin-bottom:14px"><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Builder Pro</div>
-            <div style="font-size:13px;color:var(--t2)">Genera una demo personalizada para un prospecto.</div></div>
-          <div id="builder-admin-content"></div>
+          <div style="margin-bottom:14px"><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Builder — demo para prospectos</div>
+            <div style="font-size:13px;color:var(--t2)">Genera un enlace de demo personalizada (<code>/demo</code>) y el mensaje de WhatsApp para enviarlo. Solo disponible en este panel.</div></div>
+          <div class="pc">
+            <div class="pc-hd"><span class="pc-hd-t">Datos del negocio</span></div>
+            <div style="padding:14px 18px">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <div class="pfg"><label for="bd-name">Nombre *</label><input id="bd-name" type="text" maxlength="80" placeholder="Bar du Lac"></div>
+                <div class="pfg"><label for="bd-sector">Sector *</label><select id="bd-sector"></select></div>
+                <div class="pfg"><label for="bd-city">Ciudad</label><input id="bd-city" type="text" maxlength="60" placeholder="Lausanne"></div>
+                <div class="pfg"><label for="bd-tel">WhatsApp del prospecto</label><input id="bd-tel" type="tel" maxlength="25" placeholder="+41 79 000 00 00"></div>
+                <div class="pfg"><label for="bd-lang">Idioma de la demo</label>
+                  <select id="bd-lang"><option value="fr">Français</option><option value="de">Deutsch</option><option value="it">Italiano</option><option value="en">English</option><option value="es">Español</option></select></div>
+                <div class="pfg"><label for="bd-color">Color principal</label><input id="bd-color" type="color" value="#00d4aa" style="height:38px;padding:2px"></div>
+                <div class="pfg"><label for="bd-web">Web (https://…)</label><input id="bd-web" type="url" maxlength="200" placeholder="https://negocio.ch"></div>
+                <div class="pfg"><label for="bd-ig">Instagram</label><input id="bd-ig" type="text" maxlength="60" placeholder="@negocio"></div>
+              </div>
+              <div class="pfg"><label for="bd-slogan">Eslogan (opcional)</label><input id="bd-slogan" type="text" maxlength="140" placeholder="La terraza con vistas al lago"></div>
+              <div class="pfg"><label for="bd-logo">URL del logo (https://…, opcional)</label><input id="bd-logo" type="url" maxlength="300" placeholder="https://…/logo.png"></div>
+              <div class="pfg"><label for="bd-services">Servicios clave (uno por línea)</label><textarea id="bd-services" rows="3" maxlength="800" placeholder="Menú del día&#10;Terraza&#10;Reservas online"></textarea></div>
+              <div class="pfg"><label for="bd-note">Nota interna (no se envía al prospecto)</label><textarea id="bd-note" rows="2" maxlength="500" placeholder="Contexto para ti: quién es, qué le preocupa…"></textarea></div>
+              <div class="ferr" id="bd-err" role="alert"></div>
+              <button class="pbtn" id="bd-gen" onclick="builderGenerate()">Generar demo personalizada</button>
+            </div>
+          </div>
+          <div class="pc" id="bd-out" style="display:none">
+            <div class="pc-hd"><span class="pc-hd-t">Demo lista para enviar</span></div>
+            <div style="padding:14px 18px">
+              <div class="pfg"><label>Enlace de la demo</label><div id="bd-url" style="font-family:monospace;font-size:12px;word-break:break-all;background:rgba(2,3,13,.6);border:1px solid var(--bd2);border-radius:8px;padding:10px"></div></div>
+              <div class="pfg"><label>Mensaje de WhatsApp</label><div id="bd-wa" style="white-space:pre-wrap;font-size:13px;line-height:1.6;background:rgba(2,3,13,.6);border:1px solid var(--bd2);border-radius:8px;padding:10px"></div></div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="pbtn" onclick="cpCopy(builderState.url)">📋 Copiar enlace</button>
+                <button class="pbtn-g" onclick="cpCopy(builderState.wa)">📋 Copiar mensaje</button>
+                <button class="pbtn-g" onclick="builderSendWA()">💬 Abrir WhatsApp</button>
+                <button class="pbtn-g" onclick="window.open(builderState.url,'_blank','noopener')">👁 Ver demo</button>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="ppanel" id="app-plans">
-          <!-- PLANES MENSUALES -->
-          <div style="display:flex;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px">
-            <div><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Planes mensuales</div>
-              <div style="font-size:13px;color:var(--t2)">Los cambios se publican en la landing al guardar.</div></div>
-            <button class="pbtn" onclick="savePlansAdmin()">Guardar planes</button>
+          <div style="display:flex;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+            <div><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Planes y tarifas</div>
+              <div style="font-size:13px;color:var(--t2)">Vista previa local: el precio se guarda en este navegador. Para publicarlo para todos, actualiza <code>PLAN_PRICES</code> en <code>index.html</code>.</div></div>
+            <button class="pbtn" onclick="savePlansAdmin()">Guardar</button>
           </div>
-          <div id="plan-editor" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px"></div>
-
-          <!-- PAQUETES DE RECARGA -->
-          <div style="border-top:1px solid var(--bd);padding-top:20px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px">
-            <div><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Paquetes de recarga</div>
-              <div style="font-size:13px;color:var(--t2)">Minutos adicionales que el cliente activa desde su panel.</div></div>
-            <button class="pbtn" onclick="savePacksAdmin()">Guardar packs</button>
-          </div>
-          <div id="packs-admin-editor" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"></div>
-          </div>
+          <div id="plan-editor" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"></div>
         </div>
         <div class="ppanel" id="app-channels-admin">
-          <p style="font-size:13px;color:var(--t2);margin-bottom:14px">26 canales disponibles. Activa y configura cada uno.</p>
+          <p style="font-size:13px;color:var(--t2);margin-bottom:14px">Canales que ofreces a los clientes (preferencia guardada en este navegador).</p>
           <div id="channels-admin-grid"></div>
         </div>
         <div class="ppanel" id="app-config">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
             <div class="pc"><div class="pc-hd"><span class="pc-hd-t">FlowSuite Core</span></div><div style="padding:0 14px">
-              <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><div><div>flowsuite.ch</div><div style="font-size:10.5px;color:var(--t2)">Infomaniak · Suiza</div></div><span class="tg tg-ok">Activo</span></div>
+              <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><div><div>flowsuite.ch</div><div style="font-size:10.5px;color:var(--t2)">Dominio · Infomaniak</div></div></div>
               <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><div><div>WhatsApp CH</div><div style="font-size:10.5px;color:var(--t2)">+41 77 941 35 32</div></div><button class="pbtn-g" onclick="cpCopy('+41779413532')">Copiar</button></div>
               <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13px"><div><div>WhatsApp ES</div><div style="font-size:10.5px;color:var(--t2)">+34 634 13 44 66</div></div><button class="pbtn-g" onclick="cpCopy('+34634134466')">Copiar</button></div>
             </div></div>
-            <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Agente FLOW</span></div><div style="padding:0 14px">
-              <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><div>Motor vocal</div><span class="tg tg-tl">ElevenLabs</span></div>
-              <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bd);font-size:13px"><div>Webhook Make</div><span class="tg tg-ok">Activo</span></div>
-              <div style="display:flex;justify-content:space-between;padding:9px 0;font-size:13px"><div>KB versión</div><span class="tg tg-tl">v2.1</span></div>
+            <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Servidor (Vercel)</span></div><div style="padding:10px 14px;font-size:12.5px;color:var(--t2);line-height:1.7">
+              Variables de entorno necesarias (Vercel → Settings → Environment Variables):<br>
+              <code>ADMIN_PASSWORD</code> · <code>ADMIN_SESSION_SECRET</code> · <code>MAKE_WEBHOOK_URL</code> · <code>MAKE_WEBHOOK_SECRET</code><br>
+              Ver <code>.env.example</code> en el repositorio.
             </div></div>
           </div>
         </div>
@@ -1252,1259 +1170,9 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
     </div>
   </div>
 </div>
-<script>
-// ══════ CONST & STATE ══════
-const ADMIN_PWD = 'flowsuite2026';
-const S = 'fs_';
-let curClient = null;
-let favOpen = true;
-let selTone = 'profesional', selVoice = 'Iris Warm', selCtf = 'post_ig';
-let kbEntries = [], changes = [];
-let _toast;
-
-// ══════ SECTORS DATA ══════
-const SECTOR_CATS = [
-  { cat:'🎨 Creativos & Artistas', color:'var(--coral)', border:'var(--cob)',
-    items:[
-      {ico:'🎸',nm:'Músico / Banda / DJ'},
-      {ico:'🎙️',nm:'Estudio de Grabación',new:true},
-      {ico:'📷',nm:'Fotografía / Videografía'},
-      {ico:'💉',nm:'Tatuador / Body Art',new:true},
-      {ico:'💎',nm:'Joyería de Diseño',new:true},
-      {ico:'🖼️',nm:'Artista Visual / Ilustrador'},
-      {ico:'🎨',nm:'Diseño Gráfico / UX-UI'},
-      {ico:'✍️',nm:'Escritor / Copywriter'},
-      {ico:'🏺',nm:'Ceramista / Artesano',new:true},
-      {ico:'🎬',nm:'Podcaster / YouTuber',new:true},
-    ]},
-  { cat:'🧘 Bienestar & Terapias', color:'var(--green)', border:'rgba(34,197,94,.35)',
-    items:[
-      {ico:'🧘',nm:'Yoga / Meditación / Mindfulness'},
-      {ico:'🌿',nm:'Terapias Alternativas (Reiki, Acupuntura…)',new:true},
-      {ico:'🌱',nm:'Naturopatía / Herbalista',new:true},
-      {ico:'⭐',nm:'Life Coach / Counselor'},
-      {ico:'🥋',nm:'Artes Marciales / Boxeo / MMA'},
-      {ico:'💪',nm:'Fitness / Crossfit / Personal Trainer'},
-      {ico:'🎶',nm:'Clases de Música (guitarra, piano…)',new:true},
-      {ico:'💃',nm:'Escuela de Danza',new:true},
-    ]},
-  { cat:'🏥 Salud & Medicina', color:'var(--blue)', border:'rgba(59,130,246,.35)',
-    items:[
-      {ico:'🏥',nm:'Clínica / Médico / Dentista'},
-      {ico:'🦴',nm:'Fisioterapeuta / Osteópata'},
-      {ico:'🧠',nm:'Psicólogo / Terapeuta'},
-      {ico:'💊',nm:'Farmacia / Parafarmacia'},
-    ]},
-  { cat:'🍽 Gastronomía & Hostelería', color:'var(--gold)', border:'var(--gob)',
-    items:[
-      {ico:'🍽️',nm:'Restaurante / Bar / Cafetería'},
-      {ico:'🏨',nm:'Hotel / B&B / Airbnb'},
-      {ico:'🚐',nm:'Catering / Food Truck'},
-      {ico:'🍷',nm:'Bodega / Catas de vino'},
-    ]},
-  { cat:'💼 Servicios & Digital', color:'var(--vi)', border:'var(--vib)',
-    items:[
-      {ico:'⚖️',nm:'Abogado / Notario / Asesor'},
-      {ico:'📊',nm:'Contable / Gestoría'},
-      {ico:'🏠',nm:'Inmobiliaria / Agencia'},
-      {ico:'🚀',nm:'Startup / Agencia Digital'},
-      {ico:'💻',nm:'Freelancer Digital'},
-      {ico:'✂️',nm:'Salón de Peluquería / Estética'},
-      {ico:'👗',nm:'Boutique / Moda / Stylist'},
-      {ico:'🔧',nm:'Taller / Oficios'},
-    ]},
-];
-
-const AGENTS_DATA = [
-  {id:'flow',    ico:'🤖',nm:'FLOW',    role:'Primer contacto', desc:'Primera atención, cualificación de leads y agenda 24/7 en 5 idiomas.',  st:'active'},
-  {id:'setter',  ico:'🎯',nm:'SETTER',  role:'Setter',          desc:'Prospección, cualificación BANT y reserva de demos con el closer.',      st:'active'},
-  {id:'closer',  ico:'🏆',nm:'CLOSER',  role:'Closer',          desc:'Demo, venta de valor, manejo de objeciones y cierre de contrato.',       st:'active'},
-  {id:'booking', ico:'📅',nm:'BOOKING', role:'Reservas',        desc:'Gestión de citas, agenda y recordatorios automáticos.',                  st:'active'},
-  {id:'support', ico:'💎',nm:'SUPPORT', role:'Soporte',         desc:'Atención al cliente y resolución de dudas post-venta.',                  st:'pending'},
-  {id:'content', ico:'✨',nm:'CONTENT', role:'Contenido',       desc:'Genera posts, reels y copy adaptados a tu sector.',                      st:'pending'},
-  {id:'store',   ico:'🛒',nm:'STORE',   role:'Tienda',          desc:'Asistente para tu tienda online, pedidos y pagos.',                      st:'pending'},
-  {id:'hunter',  ico:'🔍',nm:'HUNTER',  role:'Prospección',     desc:'Outbound, seguimiento de leads fríos y reactivación.',                   st:'pending'},
-];
-
-const ALL_CHANNELS = [
-  {id:'wa',   nm:'WhatsApp Biz', ico:'💬'},{id:'tg',   nm:'Telegram',    ico:'✈️'},
-  {id:'fbm',  nm:'Messenger',   ico:'💙'},{id:'sms',  nm:'SMS / Twilio', ico:'📨'},
-  {id:'ig',   nm:'Instagram',   ico:'📸'},{id:'fb',   nm:'Facebook',     ico:'👤'},
-  {id:'tt',   nm:'TikTok',      ico:'🎵'},{id:'yt',   nm:'YouTube',      ico:'▶️'},
-  {id:'li',   nm:'LinkedIn',    ico:'💼'},{id:'x',    nm:'X / Twitter',  ico:'𝕏'},
-  {id:'pin',  nm:'Pinterest',   ico:'📌'},{id:'th',   nm:'Threads',      ico:'🔗'},
-  {id:'gm',   nm:'Gmail',       ico:'📧'},{id:'ot',   nm:'Outlook',      ico:'📮'},
-  {id:'gc',   nm:'G. Calendar', ico:'📅'},{id:'gb',   nm:'Google Biz',   ico:'🗺️'},
-  {id:'hs',   nm:'HubSpot',     ico:'🔶'},{id:'at',   nm:'Airtable',     ico:'📋'},
-  {id:'st',   nm:'Stripe',      ico:'💳'},{id:'sp',   nm:'Shopify',      ico:'🛒'},
-  {id:'mk',   nm:'Make.com',    ico:'⚡'},{id:'zp',   nm:'Zapier',       ico:'🔗'},
-  {id:'tw',   nm:'Twint',       ico:'🇨🇭'},{id:'pp',   nm:'PayPal',       ico:'💰'},
-  {id:'ca',   nm:'Calendly',    ico:'🗓️'},{id:'zo',   nm:'Zoom',         ico:'📹'},
-];
-const DEFAULT_CH = new Set(['wa','ig','fb','gc','gm','mk']);
-
-// ══════ SECTOR TICKER ══════
-const TICKER_ITEMS = [
-  {ico:'🎸',nm:'Músico'},{ico:'💉',nm:'Tatuador'},{ico:'🧘',nm:'Yoga'},
-  {ico:'📷',nm:'Fotógrafo'},{ico:'🍽️',nm:'Restaurante'},{ico:'🌿',nm:'Terapeuta'},
-  {ico:'💎',nm:'Joyero'},{ico:'🎙️',nm:'Estudio'},{ico:'🖼️',nm:'Artista'},
-  {ico:'🏥',nm:'Clínica'},{ico:'💃',nm:'Danza'},{ico:'🎶',nm:'Música'},
-  {ico:'🏠',nm:'Inmobiliaria'},{ico:'✂️',nm:'Peluquería'},{ico:'🔧',nm:'Taller'},
-];
-
-function renderTicker() {
-  const el = document.getElementById('sector-ticker');
-  if (!el) return;
-  el.innerHTML = TICKER_ITEMS.map((t, i) =>
-    `<span class="sector-badge" style="color:var(--teal);border-color:var(--tlb);animation-delay:${i*0.05}s">
-      ${t.ico} ${t.nm}</span>`
-  ).join('');
-}
-
-// ══════ SECTORS GRID ══════
-function renderSectors() {
-  const el = document.getElementById('sectors-cats');
-  if (!el) return;
-  el.innerHTML = SECTOR_CATS.map(cat =>
-    `<div><div class="sc-name" style="color:${cat.color}">${cat.cat}</div>
-     <div class="sc-grid">${cat.items.map(item =>
-       `<div class="sc-chip" style="border-color:${cat.border};color:${cat.color}">
-         <span class="sc-ico">${item.ico}</span>${item.nm}
-         ${item.new ? `<span class="new-tag" style="background:${cat.color}22;color:${cat.color}">Nuevo</span>` : ''}
-       </div>`
-     ).join('')}</div></div>`
-  ).join('');
-}
-
-// ══════ AGENTS GRID ══════
-function renderAgents() {
-  const el = document.getElementById('agents-grid');
-  if (!el) return;
-  const colors = ['var(--teal)','var(--vi)','var(--coral)','var(--gold)','var(--blue)','var(--green)'];
-  const bgs = ['var(--tla)','var(--via)','var(--coa)','var(--goa)','var(--bla)','var(--gra)'];
-  const borders = ['var(--tlb)','var(--vib)','var(--cob)','var(--gob)','rgba(59,130,246,.35)','rgba(34,197,94,.35)'];
-  el.innerHTML = AGENTS_DATA.map((a, i) =>
-    `<div class="card agent-card" style="border-color:${borders[i%borders.length]}">
-      <div style="font-size:28px;margin-bottom:9px">${a.ico}</div>
-      <div style="font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:${colors[i%colors.length]};margin-bottom:4px">${a.role}</div>
-      <div class="ac-nm">${a.nm}</div>
-      <div class="ac-desc">${a.desc}</div>
-      <span class="ac-badge tg ${a.st==='active'?'tg-ok':'tg-w'}" style="position:absolute;top:14px;right:14px">${a.st==='active'?'Activo':'Próximos'}</span>
-    </div>`
-  ).join('');
-}
-
-// ══════ PLANS ══════
-function getPlans(){
-  const s = localStorage.getItem(S+'plans');
-  if(s) return JSON.parse(s);
-  return {
-    voice:{nm:'Voice',desc:'Para empezar a automatizar',note:"20 min vocales · Setup único 99 CHF",chf:49,badge:'',
-      feats:["Agente vocal IA 24/7 en 5 idiomas","Chat web y WhatsApp automáticos","Captación de leads automática","Tableau de bord y CRM básico","Configuración guiada en 48h"],
-      overage:"Desbordamiento: 0,22 CHF/min voz"},
-    suite:{nm:'Suite',desc:'Crecimiento y agenda llena',note:"150 min vocales · Setup incluido",chf:199,badge:'Recomendado en beta',
-      feats:["Todo de Voice","<strong>150 min</strong> vocales incluidas","Gestión de citas y recordatorios SMS","Contenido para redes con avatar IA","Integraciones CRM y pagos"],
-      overage:"Voz: 0,22 CHF/min · Vídeo: 0,30 CHF/min"},
-    elite:{nm:'Elite',desc:'Operación completa sin límites',note:"Minutos amplios · Soporte dedicado",chf:599,badge:'',
-      feats:["Todo de Suite","<strong>300 min</strong> vocales + <strong>30 min</strong> vídeo IA","Multi-sedes y multi-equipo","Onboarding dedicado y soporte prioritario","Automatizaciones a medida"],
-      overage:"Voz: 0,22 CHF/min · Vídeo: 0,30 CHF/min"}
-  };
-}
-function renderPlans(){
-  const p = getPlans();
-  const el = document.getElementById('plans-grid');
-  if (!el) return;
-  el.innerHTML = Object.entries(p).map(([k,v]) =>
-    `<div class="plan ${v.badge?'hi':''}">
-      ${v.badge?`<div class="plan-badge">${v.badge}</div>`:''}
-      <div class="plan-nm">${v.nm}</div>
-      <div class="plan-desc">${v.desc}</div>
-      <div class="plan-price">${v.chf}<small> CHF</small></div>
-      <div class="plan-note">${v.note}</div>
-      <ul class="plan-feats">${v.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
-      <div style="font-size:11px;color:var(--t2);background:var(--tla);border:1px solid var(--tlb);border-radius:7px;padding:7px 11px;margin-bottom:14px">⏱ ${v.overage}</div>
-      <button class="plan-btn ${v.badge?'tl':'gh'}" onclick="goTo('#contacto')">${v.badge?'Empezar el ensayo gratuito':'Elegir '+v.nm}</button>
-    </div>`
-  ).join('');
-}
-
-// ══════ FAQ DINÁMICA ══════
-function renderFAQ(faqArr){
-  const el = document.getElementById('faq-container');
-  if(!el) return;
-  if(!faqArr||!faqArr.length){
-    // fallback español
-    const L = LANG_MAP[_currentLang]||LANG_MAP['es'];
-    faqArr = L.faq||[];
-  }
-  el.innerHTML = faqArr.map(([q,a])=>
-    `<details class="qa"><summary>${q}</summary><div class="qa-a">${a}</div></details>`
-  ).join('');
-  // re-bind accordion
-  document.querySelectorAll('details.qa').forEach(d=>{
-    d.addEventListener('toggle',()=>{
-      if(d.open) document.querySelectorAll('details.qa').forEach(o=>{if(o!==d)o.open=false;});
-    });
-  });
-}
-
-// ══════ PAQUETES DE RECARGA ══════
-function getPacksData(){
-  const saved = localStorage.getItem(S+'packs');
-  if(saved) return JSON.parse(saved);
-  return {
-    voz100:  {nm:'Pack Voz 100',  ico:'🎙️', min:100, type:'voice',  chf:22,  badge:'',       desc:'Minutos de voz adicionales para picos de demanda',          best:'Picos esporádicos'},
-    voz300:  {nm:'Pack Voz 300',  ico:'🎙️', min:300, type:'voice',  chf:60,  badge:'Popular', desc:'El pack más elegido por negocios en crecimiento',           best:'Crecimiento activo'},
-    voz500:  {nm:'Pack Voz 500',  ico:'🎙️', min:500, type:'voice',  chf:90,  badge:'',       desc:'Alto volumen de llamadas asegurado sin sorpresas',           best:'Alto volumen'},
-    video30: {nm:'Pack Vídeo 30', ico:'🎬', min:30,  type:'video',  chf:15,  badge:'',       desc:'Minutos de generación de vídeo IA para creadores',          best:'Creadores de contenido'},
-    video100:{nm:'Pack Vídeo 100',ico:'🎬', min:100, type:'video',  chf:40,  badge:'',       desc:'Producción de vídeo IA frecuente para tu negocio',          best:'Producción regular'},
-    multi:   {nm:'Pack Multi',    ico:'⚡', min:null, type:'combo', chf:75,  badge:'Mejor €/min',desc:'300 min voz + 50 min vídeo. El mejor ratio precio/minuto', best:'Todo en uno'},
-  };
-}
-
-function renderPacks(){
-  const packs = getPacksData();
-  const el = document.getElementById('packs-grid');
-  if(!el) return;
-  el.innerHTML = Object.entries(packs).map(([k,v])=>
-    `<div class="plan" style="${v.badge?'border-color:var(--tlb)':''};position:relative">
-      ${v.badge?`<div class="plan-badge">${v.badge}</div>`:''}
-      <div style="font-size:26px;margin-bottom:8px">${v.ico}</div>
-      <div class="plan-nm">${v.nm}</div>
-      <div class="plan-desc">${v.desc}</div>
-      <div class="plan-price">${v.chf}<small> CHF</small></div>
-      <div class="plan-note">${v.min?v.min+' min '+v.type:'300 min voz + 50 min vídeo'}</div>
-      <div style="font-size:11.5px;color:var(--teal);background:var(--tla);border:1px solid var(--tlb);border-radius:7px;padding:6px 11px;margin-bottom:14px;margin-top:auto">✓ ${v.best}</div>
-      <button class="plan-btn ${v.badge?'tl':'gh'}" onclick="goTo('#contacto')">Activar pack</button>
-    </div>`
-  ).join('');
-}
-
-// ══════ HERO CHAT ══════
-const DEMO_SECTORS = [
-  {tab:'🎸 Músico', msgs:[
-    {b:"¡Hola! Soy el asistente de Javier Mora Music. ¿Buscas clases, grabación o contratación de actuaciones?"},
-    {u:"Quiero reservar el estudio de grabación para este finde"},
-    {b:"Perfecto. Tengo disponible sábado 15h–19h o domingo 10h–14h (4 horas). ¿Cuántas pistas vas a grabar?"},
-  ]},
-  {tab:'💉 Tatuador', msgs:[
-    {b:"Hola, soy FLOW, asistente de Inkstudio BCN. ¿Buscas una cita, presupuesto o información sobre estilos?"},
-    {u:"Cuánto cuesta un tatuaje de media manga"},
-    {b:"El precio varía según el diseño y horas. Una media manga suele estar entre 300–600€. ¿Tienes referencia visual? Te hago cita de consulta gratuita con el artista 🎨"},
-  ]},
-  {tab:'🧘 Yoga', msgs:[
-    {b:"Namaste 🙏 Soy la asistente de Shanti Yoga Studio. ¿Clases presenciales, online o retiro?"},
-    {u:"Me interesa el retiro de fin de semana en la montaña"},
-    {b:"Fantástico. El próximo retiro es el 18–19 octubre en la Sierra. Incluye 6 sesiones, comidas y alojamiento. Solo quedan 3 plazas. ¿Te reservo una?"},
-  ]},
-];
-let demoIdx = 0, chatMsgIdx = 0, chatInterval;
-
-function renderDemoTabs(){
-  const el = document.getElementById('demo-tabs');
-  if(!el) return;
-  el.innerHTML = DEMO_SECTORS.map((d,i) =>
-    `<button class="dtab ${i===0?'on':''}" onclick="switchDemo(${i},this)">${d.tab}</button>`
-  ).join('');
-  startChat(0);
-}
-
-function switchDemo(i, btn){
-  document.querySelectorAll('.dtab').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  demoIdx = i; chatMsgIdx = 0;
-  document.getElementById('ab-msgs').innerHTML = '';
-  document.getElementById('ab-name').textContent = DEMO_SECTORS[i].tab.replace(/^[^\s]+\s/,'') + ' · FLOW';
-  clearInterval(chatInterval);
-  startChat(i);
-}
-
-function startChat(i){
-  const msgs = DEMO_SECTORS[i].msgs;
-  chatMsgIdx = 0;
-  function next(){
-    if(chatMsgIdx >= msgs.length){ clearInterval(chatInterval); return; }
-    const m = msgs[chatMsgIdx++];
-    const c = document.getElementById('ab-msgs');
-    const d = document.createElement('div');
-    d.className = 'msg ' + (m.b ? 'bot' : 'usr');
-    d.innerHTML = m.b
-      ? `<span class="who">FLOW</span>${m.b}`
-      : `<span class="who" style="text-align:right">Cliente</span>${m.u}`;
-    d.style.animationDelay = '.04s';
-    c.appendChild(d);
-    c.scrollTop = c.scrollHeight;
-  }
-  next();
-  chatInterval = setInterval(next, 1800);
-}
-
-// ══════ LANGUAGE ══════
-const LANG_MAP = {
-  fr:{
-    h1:'FlowSuite<br>travaille pour toi',
-    h2:"et toi tu te consacres à <strong>ce que tu aimes</strong><br>et <strong>tu sais faire.</strong>",
-    cta1:'Accès bêta gratuit',cta2:'Mon espace →',
-    live:'En direct',badge:'Artistes · Thérapeutes · Créateurs · Tous secteurs',
-    tr:['Bêta gratuite · Sans carte','Setup en 48h','5 langues · 24/7','Données en Suisse'],
-    usr:'🤖 Mon espace',
-    msg:"Bonjour ! Je suis <strong>FLOW</strong>. Comment puis-je vous aider aujourd'hui ?",
-    nav:['Pour qui','Comment ça marche','Prix','FAQ','Contact'],
-    betabar:'<strong>Accès bêta gratuit</strong> · Sans carte · Sans engagement · Ton agent IA en 48h',
-    sect_pq:'Pour qui',sect_h2:'Un agent IA pour <span class="grad-vi">chaque histoire</span>',
-    sect_pq_sub:"Musicien, thérapeute, restaurateur, bijoutier, photographe ou coach — FlowSuite comprend ton monde et parle à tes clients comme toi le ferais.",
-    sect_cf:'Comment ça marche',sect_cf_h2:'3 étapes. <span class="grad-teal">Présence complète.</span>',
-    sect_cf_sub:"Sans code. Sans agence. Sans attendre des semaines. Ton agent IA opérationnel en 48 heures.",
-    step1_t:"Raconte-nous ton histoire",step1_d:"Tu remplis un formulaire sur ton activité, tes services, ton style et tes canaux. Le Builder Pro génère ta présence en 60 secondes.",
-    step2_t:"L'IA construit tout",step2_d:"Logo IA · Landing cinématique · Agent vocal ElevenLabs · Pack réseaux sociaux · Tous les canaux configurés.",
-    step3_t:"Tu te consacres à ton métier",step3_d:"FLOW répond aux appels, qualifie les leads, prend les rendez-vous et publie du contenu. Toi, tu te concentres sur ton art.",
-    sect_ag:'Agents IA',sect_ag_h2:'Une équipe digitale. <span class="grad-coral">Chacun dans son rôle.</span>',
-    sect_ag_sub:"Chaque agent a un rôle précis. Sans surcharge. Sans confusion. Le modèle le plus efficace d'automatisation.",
-    sect_pr:'Prix',sect_pr_h2:'Clair dès le <span class="grad-teal">premier jour.</span>',
-    sect_pr_sub:"Sans engagement. Sans surprises. Accès bêta 100% gratuit pendant le programme.",
-    sect_pk:'Packs de recharge',sect_pk_sub:"Besoin de plus de minutes ? Active un pack en 2 clics depuis ton espace client. Sans appeler personne.",
-    sect_fq:'FAQ',sect_fq_h2:'Questions <span class="grad-vi">fréquentes</span>',
-    sect_ct:'Commencer',sect_ct_h2:'Bêta gratuite.<br><span class="grad-teal">Sans engagement.</span>',
-    sect_ct_sub:'Remplis le formulaire ou écris-nous sur WhatsApp. <strong style="color:var(--tx)">La personne qui construit FlowSuite te répond directement.</strong>',
-    form_nm:'Prénom *',form_biz:'Activité *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Ton secteur *',
-    form_detail:'Qu\'est-ce que tu veux automatiser ? (optionnel)',form_consent:'J\'accepte le traitement de mes données selon la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">politique de confidentialité</span> (nLPD / RGPD). *',
-    form_cta:'Demander l\'accès bêta gratuit',form_ok_t:'🎉',form_ok_h:'Demande reçue !',form_ok_sub:'Tu recevras ton code PIN par email dans moins de 24h.',form_pin_l:'Ton code PIN d\'accès',
-    wa_ch:'WhatsApp Suisse · +41 77 941 35 32',wa_es:'WhatsApp Espagne · +34 634 13 44 66',
-    legal_cta:'Sans carte. Sans commercial. Si ça ne convient pas, tu pars et c\'est tout.',
-    faq:[
-      ["Que se passe-t-il si je ne suis pas technique ?","FlowSuite est conçu pour que tu n'aies pas besoin d'être technique. Le Builder Pro fait tout automatiquement : il te demande des informations basiques sur ton activité et génère le logo, le site et l'agent vocal en 60 secondes. Sans code, sans hébergement, sans complications."],
-      ["Combien de temps avant que l'agent soit opérationnel ?","48 heures après que tu nous envoies tes informations. Le Builder génère une première version immédiate, et l'équipe FlowSuite personnalise et active l'agent vocal ElevenLabs dans ce délai."],
-      ["Est-ce que ça fonctionne pour les secteurs artistiques ou créatifs ?","C'est l'un de nos points forts. Musiciens, tatoueurs, photographes, bijoutiers, artistes visuels, studios d'enregistrement, yogis, thérapeutes alternatifs — FLOW comprend le langage et les besoins de chacun."],
-      ["Puis-je connecter Instagram, TikTok et WhatsApp ?","Oui. L'espace client inclut des intégrations avec 20+ canaux : WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com et plus."],
-      ["Dans quelles langues FLOW parle-t-il ?","Français, allemand, italien, anglais et espagnol nativement. Idéal pour les entreprises en Suisse ou qui servent une clientèle internationale. La langue du client est détectée automatiquement."],
-      ["Où sont stockées mes données ?","En Suisse (Infomaniak, serveurs à Genève), conformément à la nLPD et au RGPD. Aucune donnée personnelle n'est vendue à des tiers."],
-      ["Puis-je annuler à tout moment ?","Oui. Sans engagement, sans pénalité. Pendant la bêta tout est gratuit. Quand nous lancerons les plans payants, tu pourras annuler avec 30 jours de préavis."]
-    ]
-  },
-  de:{
-    h1:'FlowSuite<br>arbeitet für dich',
-    h2:"und du widmest dich <strong>dem was du liebst</strong><br>und <strong>am besten kannst.</strong>",
-    cta1:'Kostenloser Beta-Zugang',cta2:'Mein Bereich →',
-    live:'Live',badge:'Künstler · Therapeuten · Kreative · Alle Branchen',
-    tr:['Kostenlose Beta · Keine Karte','Setup in 48h','5 Sprachen · 24/7','Daten in der Schweiz'],
-    usr:'🤖 Mein Bereich',
-    msg:"Guten Tag! Ich bin <strong>FLOW</strong>. Wie kann ich Ihnen helfen?",
-    nav:['Für wen','So funktioniert\'s','Preise','FAQ','Kontakt'],
-    betabar:'<strong>Kostenloser Beta-Zugang</strong> · Keine Karte · Kein Engagement · Dein KI-Agent in 48h',
-    sect_pq:'Für wen',sect_h2:'Ein KI-Agent für <span class="grad-vi">jede Geschichte</span>',
-    sect_pq_sub:"Ob Musiker, Therapeut, Restaurantbesitzer, Juwelier, Fotograf oder Coach — FlowSuite versteht deine Welt und spricht mit deinen Kunden wie du es tun würdest.",
-    sect_cf:'So funktioniert\'s',sect_cf_h2:'3 Schritte. <span class="grad-teal">Vollständige Präsenz.</span>',
-    sect_cf_sub:"Kein Code. Keine Agentur. Kein Warten. Dein KI-Agent in 48 Stunden einsatzbereit.",
-    step1_t:"Erzähl uns deine Geschichte",step1_d:"Du füllst ein Formular über dein Unternehmen, deine Services, deinen Stil und Kanäle aus. Der Builder Pro erstellt deine Präsenz in 60 Sekunden.",
-    step2_t:"Die KI baut alles auf",step2_d:"KI-Logo · Cinematic Landing Page · ElevenLabs Sprachagent · Social Media Pack · Alle Kanäle konfiguriert.",
-    step3_t:"Du widmest dich deinem Handwerk",step3_d:"FLOW beantwortet Anrufe, qualifiziert Leads, bucht Termine und veröffentlicht Inhalte. Du konzentrierst dich auf deine Arbeit.",
-    sect_ag:'KI-Agenten',sect_ag_h2:'Ein digitales Team. <span class="grad-coral">Jeder in seiner Rolle.</span>',
-    sect_ag_sub:"Jeder Agent hat eine spezifische Rolle. Keine Überlastung. Keine Verwirrung. Das effizienteste Automatisierungsmodell.",
-    sect_pr:'Preise',sect_pr_h2:'Klar vom <span class="grad-teal">ersten Tag an.</span>',
-    sect_pr_sub:"Kein Engagement. Keine Überraschungen. 100% kostenloser Beta-Zugang während des Programms.",
-    sect_pk:'Aufladepakete',sect_pk_sub:"Brauchst du mehr Minuten? Aktiviere ein Paket in 2 Klicks aus deinem Kundenbereich. Ohne jemanden anzurufen.",
-    sect_fq:'FAQ',sect_fq_h2:'Häufige <span class="grad-vi">Fragen</span>',
-    sect_ct:'Starten',sect_ct_h2:'Kostenlose Beta.<br><span class="grad-teal">Ohne Verpflichtung.</span>',
-    sect_ct_sub:'Fülle das Formular aus oder schreib uns auf WhatsApp. <strong style="color:var(--tx)">Die Person, die FlowSuite baut, antwortet dir direkt.</strong>',
-    form_nm:'Vorname *',form_biz:'Unternehmen *',form_em:'E-Mail *',form_tel:'WhatsApp',form_sec:'Dein Bereich *',
-    form_detail:'Was möchtest du automatisieren? (optional)',form_consent:'Ich stimme der Verarbeitung meiner Daten gemäß der <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">Datenschutzrichtlinie</span> zu (nDSG / DSGVO). *',
-    form_cta:'Kostenlosen Beta-Zugang beantragen',form_ok_t:'🎉',form_ok_h:'Anfrage erhalten!',form_ok_sub:'Du erhältst deinen PIN-Code per E-Mail in weniger als 24h.',form_pin_l:'Dein Zugangs-PIN',
-    wa_ch:'WhatsApp Schweiz · +41 77 941 35 32',wa_es:'WhatsApp Spanien · +34 634 13 44 66',
-    legal_cta:'Keine Karte. Kein Verkäufer. Wenn es nicht passt, gehst du — fertig.',
-    faq:[
-      ["Was passiert, wenn ich nicht technisch bin?","FlowSuite ist so konzipiert, dass du nicht technisch sein musst. Der Builder Pro macht alles automatisch: Er fragt nach grundlegenden Informationen zu deinem Unternehmen und generiert Logo, Website und Sprachagenten in 60 Sekunden. Kein Code, kein Hosting, keine Komplikationen."],
-      ["Wie lange dauert es, bis der Agent betriebsbereit ist?","48 Stunden nach Erhalt deiner Informationen. Der Builder generiert sofort eine erste Version, und das FlowSuite-Team personalisiert und aktiviert den ElevenLabs-Sprachagenten in dieser Zeit."],
-      ["Funktioniert das für künstlerische oder kreative Bereiche?","Das ist einer unserer Stärken. Musiker, Tätowierer, Fotografen, Juweliere, bildende Künstler, Tonstudios, Yogis, alternative Therapeuten — FLOW versteht die Sprache und Bedürfnisse jedes Einzelnen."],
-      ["Kann ich Instagram, TikTok und WhatsApp verbinden?","Ja. Das Kundenportal enthält Integrationen mit 20+ Kanälen: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com und mehr."],
-      ["In welchen Sprachen spricht FLOW?","Französisch, Deutsch, Italienisch, Englisch und Spanisch nativ. Ideal für Unternehmen in der Schweiz oder mit internationaler Kundschaft. Die Sprache des Kunden wird automatisch erkannt."],
-      ["Wo werden meine Daten gespeichert?","In der Schweiz (Infomaniak, Server in Genf), gemäß nDSG und DSGVO. Keine personenbezogenen Daten werden an Dritte verkauft."],
-      ["Kann ich jederzeit kündigen?","Ja. Ohne Vertragsbindung, ohne Strafe. Während der Beta ist alles kostenlos. Wenn wir die Bezahlpläne starten, kannst du mit 30 Tagen Vorankündigung kündigen."]
-    ]
-  },
-  it:{
-    h1:'FlowSuite<br>lavora per te',
-    h2:"e tu ti dedichi a <strong>ciò che ami</strong><br>e <strong>sai fare meglio.</strong>",
-    cta1:'Accesso beta gratuito',cta2:'Il mio spazio →',
-    live:'In diretta',badge:'Artisti · Terapisti · Creativi · Tutti i settori',
-    tr:['Beta gratuita · Senza carta','Setup in 48h','5 lingue · 24/7','Dati in Svizzera'],
-    usr:'🤖 Il mio spazio',
-    msg:"Buongiorno! Sono <strong>FLOW</strong>. Come posso aiutarla?",
-    nav:['Per chi','Come funziona','Prezzi','FAQ','Contatto'],
-    betabar:'<strong>Accesso beta gratuito</strong> · Senza carta · Senza impegno · Il tuo agente IA in 48h',
-    sect_pq:'Per chi',sect_h2:'Un agente IA per <span class="grad-vi">ogni storia</span>',
-    sect_pq_sub:"Che tu sia musicista, terapista, ristoratore, gioielliere, fotografo o coach — FlowSuite capisce il tuo mondo e parla ai tuoi clienti come faresti tu.",
-    sect_cf:'Come funziona',sect_cf_h2:'3 passi. <span class="grad-teal">Presenza completa.</span>',
-    sect_cf_sub:"Senza codice. Senza agenzia. Senza aspettare settimane. Il tuo agente IA operativo in 48 ore.",
-    step1_t:"Raccontaci la tua storia",step1_d:"Compili un modulo sulla tua attività, servizi, stile e canali. Il Builder Pro genera la tua presenza in 60 secondi.",
-    step2_t:"L'IA costruisce tutto",step2_d:"Logo IA · Landing cinematica · Agente vocale ElevenLabs · Pack social media · Tutti i canali configurati.",
-    step3_t:"Ti dedichi al tuo mestiere",step3_d:"FLOW risponde alle chiamate, qualifica i lead, prenota appuntamenti e pubblica contenuti. Tu ti concentri sulla tua arte.",
-    sect_ag:'Agenti IA',sect_ag_h2:'Un team digitale. <span class="grad-coral">Ognuno nel suo ruolo.</span>',
-    sect_ag_sub:"Ogni agente ha un ruolo specifico. Senza sovraccarichi. Senza confusione. Il modello più efficiente di automazione.",
-    sect_pr:'Prezzi',sect_pr_h2:'Chiaro dal <span class="grad-teal">primo giorno.</span>',
-    sect_pr_sub:"Senza impegno. Senza sorprese. Accesso beta 100% gratuito durante il programma.",
-    sect_pk:'Pacchetti ricaricabili',sect_pk_sub:"Hai bisogno di più minuti? Attiva un pacchetto in 2 clic dal tuo spazio cliente. Senza chiamare nessuno.",
-    sect_fq:'FAQ',sect_fq_h2:'Domande <span class="grad-vi">frequenti</span>',
-    sect_ct:'Iniziare',sect_ct_h2:'Beta gratuita.<br><span class="grad-teal">Senza impegno.</span>',
-    sect_ct_sub:'Compila il modulo o scrivici su WhatsApp. <strong style="color:var(--tx)">La persona che costruisce FlowSuite ti risponde direttamente.</strong>',
-    form_nm:'Nome *',form_biz:'Attività *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Il tuo settore *',
-    form_detail:'Cosa vuoi automatizzare? (opzionale)',form_consent:'Accetto il trattamento dei miei dati secondo la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">politica sulla privacy</span> (nLPD / GDPR). *',
-    form_cta:'Richiedere l\'accesso beta gratuito',form_ok_t:'🎉',form_ok_h:'Richiesta ricevuta!',form_ok_sub:'Riceverai il tuo codice PIN via email in meno di 24h.',form_pin_l:'Il tuo PIN di accesso',
-    wa_ch:'WhatsApp Svizzera · +41 77 941 35 32',wa_es:'WhatsApp Spagna · +34 634 13 44 66',
-    legal_cta:'Senza carta. Senza commerciali. Se non convince, te ne vai e basta.',
-    faq:[
-      ["Cosa succede se non sono tecnico?","FlowSuite è progettato perché tu non debba essere tecnico. Il Builder Pro fa tutto automaticamente: ti chiede informazioni di base sulla tua attività e genera logo, sito e agente vocale in 60 secondi. Senza codice, senza hosting, senza complicazioni."],
-      ["Quanto tempo ci vuole per avere l'agente operativo?","48 ore dopo che ci hai inviato le informazioni. Il Builder genera subito una prima versione, e il team FlowSuite personalizza e attiva l'agente vocale ElevenLabs entro quel termine."],
-      ["Funziona per i settori artistici o creativi?","È uno dei nostri punti di forza. Musicisti, tatuatori, fotografi, gioiellieri, artisti visivi, studi di registrazione, yogini, terapisti alternativi — FLOW capisce il linguaggio e le esigenze di ciascuno."],
-      ["Posso connettere Instagram, TikTok e WhatsApp?","Sì. Lo spazio cliente include integrazioni con 20+ canali: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com e altro."],
-      ["In quali lingue parla FLOW?","Francese, tedesco, italiano, inglese e spagnolo nativamente. Ideale per aziende in Svizzera o con clientela internazionale. La lingua del cliente viene rilevata automaticamente."],
-      ["Dove vengono archiviati i miei dati?","In Svizzera (Infomaniak, server a Ginevra), in conformità con la nLPD e il GDPR. Nessun dato personale viene venduto a terzi."],
-      ["Posso cancellare in qualsiasi momento?","Sì. Senza impegno, senza penali. Durante la beta tutto è gratuito. Quando lanceremo i piani a pagamento, potrai annullare con 30 giorni di preavviso."]
-    ]
-  },
-  en:{
-    h1:'FlowSuite<br>works for you',
-    h2:"and you focus on <strong>what you love</strong><br>and <strong>do best.</strong>",
-    cta1:'Free beta access',cta2:'My space →',
-    live:'Live',badge:'Artists · Therapists · Creatives · All sectors',
-    tr:['Free beta · No card','Setup in 48h','5 languages · 24/7','Data in Switzerland'],
-    usr:'🤖 My space',
-    msg:"Hello! I'm <strong>FLOW</strong>. How can I help you today?",
-    nav:['Who it\'s for','How it works','Pricing','FAQ','Contact'],
-    betabar:'<strong>Free beta access</strong> · No card · No commitment · Your AI agent in 48h',
-    sect_pq:'Who it\'s for',sect_h2:'An AI agent for <span class="grad-vi">every story</span>',
-    sect_pq_sub:"Whether you\'re a musician, therapist, restaurateur, jeweller, photographer or coach — FlowSuite understands your world and speaks to your clients the way you would.",
-    sect_cf:'How it works',sect_cf_h2:'3 steps. <span class="grad-teal">Complete presence.</span>',
-    sect_cf_sub:"No code. No agency. No waiting weeks. Your AI agent operational in 48 hours.",
-    step1_t:"Tell us your story",step1_d:"You fill in a form about your business, services, style and channels. The Builder Pro generates your presence in 60 seconds.",
-    step2_t:"AI builds everything",step2_d:"AI Logo · Cinematic landing page · ElevenLabs voice agent · Social media pack · All channels configured.",
-    step3_t:"You focus on your craft",step3_d:"FLOW answers calls, qualifies leads, books appointments and publishes content. You concentrate on your art.",
-    sect_ag:'AI Agents',sect_ag_h2:'A digital team. <span class="grad-coral">Each in their role.</span>',
-    sect_ag_sub:"Each agent has a specific role. No overloads. No confusion. The most efficient automation model that exists.",
-    sect_pr:'Pricing',sect_pr_h2:'Clear from <span class="grad-teal">day one.</span>',
-    sect_pr_sub:"No commitment. No surprises. 100% free beta access during the programme.",
-    sect_pk:'Recharge packs',sect_pk_sub:"Need more minutes? Activate a pack in 2 clicks from your client space. No calling anyone.",
-    sect_fq:'FAQ',sect_fq_h2:'Frequently <span class="grad-vi">asked questions</span>',
-    sect_ct:'Get started',sect_ct_h2:'Free beta.<br><span class="grad-teal">No commitment.</span>',
-    sect_ct_sub:'Fill in the form or write to us on WhatsApp. <strong style="color:var(--tx)">The person building FlowSuite replies to you directly.</strong>',
-    form_nm:'Name *',form_biz:'Business *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Your sector *',
-    form_detail:'What do you want to automate? (optional)',form_consent:'I accept the processing of my data according to the <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">privacy policy</span> (nLPD / GDPR). *',
-    form_cta:'Request free beta access',form_ok_t:'🎉',form_ok_h:'Request received!',form_ok_sub:'You will receive your PIN code by email in less than 24h.',form_pin_l:'Your access PIN',
-    wa_ch:'WhatsApp Switzerland · +41 77 941 35 32',wa_es:'WhatsApp Spain · +34 634 13 44 66',
-    legal_cta:'No card. No salesperson. If it doesn\'t convince you, you leave — that\'s it.',
-    faq:[
-      ["What happens if I'm not technical?","FlowSuite is designed so you don't need to be technical. The Builder Pro does everything automatically: it asks for basic information about your business and generates the logo, website and voice agent in 60 seconds. No code, no hosting, no complications."],
-      ["How long until the agent is operational?","48 hours after you send us your information. The Builder generates an immediate first version, and the FlowSuite team personalises and activates the ElevenLabs voice agent within that timeframe."],
-      ["Does it work for artistic or creative sectors?","That's one of our strong points. Musicians, tattoo artists, photographers, jewellers, visual artists, recording studios, yogis, alternative therapists — FLOW understands the language and needs of each one."],
-      ["Can I connect Instagram, TikTok and WhatsApp?","Yes. The client portal includes integrations with 20+ channels: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com and more."],
-      ["In what languages does FLOW speak?","French, German, Italian, English and Spanish natively. Ideal for businesses in Switzerland or serving international customers. The client's language is detected automatically."],
-      ["Where is my data stored?","In Switzerland (Infomaniak, servers in Geneva), in compliance with nLPD and GDPR. No personal data is sold to third parties."],
-      ["Can I cancel at any time?","Yes. No commitment, no penalty. During the beta everything is free. When we launch the paid plans, you can cancel with 30 days' notice."]
-    ]
-  },
-  es:{
-    h1:'FlowSuite<br>trabaja por ti',
-    h2:"y tú te dedicas a <strong>lo que más te gusta</strong><br>y <strong>mejor sabes hacer.</strong>",
-    cta1:'Acceso beta gratuito',cta2:'Mi espacio →',
-    live:'En directo',badge:'Artistas · Terapeutas · Creativos · Todo sector',
-    tr:['Beta gratuita · Sin tarjeta','Setup en 48h','5 idiomas · 24/7','Datos en Suiza'],
-    usr:'🤖 Mi espacio',
-    msg:"¡Hola! Soy <strong>FLOW</strong>. ¿En qué puedo ayudarte hoy?",
-    nav:['Para quién','Cómo funciona','Precios','FAQ','Contacto'],
-    betabar:'<strong>Acceso beta gratuito</strong> · Sin tarjeta · Sin permanencia · Tu agente IA en 48h',
-    sect_pq:'Para quién',sect_h2:'Un agente IA para <span class="grad-vi">cada historia</span>',
-    sect_pq_sub:"Ya seas músico, terapeuta, restaurador, joyero, fotógrafo o coach — FlowSuite entiende tu mundo y habla a tus clientes como tú lo harías.",
-    sect_cf:'Cómo funciona',sect_cf_h2:'3 pasos. <span class="grad-teal">Presencia completa.</span>',
-    sect_cf_sub:"Sin código. Sin agencia. Sin esperas de semanas. Tu agente IA operativo en 48 horas.",
-    step1_t:"Cuéntanos tu historia",step1_d:"Rellenas un breve formulario sobre tu negocio, servicios, estilo y canales. El Builder Pro genera tu presencia en 60 segundos.",
-    step2_t:"La IA lo construye todo",step2_d:"Logo IA · Landing page cinematográfica · Agente vocal con ElevenLabs · Pack redes sociales · Todos los canales configurados.",
-    step3_t:"Tú te dedicas a lo tuyo",step3_d:"FLOW atiende llamadas, cualifica leads, agenda citas y publica contenido. Tú te centras en tu arte, tu oficio, tu gente.",
-    sect_ag:'Agentes IA',sect_ag_h2:'Un equipo digital. <span class="grad-coral">Cada uno en lo suyo.</span>',
-    sect_ag_sub:"Cada agente tiene un rol específico. Sin sobrecargas. Sin confusiones. El modelo más eficiente de automatización que existe.",
-    sect_pr:'Precios',sect_pr_h2:'Claro desde el <span class="grad-teal">primer día.</span>',
-    sect_pr_sub:"Sin permanencia. Sin sorpresas. Acceso beta 100% gratuito mientras dura el programa.",
-    sect_pk:'Paquetes de recarga',sect_pk_sub:"¿Necesitas más minutos? Activa un paquete en 2 clics desde tu panel de cliente. Sin llamar a nadie, sin esperar.",
-    sect_fq:'FAQ',sect_fq_h2:'Preguntas <span class="grad-vi">frecuentes</span>',
-    sect_ct:'Empezar',sect_ct_h2:'Beta gratuita.<br><span class="grad-teal">Sin compromiso.</span>',
-    sect_ct_sub:'Rellena el formulario o escríbenos por WhatsApp. <strong style="color:var(--tx)">La persona que construye FlowSuite te responde directamente.</strong>',
-    form_nm:'Nombre *',form_biz:'Negocio *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Tu sector *',
-    form_detail:'¿Qué quieres automatizar? (opcional)',form_consent:'Acepto el tratamiento de mis datos según la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">política de privacidad</span> (nLPD / RGPD). *',
-    form_cta:'Solicitar acceso beta gratuito',form_ok_t:'🎉',form_ok_h:'¡Solicitud recibida!',form_ok_sub:'Recibirás tu código PIN por email en menos de 24h.',form_pin_l:'Tu PIN de acceso',
-    wa_ch:'WhatsApp Suiza · +41 77 941 35 32',wa_es:'WhatsApp España · +34 634 13 44 66',
-    legal_cta:'Sin tarjeta. Sin comercial. Si no convence, te vas y ya está.',
-    faq:[
-      ["¿Qué pasa si no soy técnico?","FlowSuite está diseñado para que no necesites serlo. El Builder Pro hace todo automáticamente: te pide información básica de tu negocio y genera el logo, la web y el agente vocal en 60 segundos. Sin código, sin hosting, sin complicaciones."],
-      ["¿Cuánto tiempo hasta tener el agente funcionando?","48 horas desde que nos envías tu información. El Builder genera una primera versión inmediata, y el equipo de FlowSuite personaliza y activa el agente vocal con ElevenLabs en ese plazo."],
-      ["¿Funciona para sectores artísticos o creativos?","Es uno de nuestros puntos fuertes. Músicos, tatuadores, fotógrafos, joyeros, artistas visuales, estudios de grabación, yoguis, terapeutas alternativos — FLOW entiende el lenguaje y las necesidades de cada uno."],
-      ["¿Puedo conectar mi Instagram, TikTok y WhatsApp?","Sí. El panel cliente incluye integraciones con 20+ canales: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com y más."],
-      ["¿En qué idiomas habla FLOW?","Francés, alemán, italiano, inglés y español de forma nativa. Ideal para negocios en Suiza o que atienden clientes internacionales. Se detecta automáticamente el idioma del cliente."],
-      ["¿Dónde se guardan mis datos?","En Suiza (Infomaniak, servidores en Ginebra), conforme a la nLPD y al RGPD. Ningún dato personal se vende a terceros. Consulta nuestra Política de Privacidad completa."],
-      ["¿Puedo cancelar en cualquier momento?","Sí. Sin permanencia, sin penalización. Durante la beta todo es gratuito. Cuando lancemos los planes de pago, podrás cancelar con 30 días de preaviso."]
-    ]
-  },
-};
-
-let _currentLang = 'fr';
-function setLang(lang, btn){
-  _currentLang = lang;
-  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
-  document.documentElement.lang = lang;
-  const L = LANG_MAP[lang]; if(!L) return;
-
-  // Hero
-  const l1=document.getElementById('hero-l1'); if(l1) l1.innerHTML=L.h1;
-  const l2=document.getElementById('hero-l2'); if(l2) l2.innerHTML=L.h2;
-  const c1=document.getElementById('hero-cta1'); if(c1) c1.textContent=L.cta1;
-  const c2=document.getElementById('hero-cta2'); if(c2) c2.textContent=L.cta2;
-  const live=document.getElementById('ab-live'); if(live) live.textContent=L.live;
-  const usr=document.getElementById('btn-user'); if(usr) usr.innerHTML=L.usr;
-  const hb=document.querySelector('.hero-badge'); if(hb) hb.innerHTML=`<span class="pulse"></span>${L.badge}`;
-  const fm=document.getElementById('fav-msg'); if(fm) fm.innerHTML=L.msg;
-  L.tr.forEach((t,i)=>{const el=document.getElementById('tr'+(i+1));if(el)el.textContent=t;});
-
-  // Beta bar
-  const bb=document.getElementById('beta-bar-text'); if(bb) bb.innerHTML=L.betabar;
-
-  // Nav
-  if(L.nav){
-    const navLinks=document.querySelectorAll('.nav-links a');
-    navLinks.forEach((a,i)=>{if(L.nav[i])a.textContent=L.nav[i];});
-  }
-
-  // Section headings
-  function setEl(id,html,isText){
-    const el=document.getElementById(id);
-    if(!el)return;
-    if(isText)el.textContent=html; else el.innerHTML=html;
-  }
-  setEl('s-pq-eye',L.sect_pq,true);
-  setEl('s-pq-h2',L.sect_h2);
-  setEl('s-pq-sub',L.sect_pq_sub,true);
-  setEl('s-cf-eye',L.sect_cf,true);
-  setEl('s-cf-h2',L.sect_cf_h2);
-  setEl('s-cf-sub',L.sect_cf_sub,true);
-  setEl('s-step1-t',L.step1_t,true);setEl('s-step1-d',L.step1_d,true);
-  setEl('s-step2-t',L.step2_t,true);setEl('s-step2-d',L.step2_d,true);
-  setEl('s-step3-t',L.step3_t,true);setEl('s-step3-d',L.step3_d,true);
-  setEl('s-ag-eye',L.sect_ag,true);
-  setEl('s-ag-h2',L.sect_ag_h2);
-  setEl('s-ag-sub',L.sect_ag_sub,true);
-  setEl('s-pr-eye',L.sect_pr,true);
-  setEl('s-pr-h2',L.sect_pr_h2);
-  setEl('s-pr-sub',L.sect_pr_sub,true);
-  setEl('s-pk-eye',L.sect_pk||'Packs',true);
-  setEl('s-pk-sub',L.sect_pk_sub||'',true);
-  setEl('s-fq-eye',L.sect_fq,true);
-  setEl('s-fq-h2',L.sect_fq_h2);
-  setEl('s-ct-eye',L.sect_ct,true);
-  setEl('s-ct-h2',L.sect_ct_h2);
-  setEl('s-ct-sub',L.sect_ct_sub);
-  setEl('s-wa-ch',L.wa_ch,true);
-  setEl('s-wa-es',L.wa_es,true);
-  setEl('s-legal-cta',L.legal_cta,true);
-
-  // Form labels
-  setEl('fl-nm',L.form_nm,true);setEl('fl-biz',L.form_biz,true);
-  setEl('fl-em',L.form_em,true);setEl('fl-tel',L.form_tel,true);
-  setEl('fl-sec',L.form_sec,true);setEl('fl-detail',L.form_detail,true);
-  setEl('fl-consent',L.form_consent);
-  const fcta=document.getElementById('fl-cta'); if(fcta)fcta.textContent=L.form_cta;
-  setEl('fl-ok-ico',L.form_ok_t,true);setEl('fl-ok-h',L.form_ok_h,true);
-  setEl('fl-ok-sub',L.form_ok_sub,true);setEl('fl-pin-l',L.form_pin_l,true);
-
-  // FAQ - rebuild
-  if(L.faq) renderFAQ(L.faq);
-
-  // Rerender plans and packs in current lang
-  renderPlans();renderPacks();
-}
-
-// ══════ MODALS ══════
-function openModal(type){
-  const el = document.getElementById('modal-'+type);
-  if(!el) return;
-  el.classList.add('open'); document.body.style.overflow='hidden';
-  const inp = el.querySelector('input');
-  if(inp){ inp.value=''; setTimeout(()=>inp.focus(),80); }
-  if(type==='client') document.getElementById('cl-err').textContent='';
-  if(type==='admin') document.getElementById('adm-err').textContent='';
-}
-function closeModal(id){
-  const el = document.getElementById(id);
-  if(el){ el.classList.remove('open'); document.body.style.overflow=''; }
-}
-function openPanel(id){
-  const el = document.getElementById(id);
-  if(el){ el.classList.add('open'); document.body.style.overflow='hidden'; }
-}
-function closePanel(id){
-  const el = document.getElementById(id);
-  if(el){ el.classList.remove('open'); document.body.style.overflow=''; }
-}
-document.addEventListener('click', e=>{ if(e.target.classList.contains('modal-overlay')){ e.target.classList.remove('open'); document.body.style.overflow=''; } });
-document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.open').forEach(el=>el.classList.remove('open')); document.getElementById('legal-modal').classList.remove('open'); document.body.style.overflow=''; } });
-
-// ══════ LOGIN ══════
-function doLogin(){
-  const pin = document.getElementById('cl-pin').value.trim().toUpperCase();
-  if(!pin){ toast('Introduce tu PIN','err'); return; }
-  const clients = getClients();
-  let c = clients[pin];
-  if(!c && (pin==='DEMO1234'||pin==='FLOWDEMO')){
-    c = {pin,name:'Demo',biz:'Inkstudio BCN',email:'demo@flowsuite.ch',plan:'beta',sector:'Tatuador / Body Art',
-      startDate:new Date().toISOString(),
-      agent:{nm:'FLOW',gr:"¡Hola! Soy el asistente de Inkstudio BCN. ¿Cita, presupuesto o información?",tone:'creativo',voice:'Iris Warm',lang:'es',web:''},
-      kb:[],changes:[],sections:{}};
-    clients[pin]=c; saveClients(clients);
-  }
-  if(!c){ document.getElementById('cl-err').textContent='PIN no encontrado. Revisa tu email.'; return; }
-  curClient=c; closeModal('modal-client'); initClientPanel(); openPanel('client-panel');
-}
-
-function doAdmin(){
-  const pw = document.getElementById('adm-pw').value;
-  if(pw===ADMIN_PWD){ document.getElementById('adm-pw').value=''; closeModal('modal-admin'); initAdmin(); openPanel('admin-panel'); }
-  else { document.getElementById('adm-err').textContent='Contraseña incorrecta.'; document.getElementById('adm-pw').value=''; }
-}
-
-// ══════ DATA ══════
-function getClients(){ const s=localStorage.getItem(S+'clients'); return s?JSON.parse(s):{}; }
-function saveClients(d){ localStorage.setItem(S+'clients',JSON.stringify(d)); }
-function genPIN(){ return Math.random().toString(36).slice(2,5).toUpperCase()+Math.floor(1000+Math.random()*9000); }
-
-// ══════ COOKIES ══════
-function hideCookies(){ document.getElementById('cookie-banner').style.display='none'; localStorage.setItem(S+'cookies','ok'); }
-if(localStorage.getItem(S+'cookies')) hideCookies();
-
-// ══════ LEGAL ══════
-const LEGAL = {
-  privacy:`<h3>Responsable del tratamiento</h3><p>Rodrigo A. Díaz Videla · FlowSuite (empresa individual) · Vaud, Suiza · <a href="mailto:info@flowsuite.ch" style="color:var(--teal)">info@flowsuite.ch</a></p>
-<h3>Datos recogidos y finalidades</h3><p>Formulario de acceso beta: nombre, email, teléfono, sector (base legal: art. 6.1.b RGPD / art. 31.1.b nLPD). Agente vocal: conversaciones y transcripciones (base legal: art. 6.1.b RGPD).</p>
-<h3>Sub-encargados</h3><p>Infomaniak (CH) · ElevenLabs (USA, SCCs) · Make.com (EU) · Vercel (USA, SCCs).</p>
-<h3>Tus derechos</h3><p>Acceso, rectificación, supresión, portabilidad, oposición. Contacto: info@flowsuite.ch. Respuesta en 30 días.</p>`,
-  terms:`<h3>Objeto</h3><p>FlowSuite es un servicio SaaS de agentes IA operado por Rodrigo A. Díaz Videla (empresa individual, Vaud, Suiza).</p>
-<h3>Fase beta</h3><p>El acceso beta es gratuito y sin compromiso. FlowSuite puede modificar o finalizar el programa con 30 días de preaviso.</p>
-<h3>Limitación de responsabilidad</h3><p>El servicio se presta "tal cual" durante la beta, sin garantía de continuidad. Responsabilidad limitada al importe pagado en los 12 meses anteriores (nulo en beta gratuita).</p>
-<h3>Ley aplicable</h3><p>Derecho suizo. Jurisdicción: Tribunales del cantón de Vaud.</p>`,
-  dpa:`<h3>Acuerdo de Encargado de Tratamiento (DPA)</h3>
-<p>Sub-encargados autorizados: <strong>Infomaniak Network SA</strong> (Ginebra, CH) · <strong>ElevenLabs Inc.</strong> (USA, SCC) · <strong>Make.com / Celonis SE</strong> (UE) · <strong>Vercel Inc.</strong> (USA, SCC).</p>
-<p>Cifrado TLS en tránsito · Cifrado en reposo · Acceso restringido · Notificación de brechas en 72h (art. 33 RGPD).</p>
-<p>Contacto: <a href="mailto:info@flowsuite.ch" style="color:var(--teal)">info@flowsuite.ch</a></p>`,
-  cookies:`<h3>Política de Cookies</h3><p>FlowSuite usa <strong>solo tecnologías de almacenamiento funcionales esenciales</strong>. Sin tracking ni publicidad.</p>
-<p><strong>localStorage</strong>: sesión, preferencias de idioma, PIN de acceso, configuración. Datos locales, nunca compartidos con terceros.</p>
-<p><strong>Google Fonts</strong> (CDN): transmite IP a Google LLC. [VERIFICAR certificación EU-US DPF vigente].</p>
-<p><strong>No usamos</strong>: Google Analytics, Meta Pixel, Hotjar ni ninguna herramienta de tracking.</p>`
-};
-function showLegal(tab){
-  document.getElementById('legal-modal').classList.add('open');
-  lTab(tab, document.querySelector('.lt[onclick*="'+tab+'"]'));
-}
-function closeLegal(){ document.getElementById('legal-modal').classList.remove('open'); }
-function lTab(tab, btn){
-  document.querySelectorAll('.lt').forEach(b=>b.classList.remove('on'));
-  if(btn) btn.classList.add('on');
-  document.getElementById('legal-content').innerHTML = LEGAL[tab]||'';
-}
-lTab('privacy',null);
-
-// ══════ FORM ══════
-function submitLead(e){
-  e.preventDefault();
-  const nm=document.getElementById('f-name').value.trim(), bz=document.getElementById('f-biz').value.trim(),
-    em=document.getElementById('f-email').value.trim(), sc=document.getElementById('f-sector').value,
-    cn=document.getElementById('f-consent').checked, err=document.getElementById('f-err');
-  if(!nm||!bz||!em||!sc){ err.textContent='Por favor rellena todos los campos obligatorios.'; return; }
-  if(!cn){ err.textContent='Debes aceptar la política de privacidad.'; return; }
-  err.textContent='';
-  const pin = genPIN();
-  const cl={pin,name:nm,biz:bz,email:em,tel:document.getElementById('f-tel').value,plan:'beta',
-    startDate:new Date().toISOString(),sector:sc,
-    agent:{nm:'FLOW',gr:`¡Hola! Soy el asistente de ${bz}. ¿En qué puedo ayudarte?`,tone:'profesional',voice:'Iris Warm',lang:'es',web:''},
-    kb:[],changes:[],sections:{}};
-  const cls=getClients(); cls[pin]=cl; saveClients(cls);
-  const webhookPayload={nombre:nm,negocio:bz,email:em,telefono:document.getElementById('f-tel').value,sector:sc,pin,fuente:'flowsuite-v7',fecha:new Date().toISOString()};
-  fetch('/api/webhook',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(webhookPayload)}).catch(()=>{
-    fetch('https://hook.eu1.make.com/wr44pcxegb8hcovxu9v46ww14ske5oqt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(webhookPayload)}).catch(()=>{});
-  });
-  document.getElementById('form-wrap').style.display='none';
-  document.getElementById('form-ok').style.display='block';
-  document.getElementById('pin-val').textContent=pin;
-}
-
-// ══════ CLIENT PANEL ══════
-function initClientPanel(){
-  const c = curClient;
-  const init = (c.name||c.biz||'?').charAt(0).toUpperCase();
-  document.getElementById('cp-init').textContent = init;
-  const n = Math.floor(Math.random()*28)+12;
-  document.getElementById('kp1').textContent = n;
-  document.getElementById('kp2').textContent = Math.floor(n*.35);
-  document.getElementById('cp-ag-nm').textContent = (c.agent?.nm||'FLOW') + ' · ' + (c.biz||'tu negocio');
-  document.getElementById('cp-biz-desc').textContent = c.offer||'Configura tu negocio para personalizar tu agente.';
-  const pL = {beta:'Beta',voice:'Voice',suite:'Suite',elite:'Elite'}[c.plan]||c.plan;
-  document.getElementById('cp-plan').textContent = pL;
-  document.getElementById('cp-plan2').textContent = pL;
-  document.getElementById('cp-feed').innerHTML = [
-    ['💬',`Hoy: ${Math.floor(n*.4)} conversaciones`,'Hace 2h'],
-    ['👤','Último lead cualificado automáticamente','Hace 3h'],
-    ['🌙','Llamadas nocturnas atendidas sin intervención','Ayer'],
-  ].map(([ic,tx,tm])=>`<div class="feed-item"><div class="feed-ico">${ic}</div><div><div class="feed-tx">${tx}</div><div class="feed-time">${tm}</div></div></div>`).join('');
-  // Avatar in dashboard
-  const agAvDash = document.getElementById('ag-av-dash'); if(agAvDash) agAvDash.src = 'data:image/jpeg;base64,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';
-  const cpAvImg = document.getElementById('cp-av-img'); if(cpAvImg) cpAvImg.src = 'data:image/jpeg;base64,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';
-  // Agent form
-  const ag = c.agent||{};
-  document.getElementById('ag-nm').value = ag.nm||'';
-  document.getElementById('ag-gr').value = ag.gr||'';
-  document.getElementById('ag-lang').value = ag.lang||'es';
-  document.getElementById('ag-web').value = ag.web||'';
-  document.getElementById('ag-preview').textContent = ag.gr||'—';
-  selTone = ag.tone||'profesional'; selVoice = ag.voice||'Iris Warm';
-  document.querySelectorAll('#tone-opts .opt').forEach(b=>b.classList.toggle('on',b.textContent.toLowerCase().includes(selTone)));
-  document.querySelectorAll('#voice-opts .opt').forEach(b=>b.classList.toggle('on',b.textContent.includes(selVoice)));
-  // Section editor
-  renderSectionEditor();
-  // Agent roster
-  renderAgentRosterCP();
-  // KB
-  kbEntries = c.kb||[]; changes = c.changes||[];
-  renderKB(); renderChgHist();
-  // NL examples
-  renderNLExamples();
-  // Integrations
-  renderIntegrations();
-  if(c.biz) document.getElementById('biz-nm').value = c.biz;
-}
-
-function cpNav(id, el){
-  document.querySelectorAll('#client-panel .ppanel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('#client-panel .sni').forEach(n=>n.classList.remove('on'));
-  const panel = document.getElementById('cpp-'+id); if(panel) panel.classList.add('on');
-  if(el) el.classList.add('on');
-  const ts={dash:'Panel de control',web:'Mi landing page',agent:'Mi agente',content:'Contenido IA',kb:'Base de conocimiento',changes:'Editor con IA',int:'Integraciones',settings:'Ajustes'};
-  document.getElementById('cp-pbar').textContent = ts[id]||id;
-}
-
-// ══════ SECTION EDITOR ══════
-const SECTIONS_DEF = [
-  {id:'hero',    ico:'🦸',nm:'Hero — Titular & CTA',  color:'var(--teal)',
-   fields:[{id:'title',label:'Titular principal',ph:'Tu estudio. Tu arte. Tu mundo.',multiline:false},
-            {id:'subtitle',label:'Subtítulo',ph:'Descripción breve de tu negocio…',multiline:true},
-            {id:'cta',label:'Texto del botón CTA',ph:'Reservar cita · Contactar…',multiline:false},
-            {id:'badge',label:'Badge de apertura',ph:'Disponible 24/7 · Milano',multiline:false}]},
-  {id:'services', ico:'⭐',nm:'Servicios & Menú',    color:'var(--vi)',
-   fields:[{id:'services_text',label:'Lista de servicios (uno por línea)',ph:'Sesión fotográfica estudio\nReportaje eventos\nFotografía producto',multiline:true},
-            {id:'price_note',label:'Nota de precios',ph:'Desde 120€/sesión · Presupuesto sin compromiso',multiline:false}]},
-  {id:'about',   ico:'👤',nm:'Sobre mí / Nosotros',   color:'var(--coral)',
-   fields:[{id:'about_text',label:'Tu historia (2–3 párrafos)',ph:'Empecé a tatuar en 2015…',multiline:true},
-            {id:'certifications',label:'Certificaciones / Reconocimientos',ph:'Certificado por X · Premio Y 2024',multiline:false}]},
-  {id:'gallery', ico:'📸',nm:'Galería & Portfolio',   color:'var(--gold)',
-   fields:[{id:'gallery_note',label:'Nota de la galería',ph:'Últimos trabajos · Ver portfolio completo en Instagram',multiline:false},
-            {id:'gallery_ig',label:'Instagram / URL portfolio',ph:'@tuinstagram · https://…',multiline:false}]},
-  {id:'contact', ico:'💬',nm:'Contacto & WhatsApp',   color:'var(--green)',
-   fields:[{id:'cta_msg',label:'Mensaje del botón WhatsApp',ph:'¡Hola! Me interesa una cita…',multiline:false},
-            {id:'address',label:'Dirección / Zona',ph:'Calle del Arte 12, Barcelona · Online disponible',multiline:false},
-            {id:'hours',label:'Horario de atención',ph:'Mar–Sáb 10h–20h · Citas previas',multiline:false}]},
-  {id:'testimonials',ico:'⭐',nm:'Testimonios',       color:'var(--blue)',
-   fields:[{id:'t1',label:'Testimonio 1 (nombre: texto)',ph:'Ana M.: "Increíble trabajo, muy profesional…"',multiline:false},
-            {id:'t2',label:'Testimonio 2',ph:'Jordi P.: "Siempre vuelvo, los mejores…"',multiline:false},
-            {id:'t3',label:'Testimonio 3',ph:'Sara L.: "Resultados espectaculares…"',multiline:false}]},
-];
-
-function renderSectionEditor(){
-  const el = document.getElementById('sections-editor');
-  if(!el) return;
-  const saved = curClient?.sections||{};
-  el.innerHTML = SECTIONS_DEF.map(s=>
-    `<div class="sec-editor" id="se-${s.id}">
-      <div class="se-hd" onclick="toggleSection('${s.id}')">
-        <span class="se-ico">${s.ico}</span>
-        <span class="se-nm">${s.nm}</span>
-        <span class="se-status tg" style="color:${s.color};background:${s.color}15;border-color:${s.color}33">${Object.keys(saved[s.id]||{}).length>0?'Personalizado':'Predeterminado'}</span>
-        <span class="se-toggle" style="color:var(--t2)">›</span>
-      </div>
-      <div class="se-body">
-        ${s.fields.map(f=>
-          `<div class="pfg"><label style="color:${s.color}">${f.label}</label>
-            ${f.multiline
-              ? `<textarea id="se-${s.id}-${f.id}" rows="3" placeholder="${f.ph}">${(saved[s.id]||{})[f.id]||''}</textarea>`
-              : `<input type="text" id="se-${s.id}-${f.id}" placeholder="${f.ph}" value="${(saved[s.id]||{})[f.id]||''}">`
-            }
-          </div>`
-        ).join('')}
-        <div style="display:flex;gap:8px;margin-top:4px">
-          <button class="pbtn" onclick="saveSection('${s.id}')">💾 Guardar sección</button>
-          <button class="pbtn-g" onclick="aiImproveSection('${s.id}')">✨ Mejorar con IA</button>
-        </div>
-      </div>
-    </div>`
-  ).join('');
-}
-
-function toggleSection(id){
-  const el = document.getElementById('se-'+id);
-  if(el) el.classList.toggle('open');
-}
-
-function saveSection(id){
-  if(!curClient) return;
-  const sd = SECTIONS_DEF.find(s=>s.id===id); if(!sd) return;
-  if(!curClient.sections) curClient.sections={};
-  curClient.sections[id]={};
-  sd.fields.forEach(f=>{
-    const el=document.getElementById(`se-${id}-${f.id}`);
-    if(el) curClient.sections[id][f.id]=el.value.trim();
-  });
-  const cls=getClients(); cls[curClient.pin]=curClient; saveClients(cls);
-  // Update status badge
-  const stEl = document.querySelector(`#se-${id} .se-status`);
-  if(stEl) stEl.textContent='Guardado ✓';
-  toast('✅ Sección guardada','ok');
-}
-
-function saveAllSections(){
-  SECTIONS_DEF.forEach(s=>saveSection(s.id));
-  toast('✅ Todas las secciones guardadas','ok');
-}
-
-function previewWeb(){
-  toast('Vista previa disponible en el paso de lanzamiento del Builder Pro');
-}
-
-async function aiImproveSection(id){
-  const sd = SECTIONS_DEF.find(s=>s.id===id); if(!sd) return;
-  const current = sd.fields.map(f=>{
-    const el=document.getElementById(`se-${id}-${f.id}`);
-    return el ? `${f.label}: ${el.value||f.ph}` : '';
-  }).join('\n');
-  toast('✨ Mejorando con IA…');
-  // Use Web Speech or show example improvement
-  setTimeout(()=>{
-    if(id==='hero'){
-      const t=document.getElementById('se-hero-title');
-      if(t&&!t.value) t.value = (curClient?.biz||'Tu negocio') + ' — Arte y Pasión';
-    }
-    saveSection(id);
-    toast('✨ Mejorado con IA','ok');
-  },1200);
-}
-
-// ══════ AGENT ROSTER CP ══════
-function renderAgentRosterCP(){
-  const el = document.getElementById('agent-roster-cp');
-  if(!el) return;
-  el.innerHTML = AGENTS_DATA.map(a=>
-    `<div style="display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--bd)">
-      <span style="font-size:18px">${a.ico}</span>
-      <div style="flex:1"><div style="font-size:13px;font-weight:700">${a.nm}</div>
-        <div style="font-size:11px;color:var(--t2)">${a.desc}</div></div>
-      <span class="tg ${a.st==='active'?'tg-ok':'tg-dim'}">${a.st==='active'?'Activo':'Próx.'}</span>
-    </div>`
-  ).join('');
-}
-
-// ══════ CONTENT GENERATOR ══════
-async function generateContent(){
-  const prompt = document.getElementById('ct-prompt').value.trim();
-  if(!prompt){ toast('Describe qué quieres comunicar','err'); return; }
-  const templates = {
-    post_ig: `📸 ${prompt}\n\n¿Te identificas? 👇 Cuéntanos en comentarios.\n\n#${(curClient?.sector||'arte').split('/')[0].trim().replace(/\s+/g,'').toLowerCase()} #flowsuite #${(curClient?.biz||'mybusiness').replace(/\s+/g,'')}`,
-    story: `🔥 ${prompt}\n\nDesliza para saber más →`,
-    tiktok: `${prompt} 🎵\n\n¿Lo sabías? Comenta si quieres más contenido así 👇`,
-    linkedin: `${prompt}\n\nEsto es lo que aprendí trabajando en el sector…\n\n¿Qué opinas? Deja tu comentario.`,
-    email: `Asunto: ${prompt}\n\nHola [Nombre],\n\nEspero que todo vaya bien. Quería contarte que ${prompt.toLowerCase()}.\n\nSi te interesa saber más, no dudes en escribirme.\n\nUn saludo,\n${curClient?.name||'FlowSuite'}`,
-    wa_msg: `Hola! Soy ${curClient?.biz||'FlowSuite'}. ${prompt} ¿Te puedo ayudar? 😊`
-  };
-  document.getElementById('ct-text').textContent = templates[selCtf]||templates.post_ig;
-  document.getElementById('ct-result').classList.add('on');
-  toast('✨ Contenido generado','ok');
-}
-
-function copyContent(){
-  const t = document.getElementById('ct-text').textContent;
-  navigator.clipboard.writeText(t).then(()=>toast('📋 Copiado','ok'));
-}
-
-// ══════ KB ══════
-function addKBTxt(){ const t=document.getElementById('kb-txt').value.trim(); if(!t){toast('Escribe algo','err');return;} kbEntries.push({type:'text',content:t}); document.getElementById('kb-txt').value=''; renderKB(); }
-function addKBUrl(){ const u=document.getElementById('kb-url').value.trim(); if(!u)return; kbEntries.push({type:'url',content:u}); document.getElementById('kb-url').value=''; renderKB(); toast('🌐 URL añadida','ok'); }
-function kbDel(i){ kbEntries.splice(i,1); renderKB(); }
-function handleFiles(inp){ Array.from(inp.files).forEach(f=>kbEntries.push({type:'file',content:f.name+' ('+(f.size/1024).toFixed(0)+' KB)'})); renderKB(); toast('📎 Archivo(s) añadido(s)','ok'); inp.value=''; }
-
-// ══════ MEDIA UPLOAD ══════
-let clientMedia = {logo:null, photos:[]};
-function handleLogoUpload(inp){
-  const f = inp.files[0]; if(!f) return;
-  if(f.size > 5*1024*1024){ toast('Logo demasiado grande (máx 5MB)','err'); return; }
-  const reader = new FileReader();
-  reader.onload = e => {
-    clientMedia.logo = e.target.result;
-    const prev = document.getElementById('logo-preview');
-    if(prev){ prev.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:contain;border-radius:10px">`; }
-    toast('✅ Logo cargado','ok');
-  };
-  reader.readAsDataURL(f);
-  inp.value='';
-}
-function handlePhotosUpload(inp){
-  const files = Array.from(inp.files);
-  files.forEach(f=>{
-    if(f.size > 10*1024*1024){ toast(f.name+' supera 10MB','err'); return; }
-    const reader = new FileReader();
-    reader.onload = e => {
-      clientMedia.photos.push({name:f.name, src:e.target.result});
-      renderPhotosGrid();
-    };
-    reader.readAsDataURL(f);
-  });
-  inp.value='';
-  toast(`✅ ${files.length} foto(s) cargada(s)`,'ok');
-}
-function renderPhotosGrid(){
-  const el = document.getElementById('photos-grid');
-  if(!el) return;
-  if(!clientMedia.photos.length){
-    el.innerHTML = `<div style="grid-column:1/-1;font-size:12.5px;color:var(--t2);padding:8px 0">Sin fotos cargadas aún.</div>`;
-    return;
-  }
-  el.innerHTML = clientMedia.photos.map((p,i)=>
-    `<div style="position:relative;border-radius:9px;overflow:hidden;aspect-ratio:1;background:var(--s2)">
-      <img src="${p.src}" style="width:100%;height:100%;object-fit:cover">
-      <button onclick="removePhoto(${i})" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);border:none;color:white;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
-    </div>`
-  ).join('');
-}
-function removePhoto(i){ clientMedia.photos.splice(i,1); renderPhotosGrid(); toast('Foto eliminada'); }
-function saveMedia(){
-  if(curClient && clientMedia.logo){
-    const cls = getClients(); if(cls[curClient.pin]){ cls[curClient.pin].logo=clientMedia.logo; saveClients(cls); }
-    // Update nav brain/avatar
-    const cpAv = document.getElementById('cp-av-img'); if(cpAv) cpAv.src=clientMedia.logo;
-    const sbAv = document.getElementById('cp-av-img'); if(sbAv) sbAv.src=clientMedia.logo;
-  }
-  toast('✅ Logo y fotos guardados','ok');
-}
-function renderKB(){
-  const w=document.getElementById('kb-list');
-  if(!w) return;
-  if(!kbEntries.length){ w.innerHTML='<p style="font-size:13px;color:var(--t2);padding:8px 0">Sin contenido añadido aún.</p>'; return; }
-  w.innerHTML = kbEntries.map((e,i)=>
-    `<div style="display:flex;gap:8px;align-items:flex-start;padding:9px;background:rgba(2,3,13,.4);border:1px solid var(--bd);border-radius:8px;margin-bottom:6px">
-      <span>${e.type==='url'?'🌐':e.type==='file'?'📎':'📝'}</span>
-      <div style="flex:1;font-size:13px;line-height:1.5">${e.content}</div>
-      <button onclick="kbDel(${i})" style="background:none;border:none;color:var(--t2);cursor:pointer;font-size:14px" onmouseover="this.style.color='var(--err)'" onmouseout="this.style.color='var(--t2)'">✕</button>
-    </div>`
-  ).join('');
-}
-function saveKB(){ const cls=getClients(); if(cls[curClient?.pin]){cls[curClient.pin].kb=kbEntries;saveClients(cls);} toast('✅ Base de conocimiento guardada','ok'); }
-
-// ══════ NL CHANGES ══════
-const NL_EXAMPLES = [
-  'Cambia el titular por…','Añade que estamos cerrados los lunes','El precio del servicio X es…',
-  'Cambia el estilo a más profesional','Añade nuevo servicio de…','Responde solo en inglés',
-];
-function renderNLExamples(){
-  const el=document.getElementById('nl-examples');
-  if(!el) return;
-  el.innerHTML = NL_EXAMPLES.map(e=>
-    `<button class="opt" onclick="document.getElementById('nl-inp').value='${e}'" style="font-size:11.5px;padding:5px 11px">${e}</button>`
-  ).join('');
-}
-function renderChgHist(){
-  const w=document.getElementById('chg-hist');
-  if(!w) return;
-  if(!changes.length){ w.innerHTML='<p style="font-size:13px;color:var(--t2);padding:10px 0">Sin cambios registrados.</p>'; return; }
-  w.innerHTML = changes.slice(0,8).map(c=>
-    `<div style="display:flex;gap:9px;padding:10px 0;border-bottom:1px solid var(--bd)">
-      <span>✍️</span><div><div style="font-size:13px">${c.desc}</div>
-      <div style="font-size:11px;color:var(--t2);margin-top:1px">${new Date(c.date).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</div></div>
-    </div>`
-  ).join('');
-}
-async function applyNL(){
-  const text = document.getElementById('nl-inp').value.trim();
-  if(!text){ toast('Describe el cambio','err'); return; }
-  document.getElementById('nl-btn').style.display='none';
-  document.getElementById('nl-spin').style.display='inline';
-  await new Promise(r=>setTimeout(r,900));
-  let desc = 'Cambio registrado.';
-  const l = text.toLowerCase();
-  if(l.includes('titular')||l.includes('hero')||l.includes('título')){
-    const t=document.getElementById('se-hero-title');
-    const newTitle = text.split('por').slice(1).join('por').trim()||text;
-    if(t) t.value = newTitle; saveSection('hero'); desc='Titular del hero actualizado.';
-  } else if(l.includes('lunes')||l.includes('horario')||l.includes('cerrado')){
-    const h=document.getElementById('se-contact-hours');
-    if(h&&!h.value) h.value = text; saveSection('contact'); desc='Horario actualizado.';
-  } else if(l.includes('servicio')||l.includes('precio')){
-    kbEntries.push({type:'text',content:text}); renderKB(); desc='Información añadida a la base de conocimiento.';
-  } else {
-    kbEntries.push({type:'text',content:text}); renderKB(); desc='Cambio aplicado a la base de conocimiento.';
-  }
-  changes.unshift({text,desc,date:new Date().toISOString()});
-  const cls=getClients(); if(cls[curClient?.pin]){cls[curClient.pin].changes=changes;saveClients(cls);}
-  document.getElementById('nl-res-txt').textContent=desc;
-  document.getElementById('nl-result').classList.add('on');
-  document.getElementById('nl-inp').value='';
-  renderChgHist();
-  document.getElementById('nl-btn').style.display='inline';
-  document.getElementById('nl-spin').style.display='none';
-  toast('✅ Cambio aplicado','ok');
-}
-
-// ══════ INTEGRATIONS ══════
-function renderIntegrations(){
-  const el=document.getElementById('int-grid-cp');
-  if(!el) return;
-  const saved=JSON.parse(localStorage.getItem(S+'cl_int')||'{}');
-  const cats=['💬 Mensajería','📱 Redes sociales','📧 Email & Vídeo','📅 CRM & Agenda','💳 Pagos','⚡ Automatización'];
-  const chunks=[ALL_CHANNELS.slice(0,4),ALL_CHANNELS.slice(4,12),ALL_CHANNELS.slice(12,16),ALL_CHANNELS.slice(16,20),ALL_CHANNELS.slice(20,24),ALL_CHANNELS.slice(24)];
-  el.innerHTML = cats.map((cat,ci)=>{
-    const items=chunks[ci]||[];
-    return `<div style="margin-bottom:18px"><div style="font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--t2);margin-bottom:9px">${cat}</div>
-      <div class="int-grid3">${items.map(c=>{
-        const on=saved[c.id]||DEFAULT_CH.has(c.id);
-        return `<div class="int-c ${on?'conn':''}" onclick="toggleInt(this,'${c.id}')">
-          <span class="int-ico">${c.ico}</span><div><div class="int-nm">${c.nm}</div>
-          <div class="int-st ${on?'ok':''}">${on?'Conectado':'No conectado'}</div></div></div>`;
-      }).join('')}</div></div>`;
-  }).join('');
-}
-function toggleInt(el, id){
-  const st=el.querySelector('.int-st');
-  const on=!el.classList.contains('conn');
-  el.classList.toggle('conn',on);
-  if(st){st.className='int-st'+(on?' ok':'');st.textContent=on?'Conectado':'No conectado';}
-  const saved=JSON.parse(localStorage.getItem(S+'cl_int')||'{}');
-  saved[id]=on; localStorage.setItem(S+'cl_int',JSON.stringify(saved));
-  const ch=ALL_CHANNELS.find(c=>c.id===id);
-  toast((on?'✅ ':' ○ ')+(ch?ch.nm:id)+(on?' conectado':' desconectado'),on?'ok':'');
-}
-
-function saveAgent(){
-  const ag={nm:document.getElementById('ag-nm').value.trim()||'FLOW',gr:document.getElementById('ag-gr').value.trim(),lang:document.getElementById('ag-lang').value,web:document.getElementById('ag-web').value.trim(),tone:selTone,voice:selVoice};
-  const cls=getClients(); if(cls[curClient?.pin]){cls[curClient.pin].agent=ag;saveClients(cls);curClient.agent=ag;}
-  document.getElementById('ag-preview').textContent=ag.gr||ag.nm;
-  document.getElementById('cp-ag-nm').textContent=ag.nm+' · '+(curClient?.biz||'tu negocio');
-  toast('✅ Agente actualizado','ok');
-}
-function saveBiz(){
-  const cls=getClients(); if(cls[curClient?.pin]){cls[curClient.pin].biz=document.getElementById('biz-nm').value;cls[curClient.pin].offer=document.getElementById('biz-offer').value;saveClients(cls);}
-  toast('✅ Negocio guardado','ok');
-}
-function changePIN(){
-  const np=document.getElementById('new-pin').value.trim().toUpperCase();
-  if(np.length<6){toast('PIN demasiado corto (mín. 6 caracteres)','err');return;}
-  const cls=getClients();cls[np]={...cls[curClient.pin],pin:np};delete cls[curClient.pin];saveClients(cls);curClient.pin=np;
-  document.getElementById('new-pin').value='';
-  toast('✅ PIN cambiado: '+np,'ok');
-}
-function selOpt(el,type,val){
-  const p=el.closest('.opt-row');
-  p.querySelectorAll('.opt').forEach(b=>b.classList.remove('on'));
-  el.classList.add('on');
-  if(type==='tone')selTone=val; else if(type==='voice')selVoice=val; else if(type==='ctf')selCtf=val;
-}
-
-// ══════ ADMIN ══════
-function initAdmin(){
-  const cls=Object.values(getClients());
-  const pm={voice:49,suite:199,elite:599};
-  const active=cls.filter(c=>c.plan!=='beta');
-  document.getElementById('a-mrr').textContent=active.reduce((s,c)=>s+(pm[c.plan]||0),0)||'—';
-  document.getElementById('a-cl').textContent=active.length||'—';
-  document.getElementById('a-beta').textContent=cls.filter(c=>c.plan==='beta').length||'—';
-  document.getElementById('a-feed').innerHTML=[
-    ['💬','FLOW: 14 conversaciones · 3 leads cualificados',"Hoy 9:00"],
-    ['👤','Nuevo lead — Inkstudio BCN','Hace 3h'],
-  ].map(([ic,tx,tm])=>`<div class="feed-item"><div class="feed-ico">${ic}</div><div><div class="feed-tx">${tx}</div><div class="feed-time">${tm}</div></div></div>`).join('');
-  renderClients();
-  renderAdminAgents();
-  renderAdminChannels();
-  renderPlanEditor();
-  renderPacksAdminEditor();
-  renderBuilderAdmin();
-}
-function apNav(id,el){
-  document.querySelectorAll('#admin-panel .ppanel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('#admin-panel .sni').forEach(n=>n.classList.remove('on'));
-  const panel=document.getElementById('app-'+id); if(panel) panel.classList.add('on');
-  if(el) el.classList.add('on');
-  const ts={dash:'Dashboard',clients:'Clientes',['agents-admin']:'Agentes',['builder-admin']:'Builder Pro',plans:'Planes & tarifas',['channels-admin']:'Canales omnicanal',config:'Configuración'};
-  document.getElementById('ap-pbar').textContent=ts[id]||id;
-}
-let showCF=false;
-function toggleCreateForm(){showCF=!showCF;document.getElementById('create-form-card').style.display=showCF?'block':'none';document.getElementById('new-pin-box').style.display='none';}
-function createClient(){
-  const nm=document.getElementById('cc-nm').value.trim(),em=document.getElementById('cc-email').value.trim(),bz=document.getElementById('cc-biz').value.trim(),pl=document.getElementById('cc-plan').value;
-  if(!nm||!em){toast('Nombre y email obligatorios','err');return;}
-  const pin=genPIN();
-  const cls=getClients();
-  cls[pin]={pin,name:nm,email:em,biz:bz,plan:pl,startDate:new Date().toISOString(),
-    agent:{nm:'FLOW',gr:`¡Hola! Soy el asistente de ${bz||nm}.`,tone:'profesional',voice:'Iris Warm',lang:'es',web:''},kb:[],changes:[],sections:{}};
-  saveClients(cls);
-  document.getElementById('new-pin-code').textContent=pin;
-  document.getElementById('new-pin-box').style.display='block';
-  renderClients();
-  toast('✅ Cliente creado — PIN: '+pin,'ok');
-}
-function renderClients(){
-  const cls=Object.values(getClients());
-  const lm={beta:'Beta',voice:'Voice',suite:'Suite',elite:'Elite'};
-  const tm={beta:'tg-w',voice:'tg-tl',suite:'tg-vi',elite:'tg-ok'};
-  if(!cls.length){document.getElementById('clients-tbl').innerHTML='<p style="padding:20px;text-align:center;font-size:13px;color:var(--t2)">Sin clientes. Crea el primero.</p>';return;}
-  document.getElementById('clients-tbl').innerHTML=
-    '<table><thead><tr><th>Cliente / Negocio</th><th>Plan</th><th>Inicio</th><th>PIN</th><th></th></tr></thead><tbody>'+
-    cls.map(c=>`<tr><td><strong>${c.biz||c.name}</strong><div style="font-size:11px;color:var(--t2)">${c.email}</div></td>
-      <td><span class="tg ${tm[c.plan]||'tg-dim'}">${lm[c.plan]||c.plan}</span></td>
-      <td style="font-size:12px;color:var(--t2)">${new Date(c.startDate).toLocaleDateString('es-ES')}</td>
-      <td style="font-family:monospace;font-size:12px;color:var(--teal)">${c.pin}</td>
-      <td><button class="pbtn-g" onclick="cpCopy('${c.pin}')">Copiar</button></td></tr>`
-    ).join('')+'</tbody></table>';
-}
-function renderAdminAgents(){
-  const el=document.getElementById('admin-agent-roster');
-  if(!el) return;
-  el.innerHTML = AGENTS_DATA.map(a=>
-    `<div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--s1);border:1px solid var(--bd);border-radius:10px;margin-bottom:8px">
-      <span style="font-size:22px">${a.ico}</span>
-      <div style="flex:1"><div style="font-size:13.5px;font-weight:800;font-family:var(--serif)">${a.nm} — ${a.role}</div>
-        <div style="font-size:12px;color:var(--t2)">${a.desc}</div></div>
-      <span class="tg ${a.st==='active'?'tg-ok':'tg-w'}">${a.st==='active'?'Activo':'Pendiente'}</span>
-    </div>`
-  ).join('');
-}
-function renderAdminChannels(){
-  const el=document.getElementById('channels-admin-grid');
-  if(!el) return;
-  const saved=JSON.parse(localStorage.getItem(S+'adm_ch')||'{}');
-  const cats=['💬 Mensajería','📱 Redes','📧 Email & Vídeo','📅 CRM & Agenda','💳 Pagos','⚡ Automatización'];
-  const chunks=[ALL_CHANNELS.slice(0,4),ALL_CHANNELS.slice(4,12),ALL_CHANNELS.slice(12,16),ALL_CHANNELS.slice(16,20),ALL_CHANNELS.slice(20,24),ALL_CHANNELS.slice(24)];
-  el.innerHTML=cats.map((cat,ci)=>{
-    const items=chunks[ci]||[];
-    return `<div style="margin-bottom:18px"><div style="font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--t2);margin-bottom:9px">${cat}</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">${items.map(c=>{
-        const on=saved[c.id]!==undefined?saved[c.id]:DEFAULT_CH.has(c.id);
-        return `<div style="background:var(--s1);border:1px solid ${on?'rgba(34,197,94,.28)':'var(--bd)'};border-radius:10px;padding:11px 8px;text-align:center">
-          <div style="font-size:20px;margin-bottom:4px">${c.ico}</div>
-          <div style="font-size:10px;font-weight:700;color:${on?'var(--ok)':'var(--t2)'}">${c.nm}</div>
-          <div style="display:flex;justify-content:center;margin-top:6px"><div class="toggle ${on?'on':''}" onclick="toggleAdmCh('${c.id}',this)"></div></div>
-        </div>`;
-      }).join('')}</div></div>`;
-  }).join('');
-}
-function toggleAdmCh(id,el){
-  el.classList.toggle('on');
-  const on=el.classList.contains('on');
-  const saved=JSON.parse(localStorage.getItem(S+'adm_ch')||'{}');
-  saved[id]=on; localStorage.setItem(S+'adm_ch',JSON.stringify(saved));
-  const ch=ALL_CHANNELS.find(c=>c.id===id);
-  toast((on?'✅ ':' ○ ')+(ch?ch.nm:id)+(on?' activado':' desactivado'),on?'ok':'');
-}
-let editPlans=null;
-function renderPlanEditor(){
-  const p=editPlans||getPlans();
-  document.getElementById('plan-editor').innerHTML=Object.entries(p).map(([k,v])=>
-    `<div style="background:var(--s1);border:1px solid ${v.badge?'var(--tlb)':'var(--bd)'};border-radius:var(--r);padding:16px">
-      <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:12px">${v.nm}</div>
-      <div class="pfg"><label>CHF/mes</label><input style="width:100%;background:rgba(2,3,13,.7);border:1px solid var(--bd2);border-radius:7px;padding:8px 11px;color:var(--tx);font-family:var(--font);font-size:13.5px;outline:none" type="number" value="${v.chf}" onchange="upPlan('${k}','chf',+this.value)"></div>
-      <div class="pfg"><label>Descripción</label><input style="width:100%;background:rgba(2,3,13,.7);border:1px solid var(--bd2);border-radius:7px;padding:8px 11px;color:var(--tx);font-family:var(--font);font-size:13.5px;outline:none" type="text" value="${v.desc}" onchange="upPlan('${k}','desc',this.value)"></div>
-      <div class="pfg"><label>Características (una por línea)</label><textarea style="width:100%;background:rgba(2,3,13,.7);border:1px solid var(--bd2);border-radius:7px;padding:8px 11px;color:var(--tx);font-family:var(--font);font-size:13px;outline:none;resize:vertical" rows="4" onchange="upPlanF('${k}',this.value)">${v.feats.join('\n')}</textarea></div>
-    </div>`
-  ).join('');
-}
-function upPlan(k,f,v){if(!editPlans)editPlans=getPlans();editPlans[k][f]=v;}
-function upPlanF(k,v){if(!editPlans)editPlans=getPlans();editPlans[k].feats=v.split('\n').filter(Boolean);}
-function savePlansAdmin(){
-  const d=editPlans||getPlans();
-  localStorage.setItem(S+'plans',JSON.stringify(d));
-  editPlans=null;renderPlans();renderPlanEditor();
-  toast('✅ Planes actualizados en la landing','ok');
-}
-
-let editPacks=null;
-function renderPacksAdminEditor(){
-  const p=editPacks||getPacksData();
-  const el=document.getElementById('packs-admin-editor');
-  if(!el)return;
-  const inStyle='width:100%;background:rgba(2,3,13,.7);border:1px solid var(--bd2);border-radius:7px;padding:8px 11px;color:var(--tx);font-family:var(--font);font-size:13px;outline:none';
-  el.innerHTML=Object.entries(p).map(([k,v])=>
-    `<div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px">
-      <div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">${v.ico} ${v.nm}</div>
-      <div class="pfg"><label>CHF</label><input style="${inStyle}" type="number" value="${v.chf}" onchange="upPack('${k}','chf',+this.value)"></div>
-      <div class="pfg"><label>Descripción</label><input style="${inStyle}" type="text" value="${v.desc}" onchange="upPack('${k}','desc',this.value)"></div>
-      <div class="pfg"><label>Badge (vacío=ninguno)</label><input style="${inStyle}" type="text" value="${v.badge||''}" onchange="upPack('${k}','badge',this.value)"></div>
-      <div class="pfg"><label>Mejor para</label><input style="${inStyle}" type="text" value="${v.best||''}" onchange="upPack('${k}','best',this.value)"></div>
-    </div>`
-  ).join('');
-}
-function upPack(k,f,v){if(!editPacks)editPacks=getPacksData();editPacks[k][f]=v;}
-function savePacksAdmin(){
-  const d=editPacks||getPacksData();
-  localStorage.setItem(S+'packs',JSON.stringify(d));
-  editPacks=null;renderPacks();renderPacksAdminEditor();
-  toast('✅ Packs actualizados en la landing','ok');
-}
-function renderBuilderAdmin(){
-  const el=document.getElementById('builder-admin-content');
-  if(!el) return;
-  el.innerHTML=`<div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;text-align:center">
-    <div style="font-size:36px;margin-bottom:12px">🎨</div>
-    <div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:8px">Builder Pro — Herramienta separada</div>
-    <p style="font-size:13px;color:var(--t2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">
-      El Builder Pro genera una presencia digital completa para cualquier cliente en 60 segundos: logo IA, landing page, agente vocal (ElevenLabs), pack redes y código de acceso de 14 días.
-    </p>
-    <a href="https://claude.ai/artifact/XvbdbaAiJRKdNgoSg2BFea" target="_blank" class="pbtn" style="display:inline-block;text-decoration:none">🚀 Abrir Builder Pro</a>
-  </div>`;
-}
-function openBuilder(){
-  window.open('https://claude.ai/artifact/XvbdbaAiJRKdNgoSg2BFea','_blank');
-}
-
-// ══════ UTILS ══════
-function goTo(sel){document.querySelector(sel)?.scrollIntoView({behavior:'smooth'});}
-function cpCopy(t){navigator.clipboard.writeText(t).then(()=>toast('📋 Copiado','ok')).catch(()=>{});}
-function toast(msg,type){
-  const el=document.getElementById('toast-el');
-  if(!el) return;
-  el.textContent=msg; el.className='toast on '+(type||'');
-  clearTimeout(_toast); _toast=setTimeout(()=>{el.className='toast';},2700);
-}
-function toggleFav(){
-  favOpen=!favOpen;
-  const b=document.getElementById('fav-bubble');
-  if(b) b.style.display=favOpen?'block':'none';
-}
-function activateVoice(){toast('Agente vocal activo — ElevenLabs · 5 idiomas','ok');}
-
-// ══════ INIT ══════
-window.addEventListener('load',()=>{
-  // Detectar idioma del navegador como sugerencia
-  const browserLang = (navigator.language||'fr').substring(0,2);
-  const validLangs = ['fr','de','it','en','es'];
-  const initLang = validLangs.includes(browserLang) ? browserLang : 'fr';
-  const savedLang = localStorage.getItem(S+'lang') || initLang;
-
-  renderTicker();
-  renderSectors();
-  renderAgents();
-  renderPlans();
-  renderPacks();
-  renderDemoTabs();
-
-  // Aplicar idioma inicial (esto también genera el FAQ dinámico)
-  const langBtn = document.querySelector(`.lb[data-l="${savedLang}"]`);
-  setLang(savedLang, langBtn);
-
-  // Guardar preferencia de idioma al cambiar
-  document.querySelectorAll('.lb').forEach(b=>{
-    b.addEventListener('click',()=>localStorage.setItem(S+'lang', b.dataset.l));
-  });
-
-  // Fotos grid vacío inicial
-  renderPhotosGrid();
-
-  setTimeout(()=>{ document.getElementById('fav-wrap').style.opacity='1'; }, 3000);
-});
-</script>
+<script src="/translations.js" defer></script>
+<script src="/legal.js" defer></script>
+<script src="/assets/vendor/lz-string-1.5.0.min.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

@@ -32,9 +32,8 @@ Construida en HTML/CSS/JS puro, desplegada en **Vercel**, con integraciones a Ma
    - Output directory: *(vacío / raíz)*  
    - Haz clic en **Deploy**
 
-4. **Obtener la URL de producción**  
-   Vercel te dará una URL tipo `https://flowsuite-website.vercel.app`.  
-   Actualiza la constante en `index.html` (busca `landing-provisional-beta.vercel.app`) con la nueva URL.
+4. **Variables de entorno**  
+   Añade en Vercel las variables de `.env.example` y vuelve a desplegar.
 
 ---
 
@@ -44,98 +43,67 @@ Construida en HTML/CSS/JS puro, desplegada en **Vercel**, con integraciones a Ma
 
 | Archivo | Descripción |
 |---|---|
-| `index.html` | Landing page principal (todas las secciones) |
-| `translations.js` | Traducciones ES / EN / FR / DE / IT |
-| `vercel.json` | Headers de seguridad, redirects y CORS |
-| `privacidad.html` | Política de privacidad |
-| `terminos.html` | Términos y condiciones |
-| `favicon.svg` / `favicon.png` | Favicon |
-| `logo.png` | Logo de FlowSuite |
+| `index.html` | Landing (todas las secciones), área cliente beta y panel de administración (incluye el **Builder**) |
+| `translations.js` | Textos de la landing en ES / FR / DE / IT / EN |
+| `legal.js` | Textos legales (aviso legal, privacidad, condiciones, DPA, cookies) en los 5 idiomas |
+| `assets/js/site.js` | Lógica de la web: idiomas, formulario, área cliente, panel admin y Builder |
+| `privacidad.html` · `terminos.html` · `aviso-legal.html` | Páginas legales independientes (usan `legal.js`) |
+| `demo/index.html` | Demo personalizada que genera el Builder (`/demo#…`) |
+| `api/` | Funciones serverless de Vercel: login de admin y envío del formulario a Make |
+| `assets/fonts`, `assets/vendor` | Fuentes y `lz-string` alojados localmente (sin peticiones a Google ni a CDNs) |
+| `vercel.json` | Cabeceras de seguridad (CSP, HSTS…) y redirecciones |
 
-### Variable de URL de la app
+### Variables de entorno (Vercel → Settings → Environment Variables)
 
-En `index.html`, hay una referencia directa a la URL de Vercel en el iframe del demo:
+Ver `.env.example`. Sin ellas, el login de admin y el formulario devuelven 503 (fallan cerrados).
 
-```js
-df.src = 'https://landing-provisional-beta.vercel.app';
-```
-
-Cuando hagas el deploy en el nuevo repo, cambia ese valor por la nueva URL de Vercel del agente.
+| Variable | Uso |
+|---|---|
+| `ADMIN_PASSWORD` | Contraseña del panel de administración (solo en el servidor) |
+| `ADMIN_SESSION_SECRET` | Cadena aleatoria larga para firmar la cookie de sesión (`openssl rand -hex 32`) |
+| `MAKE_WEBHOOK_URL` | URL del webhook de Make que recibe los leads |
+| `MAKE_WEBHOOK_SECRET` | Secreto enviado en la cabecera `X-FlowSuite-Secret`; compruébalo en Make con un filtro |
 
 ---
 
 ## 🔗 Integraciones
 
-### Make (Integromat)
+### Make (formulario beta)
 
-El `vercel.json` ya permite llamadas salientes a `https://hook.eu1.make.com`.
+El formulario envía a `/api/webhook`, que valida los datos, aplica límite de envíos por IP y reenvía a Make con el secreto. La URL de Make **no** aparece en el código público.
 
-Para conectar el formulario de contacto a Make:
-1. Crea un escenario en [make.com](https://make.com) con un módulo **Webhooks → Custom Webhook**
-2. Copia la URL del webhook (ej. `https://hook.eu1.make.com/xxxxxxxxxxxx`)
-3. En `index.html`, localiza el listener del `#contact-form` y añade la llamada fetch:
-   ```js
-   fetch('https://hook.eu1.make.com/TU_WEBHOOK_ID', {
-     method: 'POST',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({
-       nombre: document.getElementById('f-name').value,
-       email:  document.getElementById('f-email').value,
-       sector: document.getElementById('f-sector').value
-     })
-   });
-   ```
+En Make: módulo **Webhooks → Custom Webhook**, y después un filtro que solo continúe si la cabecera `X-FlowSuite-Secret` coincide con `MAKE_WEBHOOK_SECRET`. Desde ahí puedes añadir **Airtable → Create a Record**.
 
-### Airtable
+### Snowie / agente FlowSuite
 
-Desde Make, añade un módulo **Airtable → Create a Record** después del webhook para guardar los leads directamente en tu base de Airtable.  
-No se necesitan cambios en el código HTML/JS.
+La CSP ya permite `https://app.snowie.ai` (connect/frame). Para activar el widget, pega el código embed antes de `</body>` en `index.html` y autoriza el dominio en Snowie.
 
-### Snowie / FlowSuite AI Agent
+### Builder
 
-El `vercel.json` ya incluye en la política CSP los dominios de Snowie:
-
-```
-connect-src: https://app.snowie.ai
-frame-src: https://app.snowie.ai
-```
-
-Para activar el widget del agente:
-1. Ve a tu panel de Snowie → obtén el código embed del agente
-2. Pégalo antes de `</body>` en `index.html` (sección marcada como `<!-- FLOW AGENT WIDGET -->`)
-3. En el panel de Snowie, añade la nueva URL de Vercel como dominio autorizado
-
-### Actualizar CORS en `vercel.json`
-
-Cuando tengas el dominio definitivo de FlowSuite (ej. `https://flowsuite.ch`), el header ya está configurado:
-
-```json
-"Access-Control-Allow-Origin": "https://flowsuite.ch"
-```
+El Builder solo está dentro del **panel de administración** (🔐 → Builder). Genera el enlace `/demo#…` y el mensaje de WhatsApp para el prospecto. Las antiguas rutas `/builder` y `/admin` redirigen a la portada.
 
 ---
 
 ## 🌍 Internacionalización (i18n)
 
-La web soporta 5 idiomas: **Español (ES)**, **English (EN)**, **Français (FR)**, **Deutsch (DE)**, **Italiano (IT)**.
+5 idiomas: **FR, DE, IT, EN, ES**. El idioma se elige por: preferencia guardada (`fs_lang`) → idioma del navegador → francés.
 
-- Las traducciones están en `translations.js`
-- Los elementos HTML usan atributos `data-i18n="clave"`
-- El idioma seleccionado se guarda en `localStorage` con la clave `fs_lang`
-- La función `applyLang(lang)` aplica las traducciones dinámicamente
+- Textos de la landing: `translations.js`. Atributos `data-i18n` (texto), `data-i18n-html` (HTML de confianza) y `data-i18n-ph` (placeholder).
+- Textos legales: `legal.js`.
+- En móvil, el selector de idioma es un desplegable.
+- El área cliente y el panel de administración siguen en español.
 
 ---
 
 ## 🔒 Seguridad
 
-El `vercel.json` incluye los siguientes headers de seguridad en todas las rutas:
+- Contraseña de admin verificada en el servidor, con cookie `HttpOnly; Secure; SameSite=Strict` de 1 hora y límite de 5 intentos / 15 min por IP.
+- El formulario se valida en el servidor (límite de 10 envíos / 15 min por IP y campo trampa anti-spam).
+- Escapado de HTML en todo lo que muestra datos de usuarios; la demo solo acepta URLs `https://`.
+- Cabeceras: CSP sin dominios externos de scripts, HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`.
+- Nada de secretos en el repositorio: `.env` está en `.gitignore`.
 
-- `X-Content-Type-Options: nosniff`
-- `X-Frame-Options: SAMEORIGIN`
-- `X-XSS-Protection: 1; mode=block`
-- `Strict-Transport-Security` (HSTS)
-- `Content-Security-Policy` (CSP) estricta
-- `Referrer-Policy: strict-origin-when-cross-origin`
+> El área cliente beta guarda sus datos en el `localStorage` del navegador de cada usuario. Para un servicio en producción hace falta una base de datos y autenticación en el servidor.
 
 ---
 
@@ -143,4 +111,4 @@ El `vercel.json` incluye los siguientes headers de seguridad en todas las rutas:
 
 **FlowSuite** – Rodrigo A. Díaz Videla  
 📧 info@flowsuite.ch  
-📍 Ormont-Dessous, CP 1862, Vaud, Suiza
+📍 Vaud, Suiza
