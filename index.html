@@ -530,7 +530,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
   </div>
 </nav>
 <div class="beta-bar">
-  <strong>Acceso beta gratuito</strong> · Sin tarjeta · Sin permanencia · Configura tu agente IA en 48h
+  <span id="beta-bar-text"><strong>Accès bêta gratuit</strong> · Sans carte · Sans engagement · Ton agent IA en 48h</span>
 </div>
 
 <section id="hero">
@@ -587,10 +587,10 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 <section class="section section-alt z1" id="para-quien">
 <div class="wrap">
   <div class="sectors-intro">
-    <span class="eyebrow">Para quién</span>
-    <h2 style="margin-bottom:12px">Un agente IA para <span class="grad-vi">cada historia</span></h2>
-    <p style="font-size:16px;color:var(--t2);line-height:1.75;max-width:560px">
-      Ya seas músico, terapeuta, restaurador, joyero, fotógrafo o coach — FlowSuite entiende tu mundo y habla a tus clientes como tú lo harías.
+    <span class="eyebrow" id="s-pq-eye">Pour qui</span>
+    <h2 style="margin-bottom:12px" id="s-pq-h2">Un agent IA pour <span class="grad-vi">chaque histoire</span></h2>
+    <p style="font-size:16px;color:var(--t2);line-height:1.75;max-width:560px" id="s-pq-sub">
+      Que tu sois musicien, thérapeute, restaurateur, bijoutier, photographe ou coach — FlowSuite comprend ton monde et parle à tes clients comme toi le ferais.
     </p>
   </div>
   <div class="sectors-cats" id="sectors-cats"></div>
@@ -599,43 +599,43 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 
 <section class="section z1" id="como-funciona">
 <div class="wrap">
-  <span class="eyebrow">Cómo funciona</span>
-  <h2 style="margin-bottom:10px">3 pasos. <span class="grad-teal">Presencia completa.</span></h2>
-  <p style="font-size:15px;color:var(--t2);margin-bottom:0;max-width:500px;line-height:1.75">
-    Sin código. Sin agencia. Sin esperas de semanas. Tu agente IA operativo en 48 horas.
+  <span class="eyebrow" id="s-cf-eye">Comment ça marche</span>
+  <h2 style="margin-bottom:10px" id="s-cf-h2">3 étapes. <span class="grad-teal">Présence complète.</span></h2>
+  <p style="font-size:15px;color:var(--t2);margin-bottom:0;max-width:500px;line-height:1.75" id="s-cf-sub">
+    Sans code. Sans agence. Sans attendre des semaines. Ton agent IA opérationnel en 48 heures.
   </p>
   <div class="steps-grid">
     <div class="step-card card card-glow">
       <div class="step-n">1</div>
       <div class="step-ico" style="background:var(--tla);border-color:var(--tlb)">🎯</div>
-      <div class="step-t">Cuéntanos tu historia</div>
-      <div class="step-d">Rellenas un breve formulario sobre tu negocio, servicios, estilo y canales. El Builder Pro genera tu presencia en 60 segundos.</div>
+      <div class="step-t" id="s-step1-t">Raconte-nous ton histoire</div>
+      <div class="step-d" id="s-step1-d">Tu remplis un formulaire sur ton activité, tes services, ton style et tes canaux. Le Builder Pro génère ta présence en 60 secondes.</div>
     </div>
     <div class="step-card card">
       <div class="step-n">2</div>
       <div class="step-ico" style="background:var(--via);border-color:var(--vib)">⚡</div>
-      <div class="step-t">La IA lo construye todo</div>
-      <div class="step-d">Logo IA · Landing page cinématica · Agente vocal con ElevenLabs · Pack redes sociales · Todos los canales configurados.</div>
+      <div class="step-t" id="s-step2-t">L'IA construit tout</div>
+      <div class="step-d" id="s-step2-d">Logo IA · Landing cinématique · Agent vocal ElevenLabs · Pack réseaux sociaux · Tous les canaux configurés.</div>
     </div>
     <div class="step-card card">
       <div class="step-n">3</div>
       <div class="step-ico" style="background:var(--coa);border-color:var(--cob)">🚀</div>
-      <div class="step-t">Tú te dedicas a lo tuyo</div>
-      <div class="step-d">FLOW atiende llamadas, cualifica leads, agenda citas y publica contenido. Tú te centras en tu arte, tu oficio, tu gente.</div>
+      <div class="step-t" id="s-step3-t">Tu te consacres à ton métier</div>
+      <div class="step-d" id="s-step3-d">FLOW répond aux appels, qualifie les leads, prend les rendez-vous et publie du contenu. Toi, tu te concentres sur ton art.</div>
     </div>
   </div>
   <div style="text-align:center;margin-top:32px">
-    <button class="btn btn-vi" onclick="goTo('#contacto')">Probar gratis 14 días →</button>
+    <button class="btn btn-vi" onclick="goTo('#contacto')" id="s-cf-cta">Essayer gratuitement 14 jours →</button>
   </div>
 </div>
 </section>
 
 <section class="section section-alt z1">
 <div class="wrap">
-  <span class="eyebrow">Agentes IA</span>
-  <h2 style="margin-bottom:10px">Un equipo digital. <span class="grad-coral">Cada uno en lo suyo.</span></h2>
-  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:520px;line-height:1.75">
-    Cada agente tiene un rol específico. Sin sobrecargas. Sin confusiones. El modelo más eficiente de automatización que existe.
+  <span class="eyebrow" id="s-ag-eye">Agents IA</span>
+  <h2 style="margin-bottom:10px" id="s-ag-h2">Une équipe digitale. <span class="grad-coral">Chacun dans son rôle.</span></h2>
+  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:520px;line-height:1.75" id="s-ag-sub">
+    Chaque agent a un rôle précis. Sans surcharge. Sans confusion. Le modèle le plus efficace d'automatisation.
   </p>
   <div class="agents-scroll" id="agents-grid"></div>
 </div>
@@ -643,31 +643,38 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 
 <section class="section z1" id="precios">
 <div class="wrap">
-  <span class="eyebrow">Precios</span>
-  <h2 style="margin-bottom:10px">Claro desde el <span class="grad-teal">primer día.</span></h2>
-  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:500px;line-height:1.75">
-    Sin permanencia. Sin sorpresas. Acceso beta 100% gratuito mientras dura el programa.
+  <span class="eyebrow" id="s-pr-eye">Prix</span>
+  <h2 style="margin-bottom:10px" id="s-pr-h2">Clair dès le <span class="grad-teal">premier jour.</span></h2>
+  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:500px;line-height:1.75" id="s-pr-sub">
+    Sans engagement. Sans surprises. Accès bêta 100% gratuit pendant le programme.
   </p>
   <div class="plans-grid" id="plans-grid"></div>
-  <p style="font-size:12px;color:var(--t2);text-align:center;margin-top:16px">
-    Precios en CHF · IVA no aplicable (empresa individual fase beta) · 14 días de prueba gratuita · Cancelación en cualquier momento
+  <p style="font-size:12px;color:var(--t2);text-align:center;margin-top:16px" id="s-pr-note">
+    Prix en CHF · TVA non applicable (entreprise individuelle phase bêta) · 14 jours d'essai gratuit · Annulation à tout moment
+  </p>
+</div>
+</section>
+
+<!-- PAQUETES DE RECARGA -->
+<section class="section z1" id="paquetes">
+<div class="wrap">
+  <span class="eyebrow" id="s-pk-eye">Packs de recharge</span>
+  <h2 style="margin-bottom:10px">Plus de minutes <span class="grad-coral">en 2 clics.</span></h2>
+  <p style="font-size:15px;color:var(--t2);margin-bottom:clamp(28px,4vw,44px);max-width:520px;line-height:1.75" id="s-pk-sub">
+    Besoin de plus de minutes ? Active un pack depuis ton espace client. Sans appeler personne, sans attendre.
+  </p>
+  <div id="packs-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px"></div>
+  <p style="font-size:12px;color:var(--t2);text-align:center;margin-top:16px" id="s-pk-note">
+    Les packs s'activent instantanément · Valables 12 mois · Cumulables avec tout plan actif
   </p>
 </div>
 </section>
 
 <section class="section section-alt z1" id="faq">
 <div class="wrap">
-  <span class="eyebrow">FAQ</span>
-  <h2 style="margin-bottom:clamp(28px,4vw,44px)">Preguntas <span class="grad-vi">frecuentes</span></h2>
-  <div class="qa-wrap">
-    <details class="qa"><summary>¿Qué pasa si no soy técnico?</summary><div class="qa-a">FlowSuite está diseñado para que no necesites serlo. El Builder Pro hace todo automáticamente: te pide información básica de tu negocio y genera el logo, la web y el agente vocal en 60 segundos. Sin código, sin hosting, sin complicaciones.</div></details>
-    <details class="qa"><summary>¿Cuánto tiempo hasta tener el agente funcionando?</summary><div class="qa-a">48 horas desde que nos envías tu información. El Builder genera una primera versión inmediata, y el equipo de FlowSuite personaliza y activa el agente vocal con ElevenLabs en ese plazo.</div></details>
-    <details class="qa"><summary>¿Funciona para sectores artísticos o creativos?</summary><div class="qa-a">Es uno de nuestros puntos fuertes. Músicos, tatuadores, fotógrafos, joyeros, artistas visuales, estudios de grabación, yoguis, terapeutas alternativos — FLOW entiende el lenguaje y las necesidades de cada uno. Hemos diseñado prompts específicos por sector creativo.</div></details>
-    <details class="qa"><summary>¿Puedo conectar mi Instagram, TikTok y WhatsApp?</summary><div class="qa-a">Sí. El panel cliente incluye integraciones con 20+ canales: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com y más.</div></details>
-    <details class="qa"><summary>¿En qué idiomas habla FLOW?</summary><div class="qa-a">Francés, alemán, italiano, inglés y español de forma nativa. Ideal para negocios en Suiza o que atienden clientes internacionales. Se detecta automáticamente el idioma del cliente.</div></details>
-    <details class="qa"><summary>¿Dónde se guardan mis datos?</summary><div class="qa-a">En Suiza (Infomaniak, servidores en Ginebra), conforme a la nLPD y al RGPD. Ningún dato personal se vende a terceros. Consulta nuestra Política de Privacidad completa.</div></details>
-    <details class="qa"><summary>¿Puedo cancelar en cualquier momento?</summary><div class="qa-a">Sí. Sin permanencia, sin penalización. Durante la beta todo es gratuito. Cuando lancemos los planes de pago, podrás cancelar con 30 días de preaviso.</div></details>
-  </div>
+  <span class="eyebrow" id="s-fq-eye">FAQ</span>
+  <h2 style="margin-bottom:clamp(28px,4vw,44px)" id="s-fq-h2">Questions <span class="grad-vi">fréquentes</span></h2>
+  <div class="qa-wrap" id="faq-container"><!-- rendered by renderFAQ() --></div>
 </div>
 </section>
 
@@ -675,16 +682,16 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 <div class="wrap">
   <div class="grid2">
     <div>
-      <span class="eyebrow">Empezar</span>
-      <h2 style="margin-top:14px;margin-bottom:14px">Beta gratuita.<br><span class="grad-teal">Sin compromiso.</span></h2>
-      <p style="font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:26px;max-width:440px">
-        Rellena el formulario o escríbenos por WhatsApp. <strong style="color:var(--tx)">La persona que construye FlowSuite te responde directamente.</strong>
+      <span class="eyebrow" id="s-ct-eye">Commencer</span>
+      <h2 style="margin-top:14px;margin-bottom:14px" id="s-ct-h2">Bêta gratuite.<br><span class="grad-teal">Sans engagement.</span></h2>
+      <p style="font-size:15px;color:var(--t2);line-height:1.75;margin-bottom:26px;max-width:440px" id="s-ct-sub">
+        Remplis le formulaire ou écris-nous sur WhatsApp. <strong style="color:var(--tx)">La personne qui construit FlowSuite te répond directement.</strong>
       </p>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:20px">🇨🇭</span><div><strong>Suiza</strong> · CHF · Infomaniak · nLPD</div></div>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><span style="font-size:20px">🇪🇸</span><div><strong>España & LATAM</strong> · RGPD</div></div>
-      <a class="wa-link" href="https://wa.me/41779413532" target="_blank" rel="noopener">💬 WhatsApp Suiza — +41 77 941 35 32</a>
-      <a class="wa-link" href="https://wa.me/34634134466" target="_blank" rel="noopener">💬 WhatsApp España — +34 634 13 44 66</a>
-      <p style="font-size:12px;color:var(--t2);margin-top:16px">Sin tarjeta. Sin comercial. Si no convence, te vas y ya está.</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:20px">🇨🇭</span><div><strong>Suisse</strong> · CHF · Infomaniak · nLPD</div></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><span style="font-size:20px">🇪🇸</span><div><strong>Espagne & LATAM</strong> · RGPD</div></div>
+      <a class="wa-link" href="https://wa.me/41779413532" target="_blank" rel="noopener" id="s-wa-ch">💬 WhatsApp Suisse · +41 77 941 35 32</a>
+      <a class="wa-link" href="https://wa.me/34634134466" target="_blank" rel="noopener" id="s-wa-es">💬 WhatsApp Espagne · +34 634 13 44 66</a>
+      <p style="font-size:12px;color:var(--t2);margin-top:16px" id="s-legal-cta">Sans carte. Sans commercial. Si ça ne convient pas, tu pars et c'est tout.</p>
     </div>
     <div class="lead-card">
       <div id="form-wrap">
@@ -692,12 +699,12 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
         <div style="font-size:13px;color:var(--t2);margin-bottom:18px">Respuesta en menos de 24h. Sin spam.</div>
         <form id="lead-form" onsubmit="submitLead(event)">
           <div class="fgrid2">
-            <div class="fg"><label>Nombre *</label><input id="f-name" type="text" placeholder="Marc Dupont" required></div>
-            <div class="fg"><label>Negocio *</label><input id="f-biz" type="text" placeholder="Tu estudio, taller, clínica…" required></div>
+            <div class="fg"><label id="fl-nm">Prénom *</label><input id="f-name" type="text" placeholder="Marc Dupont" required></div>
+            <div class="fg"><label id="fl-biz">Activité *</label><input id="f-biz" type="text" placeholder="Ton studio, atelier, clinique…" required></div>
           </div>
-          <div class="fg"><label>Email *</label><input id="f-email" type="email" placeholder="marc@tu-negocio.ch" required></div>
-          <div class="fg"><label>WhatsApp</label><input id="f-tel" type="tel" placeholder="+41 79 ··· / +34 6 ···"></div>
-          <div class="fg"><label>Tu sector *</label>
+          <div class="fg"><label id="fl-em">Email *</label><input id="f-email" type="email" placeholder="marc@ton-business.ch" required></div>
+          <div class="fg"><label id="fl-tel">WhatsApp</label><input id="f-tel" type="tel" placeholder="+41 79 ··· / +34 6 ···"></div>
+          <div class="fg"><label id="fl-sec">Ton secteur *</label>
             <select id="f-sector" required>
               <option value="">Elige tu sector…</option>
               <optgroup label="🍽 Gastronomía & Hostelería">
@@ -761,25 +768,25 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
               <option>Otro</option>
             </select>
           </div>
-          <div class="fg"><label>¿Qué quieres automatizar? <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--t2)">(opcional)</span></label>
-            <textarea id="f-detail" rows="2" placeholder="Llamadas, agenda, Instagram, WhatsApp…"></textarea></div>
+          <div class="fg"><label id="fl-detail">Qu'est-ce que tu veux automatiser ? <span style="text-transform:none;letter-spacing:0;font-weight:500;color:var(--t2)">(optionnel)</span></label>
+            <textarea id="f-detail" rows="2" placeholder="Appels, agenda, Instagram, WhatsApp…"></textarea></div>
           <div class="form-check">
             <input type="checkbox" id="f-consent" required>
-            <label for="f-consent">Acepto el tratamiento de mis datos según la <span style="color:var(--teal);cursor:pointer" onclick="showLegal('privacy')">política de privacidad</span> (nLPD / RGPD). *</label>
+            <label for="f-consent" id="fl-consent">J'accepte le traitement de mes données selon la <span style="color:var(--teal);cursor:pointer" onclick="showLegal('privacy')">politique de confidentialité</span> (nLPD / RGPD). *</label>
           </div>
           <div class="ferr" id="f-err"></div>
-          <button class="btn btn-teal" style="width:100%;padding:14px" type="submit">Solicitar acceso beta gratuito</button>
+          <button class="btn btn-teal" style="width:100%;padding:14px" type="submit" id="fl-cta">Demander l'accès bêta gratuit</button>
         </form>
         <p style="font-size:11.5px;color:var(--t2);margin-top:11px;line-height:1.65">Ningún envío activa ningún cargo. Te contactamos para activar el acceso.</p>
       </div>
       <div id="form-ok" style="display:none;text-align:center;padding:20px 0">
-        <div style="font-size:46px;margin-bottom:12px">🎉</div>
-        <div style="font-size:18px;font-weight:800;font-family:var(--serif);margin-bottom:8px">¡Solicitud recibida!</div>
-        <p style="font-size:13.5px;color:var(--t2);line-height:1.75;margin-bottom:16px">Recibirás tu código PIN por email en menos de 24h.</p>
+        <div style="font-size:46px;margin-bottom:12px" id="fl-ok-ico">🎉</div>
+        <div style="font-size:18px;font-weight:800;font-family:var(--serif);margin-bottom:8px" id="fl-ok-h">Demande reçue !</div>
+        <p style="font-size:13.5px;color:var(--t2);line-height:1.75;margin-bottom:16px" id="fl-ok-sub">Tu recevras ton code PIN par email dans moins de 24h.</p>
         <div class="pin-box on" id="pin-box">
-          <div style="font-size:10px;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px">Tu PIN de acceso</div>
+          <div style="font-size:10px;font-weight:800;color:var(--t2);text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px" id="fl-pin-l">Ton code PIN d'accès</div>
           <div class="pin-val" id="pin-val">—</div>
-          <div style="font-size:12px;color:var(--t2)">Guárdalo · Acceso a tu espacio FlowSuite</div>
+          <div style="font-size:12px;color:var(--t2)">Sauvegarde-le · Accès à ton espace FlowSuite</div>
         </div>
       </div>
     </div>
@@ -939,6 +946,31 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
               <button class="pbtn" onclick="saveAllSections()">💾 Guardar todo</button>
             </div>
           </div>
+          <!-- UPLOAD LOGO + FOTOS -->
+          <div class="pc" style="margin-bottom:14px">
+            <div class="pc-hd"><span class="pc-hd-t">📸 Logo y fotos</span><button class="pbtn" onclick="saveMedia()">Guardar</button></div>
+            <div style="padding:14px 18px">
+              <div class="pfg">
+                <label>Logo de tu negocio</label>
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                  <div id="logo-preview" style="width:72px;height:72px;border-radius:12px;background:var(--s2);border:2px dashed var(--bd2);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;overflow:hidden;flex-shrink:0" onclick="document.getElementById('logo-upload').click()">🏪</div>
+                  <div>
+                    <button class="pbtn" onclick="document.getElementById('logo-upload').click()" style="margin-bottom:6px">📁 Cargar logo desde archivo</button>
+                    <div style="font-size:11.5px;color:var(--t2)">PNG, JPG, SVG · Máx 5MB · Fondo transparente recomendado</div>
+                  </div>
+                  <input id="logo-upload" type="file" accept="image/*" style="display:none" onchange="handleLogoUpload(this)">
+                </div>
+              </div>
+              <div class="pfg">
+                <label>Fotos de tu negocio / portafolio</label>
+                <div id="photos-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px"></div>
+                <button class="pbtn" onclick="document.getElementById('photos-upload').click()">📁 Añadir fotos desde archivo</button>
+                <span style="font-size:11.5px;color:var(--t2);margin-left:10px">JPG, PNG, WebP · Máx 10MB por foto</span>
+                <input id="photos-upload" type="file" accept="image/*" multiple style="display:none" onchange="handlePhotosUpload(this)">
+              </div>
+            </div>
+          </div>
+
           <div id="sections-editor"></div>
           <div style="margin-top:16px;padding:14px;background:var(--tla);border:1px solid var(--tlb);border-radius:10px;font-size:13px">
             💡 <strong>Truco:</strong> usa el <button onclick="cpNav('changes',null)" style="color:var(--teal);background:none;border:none;cursor:pointer;font-weight:700;font-size:13px">Editor IA ✍️</button> para hacer cambios en lenguaje natural: "cambia el título del hero por…"
@@ -1180,12 +1212,23 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
           <div id="builder-admin-content"></div>
         </div>
         <div class="ppanel" id="app-plans">
-          <div style="display:flex;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
-            <div><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Planes y tarifas</div>
+          <!-- PLANES MENSUALES -->
+          <div style="display:flex;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px">
+            <div><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Planes mensuales</div>
               <div style="font-size:13px;color:var(--t2)">Los cambios se publican en la landing al guardar.</div></div>
-            <button class="pbtn" onclick="savePlansAdmin()">Guardar</button>
+            <button class="pbtn" onclick="savePlansAdmin()">Guardar planes</button>
           </div>
-          <div id="plan-editor" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"></div>
+          <div id="plan-editor" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px"></div>
+
+          <!-- PAQUETES DE RECARGA -->
+          <div style="border-top:1px solid var(--bd);padding-top:20px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:10px">
+            <div><div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:3px">Paquetes de recarga</div>
+              <div style="font-size:13px;color:var(--t2)">Minutos adicionales que el cliente activa desde su panel.</div></div>
+            <button class="pbtn" onclick="savePacksAdmin()">Guardar packs</button>
+          </div>
+          <div id="packs-admin-editor" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"></div>
+          </div>
         </div>
         <div class="ppanel" id="app-channels-admin">
           <p style="font-size:13px;color:var(--t2);margin-bottom:14px">26 canales disponibles. Activa y configura cada uno.</p>
@@ -1273,12 +1316,14 @@ const SECTOR_CATS = [
 ];
 
 const AGENTS_DATA = [
-  {id:'flow',    ico:'🤖',nm:'FLOW',    role:'Captación',    desc:'Primera atención, cualificación de leads y agenda 24/7.',        st:'active'},
-  {id:'booking', ico:'📅',nm:'BOOKING', role:'Reservas',     desc:'Gestión de citas, agenda y recordatorios automáticos.',           st:'active'},
-  {id:'support', ico:'💎',nm:'SUPPORT', role:'Soporte',      desc:'Atención al cliente y resolución de dudas post-venta.',           st:'pending'},
-  {id:'content', ico:'✨',nm:'CONTENT', role:'Contenido',    desc:'Genera posts, reels y copy para tus redes sociales.',             st:'pending'},
-  {id:'store',   ico:'🛒',nm:'STORE',   role:'Tienda',       desc:'Asistente para tu tienda online, pedidos y pagos.',               st:'pending'},
-  {id:'hunter',  ico:'🎯',nm:'HUNTER',  role:'Prospección',  desc:'Outbound, seguimiento de leads fríos y reactivación.',            st:'pending'},
+  {id:'flow',    ico:'🤖',nm:'FLOW',    role:'Primer contacto', desc:'Primera atención, cualificación de leads y agenda 24/7 en 5 idiomas.',  st:'active'},
+  {id:'setter',  ico:'🎯',nm:'SETTER',  role:'Setter',          desc:'Prospección, cualificación BANT y reserva de demos con el closer.',      st:'active'},
+  {id:'closer',  ico:'🏆',nm:'CLOSER',  role:'Closer',          desc:'Demo, venta de valor, manejo de objeciones y cierre de contrato.',       st:'active'},
+  {id:'booking', ico:'📅',nm:'BOOKING', role:'Reservas',        desc:'Gestión de citas, agenda y recordatorios automáticos.',                  st:'active'},
+  {id:'support', ico:'💎',nm:'SUPPORT', role:'Soporte',         desc:'Atención al cliente y resolución de dudas post-venta.',                  st:'pending'},
+  {id:'content', ico:'✨',nm:'CONTENT', role:'Contenido',       desc:'Genera posts, reels y copy adaptados a tu sector.',                      st:'pending'},
+  {id:'store',   ico:'🛒',nm:'STORE',   role:'Tienda',          desc:'Asistente para tu tienda online, pedidos y pagos.',                      st:'pending'},
+  {id:'hunter',  ico:'🔍',nm:'HUNTER',  role:'Prospección',     desc:'Outbound, seguimiento de leads fríos y reactivación.',                   st:'pending'},
 ];
 
 const ALL_CHANNELS = [
@@ -1383,6 +1428,58 @@ function renderPlans(){
   ).join('');
 }
 
+// ══════ FAQ DINÁMICA ══════
+function renderFAQ(faqArr){
+  const el = document.getElementById('faq-container');
+  if(!el) return;
+  if(!faqArr||!faqArr.length){
+    // fallback español
+    const L = LANG_MAP[_currentLang]||LANG_MAP['es'];
+    faqArr = L.faq||[];
+  }
+  el.innerHTML = faqArr.map(([q,a])=>
+    `<details class="qa"><summary>${q}</summary><div class="qa-a">${a}</div></details>`
+  ).join('');
+  // re-bind accordion
+  document.querySelectorAll('details.qa').forEach(d=>{
+    d.addEventListener('toggle',()=>{
+      if(d.open) document.querySelectorAll('details.qa').forEach(o=>{if(o!==d)o.open=false;});
+    });
+  });
+}
+
+// ══════ PAQUETES DE RECARGA ══════
+function getPacksData(){
+  const saved = localStorage.getItem(S+'packs');
+  if(saved) return JSON.parse(saved);
+  return {
+    voz100:  {nm:'Pack Voz 100',  ico:'🎙️', min:100, type:'voice',  chf:22,  badge:'',       desc:'Minutos de voz adicionales para picos de demanda',          best:'Picos esporádicos'},
+    voz300:  {nm:'Pack Voz 300',  ico:'🎙️', min:300, type:'voice',  chf:60,  badge:'Popular', desc:'El pack más elegido por negocios en crecimiento',           best:'Crecimiento activo'},
+    voz500:  {nm:'Pack Voz 500',  ico:'🎙️', min:500, type:'voice',  chf:90,  badge:'',       desc:'Alto volumen de llamadas asegurado sin sorpresas',           best:'Alto volumen'},
+    video30: {nm:'Pack Vídeo 30', ico:'🎬', min:30,  type:'video',  chf:15,  badge:'',       desc:'Minutos de generación de vídeo IA para creadores',          best:'Creadores de contenido'},
+    video100:{nm:'Pack Vídeo 100',ico:'🎬', min:100, type:'video',  chf:40,  badge:'',       desc:'Producción de vídeo IA frecuente para tu negocio',          best:'Producción regular'},
+    multi:   {nm:'Pack Multi',    ico:'⚡', min:null, type:'combo', chf:75,  badge:'Mejor €/min',desc:'300 min voz + 50 min vídeo. El mejor ratio precio/minuto', best:'Todo en uno'},
+  };
+}
+
+function renderPacks(){
+  const packs = getPacksData();
+  const el = document.getElementById('packs-grid');
+  if(!el) return;
+  el.innerHTML = Object.entries(packs).map(([k,v])=>
+    `<div class="plan" style="${v.badge?'border-color:var(--tlb)':''};position:relative">
+      ${v.badge?`<div class="plan-badge">${v.badge}</div>`:''}
+      <div style="font-size:26px;margin-bottom:8px">${v.ico}</div>
+      <div class="plan-nm">${v.nm}</div>
+      <div class="plan-desc">${v.desc}</div>
+      <div class="plan-price">${v.chf}<small> CHF</small></div>
+      <div class="plan-note">${v.min?v.min+' min '+v.type:'300 min voz + 50 min vídeo'}</div>
+      <div style="font-size:11.5px;color:var(--teal);background:var(--tla);border:1px solid var(--tlb);border-radius:7px;padding:6px 11px;margin-bottom:14px;margin-top:auto">✓ ${v.best}</div>
+      <button class="plan-btn ${v.badge?'tl':'gh'}" onclick="goTo('#contacto')">Activar pack</button>
+    </div>`
+  ).join('');
+}
+
 // ══════ HERO CHAT ══════
 const DEMO_SECTORS = [
   {tab:'🎸 Músico', msgs:[
@@ -1444,41 +1541,281 @@ function startChat(i){
 
 // ══════ LANGUAGE ══════
 const LANG_MAP = {
-  fr:{h1:'FlowSuite<br>travaille pour toi',h2:"et toi tu te consacres à <strong>ce que tu aimes</strong><br>et <strong>tu sais faire.</strong>",cta1:'Accès bêta gratuit',cta2:'Mon espace →',
+  fr:{
+    h1:'FlowSuite<br>travaille pour toi',
+    h2:"et toi tu te consacres à <strong>ce que tu aimes</strong><br>et <strong>tu sais faire.</strong>",
+    cta1:'Accès bêta gratuit',cta2:'Mon espace →',
     live:'En direct',badge:'Artistes · Thérapeutes · Créateurs · Tous secteurs',
-    tr:['Bêta gratuite · Sans carte','Setup en 48h','5 langues · 24/7','Données en Suisse'],usr:'🤖 Mon espace',
-    msg:"Bonjour ! Je suis <strong>FLOW</strong>. Comment puis-je vous aider aujourd'hui ?"},
-  de:{h1:'FlowSuite<br>arbeitet für dich',h2:"und du widmest dich <strong>dem was du liebst</strong><br>und <strong>am besten kannst.</strong>",cta1:'Kostenloser Beta-Zugang',cta2:'Mein Bereich →',
+    tr:['Bêta gratuite · Sans carte','Setup en 48h','5 langues · 24/7','Données en Suisse'],
+    usr:'🤖 Mon espace',
+    msg:"Bonjour ! Je suis <strong>FLOW</strong>. Comment puis-je vous aider aujourd'hui ?",
+    nav:['Pour qui','Comment ça marche','Prix','FAQ','Contact'],
+    betabar:'<strong>Accès bêta gratuit</strong> · Sans carte · Sans engagement · Ton agent IA en 48h',
+    sect_pq:'Pour qui',sect_h2:'Un agent IA pour <span class="grad-vi">chaque histoire</span>',
+    sect_pq_sub:"Musicien, thérapeute, restaurateur, bijoutier, photographe ou coach — FlowSuite comprend ton monde et parle à tes clients comme toi le ferais.",
+    sect_cf:'Comment ça marche',sect_cf_h2:'3 étapes. <span class="grad-teal">Présence complète.</span>',
+    sect_cf_sub:"Sans code. Sans agence. Sans attendre des semaines. Ton agent IA opérationnel en 48 heures.",
+    step1_t:"Raconte-nous ton histoire",step1_d:"Tu remplis un formulaire sur ton activité, tes services, ton style et tes canaux. Le Builder Pro génère ta présence en 60 secondes.",
+    step2_t:"L'IA construit tout",step2_d:"Logo IA · Landing cinématique · Agent vocal ElevenLabs · Pack réseaux sociaux · Tous les canaux configurés.",
+    step3_t:"Tu te consacres à ton métier",step3_d:"FLOW répond aux appels, qualifie les leads, prend les rendez-vous et publie du contenu. Toi, tu te concentres sur ton art.",
+    sect_ag:'Agents IA',sect_ag_h2:'Une équipe digitale. <span class="grad-coral">Chacun dans son rôle.</span>',
+    sect_ag_sub:"Chaque agent a un rôle précis. Sans surcharge. Sans confusion. Le modèle le plus efficace d'automatisation.",
+    sect_pr:'Prix',sect_pr_h2:'Clair dès le <span class="grad-teal">premier jour.</span>',
+    sect_pr_sub:"Sans engagement. Sans surprises. Accès bêta 100% gratuit pendant le programme.",
+    sect_pk:'Packs de recharge',sect_pk_sub:"Besoin de plus de minutes ? Active un pack en 2 clics depuis ton espace client. Sans appeler personne.",
+    sect_fq:'FAQ',sect_fq_h2:'Questions <span class="grad-vi">fréquentes</span>',
+    sect_ct:'Commencer',sect_ct_h2:'Bêta gratuite.<br><span class="grad-teal">Sans engagement.</span>',
+    sect_ct_sub:'Remplis le formulaire ou écris-nous sur WhatsApp. <strong style="color:var(--tx)">La personne qui construit FlowSuite te répond directement.</strong>',
+    form_nm:'Prénom *',form_biz:'Activité *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Ton secteur *',
+    form_detail:'Qu\'est-ce que tu veux automatiser ? (optionnel)',form_consent:'J\'accepte le traitement de mes données selon la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">politique de confidentialité</span> (nLPD / RGPD). *',
+    form_cta:'Demander l\'accès bêta gratuit',form_ok_t:'🎉',form_ok_h:'Demande reçue !',form_ok_sub:'Tu recevras ton code PIN par email dans moins de 24h.',form_pin_l:'Ton code PIN d\'accès',
+    wa_ch:'WhatsApp Suisse · +41 77 941 35 32',wa_es:'WhatsApp Espagne · +34 634 13 44 66',
+    legal_cta:'Sans carte. Sans commercial. Si ça ne convient pas, tu pars et c\'est tout.',
+    faq:[
+      ["Que se passe-t-il si je ne suis pas technique ?","FlowSuite est conçu pour que tu n'aies pas besoin d'être technique. Le Builder Pro fait tout automatiquement : il te demande des informations basiques sur ton activité et génère le logo, le site et l'agent vocal en 60 secondes. Sans code, sans hébergement, sans complications."],
+      ["Combien de temps avant que l'agent soit opérationnel ?","48 heures après que tu nous envoies tes informations. Le Builder génère une première version immédiate, et l'équipe FlowSuite personnalise et active l'agent vocal ElevenLabs dans ce délai."],
+      ["Est-ce que ça fonctionne pour les secteurs artistiques ou créatifs ?","C'est l'un de nos points forts. Musiciens, tatoueurs, photographes, bijoutiers, artistes visuels, studios d'enregistrement, yogis, thérapeutes alternatifs — FLOW comprend le langage et les besoins de chacun."],
+      ["Puis-je connecter Instagram, TikTok et WhatsApp ?","Oui. L'espace client inclut des intégrations avec 20+ canaux : WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com et plus."],
+      ["Dans quelles langues FLOW parle-t-il ?","Français, allemand, italien, anglais et espagnol nativement. Idéal pour les entreprises en Suisse ou qui servent une clientèle internationale. La langue du client est détectée automatiquement."],
+      ["Où sont stockées mes données ?","En Suisse (Infomaniak, serveurs à Genève), conformément à la nLPD et au RGPD. Aucune donnée personnelle n'est vendue à des tiers."],
+      ["Puis-je annuler à tout moment ?","Oui. Sans engagement, sans pénalité. Pendant la bêta tout est gratuit. Quand nous lancerons les plans payants, tu pourras annuler avec 30 jours de préavis."]
+    ]
+  },
+  de:{
+    h1:'FlowSuite<br>arbeitet für dich',
+    h2:"und du widmest dich <strong>dem was du liebst</strong><br>und <strong>am besten kannst.</strong>",
+    cta1:'Kostenloser Beta-Zugang',cta2:'Mein Bereich →',
     live:'Live',badge:'Künstler · Therapeuten · Kreative · Alle Branchen',
-    tr:['Kostenlose Beta · Keine Karte','Setup in 48h','5 Sprachen · 24/7','Daten in der Schweiz'],usr:'🤖 Mein Bereich',
-    msg:"Guten Tag! Ich bin <strong>FLOW</strong>. Wie kann ich Ihnen helfen?"},
-  it:{h1:'FlowSuite<br>lavora per te',h2:"e tu ti dedichi a <strong>ciò che ami</strong><br>e <strong>sai fare meglio.</strong>",cta1:'Accesso beta gratuito',cta2:'Il mio spazio →',
+    tr:['Kostenlose Beta · Keine Karte','Setup in 48h','5 Sprachen · 24/7','Daten in der Schweiz'],
+    usr:'🤖 Mein Bereich',
+    msg:"Guten Tag! Ich bin <strong>FLOW</strong>. Wie kann ich Ihnen helfen?",
+    nav:['Für wen','So funktioniert\'s','Preise','FAQ','Kontakt'],
+    betabar:'<strong>Kostenloser Beta-Zugang</strong> · Keine Karte · Kein Engagement · Dein KI-Agent in 48h',
+    sect_pq:'Für wen',sect_h2:'Ein KI-Agent für <span class="grad-vi">jede Geschichte</span>',
+    sect_pq_sub:"Ob Musiker, Therapeut, Restaurantbesitzer, Juwelier, Fotograf oder Coach — FlowSuite versteht deine Welt und spricht mit deinen Kunden wie du es tun würdest.",
+    sect_cf:'So funktioniert\'s',sect_cf_h2:'3 Schritte. <span class="grad-teal">Vollständige Präsenz.</span>',
+    sect_cf_sub:"Kein Code. Keine Agentur. Kein Warten. Dein KI-Agent in 48 Stunden einsatzbereit.",
+    step1_t:"Erzähl uns deine Geschichte",step1_d:"Du füllst ein Formular über dein Unternehmen, deine Services, deinen Stil und Kanäle aus. Der Builder Pro erstellt deine Präsenz in 60 Sekunden.",
+    step2_t:"Die KI baut alles auf",step2_d:"KI-Logo · Cinematic Landing Page · ElevenLabs Sprachagent · Social Media Pack · Alle Kanäle konfiguriert.",
+    step3_t:"Du widmest dich deinem Handwerk",step3_d:"FLOW beantwortet Anrufe, qualifiziert Leads, bucht Termine und veröffentlicht Inhalte. Du konzentrierst dich auf deine Arbeit.",
+    sect_ag:'KI-Agenten',sect_ag_h2:'Ein digitales Team. <span class="grad-coral">Jeder in seiner Rolle.</span>',
+    sect_ag_sub:"Jeder Agent hat eine spezifische Rolle. Keine Überlastung. Keine Verwirrung. Das effizienteste Automatisierungsmodell.",
+    sect_pr:'Preise',sect_pr_h2:'Klar vom <span class="grad-teal">ersten Tag an.</span>',
+    sect_pr_sub:"Kein Engagement. Keine Überraschungen. 100% kostenloser Beta-Zugang während des Programms.",
+    sect_pk:'Aufladepakete',sect_pk_sub:"Brauchst du mehr Minuten? Aktiviere ein Paket in 2 Klicks aus deinem Kundenbereich. Ohne jemanden anzurufen.",
+    sect_fq:'FAQ',sect_fq_h2:'Häufige <span class="grad-vi">Fragen</span>',
+    sect_ct:'Starten',sect_ct_h2:'Kostenlose Beta.<br><span class="grad-teal">Ohne Verpflichtung.</span>',
+    sect_ct_sub:'Fülle das Formular aus oder schreib uns auf WhatsApp. <strong style="color:var(--tx)">Die Person, die FlowSuite baut, antwortet dir direkt.</strong>',
+    form_nm:'Vorname *',form_biz:'Unternehmen *',form_em:'E-Mail *',form_tel:'WhatsApp',form_sec:'Dein Bereich *',
+    form_detail:'Was möchtest du automatisieren? (optional)',form_consent:'Ich stimme der Verarbeitung meiner Daten gemäß der <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">Datenschutzrichtlinie</span> zu (nDSG / DSGVO). *',
+    form_cta:'Kostenlosen Beta-Zugang beantragen',form_ok_t:'🎉',form_ok_h:'Anfrage erhalten!',form_ok_sub:'Du erhältst deinen PIN-Code per E-Mail in weniger als 24h.',form_pin_l:'Dein Zugangs-PIN',
+    wa_ch:'WhatsApp Schweiz · +41 77 941 35 32',wa_es:'WhatsApp Spanien · +34 634 13 44 66',
+    legal_cta:'Keine Karte. Kein Verkäufer. Wenn es nicht passt, gehst du — fertig.',
+    faq:[
+      ["Was passiert, wenn ich nicht technisch bin?","FlowSuite ist so konzipiert, dass du nicht technisch sein musst. Der Builder Pro macht alles automatisch: Er fragt nach grundlegenden Informationen zu deinem Unternehmen und generiert Logo, Website und Sprachagenten in 60 Sekunden. Kein Code, kein Hosting, keine Komplikationen."],
+      ["Wie lange dauert es, bis der Agent betriebsbereit ist?","48 Stunden nach Erhalt deiner Informationen. Der Builder generiert sofort eine erste Version, und das FlowSuite-Team personalisiert und aktiviert den ElevenLabs-Sprachagenten in dieser Zeit."],
+      ["Funktioniert das für künstlerische oder kreative Bereiche?","Das ist einer unserer Stärken. Musiker, Tätowierer, Fotografen, Juweliere, bildende Künstler, Tonstudios, Yogis, alternative Therapeuten — FLOW versteht die Sprache und Bedürfnisse jedes Einzelnen."],
+      ["Kann ich Instagram, TikTok und WhatsApp verbinden?","Ja. Das Kundenportal enthält Integrationen mit 20+ Kanälen: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com und mehr."],
+      ["In welchen Sprachen spricht FLOW?","Französisch, Deutsch, Italienisch, Englisch und Spanisch nativ. Ideal für Unternehmen in der Schweiz oder mit internationaler Kundschaft. Die Sprache des Kunden wird automatisch erkannt."],
+      ["Wo werden meine Daten gespeichert?","In der Schweiz (Infomaniak, Server in Genf), gemäß nDSG und DSGVO. Keine personenbezogenen Daten werden an Dritte verkauft."],
+      ["Kann ich jederzeit kündigen?","Ja. Ohne Vertragsbindung, ohne Strafe. Während der Beta ist alles kostenlos. Wenn wir die Bezahlpläne starten, kannst du mit 30 Tagen Vorankündigung kündigen."]
+    ]
+  },
+  it:{
+    h1:'FlowSuite<br>lavora per te',
+    h2:"e tu ti dedichi a <strong>ciò che ami</strong><br>e <strong>sai fare meglio.</strong>",
+    cta1:'Accesso beta gratuito',cta2:'Il mio spazio →',
     live:'In diretta',badge:'Artisti · Terapisti · Creativi · Tutti i settori',
-    tr:['Beta gratuita · Senza carta','Setup in 48h','5 lingue · 24/7','Dati in Svizzera'],usr:'🤖 Il mio spazio',
-    msg:"Buongiorno! Sono <strong>FLOW</strong>. Come posso aiutarla?"},
-  en:{h1:'FlowSuite<br>works for you',h2:"and you focus on <strong>what you love</strong><br>and <strong>do best.</strong>",cta1:'Free beta access',cta2:'My space →',
+    tr:['Beta gratuita · Senza carta','Setup in 48h','5 lingue · 24/7','Dati in Svizzera'],
+    usr:'🤖 Il mio spazio',
+    msg:"Buongiorno! Sono <strong>FLOW</strong>. Come posso aiutarla?",
+    nav:['Per chi','Come funziona','Prezzi','FAQ','Contatto'],
+    betabar:'<strong>Accesso beta gratuito</strong> · Senza carta · Senza impegno · Il tuo agente IA in 48h',
+    sect_pq:'Per chi',sect_h2:'Un agente IA per <span class="grad-vi">ogni storia</span>',
+    sect_pq_sub:"Che tu sia musicista, terapista, ristoratore, gioielliere, fotografo o coach — FlowSuite capisce il tuo mondo e parla ai tuoi clienti come faresti tu.",
+    sect_cf:'Come funziona',sect_cf_h2:'3 passi. <span class="grad-teal">Presenza completa.</span>',
+    sect_cf_sub:"Senza codice. Senza agenzia. Senza aspettare settimane. Il tuo agente IA operativo in 48 ore.",
+    step1_t:"Raccontaci la tua storia",step1_d:"Compili un modulo sulla tua attività, servizi, stile e canali. Il Builder Pro genera la tua presenza in 60 secondi.",
+    step2_t:"L'IA costruisce tutto",step2_d:"Logo IA · Landing cinematica · Agente vocale ElevenLabs · Pack social media · Tutti i canali configurati.",
+    step3_t:"Ti dedichi al tuo mestiere",step3_d:"FLOW risponde alle chiamate, qualifica i lead, prenota appuntamenti e pubblica contenuti. Tu ti concentri sulla tua arte.",
+    sect_ag:'Agenti IA',sect_ag_h2:'Un team digitale. <span class="grad-coral">Ognuno nel suo ruolo.</span>',
+    sect_ag_sub:"Ogni agente ha un ruolo specifico. Senza sovraccarichi. Senza confusione. Il modello più efficiente di automazione.",
+    sect_pr:'Prezzi',sect_pr_h2:'Chiaro dal <span class="grad-teal">primo giorno.</span>',
+    sect_pr_sub:"Senza impegno. Senza sorprese. Accesso beta 100% gratuito durante il programma.",
+    sect_pk:'Pacchetti ricaricabili',sect_pk_sub:"Hai bisogno di più minuti? Attiva un pacchetto in 2 clic dal tuo spazio cliente. Senza chiamare nessuno.",
+    sect_fq:'FAQ',sect_fq_h2:'Domande <span class="grad-vi">frequenti</span>',
+    sect_ct:'Iniziare',sect_ct_h2:'Beta gratuita.<br><span class="grad-teal">Senza impegno.</span>',
+    sect_ct_sub:'Compila il modulo o scrivici su WhatsApp. <strong style="color:var(--tx)">La persona che costruisce FlowSuite ti risponde direttamente.</strong>',
+    form_nm:'Nome *',form_biz:'Attività *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Il tuo settore *',
+    form_detail:'Cosa vuoi automatizzare? (opzionale)',form_consent:'Accetto il trattamento dei miei dati secondo la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">politica sulla privacy</span> (nLPD / GDPR). *',
+    form_cta:'Richiedere l\'accesso beta gratuito',form_ok_t:'🎉',form_ok_h:'Richiesta ricevuta!',form_ok_sub:'Riceverai il tuo codice PIN via email in meno di 24h.',form_pin_l:'Il tuo PIN di accesso',
+    wa_ch:'WhatsApp Svizzera · +41 77 941 35 32',wa_es:'WhatsApp Spagna · +34 634 13 44 66',
+    legal_cta:'Senza carta. Senza commerciali. Se non convince, te ne vai e basta.',
+    faq:[
+      ["Cosa succede se non sono tecnico?","FlowSuite è progettato perché tu non debba essere tecnico. Il Builder Pro fa tutto automaticamente: ti chiede informazioni di base sulla tua attività e genera logo, sito e agente vocale in 60 secondi. Senza codice, senza hosting, senza complicazioni."],
+      ["Quanto tempo ci vuole per avere l'agente operativo?","48 ore dopo che ci hai inviato le informazioni. Il Builder genera subito una prima versione, e il team FlowSuite personalizza e attiva l'agente vocale ElevenLabs entro quel termine."],
+      ["Funziona per i settori artistici o creativi?","È uno dei nostri punti di forza. Musicisti, tatuatori, fotografi, gioiellieri, artisti visivi, studi di registrazione, yogini, terapisti alternativi — FLOW capisce il linguaggio e le esigenze di ciascuno."],
+      ["Posso connettere Instagram, TikTok e WhatsApp?","Sì. Lo spazio cliente include integrazioni con 20+ canali: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com e altro."],
+      ["In quali lingue parla FLOW?","Francese, tedesco, italiano, inglese e spagnolo nativamente. Ideale per aziende in Svizzera o con clientela internazionale. La lingua del cliente viene rilevata automaticamente."],
+      ["Dove vengono archiviati i miei dati?","In Svizzera (Infomaniak, server a Ginevra), in conformità con la nLPD e il GDPR. Nessun dato personale viene venduto a terzi."],
+      ["Posso cancellare in qualsiasi momento?","Sì. Senza impegno, senza penali. Durante la beta tutto è gratuito. Quando lanceremo i piani a pagamento, potrai annullare con 30 giorni di preavviso."]
+    ]
+  },
+  en:{
+    h1:'FlowSuite<br>works for you',
+    h2:"and you focus on <strong>what you love</strong><br>and <strong>do best.</strong>",
+    cta1:'Free beta access',cta2:'My space →',
     live:'Live',badge:'Artists · Therapists · Creatives · All sectors',
-    tr:['Free beta · No card','Setup in 48h','5 languages · 24/7','Data in Switzerland'],usr:'🤖 My space',
-    msg:"Hello! I'm <strong>FLOW</strong>. How can I help you today?"},
-  es:{h1:'FlowSuite<br>trabaja por ti',h2:"y tú te dedicas a <strong>lo que más te gusta</strong><br>y <strong>mejor sabes hacer.</strong>",cta1:'Acceso beta gratuito',cta2:'Mi espacio →',
+    tr:['Free beta · No card','Setup in 48h','5 languages · 24/7','Data in Switzerland'],
+    usr:'🤖 My space',
+    msg:"Hello! I'm <strong>FLOW</strong>. How can I help you today?",
+    nav:['Who it\'s for','How it works','Pricing','FAQ','Contact'],
+    betabar:'<strong>Free beta access</strong> · No card · No commitment · Your AI agent in 48h',
+    sect_pq:'Who it\'s for',sect_h2:'An AI agent for <span class="grad-vi">every story</span>',
+    sect_pq_sub:"Whether you\'re a musician, therapist, restaurateur, jeweller, photographer or coach — FlowSuite understands your world and speaks to your clients the way you would.",
+    sect_cf:'How it works',sect_cf_h2:'3 steps. <span class="grad-teal">Complete presence.</span>',
+    sect_cf_sub:"No code. No agency. No waiting weeks. Your AI agent operational in 48 hours.",
+    step1_t:"Tell us your story",step1_d:"You fill in a form about your business, services, style and channels. The Builder Pro generates your presence in 60 seconds.",
+    step2_t:"AI builds everything",step2_d:"AI Logo · Cinematic landing page · ElevenLabs voice agent · Social media pack · All channels configured.",
+    step3_t:"You focus on your craft",step3_d:"FLOW answers calls, qualifies leads, books appointments and publishes content. You concentrate on your art.",
+    sect_ag:'AI Agents',sect_ag_h2:'A digital team. <span class="grad-coral">Each in their role.</span>',
+    sect_ag_sub:"Each agent has a specific role. No overloads. No confusion. The most efficient automation model that exists.",
+    sect_pr:'Pricing',sect_pr_h2:'Clear from <span class="grad-teal">day one.</span>',
+    sect_pr_sub:"No commitment. No surprises. 100% free beta access during the programme.",
+    sect_pk:'Recharge packs',sect_pk_sub:"Need more minutes? Activate a pack in 2 clicks from your client space. No calling anyone.",
+    sect_fq:'FAQ',sect_fq_h2:'Frequently <span class="grad-vi">asked questions</span>',
+    sect_ct:'Get started',sect_ct_h2:'Free beta.<br><span class="grad-teal">No commitment.</span>',
+    sect_ct_sub:'Fill in the form or write to us on WhatsApp. <strong style="color:var(--tx)">The person building FlowSuite replies to you directly.</strong>',
+    form_nm:'Name *',form_biz:'Business *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Your sector *',
+    form_detail:'What do you want to automate? (optional)',form_consent:'I accept the processing of my data according to the <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">privacy policy</span> (nLPD / GDPR). *',
+    form_cta:'Request free beta access',form_ok_t:'🎉',form_ok_h:'Request received!',form_ok_sub:'You will receive your PIN code by email in less than 24h.',form_pin_l:'Your access PIN',
+    wa_ch:'WhatsApp Switzerland · +41 77 941 35 32',wa_es:'WhatsApp Spain · +34 634 13 44 66',
+    legal_cta:'No card. No salesperson. If it doesn\'t convince you, you leave — that\'s it.',
+    faq:[
+      ["What happens if I'm not technical?","FlowSuite is designed so you don't need to be technical. The Builder Pro does everything automatically: it asks for basic information about your business and generates the logo, website and voice agent in 60 seconds. No code, no hosting, no complications."],
+      ["How long until the agent is operational?","48 hours after you send us your information. The Builder generates an immediate first version, and the FlowSuite team personalises and activates the ElevenLabs voice agent within that timeframe."],
+      ["Does it work for artistic or creative sectors?","That's one of our strong points. Musicians, tattoo artists, photographers, jewellers, visual artists, recording studios, yogis, alternative therapists — FLOW understands the language and needs of each one."],
+      ["Can I connect Instagram, TikTok and WhatsApp?","Yes. The client portal includes integrations with 20+ channels: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com and more."],
+      ["In what languages does FLOW speak?","French, German, Italian, English and Spanish natively. Ideal for businesses in Switzerland or serving international customers. The client's language is detected automatically."],
+      ["Where is my data stored?","In Switzerland (Infomaniak, servers in Geneva), in compliance with nLPD and GDPR. No personal data is sold to third parties."],
+      ["Can I cancel at any time?","Yes. No commitment, no penalty. During the beta everything is free. When we launch the paid plans, you can cancel with 30 days' notice."]
+    ]
+  },
+  es:{
+    h1:'FlowSuite<br>trabaja por ti',
+    h2:"y tú te dedicas a <strong>lo que más te gusta</strong><br>y <strong>mejor sabes hacer.</strong>",
+    cta1:'Acceso beta gratuito',cta2:'Mi espacio →',
     live:'En directo',badge:'Artistas · Terapeutas · Creativos · Todo sector',
-    tr:['Beta gratuita · Sin tarjeta','Setup en 48h','5 idiomas · 24/7','Datos en Suiza'],usr:'🤖 Mi espacio',
-    msg:"¡Hola! Soy <strong>FLOW</strong>. ¿En qué puedo ayudarte hoy?"},
+    tr:['Beta gratuita · Sin tarjeta','Setup en 48h','5 idiomas · 24/7','Datos en Suiza'],
+    usr:'🤖 Mi espacio',
+    msg:"¡Hola! Soy <strong>FLOW</strong>. ¿En qué puedo ayudarte hoy?",
+    nav:['Para quién','Cómo funciona','Precios','FAQ','Contacto'],
+    betabar:'<strong>Acceso beta gratuito</strong> · Sin tarjeta · Sin permanencia · Tu agente IA en 48h',
+    sect_pq:'Para quién',sect_h2:'Un agente IA para <span class="grad-vi">cada historia</span>',
+    sect_pq_sub:"Ya seas músico, terapeuta, restaurador, joyero, fotógrafo o coach — FlowSuite entiende tu mundo y habla a tus clientes como tú lo harías.",
+    sect_cf:'Cómo funciona',sect_cf_h2:'3 pasos. <span class="grad-teal">Presencia completa.</span>',
+    sect_cf_sub:"Sin código. Sin agencia. Sin esperas de semanas. Tu agente IA operativo en 48 horas.",
+    step1_t:"Cuéntanos tu historia",step1_d:"Rellenas un breve formulario sobre tu negocio, servicios, estilo y canales. El Builder Pro genera tu presencia en 60 segundos.",
+    step2_t:"La IA lo construye todo",step2_d:"Logo IA · Landing page cinematográfica · Agente vocal con ElevenLabs · Pack redes sociales · Todos los canales configurados.",
+    step3_t:"Tú te dedicas a lo tuyo",step3_d:"FLOW atiende llamadas, cualifica leads, agenda citas y publica contenido. Tú te centras en tu arte, tu oficio, tu gente.",
+    sect_ag:'Agentes IA',sect_ag_h2:'Un equipo digital. <span class="grad-coral">Cada uno en lo suyo.</span>',
+    sect_ag_sub:"Cada agente tiene un rol específico. Sin sobrecargas. Sin confusiones. El modelo más eficiente de automatización que existe.",
+    sect_pr:'Precios',sect_pr_h2:'Claro desde el <span class="grad-teal">primer día.</span>',
+    sect_pr_sub:"Sin permanencia. Sin sorpresas. Acceso beta 100% gratuito mientras dura el programa.",
+    sect_pk:'Paquetes de recarga',sect_pk_sub:"¿Necesitas más minutos? Activa un paquete en 2 clics desde tu panel de cliente. Sin llamar a nadie, sin esperar.",
+    sect_fq:'FAQ',sect_fq_h2:'Preguntas <span class="grad-vi">frecuentes</span>',
+    sect_ct:'Empezar',sect_ct_h2:'Beta gratuita.<br><span class="grad-teal">Sin compromiso.</span>',
+    sect_ct_sub:'Rellena el formulario o escríbenos por WhatsApp. <strong style="color:var(--tx)">La persona que construye FlowSuite te responde directamente.</strong>',
+    form_nm:'Nombre *',form_biz:'Negocio *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Tu sector *',
+    form_detail:'¿Qué quieres automatizar? (opcional)',form_consent:'Acepto el tratamiento de mis datos según la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">política de privacidad</span> (nLPD / RGPD). *',
+    form_cta:'Solicitar acceso beta gratuito',form_ok_t:'🎉',form_ok_h:'¡Solicitud recibida!',form_ok_sub:'Recibirás tu código PIN por email en menos de 24h.',form_pin_l:'Tu PIN de acceso',
+    wa_ch:'WhatsApp Suiza · +41 77 941 35 32',wa_es:'WhatsApp España · +34 634 13 44 66',
+    legal_cta:'Sin tarjeta. Sin comercial. Si no convence, te vas y ya está.',
+    faq:[
+      ["¿Qué pasa si no soy técnico?","FlowSuite está diseñado para que no necesites serlo. El Builder Pro hace todo automáticamente: te pide información básica de tu negocio y genera el logo, la web y el agente vocal en 60 segundos. Sin código, sin hosting, sin complicaciones."],
+      ["¿Cuánto tiempo hasta tener el agente funcionando?","48 horas desde que nos envías tu información. El Builder genera una primera versión inmediata, y el equipo de FlowSuite personaliza y activa el agente vocal con ElevenLabs en ese plazo."],
+      ["¿Funciona para sectores artísticos o creativos?","Es uno de nuestros puntos fuertes. Músicos, tatuadores, fotógrafos, joyeros, artistas visuales, estudios de grabación, yoguis, terapeutas alternativos — FLOW entiende el lenguaje y las necesidades de cada uno."],
+      ["¿Puedo conectar mi Instagram, TikTok y WhatsApp?","Sí. El panel cliente incluye integraciones con 20+ canales: WhatsApp Business, Instagram, Facebook, TikTok, LinkedIn, YouTube, Telegram, Gmail, Google Calendar, HubSpot, Stripe, Shopify, Make.com y más."],
+      ["¿En qué idiomas habla FLOW?","Francés, alemán, italiano, inglés y español de forma nativa. Ideal para negocios en Suiza o que atienden clientes internacionales. Se detecta automáticamente el idioma del cliente."],
+      ["¿Dónde se guardan mis datos?","En Suiza (Infomaniak, servidores en Ginebra), conforme a la nLPD y al RGPD. Ningún dato personal se vende a terceros. Consulta nuestra Política de Privacidad completa."],
+      ["¿Puedo cancelar en cualquier momento?","Sí. Sin permanencia, sin penalización. Durante la beta todo es gratuito. Cuando lancemos los planes de pago, podrás cancelar con 30 días de preaviso."]
+    ]
+  },
 };
 
+let _currentLang = 'fr';
 function setLang(lang, btn){
+  _currentLang = lang;
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
   document.documentElement.lang = lang;
   const L = LANG_MAP[lang]; if(!L) return;
-  const l1 = document.getElementById('hero-l1'); if(l1) l1.innerHTML = L.h1;
-  const l2 = document.getElementById('hero-l2'); if(l2) l2.innerHTML = L.h2;
-  document.getElementById('hero-cta1').textContent = L.cta1;
-  document.getElementById('hero-cta2').textContent = L.cta2;
-  const live = document.getElementById('ab-live'); if(live) live.textContent = L.live;
-  document.getElementById('btn-user').innerHTML = L.usr;
-  const hb = document.querySelector('.hero-badge'); if(hb){ hb.innerHTML = `<span class="pulse"></span>${L.badge}`; }
-  const fm = document.getElementById('fav-msg'); if(fm) fm.innerHTML = `¡Hola! Soy <strong>FLOW</strong>. ${L.msg.split('FLOW. ')[1]||L.msg}`;
-  L.tr.forEach((t,i)=>{ const el=document.getElementById('tr'+(i+1)); if(el) el.textContent=t; });
+
+  // Hero
+  const l1=document.getElementById('hero-l1'); if(l1) l1.innerHTML=L.h1;
+  const l2=document.getElementById('hero-l2'); if(l2) l2.innerHTML=L.h2;
+  const c1=document.getElementById('hero-cta1'); if(c1) c1.textContent=L.cta1;
+  const c2=document.getElementById('hero-cta2'); if(c2) c2.textContent=L.cta2;
+  const live=document.getElementById('ab-live'); if(live) live.textContent=L.live;
+  const usr=document.getElementById('btn-user'); if(usr) usr.innerHTML=L.usr;
+  const hb=document.querySelector('.hero-badge'); if(hb) hb.innerHTML=`<span class="pulse"></span>${L.badge}`;
+  const fm=document.getElementById('fav-msg'); if(fm) fm.innerHTML=L.msg;
+  L.tr.forEach((t,i)=>{const el=document.getElementById('tr'+(i+1));if(el)el.textContent=t;});
+
+  // Beta bar
+  const bb=document.getElementById('beta-bar-text'); if(bb) bb.innerHTML=L.betabar;
+
+  // Nav
+  if(L.nav){
+    const navLinks=document.querySelectorAll('.nav-links a');
+    navLinks.forEach((a,i)=>{if(L.nav[i])a.textContent=L.nav[i];});
+  }
+
+  // Section headings
+  function setEl(id,html,isText){
+    const el=document.getElementById(id);
+    if(!el)return;
+    if(isText)el.textContent=html; else el.innerHTML=html;
+  }
+  setEl('s-pq-eye',L.sect_pq,true);
+  setEl('s-pq-h2',L.sect_h2);
+  setEl('s-pq-sub',L.sect_pq_sub,true);
+  setEl('s-cf-eye',L.sect_cf,true);
+  setEl('s-cf-h2',L.sect_cf_h2);
+  setEl('s-cf-sub',L.sect_cf_sub,true);
+  setEl('s-step1-t',L.step1_t,true);setEl('s-step1-d',L.step1_d,true);
+  setEl('s-step2-t',L.step2_t,true);setEl('s-step2-d',L.step2_d,true);
+  setEl('s-step3-t',L.step3_t,true);setEl('s-step3-d',L.step3_d,true);
+  setEl('s-ag-eye',L.sect_ag,true);
+  setEl('s-ag-h2',L.sect_ag_h2);
+  setEl('s-ag-sub',L.sect_ag_sub,true);
+  setEl('s-pr-eye',L.sect_pr,true);
+  setEl('s-pr-h2',L.sect_pr_h2);
+  setEl('s-pr-sub',L.sect_pr_sub,true);
+  setEl('s-pk-eye',L.sect_pk||'Packs',true);
+  setEl('s-pk-sub',L.sect_pk_sub||'',true);
+  setEl('s-fq-eye',L.sect_fq,true);
+  setEl('s-fq-h2',L.sect_fq_h2);
+  setEl('s-ct-eye',L.sect_ct,true);
+  setEl('s-ct-h2',L.sect_ct_h2);
+  setEl('s-ct-sub',L.sect_ct_sub);
+  setEl('s-wa-ch',L.wa_ch,true);
+  setEl('s-wa-es',L.wa_es,true);
+  setEl('s-legal-cta',L.legal_cta,true);
+
+  // Form labels
+  setEl('fl-nm',L.form_nm,true);setEl('fl-biz',L.form_biz,true);
+  setEl('fl-em',L.form_em,true);setEl('fl-tel',L.form_tel,true);
+  setEl('fl-sec',L.form_sec,true);setEl('fl-detail',L.form_detail,true);
+  setEl('fl-consent',L.form_consent);
+  const fcta=document.getElementById('fl-cta'); if(fcta)fcta.textContent=L.form_cta;
+  setEl('fl-ok-ico',L.form_ok_t,true);setEl('fl-ok-h',L.form_ok_h,true);
+  setEl('fl-ok-sub',L.form_ok_sub,true);setEl('fl-pin-l',L.form_pin_l,true);
+
+  // FAQ - rebuild
+  if(L.faq) renderFAQ(L.faq);
+
+  // Rerender plans and packs in current lang
+  renderPlans();renderPacks();
 }
 
 // ══════ MODALS ══════
@@ -1792,6 +2129,60 @@ function addKBTxt(){ const t=document.getElementById('kb-txt').value.trim(); if(
 function addKBUrl(){ const u=document.getElementById('kb-url').value.trim(); if(!u)return; kbEntries.push({type:'url',content:u}); document.getElementById('kb-url').value=''; renderKB(); toast('🌐 URL añadida','ok'); }
 function kbDel(i){ kbEntries.splice(i,1); renderKB(); }
 function handleFiles(inp){ Array.from(inp.files).forEach(f=>kbEntries.push({type:'file',content:f.name+' ('+(f.size/1024).toFixed(0)+' KB)'})); renderKB(); toast('📎 Archivo(s) añadido(s)','ok'); inp.value=''; }
+
+// ══════ MEDIA UPLOAD ══════
+let clientMedia = {logo:null, photos:[]};
+function handleLogoUpload(inp){
+  const f = inp.files[0]; if(!f) return;
+  if(f.size > 5*1024*1024){ toast('Logo demasiado grande (máx 5MB)','err'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    clientMedia.logo = e.target.result;
+    const prev = document.getElementById('logo-preview');
+    if(prev){ prev.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:contain;border-radius:10px">`; }
+    toast('✅ Logo cargado','ok');
+  };
+  reader.readAsDataURL(f);
+  inp.value='';
+}
+function handlePhotosUpload(inp){
+  const files = Array.from(inp.files);
+  files.forEach(f=>{
+    if(f.size > 10*1024*1024){ toast(f.name+' supera 10MB','err'); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      clientMedia.photos.push({name:f.name, src:e.target.result});
+      renderPhotosGrid();
+    };
+    reader.readAsDataURL(f);
+  });
+  inp.value='';
+  toast(`✅ ${files.length} foto(s) cargada(s)`,'ok');
+}
+function renderPhotosGrid(){
+  const el = document.getElementById('photos-grid');
+  if(!el) return;
+  if(!clientMedia.photos.length){
+    el.innerHTML = `<div style="grid-column:1/-1;font-size:12.5px;color:var(--t2);padding:8px 0">Sin fotos cargadas aún.</div>`;
+    return;
+  }
+  el.innerHTML = clientMedia.photos.map((p,i)=>
+    `<div style="position:relative;border-radius:9px;overflow:hidden;aspect-ratio:1;background:var(--s2)">
+      <img src="${p.src}" style="width:100%;height:100%;object-fit:cover">
+      <button onclick="removePhoto(${i})" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);border:none;color:white;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+    </div>`
+  ).join('');
+}
+function removePhoto(i){ clientMedia.photos.splice(i,1); renderPhotosGrid(); toast('Foto eliminada'); }
+function saveMedia(){
+  if(curClient && clientMedia.logo){
+    const cls = getClients(); if(cls[curClient.pin]){ cls[curClient.pin].logo=clientMedia.logo; saveClients(cls); }
+    // Update nav brain/avatar
+    const cpAv = document.getElementById('cp-av-img'); if(cpAv) cpAv.src=clientMedia.logo;
+    const sbAv = document.getElementById('cp-av-img'); if(sbAv) sbAv.src=clientMedia.logo;
+  }
+  toast('✅ Logo y fotos guardados','ok');
+}
 function renderKB(){
   const w=document.getElementById('kb-list');
   if(!w) return;
@@ -1930,6 +2321,7 @@ function initAdmin(){
   renderAdminAgents();
   renderAdminChannels();
   renderPlanEditor();
+  renderPacksAdminEditor();
   renderBuilderAdmin();
 }
 function apNav(id,el){
@@ -2022,7 +2414,36 @@ function renderPlanEditor(){
 }
 function upPlan(k,f,v){if(!editPlans)editPlans=getPlans();editPlans[k][f]=v;}
 function upPlanF(k,v){if(!editPlans)editPlans=getPlans();editPlans[k].feats=v.split('\n').filter(Boolean);}
-function savePlansAdmin(){const d=editPlans||getPlans();localStorage.setItem(S+'plans',JSON.stringify(d));editPlans=null;renderPlans();renderPlanEditor();toast('✅ Planes actualizados en la landing','ok');}
+function savePlansAdmin(){
+  const d=editPlans||getPlans();
+  localStorage.setItem(S+'plans',JSON.stringify(d));
+  editPlans=null;renderPlans();renderPlanEditor();
+  toast('✅ Planes actualizados en la landing','ok');
+}
+
+let editPacks=null;
+function renderPacksAdminEditor(){
+  const p=editPacks||getPacksData();
+  const el=document.getElementById('packs-admin-editor');
+  if(!el)return;
+  const inStyle='width:100%;background:rgba(2,3,13,.7);border:1px solid var(--bd2);border-radius:7px;padding:8px 11px;color:var(--tx);font-family:var(--font);font-size:13px;outline:none';
+  el.innerHTML=Object.entries(p).map(([k,v])=>
+    `<div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:16px">
+      <div style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px">${v.ico} ${v.nm}</div>
+      <div class="pfg"><label>CHF</label><input style="${inStyle}" type="number" value="${v.chf}" onchange="upPack('${k}','chf',+this.value)"></div>
+      <div class="pfg"><label>Descripción</label><input style="${inStyle}" type="text" value="${v.desc}" onchange="upPack('${k}','desc',this.value)"></div>
+      <div class="pfg"><label>Badge (vacío=ninguno)</label><input style="${inStyle}" type="text" value="${v.badge||''}" onchange="upPack('${k}','badge',this.value)"></div>
+      <div class="pfg"><label>Mejor para</label><input style="${inStyle}" type="text" value="${v.best||''}" onchange="upPack('${k}','best',this.value)"></div>
+    </div>`
+  ).join('');
+}
+function upPack(k,f,v){if(!editPacks)editPacks=getPacksData();editPacks[k][f]=v;}
+function savePacksAdmin(){
+  const d=editPacks||getPacksData();
+  localStorage.setItem(S+'packs',JSON.stringify(d));
+  editPacks=null;renderPacks();renderPacksAdminEditor();
+  toast('✅ Packs actualizados en la landing','ok');
+}
 function renderBuilderAdmin(){
   const el=document.getElementById('builder-admin-content');
   if(!el) return;
@@ -2055,20 +2476,33 @@ function toggleFav(){
 }
 function activateVoice(){toast('Agente vocal activo — ElevenLabs · 5 idiomas','ok');}
 
-// ══════ FAQ accordion ══════
-document.querySelectorAll('details.qa').forEach(d=>{
-  d.addEventListener('toggle',()=>{
-    if(d.open) document.querySelectorAll('details.qa').forEach(o=>{if(o!==d)o.open=false;});
-  });
-});
-
 // ══════ INIT ══════
 window.addEventListener('load',()=>{
+  // Detectar idioma del navegador como sugerencia
+  const browserLang = (navigator.language||'fr').substring(0,2);
+  const validLangs = ['fr','de','it','en','es'];
+  const initLang = validLangs.includes(browserLang) ? browserLang : 'fr';
+  const savedLang = localStorage.getItem(S+'lang') || initLang;
+
   renderTicker();
   renderSectors();
   renderAgents();
   renderPlans();
+  renderPacks();
   renderDemoTabs();
+
+  // Aplicar idioma inicial (esto también genera el FAQ dinámico)
+  const langBtn = document.querySelector(`.lb[data-l="${savedLang}"]`);
+  setLang(savedLang, langBtn);
+
+  // Guardar preferencia de idioma al cambiar
+  document.querySelectorAll('.lb').forEach(b=>{
+    b.addEventListener('click',()=>localStorage.setItem(S+'lang', b.dataset.l));
+  });
+
+  // Fotos grid vacío inicial
+  renderPhotosGrid();
+
   setTimeout(()=>{ document.getElementById('fav-wrap').style.opacity='1'; }, 3000);
 });
 </script>
