@@ -47,8 +47,10 @@ module.exports = async (req, res) => {
     detalle: cleanText(b.detalle, 1000),
     pin: cleanText(b.pin, 10),
     idioma: LANGS.has(b.idioma) ? b.idioma : 'es',
-    consentimiento: b.consentimiento === true,
-    fuente: 'flowsuite-landing',
+    // The legacy form ('flowsuite-v7') blocks submission until the privacy checkbox is ticked,
+    // but does not send the field, so its consent is recorded from the source.
+    consentimiento: b.consentimiento === true || b.fuente === 'flowsuite-v7',
+    fuente: b.fuente === 'flowsuite-v7' ? 'flowsuite-landing (v7)' : 'flowsuite-landing',
     fecha: new Date().toISOString(),
   };
 
