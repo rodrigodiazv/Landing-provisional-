@@ -227,7 +227,8 @@ function applyLang(lang) {
   document.querySelectorAll('.lb').forEach((b) => { b.classList.toggle('on', b.dataset.l === lang); b.setAttribute('aria-pressed', b.dataset.l === lang); });
   const sm = $('lang-sel-m'); if (sm) sm.value = lang;
   ['f-err', 'adm-err', 'cl-err'].forEach((id) => { const e = $(id); if (e) e.textContent = ''; });
-  renderTicker(); renderSectors(); renderAgents(); renderPlans(); renderPacks(); renderFAQ(); renderLeadSectors(); renderFooterLegal(); renderDemoTabs();
+  renderTicker(); renderSectors(); renderAgents(); renderPlans(); renderPacks(); renderFAQ();
+  if (typeof updateFlowWidgetLang === 'function') updateFlowWidgetLang(); renderLeadSectors(); renderFooterLegal(); renderDemoTabs();
   if ($('legal-modal')?.classList.contains('open')) lTab(curLegal);
 }
 function setLang(lang) { lsSet('lang', lang); applyLang(lang); }
