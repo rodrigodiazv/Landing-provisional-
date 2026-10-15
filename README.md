@@ -103,6 +103,8 @@ El Builder solo está dentro del **panel de administración** (🔐 → Builder)
 - Cabeceras: CSP sin dominios externos de scripts, HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`.
 - Nada de secretos en el repositorio: `.env` está en `.gitignore`.
 
+> ⚠️ **No subas `index.html` suelto desde la web de GitHub** ("Add files via upload"): sobrescribe la versión segura y rompe el login de admin y el Builder. `index.html` y `assets/js/site.js` deben ir siempre juntos (mejor mediante PR). Si `ADMIN_PASSWORD` o `ADMIN_SESSION_SECRET` no están definidos en Vercel, `/api/admin-login` devuelve 503.
+
 > El área cliente beta guarda sus datos en el `localStorage` del navegador de cada usuario. Para un servicio en producción hace falta una base de datos y autenticación en el servidor.
 
 ---
