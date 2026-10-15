@@ -1800,8 +1800,8 @@ function renderPlans(){
       <ul class="plan-feats">${v.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
       <div style="font-size:11px;color:var(--t2);background:var(--tla);border:1px solid var(--tlb);border-radius:7px;padding:7px 11px;margin-bottom:14px">⏱ ${v.overage}</div>
       <button class="plan-btn ${v.badge?'tl':'gh'}" onclick="goTo('#contacto')">${v.badge?
-        ({'fr':'Commencer l\\'essai','de':'Beta starten','it':'Inizia la beta','en':'Start free trial','es':'Empezar ensayo gratis'}[lang]||'Commencer') :
-        ({'fr':'Choisir','de':'Wählen','it':'Scegliere','en':'Choose','es':'Elegir'}[lang]||'Choisir')+' '+v.nm}</button>
+        ({"fr":"Commencer l'essai","de":"Beta starten","it":"Inizia la beta","en":"Start free trial","es":"Empezar ensayo gratis"}[lang]||"Commencer") :
+        ({"fr":"Choisir","de":"W\u00e4hlen","it":"Scegliere","en":"Choose","es":"Elegir"}[lang]||"Choisir")+" "+v.nm}</button>
     </div>`
   ).join('');
 }
@@ -1895,7 +1895,7 @@ const RESELLER_I18N = {
     feats_pro:['✓ Tout Voice Starter','✓ Setter intégré','✓ Contenu IA pour réseaux','✓ CRM de leads','✓ Rapports mensuels'],
     feats_elite:['✓ Tout Voice Pro','✓ Closer inclus','✓ Publication multicanal','✓ Analytics avancé','✓ Support prioritaire'],
     cta:'Commencer',setup:'+ setup',
-    how:'Du contrat à l\'agent actif en 48 heures',
+    how:"Du contrat \u00e0 l'agent actif en 48 heures",
     steps:[['📋','Formulaire','Services, prix et objectifs'],['⚡','48h setup','Ton agent configuré'],['🌐','Sur ton site','Un snippet. C\'est tout.'],['📈','Résultats','Leads et analytics en temps réel']]
   },
   de:{
@@ -1919,7 +1919,7 @@ const RESELLER_I18N = {
     feats_pro:['✓ Tutto Voice Starter','✓ Setter integrato','✓ Contenuto IA per social','✓ CRM dei lead','✓ Report mensili'],
     feats_elite:['✓ Tutto Voice Pro','✓ Closer incluso','✓ Pubblicazione multicanale','✓ Analytics avanzato','✓ Supporto prioritario'],
     cta:'Iniziare',setup:'+ setup',
-    how:'Dal contratto all\'agente attivo in 48 ore',
+    how:"Dal contratto all'agente attivo in 48 ore",
     steps:[['📋','Modulo','Servizi, prezzi e obiettivi'],['⚡','48h setup','Il tuo agente configurato'],['🌐','Sul tuo sito','Uno snippet. Tutto qui.'],['📈','Risultati','Lead e analytics in tempo reale']]
   },
   en:{
@@ -2113,7 +2113,7 @@ const LANG_MAP = {
     sect_ct_sub:'Remplis le formulaire ou écris-nous sur WhatsApp. <strong style="color:var(--tx)">La personne qui construit FlowSuite te répond directement.</strong>',
     form_nm:'Prénom *',form_biz:'Activité *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Ton secteur *',
     form_detail:'Qu\'est-ce que tu veux automatiser ? (optionnel)',form_consent:'J\'accepte le traitement de mes données selon la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">politique de confidentialité</span> (nLPD / RGPD). *',
-    form_cta:'Demander l\'accès bêta gratuit',form_ok_t:'🎉',form_ok_h:'Demande reçue !',form_ok_sub:'Tu recevras ton code PIN par email dans moins de 24h.',form_pin_l:'Ton code PIN d\'accès',
+    form_cta:"Demander l'acc\u00e8s b\u00eata gratuit",form_ok_t:'🎉',form_ok_h:'Demande reçue !',form_ok_sub:'Tu recevras ton code PIN par email dans moins de 24h.',form_pin_l:'Ton code PIN d\'accès',
     wa_ch:'WhatsApp Suisse · +41 77 941 35 32',wa_es:'WhatsApp Espagne · +34 634 13 44 66',
     legal_cta:'Sans carte. Sans commercial. Si ça ne convient pas, tu pars et c\'est tout.',
     faq:[
@@ -2142,11 +2142,11 @@ const LANG_MAP = {
     tr:['Kostenlose Beta · Keine Karte','Setup in 48h','5 Sprachen · 24/7','Daten in der Schweiz'],
     usr:'🤖 Mein Bereich',
     msg:"Guten Tag! Ich bin <strong>FLOW</strong>. Wie kann ich Ihnen helfen?",
-    nav:['Für wen','So funktioniert\'s','Preise','FAQ','Kontakt'],
+    nav:['Für wen',"So funktioniert's",'Preise','FAQ','Kontakt'],
     betabar:'<strong>Kostenloser Beta-Zugang</strong> · Keine Karte · Kein Engagement · Dein KI-Agent in 48h',
     sect_pq:'Für wen',sect_h2:'Ein KI-Agent für <span class="grad-vi">jede Geschichte</span>',
     sect_pq_sub:"Ob Musiker, Therapeut, Restaurantbesitzer, Juwelier, Fotograf oder Coach — FlowSuite versteht deine Welt und spricht mit deinen Kunden wie du es tun würdest.",
-    sect_cf:'So funktioniert\'s',sect_cf_h2:'3 Schritte. <span class="grad-teal">Vollständige Präsenz.</span>',
+    sect_cf:"So funktioniert's",sect_cf_h2:'3 Schritte. <span class="grad-teal">Vollständige Präsenz.</span>',
     sect_cf_sub:"Kein Code. Keine Agentur. Kein Warten. Dein KI-Agent in 48 Stunden einsatzbereit.",
     step1_t:"Erzähl uns deine Geschichte",step1_d:"Du füllst ein Formular über dein Unternehmen, deine Services, deinen Stil und Kanäle aus. Der Builder Pro erstellt deine Präsenz in 60 Sekunden.",
     step2_t:"Die KI baut alles auf",step2_d:"KI-Logo · Cinematic Landing Page · ElevenLabs Sprachagent · Social Media Pack · Alle Kanäle konfiguriert.",
@@ -2207,7 +2207,7 @@ const LANG_MAP = {
     sect_ct_sub:'Compila il modulo o scrivici su WhatsApp. <strong style="color:var(--tx)">La persona che costruisce FlowSuite ti risponde direttamente.</strong>',
     form_nm:'Nome *',form_biz:'Attività *',form_em:'Email *',form_tel:'WhatsApp',form_sec:'Il tuo settore *',
     form_detail:'Cosa vuoi automatizzare? (opzionale)',form_consent:'Accetto il trattamento dei miei dati secondo la <span style="color:var(--teal);cursor:pointer" onclick="showLegal(\'privacy\')">politica sulla privacy</span> (nLPD / GDPR). *',
-    form_cta:'Richiedere l\'accesso beta gratuito',form_ok_t:'🎉',form_ok_h:'Richiesta ricevuta!',form_ok_sub:'Riceverai il tuo codice PIN via email in meno di 24h.',form_pin_l:'Il tuo PIN di accesso',
+    form_cta:"Richiedere l'accesso beta gratuito",form_ok_t:'🎉',form_ok_h:'Richiesta ricevuta!',form_ok_sub:'Riceverai il tuo codice PIN via email in meno di 24h.',form_pin_l:'Il tuo PIN di accesso',
     wa_ch:'WhatsApp Svizzera · +41 77 941 35 32',wa_es:'WhatsApp Spagna · +34 634 13 44 66',
     legal_cta:'Senza carta. Senza commerciali. Se non convince, te ne vai e basta.',
     faq:[
@@ -2232,9 +2232,9 @@ const LANG_MAP = {
     tr:['Free beta · No card','Setup in 48h','5 languages · 24/7','Data in Switzerland'],
     usr:'🤖 My space',
     msg:"Hello! I'm <strong>FLOW</strong>. How can I help you today?",
-    nav:['Who it\'s for','How it works','Pricing','FAQ','Contact'],
+    nav:["Who it's for",'How it works','Pricing','FAQ','Contact'],
     betabar:'<strong>Free beta access</strong> · No card · No commitment · Your AI agent in 48h',
-    sect_pq:'Who it\'s for',sect_h2:'An AI agent for <span class="grad-vi">every story</span>',
+    sect_pq:"Who it's for",sect_h2:'An AI agent for <span class="grad-vi">every story</span>',
     sect_pq_sub:"Whether you\'re a musician, therapist, restaurateur, jeweller, photographer or coach — FlowSuite understands your world and speaks to your clients the way you would.",
     sect_cf:'How it works',sect_cf_h2:'3 steps. <span class="grad-teal">Complete presence.</span>',
     sect_cf_sub:"No code. No agency. No waiting weeks. Your AI agent operational in 48 hours.",
@@ -2396,9 +2396,9 @@ function setLang(lang, btn){
   // ── Footer y nav links ──
   const footLabels = {
     fr:['Pour qui','Comment ça marche','Prix','FAQ','Contact','Mon espace client'],
-    de:['Für wen','So funktioniert\'s','Preise','FAQ','Kontakt','Mein Kundenbereich'],
+    de:['Für wen',"So funktioniert's",'Preise','FAQ','Kontakt','Mein Kundenbereich'],
     it:['Per chi','Come funziona','Prezzi','FAQ','Contatto','Il mio spazio cliente'],
-    en:['Who it\'s for','How it works','Pricing','FAQ','Contact','My client space'],
+    en:["Who it's for",'How it works','Pricing','FAQ','Contact','My client space'],
     es:['Para quién','Cómo funciona','Precios','FAQ','Contacto','Mi espacio cliente']
   };
   const fl = footLabels[lang]||footLabels['fr'];
@@ -3262,9 +3262,10 @@ function activateVoice(){
 
 // ══════ INIT ══════
 window.addEventListener('load',()=>{
-  // Detectar idioma del navegador como sugerencia
+  // Siempre iniciar en francés (mercado suizo romando)
+  // El usuario elige el idioma en el overlay de FLOW
   const validLangs = ['fr','de','it','en','es'];
-  const savedLang = localStorage.getItem(S+'lang') || 'fr';
+  const savedLang = 'fr';
 
   renderTicker();
   renderSectors();
@@ -3289,8 +3290,15 @@ window.addEventListener('load',()=>{
   setTimeout(()=>{ document.getElementById('fav-wrap').style.opacity='1'; }, 3000);
 });
 </script>
-<!-- ══════ ELEVENLABS WIDGET ══════ -->
+<!-- ══════ ELEVENLABS: SDK cargado al inicio para preservar gesto del usuario ══════ -->
 <script src="https://elevenlabs.io/convai-widget/index.js" defer></script>
+<script type="module">
+  try {
+    const mod = await import('https://cdn.jsdelivr.net/npm/@elevenlabs/client@latest/+esm');
+    window._ELConversation = mod.Conversation || mod.default?.Conversation;
+    if(window._ELConversation) console.log('✅ EL SDK listo');
+  } catch(e){ console.warn('EL SDK no cargó:', e.message); }
+</script>
 
 <!-- ══════ OVERLAY 3 PASOS: IDIOMA → DATOS → FLOW ══════ -->
 <style>
@@ -3437,49 +3445,18 @@ const _FLOW_MSGS = {
   es:"¡Hola! Soy FLOW de FlowSuite. Automatizamos la captación de clientes con IA. ¿A qué te dedicas?"
 };
 
-async function startFlowVoice(){
+function startFlowVoice(){
   _hideOv();
   const lang = _ovLang || 'fr';
-
-  try {
-    const mod = await import('https://cdn.jsdelivr.net/npm/@elevenlabs/client@latest/+esm');
-    const Conversation = mod.Conversation || mod.default?.Conversation;
-    if(!Conversation) throw new Error('SDK no encontrado');
-
-    _flowConv = await Conversation.startSession({
-      agentId: FLOW_AGENT_ID,
-      conversationConfigOverride: {
-        agent: {
-          language: lang,
-          firstMessage: _FLOW_MSGS[lang] || _FLOW_MSGS['fr'],
-          first_message: _FLOW_MSGS[lang] || _FLOW_MSGS['fr']
-        }
-      },
-      dynamicVariables: {
-        user_name:  _userData.name  || '',
-        user_email: _userData.email || '',
-        user_phone: _userData.phone || ''
-      },
-      onConnect: ()=>{ _showCallUI(); _setCallStatus('FLOW · Live'); },
-      onDisconnect: ()=>{ endFlowCall(); },
-      onModeChange: ({mode})=>{
-        const labels = {
-          speaking:{ fr:'FLOW parle…', de:'FLOW spricht…', it:'FLOW parla…', en:'FLOW is speaking…', es:'FLOW está hablando…'},
-          listening:{fr:'Écoute…', de:'Hört zu…', it:'In ascolto…', en:'Listening…', es:'Escuchando…'}
-        };
-        _setCallStatus((labels[mode]||{})[lang] || mode);
-      },
-      onError: (msg)=>{ console.error('FLOW SDK error:', msg); toast('Error de conexión. Recarga e inténtalo.','err'); }
-    });
-  } catch(e){
-    console.warn('SDK fallback al widget:', e.message);
-    _startFlowWidget(lang);
-  }
+  _startFlowWidget(lang);
 }
+
 
 function _startFlowWidget(lang){
   const old = document.getElementById('el-flow-widget');
   if(old) old.remove();
+
+  // Crear widget y añadir al DOM
   const w = document.createElement('elevenlabs-convai');
   w.id = 'el-flow-widget';
   w.setAttribute('agent-id', FLOW_AGENT_ID);
@@ -3487,13 +3464,23 @@ function _startFlowWidget(lang){
   w.setAttribute('avatar-image-url', _flowAvatarB64);
   w.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:800';
   document.body.appendChild(w);
-  customElements.whenDefined('elevenlabs-convai').then(()=>{
-    setTimeout(()=>{
-      const sr = w.shadowRoot;
-      const btn = sr && sr.querySelector('button');
-      if(btn) btn.click(); else w.click();
-    }, 300);
-  });
+
+  // Mostrar card de ayuda para que el usuario sepa dónde tocar
+  const tapLabels = {
+    fr:'👇 Touche le bouton FLOW en bas à droite pour parler',
+    de:'👇 Tippe auf den FLOW-Button unten rechts zum Sprechen',
+    it:'👇 Tocca il pulsante FLOW in basso a destra per parlare',
+    en:'👇 Tap the FLOW button at bottom right to talk',
+    es:'👇 Toca el botón FLOW abajo a la derecha para hablar'
+  };
+
+  // Mostrar toast con instrucción
+  toast(tapLabels[lang] || tapLabels['fr'], 'ok');
+
+  // Pulsar animación en el widget para que sea obvio
+  setTimeout(()=>{
+    w.style.animation = 'pulse-av 0.8s ease-in-out 4';
+  }, 500);
 }
 
 function _showMicInstructions(){
@@ -3589,7 +3576,7 @@ function ovBackToLang(){
   document.getElementById('ov-main-sub').textContent = 'Choisissez votre langue / Choose your language';
 }
 
-function startFlowWithData(){
+async function startFlowWithData(){
   const name  = document.getElementById('ov-name').value.trim();
   const phone = document.getElementById('ov-phone').value.trim();
   const email = document.getElementById('ov-email').value.trim();
@@ -3600,45 +3587,86 @@ function startFlowWithData(){
   btn.disabled = true;
   btn.innerHTML = '⏳';
 
-  // Guardar datos para CRM
-  _userData = {name, phone, email, lang:_ovLang};
+  const lang = _ovLang || 'fr';
+  _userData = {name, phone, email, lang};
 
-  // Primer mensaje personalizado con el nombre
-  const firstMsgs = {
-    fr:`Bonjour ${name} ! Je suis FLOW de FlowSuite. Nous automatisons la captation clients et la communication avec l'IA. Quelle est votre activité ?`,
-    de:`Hallo ${name}! Ich bin FLOW von FlowSuite. Wir automatisieren die Kundengewinnung mit KI. Was machen Sie beruflich?`,
-    it:`Ciao ${name}! Sono FLOW di FlowSuite. Automatizziamo l'acquisizione clienti con l'IA. Di cosa si occupa?`,
-    en:`Hi ${name}! I'm FLOW from FlowSuite. We automate client acquisition with AI. What does your business do?`,
-    es:`Hola ${name}, soy FLOW de FlowSuite. Automatizamos la captación de clientes con IA. ¿A qué te dedicas?`
-  };
-
-  // Pasar datos como dynamic variables al widget ElevenLabs
-  const w = document.getElementById('el-flow-widget') || _flowWidget;
-  if(w){
-    w.setAttribute('language', _ovLang);
-    // Dynamic variables que usará el prompt de FLOW
-    const dynVars = JSON.stringify({
-      user_name: name,
-      user_email: email || '(no indicado)',
-      user_phone: phone || '(no indicado)'
-    });
-    w.setAttribute('dynamic-variables', dynVars);
-    // Override del primer mensaje con el nombre real
-    w.setAttribute('override-config', JSON.stringify({
-      agent:{ first_message: firstMsgs[_ovLang]||firstMsgs['fr'], language:_ovLang }
-    }));
+  // ── PASO 1: Pedir micrófono AHORA, en el gesto del usuario ──────────────
+  // getUserMedia es lo PRIMERO que hacemos (antes de cualquier otro await)
+  // Chrome acepta porque el clic está activo
+  let micStream = null;
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+  } catch(micErr){
+    btn.disabled = false;
+    btn.innerHTML = '🎙️';
+    // Mostrar instrucciones de micrófono en el overlay
+    const sub = document.querySelector('#flow-overlay .ov-sub');
+    const micMsg = {
+      fr:'⚠️ Micro bloqué. Tape sur 🔒 dans la barre d\'adresse → Micro → Autoriser → Recharge',
+      de:'⚠️ Mikrofon blockiert. Tippe auf 🔒 → Mikrofon → Zulassen → Neu laden',
+      it:'⚠️ Microfono bloccato. Tocca 🔒 → Microfono → Consenti → Ricarica',
+      en:'⚠️ Mic blocked. Tap 🔒 in address bar → Microphone → Allow → Reload',
+      es:'⚠️ Micrófono bloqueado. Toca 🔒 → Micrófono → Permitir → Recarga'
+    };
+    if(sub) sub.innerHTML = micMsg[lang]||micMsg['fr'];
+    return;
   }
 
-  // Guardar en Make.com webhook también
-  if(phone || email){
-    fetch('https://hook.eu1.make.com/wr44pcxegb8hcovxu9v46ww14ske5oqt', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nombre:name, telefono:phone, email, idioma:_ovLang, fuente:'overlay_form', timestamp:new Date().toISOString()})
+  // ── PASO 2: Ocultar overlay y enviar datos CRM ───────────────────────────
+  _hideOv();
+  if(phone||email){
+    fetch('https://hook.eu1.make.com/wr44pcxegb8hcovxu9v46ww14ske5oqt',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nombre:name,telefono:phone,email,idioma:lang,fuente:'overlay_form',timestamp:new Date().toISOString()})
     }).catch(()=>{});
   }
 
-  _hideOv();
-  startFlowVoice();
+  // ── PASO 3: Iniciar FLOW con el stream ya autorizado ────────────────────
+  const firstMsgs = {
+    fr:`Bonjour ${name} ! Je suis FLOW de FlowSuite. Quelle est votre activité ?`,
+    de:`Hallo ${name}! Ich bin FLOW von FlowSuite. Was machen Sie beruflich?`,
+    it:`Ciao ${name}! Sono FLOW di FlowSuite. Di cosa si occupa?`,
+    en:`Hi ${name}! I'm FLOW from FlowSuite. What does your business do?`,
+    es:`Hola ${name}, soy FLOW de FlowSuite. ¿A qué te dedicas?`
+  };
+
+  const Conversation = window._ELConversation;
+  if(Conversation){
+    try{
+      _flowConv = await Conversation.startSession({
+        agentId: FLOW_AGENT_ID,
+        mediaStream: micStream,          // ← stream ya autorizado por el usuario
+        conversationConfigOverride:{
+          agent:{
+            language: lang,
+            firstMessage: firstMsgs[lang]||firstMsgs['fr'],
+            first_message: firstMsgs[lang]||firstMsgs['fr']
+          }
+        },
+        dynamicVariables:{
+          user_name:  name,
+          user_email: email||'',
+          user_phone: phone||''
+        },
+        onConnect: ()=>{ _showCallUI(); _setCallStatus('FLOW · Live'); },
+        onDisconnect: ()=>{ endFlowCall(); if(micStream) micStream.getTracks().forEach(t=>t.stop()); },
+        onModeChange: ({mode})=>{
+          const lbl={speaking:{fr:'FLOW parle…',de:'FLOW spricht…',it:'FLOW parla…',en:'FLOW speaking…',es:'FLOW habla…'},
+                     listening:{fr:'Écoute…',de:'Hört zu…',it:'Ascolto…',en:'Listening…',es:'Escuchando…'}};
+          _setCallStatus((lbl[mode]||{})[lang]||mode);
+        },
+        onError:(msg)=>{ console.error('FLOW error:',msg); toast('Error — recarga e inténtalo','err'); }
+      });
+    } catch(sdkErr){
+      console.warn('SDK err:',sdkErr.message);
+      if(micStream) micStream.getTracks().forEach(t=>t.stop());
+      _startFlowWidget(lang);
+    }
+  } else {
+    // SDK no cargó — usar widget como fallback
+    if(micStream) micStream.getTracks().forEach(t=>t.stop());
+    _startFlowWidget(lang);
+  }
 }
 
 function startFlowAnon(){
