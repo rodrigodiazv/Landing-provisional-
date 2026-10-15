@@ -1702,16 +1702,60 @@ function renderFAQ(faqArr){
 }
 
 // ══════ PAQUETES DE RECARGA ══════
+// Traducciones de packs por idioma
+const PACKS_I18N = {
+  fr:{
+    voz100: {nm:'Pack Voix 100', desc:'Minutes de voix supplémentaires pour les pics de demande', best:'Pics occasionnels', badge:''},
+    voz300: {nm:'Pack Voix 300', desc:'Le pack le plus choisi par les entreprises en croissance', best:'Croissance active', badge:'Populaire'},
+    voz500: {nm:'Pack Voix 500', desc:'Haut volume d\'appels assuré sans surprises', best:'Haut volume', badge:''},
+    video30:{nm:'Pack Vidéo 30', desc:'Minutes de génération vidéo IA pour les créateurs', best:'Créateurs de contenu', badge:''},
+    video100:{nm:'Pack Vidéo 100', desc:'Production vidéo IA fréquente pour ton activité', best:'Production régulière', badge:''},
+    multi:  {nm:'Pack Multi', desc:'300 min voix + 50 min vidéo. Le meilleur ratio prix/minute', best:'Tout en un', badge:'Meilleur €/min'},
+  },
+  de:{
+    voz100: {nm:'Sprach-Pack 100', desc:'Zusätzliche Sprachminuten für Nachfragespitzen', best:'Gelegentliche Spitzen', badge:''},
+    voz300: {nm:'Sprach-Pack 300', desc:'Das meistgewählte Paket für wachsende Unternehmen', best:'Aktives Wachstum', badge:'Beliebt'},
+    voz500: {nm:'Sprach-Pack 500', desc:'Hohes Anrufvolumen ohne Überraschungen gesichert', best:'Hohes Volumen', badge:''},
+    video30:{nm:'Video-Pack 30', desc:'KI-Videogenerierungsminuten für Kreative', best:'Content-Ersteller', badge:''},
+    video100:{nm:'Video-Pack 100', desc:'Häufige KI-Videoproduktion für dein Unternehmen', best:'Regelmäßige Produktion', badge:''},
+    multi:  {nm:'Multi-Pack', desc:'300 Min Sprache + 50 Min Video. Bestes Preis-Minuten-Verhältnis', best:'Alles in einem', badge:'Bestes €/Min'},
+  },
+  it:{
+    voz100: {nm:'Pack Voce 100', desc:'Minuti vocali aggiuntivi per i picchi di domanda', best:'Picchi occasionali', badge:''},
+    voz300: {nm:'Pack Voce 300', desc:'Il pack più scelto dalle aziende in crescita', best:'Crescita attiva', badge:'Popolare'},
+    voz500: {nm:'Pack Voce 500', desc:'Alto volume di chiamate garantito senza sorprese', best:'Alto volume', badge:''},
+    video30:{nm:'Pack Video 30', desc:'Minuti di generazione video IA per i creativi', best:'Creatori di contenuti', badge:''},
+    video100:{nm:'Pack Video 100', desc:'Produzione video IA frequente per la tua attività', best:'Produzione regolare', badge:''},
+    multi:  {nm:'Pack Multi', desc:'300 min voce + 50 min video. Il miglior rapporto prezzo/minuto', best:'Tutto in uno', badge:'Migliore €/min'},
+  },
+  en:{
+    voz100: {nm:'Voice Pack 100', desc:'Additional voice minutes for demand peaks', best:'Occasional peaks', badge:''},
+    voz300: {nm:'Voice Pack 300', desc:'The most chosen pack by growing businesses', best:'Active growth', badge:'Popular'},
+    voz500: {nm:'Voice Pack 500', desc:'High call volume secured without surprises', best:'High volume', badge:''},
+    video30:{nm:'Video Pack 30', desc:'AI video generation minutes for creators', best:'Content creators', badge:''},
+    video100:{nm:'Video Pack 100', desc:'Frequent AI video production for your business', best:'Regular production', badge:''},
+    multi:  {nm:'Multi Pack', desc:'300 min voice + 50 min video. Best price/minute ratio', best:'All in one', badge:'Best €/min'},
+  },
+  es:{
+    voz100: {nm:'Pack Voz 100', desc:'Minutos de voz adicionales para picos de demanda', best:'Picos esporádicos', badge:''},
+    voz300: {nm:'Pack Voz 300', desc:'El pack más elegido por negocios en crecimiento', best:'Crecimiento activo', badge:'Popular'},
+    voz500: {nm:'Pack Voz 500', desc:'Alto volumen de llamadas asegurado sin sorpresas', best:'Alto volumen', badge:''},
+    video30:{nm:'Pack Vídeo 30', desc:'Minutos de generación de vídeo IA para creadores', best:'Creadores de contenido', badge:''},
+    video100:{nm:'Pack Vídeo 100', desc:'Producción de vídeo IA frecuente para tu negocio', best:'Producción regular', badge:''},
+    multi:  {nm:'Pack Multi', desc:'300 min voz + 50 min vídeo. El mejor ratio precio/minuto', best:'Todo en uno', badge:'Mejor €/min'},
+  },
+};
+
 function getPacksData(){
   const saved = localStorage.getItem(S+'packs');
   if(saved) return JSON.parse(saved);
   return {
-    voz100:  {nm:'Pack Voz 100',  ico:'🎙️', min:100, type:'voice',  chf:22,  badge:'',       desc:'Minutos de voz adicionales para picos de demanda',          best:'Picos esporádicos'},
-    voz300:  {nm:'Pack Voz 300',  ico:'🎙️', min:300, type:'voice',  chf:60,  badge:'Popular', desc:'El pack más elegido por negocios en crecimiento',           best:'Crecimiento activo'},
-    voz500:  {nm:'Pack Voz 500',  ico:'🎙️', min:500, type:'voice',  chf:90,  badge:'',       desc:'Alto volumen de llamadas asegurado sin sorpresas',           best:'Alto volumen'},
-    video30: {nm:'Pack Vídeo 30', ico:'🎬', min:30,  type:'video',  chf:15,  badge:'',       desc:'Minutos de generación de vídeo IA para creadores',          best:'Creadores de contenido'},
-    video100:{nm:'Pack Vídeo 100',ico:'🎬', min:100, type:'video',  chf:40,  badge:'',       desc:'Producción de vídeo IA frecuente para tu negocio',          best:'Producción regular'},
-    multi:   {nm:'Pack Multi',    ico:'⚡', min:null, type:'combo', chf:75,  badge:'Mejor €/min',desc:'300 min voz + 50 min vídeo. El mejor ratio precio/minuto', best:'Todo en uno'},
+    voz100:  {ico:'🎙️', min:100, type:'voice',  chf:22},
+    voz300:  {ico:'🎙️', min:300, type:'voice',  chf:60},
+    voz500:  {ico:'🎙️', min:500, type:'voice',  chf:90},
+    video30: {ico:'🎬', min:30,  type:'video',  chf:15},
+    video100:{ico:'🎬', min:100, type:'video',  chf:40},
+    multi:   {ico:'⚡', min:null, type:'combo', chf:75},
   };
 }
 
@@ -1719,18 +1763,27 @@ function renderPacks(){
   const packs = getPacksData();
   const el = document.getElementById('packs-grid');
   if(!el) return;
-  el.innerHTML = Object.entries(packs).map(([k,v])=>
-    `<div class="plan" style="${v.badge?'border-color:var(--tlb)':''};position:relative">
-      ${v.badge?`<div class="plan-badge">${v.badge}</div>`:''}
-      <div style="font-size:26px;margin-bottom:8px">${v.ico}</div>
-      <div class="plan-nm">${v.nm}</div>
-      <div class="plan-desc">${v.desc}</div>
+  const lang = _currentLang || 'fr';
+  const i18n = PACKS_I18N[lang] || PACKS_I18N['fr'];
+  const btnLabel = {fr:'Activer le pack', de:'Pack aktivieren', it:'Attiva il pack', en:'Activate pack', es:'Activar pack'};
+  const multiNote = {fr:'300 min voix + 50 min vidéo', de:'300 Min Sprache + 50 Min Video', it:'300 min voce + 50 min video', en:'300 min voice + 50 min video', es:'300 min voz + 50 min vídeo'};
+  el.innerHTML = Object.entries(packs).map(([k,v])=>{
+    const t = i18n[k] || {};
+    const nm = t.nm || k;
+    const desc = t.desc || '';
+    const best = t.best || '';
+    const badge = t.badge || '';
+    return `<div class="plan" style="${badge?'border-color:var(--tlb)':''};position:relative">
+      ${badge?`<div class="plan-badge">${badge}</div>`:''}
+      <div style="font-size:26px;margin-bottom:8px">${v.ico||'🎙️'}</div>
+      <div class="plan-nm">${nm}</div>
+      <div class="plan-desc">${desc}</div>
       <div class="plan-price">${v.chf}<small> CHF</small></div>
-      <div class="plan-note">${v.min?v.min+' min '+v.type:'300 min voz + 50 min vídeo'}</div>
-      <div style="font-size:11.5px;color:var(--teal);background:var(--tla);border:1px solid var(--tlb);border-radius:7px;padding:6px 11px;margin-bottom:14px;margin-top:auto">✓ ${v.best}</div>
-      <button class="plan-btn ${v.badge?'tl':'gh'}" onclick="goTo('#contacto')">Activar pack</button>
-    </div>`
-  ).join('');
+      <div class="plan-note">${v.min?v.min+' min '+v.type:(multiNote[lang]||multiNote['fr'])}</div>
+      <div style="font-size:11.5px;color:var(--teal);background:var(--tla);border:1px solid var(--tlb);border-radius:7px;padding:6px 11px;margin-bottom:14px;margin-top:auto">✓ ${best}</div>
+      <button class="plan-btn ${badge?'tl':'gh'}" onclick="goTo('#contacto')">${btnLabel[lang]||btnLabel['fr']}</button>
+    </div>`;
+  }).join('');
 }
 
 // ══════ HERO CHAT ══════
@@ -2088,7 +2141,10 @@ function setLang(lang, btn){
   if(L.faq) renderFAQ(L.faq);
 
   // Rerender plans and packs in current lang
-  renderPlans();renderPacks();
+  renderPlans();
+  renderPacks();
+  // Actualizar también el FAQ
+  if(L.faq) renderFAQ(L.faq);
 
   // ── Overlay FLOW: traducir textos ──
   const ovBadge = document.querySelector('#flow-overlay .ov-badge');
@@ -3123,7 +3179,13 @@ function startFlowVoice(){
   // Pasar el primer mensaje localizado y las variables del usuario
   const dynVars = { user_name: _userData.name||'', user_email: _userData.email||'', user_phone: _userData.phone||'' };
   w.setAttribute('dynamic-variables', JSON.stringify(dynVars));
-  w.setAttribute('first-message', firstMsgs[lang] || firstMsgs['fr']);
+  // override-config fuerza el idioma y el primer mensaje en ElevenLabs
+  w.setAttribute('override-config', JSON.stringify({
+    agent: {
+      language: lang,
+      first_message: firstMsgs[lang] || firstMsgs['fr']
+    }
+  }));
   w.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:800';
   _flowWidget = w;
 
