@@ -3224,11 +3224,19 @@ function renderBuilderAdmin(){
     <p style="font-size:13px;color:var(--t2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">
       El Builder Pro genera una presencia digital completa para cualquier cliente en 60 segundos: logo IA, landing page, agente vocal (ElevenLabs), pack redes y código de acceso de 14 días.
     </p>
-    <a href="https://claude.ai/artifact/XvbdbaAiJRKdNgoSg2BFea" target="_blank" class="pbtn" style="display:inline-block;text-decoration:none">🚀 Abrir Builder Pro</a>
+    <button class="pbtn" onclick="apNav('builder-admin',document.querySelector('.sni.adm[data-tip=\'Builder Pro\']'))">🎨 Builder Pro</button>
   </div>`;
 }
 function openBuilder(){
-  window.open('https://claude.ai/artifact/XvbdbaAiJRKdNgoSg2BFea','_blank');
+  // Abre el Builder Pro DENTRO del panel admin — nunca abre URL externa
+  const adminBtn = document.querySelector('.sni.adm[data-tip="Builder Pro"]');
+  if(adminBtn){
+    adminBtn.click();
+  } else {
+    // Fallback: abrir el panel admin y navegar al builder
+    document.getElementById('admin-panel')?.classList.add('open');
+    apNav('builder-admin', null);
+  }
 }
 
 // ══════ UTILS ══════
@@ -3281,8 +3289,8 @@ window.addEventListener('load',()=>{
   setTimeout(()=>{ document.getElementById('fav-wrap').style.opacity='1'; }, 3000);
 });
 </script>
-<!-- ══════ ELEVENLABS WIDGET (sin async para carga inmediata) ══════ -->
-<script src="https://elevenlabs.io/convai-widget/index.js"></script>
+<!-- ══════ ELEVENLABS WIDGET ══════ -->
+<script src="https://elevenlabs.io/convai-widget/index.js" defer></script>
 
 <!-- ══════ OVERLAY 3 PASOS: IDIOMA → DATOS → FLOW ══════ -->
 <style>
@@ -3347,11 +3355,11 @@ window.addEventListener('load',()=>{
   <!-- PASO 1: Idioma -->
   <div id="ov-step-1">
     <div class="ov-lang-grid">
-      <button class="ov-lang-btn" onclick="ovPickLang('fr')">🇫🇷 Français</button>
-      <button class="ov-lang-btn" onclick="ovPickLang('de')">🇩🇪 Deutsch</button>
-      <button class="ov-lang-btn" onclick="ovPickLang('it')">🇮🇹 Italiano</button>
-      <button class="ov-lang-btn" onclick="ovPickLang('en')">🇬🇧 English</button>
-      <button class="ov-lang-btn" onclick="ovPickLang('es')">🇪🇸 Español</button>
+      <button class="ov-lang-btn" onclick="ovPickLang('fr',this)">🇫🇷 Français</button>
+      <button class="ov-lang-btn" onclick="ovPickLang('de',this)">🇩🇪 Deutsch</button>
+      <button class="ov-lang-btn" onclick="ovPickLang('it',this)">🇮🇹 Italiano</button>
+      <button class="ov-lang-btn" onclick="ovPickLang('en',this)">🇬🇧 English</button>
+      <button class="ov-lang-btn" onclick="ovPickLang('es',this)">🇪🇸 Español</button>
     </div>
   </div>
 
@@ -3529,34 +3537,48 @@ const OV_TEXTS = {
 
 let _ovLang = 'fr';
 
-function ovPickLang(lang){
+function ovPickLang(lang, btn){
   _ovLang = lang;
-  // Marcar botón seleccionado
+
+  // Marcar botón seleccionado — usando btn pasado directamente, sin event implícito
   document.querySelectorAll('.ov-lang-btn').forEach(b=>b.classList.remove('sel'));
-  event.target.closest('.ov-lang-btn').classList.add('sel');
+  if(btn) btn.classList.add('sel');
 
   // Cambiar idioma de la página
-  const lb = document.querySelector(`.lb[data-l="${lang}"]`);
-  setLang(lang, lb);
+  const lb = document.querySelector('.lb[data-l="'+lang+'"]');
+  if(typeof setLang === 'function'){
+    setLang(lang, lb);
+  } else {
+    // setLang todavía no cargada — reintentar en 200ms
+    setTimeout(()=>{ if(typeof setLang==='function') setLang(lang, lb); }, 200);
+  }
 
   // Actualizar textos del overlay
   const T = OV_TEXTS[lang] || OV_TEXTS['fr'];
-  document.getElementById('ov-main-title').innerHTML = T.title;
-  document.getElementById('ov-main-sub').textContent = T.note;
-  document.getElementById('ov-form-note').textContent = T.note;
-  document.getElementById('ov-name').placeholder  = T.name;
-  document.getElementById('ov-phone').placeholder = T.phone;
-  document.getElementById('ov-email').placeholder = T.email;
-  document.getElementById('ov-submit-text').textContent = T.btn;
-  document.getElementById('ov-back-text').textContent   = T.back;
-  document.getElementById('ov-skip-text').textContent   = T.skip;
+  const els = {
+    'ov-main-title': {prop:'innerHTML', val:T.title},
+    'ov-main-sub':   {prop:'textContent', val:T.note},
+    'ov-form-note':  {prop:'textContent', val:T.note},
+    'ov-submit-text':{prop:'textContent', val:T.btn},
+    'ov-back-text':  {prop:'textContent', val:T.back},
+    'ov-skip-text':  {prop:'textContent', val:T.skip},
+  };
+  Object.entries(els).forEach(([id,{prop,val}])=>{
+    const e = document.getElementById(id);
+    if(e) e[prop] = val;
+  });
+  const fields = [
+    ['ov-name', T.name], ['ov-phone', T.phone], ['ov-email', T.email]
+  ];
+  fields.forEach(([id, ph])=>{ const e=document.getElementById(id); if(e) e.placeholder=ph; });
 
-  // Pasar al paso 2
-  setTimeout(()=>{
-    document.getElementById('ov-step-1').style.display = 'none';
-    document.getElementById('ov-step-2').style.display = 'block';
-    document.getElementById('ov-name').focus();
-  }, 180);
+  // Pasar al paso 2 — sin setTimeout para evitar que Chrome Android lo cancele
+  const s1 = document.getElementById('ov-step-1');
+  const s2 = document.getElementById('ov-step-2');
+  if(s1) s1.style.display = 'none';
+  if(s2) s2.style.display = 'block';
+  const nameEl = document.getElementById('ov-name');
+  if(nameEl) nameEl.focus();
 }
 
 function ovBackToLang(){
