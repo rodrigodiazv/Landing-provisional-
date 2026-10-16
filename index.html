@@ -2313,8 +2313,12 @@ const LANG_MAP = {
 };
 
 let _currentLang = 'fr';
+let _ovLang = 'fr'; // se mantiene sincronizado con _currentLang (ver setLang / ovPickLang)
+const _VALID_LANGS = ['fr','de','it','en','es'];
+function _normLang(l){ return _VALID_LANGS.indexOf(l) !== -1 ? l : 'fr'; }
 function setLang(lang, btn){
   _currentLang = lang;
+  _ovLang = lang; // única fuente de verdad: el idioma del overlay/voz siempre sigue al de la página
   document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));
   document.documentElement.lang = lang;
   const L = LANG_MAP[lang]; if(!L) return;
@@ -2439,6 +2443,8 @@ function setLang(lang, btn){
   const widget = document.getElementById('el-flow-widget') || document.querySelector('elevenlabs-convai');
   if(widget){
     widget.setAttribute('language', lang);
+    widget.setAttribute('override-language', lang);
+    widget.setAttribute('override-first-message', elFirstMsg[lang] || elFirstMsg['fr']);
     // Pasar el primer mensaje en el idioma correcto vía conversation_config_override
     const initData = {
       conversation_config_override: {
@@ -3447,12 +3453,12 @@ const _FLOW_MSGS = {
 
 function startFlowVoice(){
   _hideOv();
-  const lang = _ovLang || 'fr';
-  _startFlowWidget(lang);
+  _startFlowWidget(_currentLang || 'fr');
 }
 
 
 function _startFlowWidget(lang){
+  lang = _normLang(lang || _currentLang);
   const old = document.getElementById('el-flow-widget');
   if(old) old.remove();
 
@@ -3461,6 +3467,8 @@ function _startFlowWidget(lang){
   w.id = 'el-flow-widget';
   w.setAttribute('agent-id', FLOW_AGENT_ID);
   w.setAttribute('language', lang);
+  w.setAttribute('override-language', lang);
+  w.setAttribute('override-first-message', _FLOW_MSGS[lang] || _FLOW_MSGS['fr']);
   w.setAttribute('avatar-image-url', _flowAvatarB64);
   w.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:800';
   document.body.appendChild(w);
@@ -3522,10 +3530,10 @@ const OV_TEXTS = {
   es:{ title:'¡Hola! Soy <span style="color:var(--teal)">FLOW</span>', sub:'Elige tu idioma para empezar', note:'Para que FLOW te conozca desde el primer segundo', name:'Tu nombre *', phone:'WhatsApp (+41 / +34...) *', email:'Email *', btn:'Hablar con FLOW', back:'← Cambiar idioma', skip:'Continuar sin datos →' }
 };
 
-let _ovLang = 'fr';
-
 function ovPickLang(lang, btn){
+  lang = _normLang(lang);
   _ovLang = lang;
+  _currentLang = lang;
 
   // Marcar botón seleccionado — usando btn pasado directamente, sin event implícito
   document.querySelectorAll('.ov-lang-btn').forEach(b=>b.classList.remove('sel'));
@@ -3571,7 +3579,7 @@ function ovPickLang(lang, btn){
 function ovBackToLang(){
   document.getElementById('ov-step-2').style.display = 'none';
   document.getElementById('ov-step-1').style.display = 'block';
-  const T = OV_TEXTS[_ovLang]||OV_TEXTS['fr'];
+  const T = OV_TEXTS[_currentLang]||OV_TEXTS['fr'];
   document.getElementById('ov-main-title').innerHTML = T.title;
   document.getElementById('ov-main-sub').textContent = 'Choisissez votre langue / Choose your language';
 }
@@ -3587,7 +3595,7 @@ async function startFlowWithData(){
   btn.disabled = true;
   btn.innerHTML = '⏳';
 
-  const lang = _ovLang || 'fr';
+  const lang = _normLang(_currentLang);
   _userData = {name, phone, email, lang};
 
   // ── PASO 1: Pedir micrófono AHORA, en el gesto del usuario ──────────────
