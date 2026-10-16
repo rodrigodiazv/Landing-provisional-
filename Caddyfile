@@ -1,0 +1,39 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+	servers {
+		trusted_proxies static private_ranges 100.0.0.0/8
+	}
+}
+
+:{$PORT:80} {
+	log {
+		format json
+	}
+
+	respond /health 200
+
+	encode {
+		gzip
+		zstd
+	}
+
+	# Admin API: forwarded to the Railway Function service "admin-api".
+	# Paths are preserved as-is and Set-Cookie/Cookie headers pass through.
+	# This block must stay before the static file handler.
+	handle /api/admin-* {
+		reverse_proxy https://admin-api-production-7626.up.railway.app {
+			header_up Host {upstream_hostport}
+		}
+	}
+
+	# Static site
+	handle {
+		root * /app
+		file_server {
+			hide .git
+			hide Caddyfile
+		}
+	}
+}
