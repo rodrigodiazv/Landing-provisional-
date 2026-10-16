@@ -2442,8 +2442,6 @@ function setLang(lang, btn){
   const widget = document.getElementById('el-flow-widget') || document.querySelector('elevenlabs-convai');
   if(widget){
     widget.setAttribute('language', lang);
-    widget.setAttribute('override-language', lang);
-    widget.setAttribute('override-first-message', elFirstMsg[lang] || elFirstMsg['fr']);
     // Pasar el primer mensaje en el idioma correcto vía conversation_config_override
     const initData = {
       conversation_config_override: {
@@ -3321,7 +3319,7 @@ window.addEventListener('load',()=>{
 <script src="https://elevenlabs.io/convai-widget/index.js" defer></script>
 <script type="module">
   try {
-    const mod = await import('https://cdn.jsdelivr.net/npm/@elevenlabs/client@latest/+esm');
+    const mod = await import('https://cdn.jsdelivr.net/npm/@elevenlabs/client@0.12.2/+esm');
     window._ELConversation = mod.Conversation || mod.default?.Conversation;
     if(window._ELConversation) console.log('✅ EL SDK listo');
   } catch(e){ console.warn('EL SDK no cargó:', e.message); }
@@ -3472,45 +3470,68 @@ const _FLOW_MSGS = {
   es:"¡Hola! Soy FLOW de FlowSuite. Automatizamos la captación de clientes con IA. ¿A qué te dedicas?"
 };
 
-function startFlowVoice(){
+async function startFlowVoice(){
+  const lang = _normLang(_currentLang || 'fr');
   _hideOv();
-  _startFlowWidget(_currentLang || 'fr');
+
+  // Micrófono PRIMERO, dentro del gesto del usuario y antes de cualquier otro await
+  let micStream = null;
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+  } catch(micErr){
+    _flowStartFailed(lang);
+    return;
+  }
+  // Permiso concedido; el SDK abre su propio stream
+  micStream.getTracks().forEach(t=>t.stop());
+
+  const Conversation = window._ELConversation;
+  if(!Conversation){
+    _flowStartFailed(lang);
+    return;
+  }
+
+  try{
+    _flowConv = await Conversation.startSession({
+      agentId: 'agent_6501m4vnzp04exjtrwnce2ryf5kt',
+      overrides: { agent: { language: lang, firstMessage: _FLOW_MSGS[lang] || _FLOW_MSGS['fr'] } },
+      onConnect: ()=>{ _showCallUI(); _setCallStatus('FLOW · Live'); },
+      onDisconnect: ()=>{ endFlowCall(); },
+      onModeChange: ({mode})=>{
+        const lbl={speaking:{fr:'FLOW parle…',de:'FLOW spricht…',it:'FLOW parla…',en:'FLOW speaking…',es:'FLOW habla…'},
+                   listening:{fr:'Écoute…',de:'Hört zu…',it:'Ascolto…',en:'Listening…',es:'Escuchando…'}};
+        _setCallStatus((lbl[mode]||{})[lang]||mode);
+      },
+      onError:(msg)=>{ console.error('FLOW error:',msg); _flowStartFailed(lang); }
+    });
+  } catch(err){
+    console.warn('SDK err:', err && err.message);
+    _flowConv = null;
+    _flowStartFailed(lang);
+  }
 }
 
-
-function _startFlowWidget(lang){
-  lang = _normLang(lang || _currentLang);
-  const old = document.getElementById('el-flow-widget');
-  if(old) old.remove();
-
-  // Crear widget y añadir al DOM
-  const w = document.createElement('elevenlabs-convai');
-  w.id = 'el-flow-widget';
-  w.setAttribute('agent-id', FLOW_AGENT_ID);
-  w.setAttribute('language', lang);
-  w.setAttribute('override-language', lang);
-  w.setAttribute('override-first-message', _FLOW_MSGS[lang] || _FLOW_MSGS['fr']);
-  w.setAttribute('avatar-image-url', _flowAvatarB64);
-  w.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:800';
-  document.body.appendChild(w);
-
-  // Mostrar card de ayuda para que el usuario sepa dónde tocar
-  const tapLabels = {
-    fr:'👇 Touche le bouton FLOW en bas à droite pour parler',
-    de:'👇 Tippe auf den FLOW-Button unten rechts zum Sprechen',
-    it:'👇 Tocca il pulsante FLOW in basso a destra per parlare',
-    en:'👇 Tap the FLOW button at bottom right to talk',
-    es:'👇 Toca el botón FLOW abajo a la derecha para hablar'
+// Mensaje corto de error + reset de la UI de FLOW
+function _flowStartFailed(lang){
+  lang = _normLang(lang);
+  const msgs = {
+    fr:'FLOW indisponible. Vérifiez le micro et réessayez.',
+    de:'FLOW nicht verfügbar. Mikrofon prüfen und erneut versuchen.',
+    it:'FLOW non disponibile. Controlla il microfono e riprova.',
+    en:'FLOW unavailable. Check your microphone and try again.',
+    es:'FLOW no disponible. Revisa el micrófono e inténtalo de nuevo.'
   };
-
-  // Mostrar toast con instrucción
-  toast(tapLabels[lang] || tapLabels['fr'], 'ok');
-
-  // Pulsar animación en el widget para que sea obvio
-  setTimeout(()=>{
-    w.style.animation = 'pulse-av 0.8s ease-in-out 4';
-  }, 500);
+  toast(msgs[lang], 'err');
+  if(_flowConv){ try{ _flowConv.endSession(); }catch(e){} _flowConv = null; }
+  const ui = document.getElementById('flow-call-ui');
+  if(ui) ui.style.display = 'none';
+  const btn = document.getElementById('ov-submit-btn');
+  if(btn){
+    btn.disabled = false;
+    btn.innerHTML = '🎙️ <span id="ov-submit-text">' + (OV_TEXTS[lang] || OV_TEXTS['fr']).btn + '</span>';
+  }
 }
+
 
 function _showMicInstructions(){
   const ov = document.getElementById('flow-overlay');
@@ -3532,7 +3553,9 @@ function _showMicInstructions(){
 }
 
 function endFlowCall(){
-  if(_flowConv){ try{ _flowConv.endSession(); }catch(e){} _flowConv=null; }
+  const conversation = _flowConv;
+  _flowConv = null;
+  if(conversation){ try{ conversation.endSession(); }catch(e){} }
   const ui = document.getElementById('flow-call-ui');
   if(ui) ui.style.display = 'none';
 }
@@ -3665,11 +3688,10 @@ async function startFlowWithData(){
       _flowConv = await Conversation.startSession({
         agentId: FLOW_AGENT_ID,
         mediaStream: micStream,          // ← stream ya autorizado por el usuario
-        conversationConfigOverride:{
+        overrides:{
           agent:{
             language: lang,
-            firstMessage: firstMsgs[lang]||firstMsgs['fr'],
-            first_message: firstMsgs[lang]||firstMsgs['fr']
+            firstMessage: firstMsgs[lang]||firstMsgs['fr']
           }
         },
         dynamicVariables:{
@@ -3689,12 +3711,13 @@ async function startFlowWithData(){
     } catch(sdkErr){
       console.warn('SDK err:',sdkErr.message);
       if(micStream) micStream.getTracks().forEach(t=>t.stop());
-      _startFlowWidget(lang);
+      _flowConv = null;
+      _flowStartFailed(lang);
     }
   } else {
-    // SDK no cargó — usar widget como fallback
+    // SDK no cargó
     if(micStream) micStream.getTracks().forEach(t=>t.stop());
-    _startFlowWidget(lang);
+    _flowStartFailed(lang);
   }
 }
 
