@@ -529,7 +529,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
       <button class="lb" data-l="es" onclick="setLang('es',this)">🇪🇸</button>
     </div>
     <button class="btn-user" id="btn-user" onclick="openModal('client')">🤖 Mi espacio</button>
-    <button class="btn-admin" onclick="openModal('admin')" title="Admin">🔐</button>
+    <button class="btn-admin" onclick="openAdmin()" title="Admin">🔐</button>
   </div>
 </nav>
 <div class="beta-bar">
@@ -2506,33 +2506,47 @@ function doLogin(){
   if(!c){ document.getElementById('cl-err').textContent='PIN no encontrado. Revisa tu email.'; return; }
   curClient=c; closeModal('modal-client'); initClientPanel(); openPanel('client-panel');
 }
-
 async function doAdmin(){
   const pwEl = document.getElementById('adm-pw');
   const errEl = document.getElementById('adm-err');
+  const btn = document.querySelector('#modal-admin .mb-btn');
   const pw = pwEl.value;
-  const fail = msg => { errEl.textContent = msg; pwEl.value = ''; };
+  errEl.textContent = '';
+  if(btn) btn.disabled = true;
   try {
-    // Password is validated server-side (ADMIN_PASSWORD env var); success sets an HttpOnly session cookie.
+    // Password is validated server-side; success sets an HttpOnly session cookie.
     const res = await fetch('/api/admin-login', {
       method: 'POST',
       credentials: 'same-origin',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: pw })
     });
-    if(!res.ok){
-      let data = {};
-      try { data = await res.json(); } catch(e) {}
-      return fail(res.status === 401 ? 'Contraseña incorrecta.' : (data.message || 'No se pudo iniciar sesión. Inténtalo más tarde.'));
+    if(res.ok){
+      pwEl.value = '';
+      closeModal('modal-admin'); initAdmin(); openPanel('admin-panel');
+    } else if(res.status === 401){
+      errEl.textContent = 'Contraseña incorrecta.';
+    } else if(res.status === 429){
+      errEl.textContent = 'Demasiados intentos, espera 15 minutos.';
+    } else if(res.status === 503){
+      errEl.textContent = 'Acceso de administración no configurado.';
+    } else {
+      errEl.textContent = 'Error de conexión.';
     }
-    // Confirm the session cookie is valid before opening the panel.
-    const sess = await fetch('/api/admin-session', { method: 'GET', credentials: 'same-origin' });
-    if(!sess.ok) return fail('No se pudo iniciar sesión. Inténtalo más tarde.');
-    pwEl.value = '';
-    closeModal('modal-admin'); initAdmin(); openPanel('admin-panel');
   } catch(e) {
-    fail('No se pudo iniciar sesión. Inténtalo más tarde.');
+    errEl.textContent = 'Error de conexión.';
+  } finally {
+    pwEl.value = '';
+    if(btn) btn.disabled = false;
   }
+}
+
+async function openAdmin(){
+  try {
+    const res = await fetch('/api/admin-session', { method: 'GET', credentials: 'same-origin', cache: 'no-store' });
+    if(res.ok){ initAdmin(); openPanel('admin-panel'); return; }
+  } catch(e) {}
+  openModal('admin');
 }
 
 // ══════ DATA ══════
