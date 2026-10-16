@@ -1465,7 +1465,6 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
 </div>
 <script>
 // ══════ CONST & STATE ══════
-const ADMIN_PWD = 'flowsuite2026';
 const S = 'fs_';
 let curClient = null;
 let favOpen = true;
@@ -2508,10 +2507,32 @@ function doLogin(){
   curClient=c; closeModal('modal-client'); initClientPanel(); openPanel('client-panel');
 }
 
-function doAdmin(){
-  const pw = document.getElementById('adm-pw').value;
-  if(pw===ADMIN_PWD){ document.getElementById('adm-pw').value=''; closeModal('modal-admin'); initAdmin(); openPanel('admin-panel'); }
-  else { document.getElementById('adm-err').textContent='Contraseña incorrecta.'; document.getElementById('adm-pw').value=''; }
+async function doAdmin(){
+  const pwEl = document.getElementById('adm-pw');
+  const errEl = document.getElementById('adm-err');
+  const pw = pwEl.value;
+  const fail = msg => { errEl.textContent = msg; pwEl.value = ''; };
+  try {
+    // Password is validated server-side (ADMIN_PASSWORD env var); success sets an HttpOnly session cookie.
+    const res = await fetch('/api/admin-login', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pw })
+    });
+    if(!res.ok){
+      let data = {};
+      try { data = await res.json(); } catch(e) {}
+      return fail(res.status === 401 ? 'Contraseña incorrecta.' : (data.message || 'No se pudo iniciar sesión. Inténtalo más tarde.'));
+    }
+    // Confirm the session cookie is valid before opening the panel.
+    const sess = await fetch('/api/admin-session', { method: 'GET', credentials: 'same-origin' });
+    if(!sess.ok) return fail('No se pudo iniciar sesión. Inténtalo más tarde.');
+    pwEl.value = '';
+    closeModal('modal-admin'); initAdmin(); openPanel('admin-panel');
+  } catch(e) {
+    fail('No se pudo iniciar sesión. Inténtalo más tarde.');
+  }
 }
 
 // ══════ DATA ══════
