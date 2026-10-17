@@ -1463,6 +1463,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 <script>
 // ══════ CONST & STATE ══════
 const S = 'fs_';
@@ -3257,14 +3258,84 @@ function savePacksAdmin(){
 function renderBuilderAdmin(){
   const el=document.getElementById('builder-admin-content');
   if(!el) return;
-  el.innerHTML=`<div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;text-align:center">
-    <div style="font-size:36px;margin-bottom:12px">🎨</div>
-    <div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:8px">Builder Pro — Herramienta separada</div>
-    <p style="font-size:13px;color:var(--t2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">
-      El Builder Pro genera una presencia digital completa para cualquier cliente en 60 segundos: logo IA, landing page, agente vocal (ElevenLabs), pack redes y código de acceso de 14 días.
-    </p>
-    <button class="pbtn" onclick="apNav('builder-admin',document.querySelector('.sni.adm[data-tip=\'Builder Pro\']'))">🎨 Builder Pro</button>
+  if(document.getElementById('bd-name')) return; // idempotente: no pisar datos ya escritos
+  const sectors=['restaurante','hotel','clínica','dental','estética','inmobiliaria','abogados','tienda','gimnasio','otro'];
+  const sectorOpts='<option value="">Selecciona sector</option>'+sectors.map(s=>`<option value="${s}">${s}</option>`).join('');
+  const langOpts=[['es','Español'],['fr','Français'],['de','Deutsch'],['it','Italiano'],['en','English']]
+    .map(l=>`<option value="${l[0]}">${l[1]}</option>`).join('');
+  el.innerHTML=`<div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:20px">
+    <div class="pfrow2">
+      <div class="pfg"><label for="bd-name">Nombre del negocio</label><input id="bd-name" type="text" required></div>
+      <div class="pfg"><label for="bd-sector">Sector</label><select id="bd-sector" required>${sectorOpts}</select></div>
+    </div>
+    <div class="pfrow2">
+      <div class="pfg"><label for="bd-lang">Idioma</label><select id="bd-lang">${langOpts}</select></div>
+      <div class="pfg"><label for="bd-city">Ciudad</label><input id="bd-city" type="text"></div>
+    </div>
+    <div class="pfg"><label for="bd-slogan">Eslogan</label><input id="bd-slogan" type="text"></div>
+    <div class="pfrow2">
+      <div class="pfg"><label for="bd-tel">WhatsApp del cliente (+41…)</label><input id="bd-tel" type="text"></div>
+      <div class="pfg"><label for="bd-ig">Instagram</label><input id="bd-ig" type="text"></div>
+    </div>
+    <div class="pfrow2">
+      <div class="pfg"><label for="bd-web">Web actual</label><input id="bd-web" type="url"></div>
+      <div class="pfg"><label for="bd-logo">URL del logo</label><input id="bd-logo" type="url"></div>
+    </div>
+    <div class="pfg"><label for="bd-color">Color</label><input id="bd-color" type="color" value="#00d4aa" style="height:40px;padding:3px 6px"></div>
+    <div class="pfg"><label for="bd-services">Servicios (uno por línea)</label><textarea id="bd-services" rows="4"></textarea></div>
+    <button class="pbtn" type="button" onclick="builderGenerate()">Generar demo</button>
+    <div id="bd-err" style="color:#ff6b6b"></div>
+    <div id="bd-out" style="display:none;margin-top:16px">
+      <div id="bd-url" style="font-size:12.5px;word-break:break-all;margin-bottom:10px"></div>
+      <div id="bd-wa" style="white-space:pre-wrap;font-size:13px;color:var(--t2);margin-bottom:12px"></div>
+      <button class="pbtn" type="button" onclick="builderSendWA()">Enviar por WhatsApp</button>
+      <button class="pbtn-g" type="button" onclick="navigator.clipboard.writeText(document.getElementById('bd-url').textContent)">Copiar enlace</button>
+    </div>
   </div>`;
+}
+const builderState = { url:'', wa:'', tel:'' };
+const BUILDER_WA = {
+  es: (n, c, s, url) => `¡Hola!\n\nHe preparado una demo de FlowSuite para ${n}${c ? ' en ' + c : ''}.\n\n• Asistente de IA 24/7 en 5 idiomas\n• Captación de contactos\n• Adaptado a: ${s}\n\n${url}\n\nIncluye 14 días de prueba gratis, sin tarjeta ni compromiso.\n¿Tienes 5 minutos para verla?\n\n— FlowSuite · flowsuite.ch`,
+  fr: (n, c, s, url) => `Bonjour !\n\nJ’ai préparé une démo FlowSuite pour ${n}${c ? ' à ' + c : ''}.\n\n• Assistant IA 24/7 en 5 langues\n• Acquisition de contacts\n• Adapté à : ${s}\n\n${url}\n\n14 jours d’essai gratuit, sans carte ni engagement.\nTu as 5 minutes pour la voir ?\n\n— FlowSuite · flowsuite.ch`,
+  de: (n, c, s, url) => `Hallo!\n\nIch habe eine FlowSuite-Demo für ${n}${c ? ' in ' + c : ''} vorbereitet.\n\n• KI-Assistent 24/7 in 5 Sprachen\n• Kontaktgewinnung\n• Angepasst an: ${s}\n\n${url}\n\n14 Tage kostenlos testen, ohne Karte und unverbindlich.\nHast du 5 Minuten, um sie anzuschauen?\n\n— FlowSuite · flowsuite.ch`,
+  it: (n, c, s, url) => `Ciao!\n\nHo preparato una demo di FlowSuite per ${n}${c ? ' a ' + c : ''}.\n\n• Assistente IA 24/7 in 5 lingue\n• Acquisizione contatti\n• Adattato a: ${s}\n\n${url}\n\n14 giorni di prova gratuita, senza carta né impegno.\nHai 5 minuti per vederla?\n\n— FlowSuite · flowsuite.ch`,
+  en: (n, c, s, url) => `Hi!\n\nI’ve prepared a FlowSuite demo for ${n}${c ? ' in ' + c : ''}.\n\n• AI assistant 24/7 in 5 languages\n• Lead capture\n• Tailored to: ${s}\n\n${url}\n\nIncludes a 14-day free trial, no card, no commitment.\nDo you have 5 minutes to take a look?\n\n— FlowSuite · flowsuite.ch`,
+};
+function httpsUrlOrEmpty(v){
+  if(!v) return '';
+  try { const u = new URL(v); return u.protocol === 'https:' ? u.href : null; } catch { return null; }
+}
+function builderGenerate(){
+  const g=id=>document.getElementById(id);
+  const err=g('bd-err');
+  const n=g('bd-name').value.trim();
+  const opt=g('bd-sector').selectedOptions[0];
+  const lang=g('bd-lang').value;
+  if(!n || !opt || !opt.value){ err.textContent='Nombre y sector son obligatorios.'; return; }
+  const web=httpsUrlOrEmpty(g('bd-web').value.trim());
+  const logo=httpsUrlOrEmpty(g('bd-logo').value.trim());
+  if(web===null || logo===null){ err.textContent='La web y el logo deben ser URLs https:// válidas.'; return; }
+  if(typeof LZString==='undefined'){ err.textContent='No se pudo cargar el compresor (lz-string).'; return; }
+  err.textContent='';
+  const sectorText=opt.textContent;
+  const col=/^#[0-9a-f]{6}$/i.test(g('bd-color').value) ? g('bd-color').value : '#00d4aa';
+  const data={
+    n, s: sectorText, c: g('bd-city').value.trim(), sl: g('bd-slogan').value.trim(), l: lang,
+    t: g('bd-tel').value.trim().replace(/[^\d+\s]/g,''), w: web, ig: g('bd-ig').value.trim(), col, logo,
+    sv: g('bd-services').value.split('\n').map(x=>x.trim()).filter(Boolean).join('\n'),
+    trial: new Date().toISOString().split('T')[0],
+  };
+  builderState.url=location.origin+'/demo#'+LZString.compressToEncodedURIComponent(JSON.stringify(data));
+  builderState.wa=BUILDER_WA[lang](n, data.c, sectorText, builderState.url);
+  builderState.tel=data.t;
+  g('bd-url').textContent=builderState.url;
+  g('bd-wa').textContent=builderState.wa;
+  g('bd-out').style.display='block';
+}
+function builderSendWA(){
+  const raw=builderState.tel.replace(/[\s+]/g,'');
+  const num=raw.startsWith('0') ? '41'+raw.slice(1) : raw;
+  window.open('https://wa.me/'+(num||'')+'?text='+encodeURIComponent(builderState.wa),'_blank','noopener');
 }
 function openBuilder(){
   // Abre el Builder Pro DENTRO del panel admin — nunca abre URL externa
