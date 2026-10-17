@@ -916,6 +916,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
         <div class="sni" onclick="cpNav('content',this)" data-tip="Contenido IA">✨</div>
         <div class="sni" onclick="cpNav('kb',this)" data-tip="Base conocimiento">📚</div>
         <div class="sni" onclick="cpNav('changes',this)" data-tip="Editar con IA">✍️</div>
+        <div class="sni" onclick="cpNav('builder',this)" data-tip="Builder Pro">🎨</div>
         <div class="sni" onclick="cpNav('int',this)" data-tip="Integraciones">🔌</div>
         <div class="sni" onclick="cpNav('settings',this)" data-tip="Ajustes">⚙️</div>
       </nav>
@@ -1313,6 +1314,9 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
           <div class="pc"><div class="pc-hd"><span class="pc-hd-t">Historial de cambios</span></div><div id="chg-hist" style="padding:0 18px"></div></div>
         </div>
 
+        <!-- BUILDER CLIENTE -->
+        <div class="ppanel" id="cpp-builder"><div id="cpp-builder-body"></div></div>
+
         <!-- INTEGRACIONES -->
         <div class="ppanel" id="cpp-int">
           <p style="font-size:13px;color:var(--t2);margin-bottom:16px">Conecta todos tus canales y herramientas a FlowSuite.</p>
@@ -1463,6 +1467,7 @@ footer{border-top:1px solid var(--bd);padding:clamp(32px,5vw,56px) clamp(16px,5v
     </div>
   </div>
 </div>
+<script src="/assets/vendor/lz-string-1.5.0.min.js"></script>
 <script>
 // ══════ CONST & STATE ══════
 const S = 'fs_';
@@ -2661,7 +2666,8 @@ function cpNav(id, el){
   document.querySelectorAll('#client-panel .sni').forEach(n=>n.classList.remove('on'));
   const panel = document.getElementById('cpp-'+id); if(panel) panel.classList.add('on');
   if(el) el.classList.add('on');
-  const ts={dash:'Panel de control',web:'Mi landing page',agent:'Mi agente',content:'Contenido IA',kb:'Base de conocimiento',changes:'Editor con IA',int:'Integraciones',settings:'Ajustes'};
+  const ts={dash:'Panel de control',web:'Mi landing page',agent:'Mi agente',content:'Contenido IA',kb:'Base de conocimiento',changes:'Editor con IA',builder:'Builder Pro',int:'Integraciones',settings:'Ajustes'};
+  if(id==='builder') bdMount('cpp-builder-body','bdc');
   document.getElementById('cp-pbar').textContent = ts[id]||id;
 }
 
@@ -3254,29 +3260,79 @@ function savePacksAdmin(){
   editPacks=null;renderPacks();renderPacksAdminEditor();
   toast('✅ Packs actualizados en la landing','ok');
 }
-function renderBuilderAdmin(){
-  const el=document.getElementById('builder-admin-content');
-  if(!el) return;
-  el.innerHTML=`<div style="background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:20px;text-align:center">
-    <div style="font-size:36px;margin-bottom:12px">🎨</div>
-    <div style="font-size:15px;font-weight:800;font-family:var(--serif);margin-bottom:8px">Builder Pro — Herramienta separada</div>
-    <p style="font-size:13px;color:var(--t2);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">
-      El Builder Pro genera una presencia digital completa para cualquier cliente en 60 segundos: logo IA, landing page, agente vocal (ElevenLabs), pack redes y código de acceso de 14 días.
-    </p>
-    <button class="pbtn" onclick="apNav('builder-admin',document.querySelector('.sni.adm[data-tip=\'Builder Pro\']'))">🎨 Builder Pro</button>
-  </div>`;
+// ══════ BUILDER PRO (admin + cliente) ══════
+const BD_SECTORS = ['Música / Estudio', 'Tatuaje / Body art', 'Yoga / Bienestar', 'Restaurante / Hotel', 'Clínica / Salud', 'Academia / Clases', 'Abogacía / Asesoría', 'Peluquería / Estética', 'Taller / Oficio', 'Otro'];
+const BD_STATE = {};
+function bdHttps(v) {
+  if (!v) return '';
+  try { const u = new URL(v); return u.protocol === 'https:' ? u.href : null; } catch { return null; }
 }
-function openBuilder(){
-  // Abre el Builder Pro DENTRO del panel admin — nunca abre URL externa
-  const adminBtn = document.querySelector('.sni.adm[data-tip="Builder Pro"]');
-  if(adminBtn){
-    adminBtn.click();
-  } else {
-    // Fallback: abrir el panel admin y navegar al builder
-    document.getElementById('admin-panel')?.classList.add('open');
-    apNav('builder-admin', null);
+function bdHTML(p) {
+  return `<div class="pc"><div class="pc-hd"><span class="pc-hd-t">Generar demo para un prospecto</span></div>
+  <div style="padding:14px 18px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="pfg"><label>Nombre del negocio *</label><input id="${p}-name" type="text"></div>
+      <div class="pfg"><label>Sector *</label><select id="${p}-sector"><option value="">— Elige —</option>${BD_SECTORS.map((s) => `<option>${s}</option>`).join('')}</select></div>
+      <div class="pfg"><label>Ciudad</label><input id="${p}-city" type="text"></div>
+      <div class="pfg"><label>Teléfono WhatsApp</label><input id="${p}-tel" type="text" placeholder="+41…"></div>
+      <div class="pfg"><label>Web (https)</label><input id="${p}-web" type="text"></div>
+      <div class="pfg"><label>Logo (URL https)</label><input id="${p}-logo" type="text"></div>
+      <div class="pfg"><label>Instagram</label><input id="${p}-ig" type="text"></div>
+      <div class="pfg"><label>Color</label><input id="${p}-color" type="color" value="#00d4aa"></div>
+    </div>
+    <div class="pfg"><label>Eslogan</label><input id="${p}-slogan" type="text"></div>
+    <div class="pfg"><label>Servicios (uno por línea)</label><textarea id="${p}-services" rows="3"></textarea></div>
+    <button class="pbtn" onclick="bdGenerate('${p}')">Generar demo</button>
+    <div id="${p}-err" style="color:var(--coral);font-size:12px;margin-top:8px"></div>
+    <div id="${p}-out" style="display:none;margin-top:14px">
+      <div class="pfg"><label>Enlace de la demo</label><div id="${p}-url" style="font-family:monospace;font-size:11px;word-break:break-all"></div></div>
+      <div class="pfg"><label>Mensaje WhatsApp</label><div id="${p}-wa" style="white-space:pre-wrap;font-size:12.5px"></div></div>
+      <button class="pbtn" onclick="cpCopy(document.getElementById('${p}-url').textContent)">Copiar enlace</button>
+      <button class="pbtn" onclick="bdSendWA('${p}')">Enviar por WhatsApp</button>
+    </div>
+  </div></div>`;
+}
+function bdMount(id, p) {
+  const el = document.getElementById(id);
+  if (el && !el.dataset.ready) { el.innerHTML = bdHTML(p); el.dataset.ready = '1'; }
+}
+function bdGenerate(p) {
+  const f = (k) => document.getElementById(p + '-' + k);
+  const err = f('err');
+  const n = f('name').value.trim(), sec = f('sector').value;
+  if (!n || !sec) { err.textContent = 'Nombre y sector son obligatorios.'; return; }
+  const web = bdHttps(f('web').value.trim()), logo = bdHttps(f('logo').value.trim());
+  if (web === null || logo === null) { err.textContent = 'La web y el logo deben ser URLs https:// válidas.'; return; }
+  if (typeof LZString === 'undefined') { err.textContent = 'No se pudo cargar el compresor (lz-string).'; return; }
+  err.textContent = '';
+  const col = /^#[0-9a-f]{6}$/i.test(f('color').value) ? f('color').value : '#00d4aa';
+  const data = {
+    n, s: sec, c: f('city').value.trim(), sl: f('slogan').value.trim(), l: 'es',
+    t: f('tel').value.trim().replace(/[^\d+\s]/g, ''), w: web, ig: f('ig').value.trim(), col, logo,
+    sv: f('services').value.split('\n').map((x) => x.trim()).filter(Boolean).join('\n'),
+    trial: new Date().toISOString().split('T')[0],
+  };
+  const url = location.origin + '/demo#' + LZString.compressToEncodedURIComponent(JSON.stringify(data));
+  const wa = `¡Hola!\n\nHe preparado una demo de FlowSuite para ${n}${data.c ? ' en ' + data.c : ''}.\n\n• Asistente de IA 24/7 en 5 idiomas\n• Captación de contactos\n• Adaptado a: ${sec}\n\n${url}\n\nIncluye 14 días de prueba gratis, sin tarjeta ni compromiso.\n¿Tienes 5 minutos para verla?\n\n— FlowSuite`;
+  BD_STATE[p] = { url, wa, tel: data.t };
+  f('url').textContent = url; f('wa').textContent = wa; f('out').style.display = 'block';
+}
+function bdSendWA(p) {
+  const st = BD_STATE[p]; if (!st) return;
+  const raw = st.tel.replace(/[\s+]/g, '');
+  const num = raw.startsWith('0') ? '41' + raw.slice(1) : raw;
+  window.open('https://wa.me/' + (num || '') + '?text=' + encodeURIComponent(st.wa), '_blank', 'noopener');
+}
+function renderBuilderAdmin() { bdMount('builder-admin-content', 'bd'); }
+function openBuilder() {
+  if (document.getElementById('client-panel')?.classList.contains('open')) {
+    cpNav('builder', document.querySelector('#client-panel .sni[data-tip="Builder Pro"]'));
+    return;
   }
+  openPanel('admin-panel');
+  apNav('builder-admin', document.querySelector('#admin-panel .sni[data-tip="Builder Pro"]'));
 }
+
 
 // ══════ UTILS ══════
 function goTo(sel){document.querySelector(sel)?.scrollIntoView({behavior:'smooth'});}
